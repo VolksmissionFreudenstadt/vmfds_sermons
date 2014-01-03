@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-04-16T11:33:03Z" product-name="vmfds_sermons">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon">
+				<source>Sermon</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.subtitle">
+				<source>Subtitle</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.preached">
+				<source>Preached</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.keypoints">
+				<source>Key points</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.questions">
+				<source>Questions for smallgroups</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.further_reading">
+				<source>Material for further reading</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.reference">
+				<source>Reference</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.keywords">
+				<source>Keywords</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.image_source">
+				<source>Image source</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.handout">
+				<source>Handout</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.audiorecording">
+				<source>Audiorecording</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording">
+				<source>Videorecording</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.preacher">
+				<source>Preacher</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.series">
+				<source>Series</source>
+			</trans-unit>
+
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher">
+				<source>Preacher</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.first_name">
+				<source>First name</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.last_name">
+				<source>Last name</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.email">
+				<source>Email</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.organization">
+				<source>Organization</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.url">
+				<source>Url</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.blog">
+				<source>Blog</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.facebook_id">
+				<source>Facebook ID</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.about">
+				<source>About the preacher</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_preacher.image">
+				<source>Image</source>
+			</trans-unit>
+
+			<trans-unit id="tx_vmfdssermons_domain_model_series">
+				<source>Series</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_series.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_series.subtitle">
+				<source>Subtitle</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_series.startdate">
+				<source>Startdate</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_series.enddate">
+				<source>Enddate</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_series.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_series.image">
+				<source>Image</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,35 @@
+plugin.tx_vmfdssermons {
+	view {
+		# cat=plugin.tx_vmfdssermons/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:vmfds_sermons/Resources/Private/Templates/
+		# cat=plugin.tx_vmfdssermons/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:vmfds_sermons/Resources/Private/Partials/
+		# cat=plugin.tx_vmfdssermons/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:vmfds_sermons/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_vmfdssermons//a; type=string; label=Default storage PID
+		storagePid =
+	}
+
+	settings {
+		 # cat=plugin.tx_vmfdssermons/links; type=int+; label=Page id of the sermons list page
+		sermonListPID =
+
+		 # cat=plugin.tx_vmfdssermons/links; type=int+; label=Page id of the sermons detail page
+		sermonDetailsPID =
+
+		 # cat=plugin.tx_vmfdssermons/links; type=int+; label=Page id of the series list page
+		seriesListPID =
+
+		 # cat=plugin.tx_vmfdssermons/links; type=int+; label=Page id of the series detail page
+		seriesDetailsPID =
+
+		 # cat=plugin.tx_vmfdssermons/links; type=int+; label=Page id of the preacher list page
+		preacherListPID =
+
+		 # cat=plugin.tx_vmfdssermons/links; type=int+; label=Page id of the preacher detail page
+		preacherDetailsPID =
+	}
+
+}

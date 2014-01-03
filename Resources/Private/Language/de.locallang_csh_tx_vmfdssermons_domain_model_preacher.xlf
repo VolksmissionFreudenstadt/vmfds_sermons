@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2012-12-17T13:44:07Z" product-name="vmfds_sermons">
+		<header/>
+		<body>
+
+			<trans-unit id="name.description" approved="yes">
+				<source>Name</source><target state="translated">Name</target> </trans-unit>
+			<trans-unit id="email.description" approved="yes">
+				<source>Email address</source><target state="translated">E-Mailadresse</target> </trans-unit>
+			<trans-unit id="organization.description" approved="yes">
+				<source>Organization</source><target state="translated">Organisation</target> </trans-unit>
+			<trans-unit id="url.description" approved="yes">
+				<source>URL</source><target state="translated">Adresse (URL)</target> </trans-unit>
+			<trans-unit id="blog.description" approved="yes">
+				<source>Blog</source><target state="translated">Blog</target> </trans-unit>
+			<trans-unit id="image.description" approved="yes">
+				<source>Image</source><target state="translated">Bild</target> </trans-unit>
+		</body>
+	</file>
+</xliff>

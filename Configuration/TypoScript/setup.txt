@@ -1,0 +1,50 @@
+plugin.tx_vmfdssermons {
+	view {
+		templateRootPath = {$plugin.tx_vmfdssermons.view.templateRootPath}
+		partialRootPath = {$plugin.tx_vmfdssermons.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_vmfdssermons.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_vmfdssermons.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+	settings {
+		sermonListPID = {$plugin.tx_vmfdssermons.settings.sermonListPID}
+		sermonDetailsPID = {$plugin.tx_vmfdssermons.settings.sermonDetailsPID}
+		seriesListPID = {$plugin.tx_vmfdssermons.settings.seriesListPID}
+		seriesDetailsPID = {$plugin.tx_vmfdssermons.settings.seriesDetailsPID}
+		preacherListPID = {$plugin.tx_vmfdssermons.settings.preacherListPID}
+		preacherDetailsPID = {$plugin.tx_vmfdssermons.settings.preacherDetailsPID}
+		handoutPID = {$plugin.tx_vmfdssermons.settings.handoutPID}
+		handoutType = {$plugin.tx_vmfdssermons.settings.handoutType}
+	}
+
+}
+
+plugin.tx_vmfdssermons._CSS_DEFAULT_STYLE (
+	textarea.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	input.f3-form-error {
+		background-color:#FF9F9F;
+		border: 1px #FF0000 solid;
+	}
+
+	.tx-vmfds-sermons table {
+		border-collapse:separate;
+		border-spacing:10px;
+	}
+
+	.tx-vmfds-sermons table th {
+		font-weight:bold;
+	}
+
+	.tx-vmfds-sermons table td {
+		vertical-align:top;
+	}
+)

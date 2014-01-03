@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-04-16T11:33:03Z" product-name="vmfds_sermons">
+		<header/>
+		<body>
+
+			<trans-unit id="title.description">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="subtitle.description">
+				<source>Subtitle</source>
+			</trans-unit>
+			<trans-unit id="preached.description">
+				<source>Preaching date</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="reference.description">
+				<source>Text reference</source>
+			</trans-unit>
+			<trans-unit id="keywords.description">
+				<source>Key words</source>
+			</trans-unit>
+			<trans-unit id="image.description">
+				<source>Title image</source>
+			</trans-unit>
+			<trans-unit id="handout.description">
+				<source>Handout</source>
+			</trans-unit>
+			<trans-unit id="audiorecording.description">
+				<source>Audio recording</source>
+			</trans-unit>
+			<trans-unit id="videorecording.description">
+				<source>videorecording</source>
+			</trans-unit>
+			<trans-unit id="preacher.description">
+				<source>Preacher</source>
+			</trans-unit>
+			<trans-unit id="series.description">
+				<source>series</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
