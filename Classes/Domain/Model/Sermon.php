@@ -64,6 +64,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $description;
 
 	/**
+	 * Notes header
+	 *
+	 * @var \string
+	 */
+	protected $notesHeader;
+
+	/**
 	 * Key points
 	 *
 	 * @var \string
@@ -228,6 +235,25 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setDescription($description) {
 		$this->description = $description;
+	}
+
+	/**
+	 * Returns the notes header
+	 *
+	 * @return \string $notesHeader
+	 */
+	public function getNotesHeader() {
+		return $this->notesHeader;
+	}
+
+	/**
+	 * Sets the notes header
+	 *
+	 * @param \string $notesHeader
+	 * @return void
+	 */
+	public function setNotesHeader($notesHeader) {
+		$this->notesHeader = $notesHeader;
 	}
 
 	/**

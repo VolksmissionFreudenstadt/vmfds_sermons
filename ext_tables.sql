@@ -10,6 +10,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
 	subtitle text NOT NULL,
 	preached int(11) DEFAULT '0' NOT NULL,
 	description text NOT NULL,
+	notes_header varchar(255) DEFAULT '' NOT NULL,
 	keypoints text NOT NULL,
 	questions text NOT NULL,
 	further_reading text NOT NULL,

@@ -14,6 +14,8 @@
 				<source>Date</source> <target state="translated">Datum</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.description" approved="yes">
 				<source>Description</source> <target state="translated">Beschreibung</target></trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.notes_header" approved="yes">
+				<source>Heading for notes section</source> <target state="translated">Überschrift für den Notizteil</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.keypoints" approved="yes">
 				<source>Key points</source> <target state="translated">Hauptpunkte der Predigt</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.questions" approved="yes">
