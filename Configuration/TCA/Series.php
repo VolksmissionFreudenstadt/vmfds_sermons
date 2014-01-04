@@ -106,9 +106,8 @@ $TCA['tx_vmfdssermons_domain_model_series'] = array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.subtitle',
 			'config' => array(
-				'type' => 'text',
-				'cols' => 40,
-				'rows' => 15,
+				'type' => 'input',
+				'size' => 30,
 				'eval' => 'trim'
 			),
 		),
