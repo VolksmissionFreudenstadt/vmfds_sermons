@@ -14,6 +14,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
 	keypoints text NOT NULL,
 	questions text NOT NULL,
 	further_reading text NOT NULL,
+	prep text NOT NULL,
 	reference varchar(255) DEFAULT '' NOT NULL,
 	keywords varchar(255) DEFAULT '' NOT NULL,
 	image text NOT NULL,

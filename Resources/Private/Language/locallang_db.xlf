@@ -31,6 +31,9 @@
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.further_reading">
 				<source>Material for further reading</source>
 			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.prep">
+				<source>How to prepare for the service</source>
+			</trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.reference">
 				<source>Reference</source>
 			</trans-unit>

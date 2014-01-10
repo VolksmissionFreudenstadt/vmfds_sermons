@@ -22,6 +22,8 @@
 				<source>Questions for smallgroups</source> <target state="translated">Fragen für Kleingruppen</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.further_reading" approved="yes">
 				<source>Material for further reading</source> <target state="translated">Lesestoff</target></trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.prep" approved="yes">
+				<source>How to prepare for the service</source> <target state="translated">Wie man sich auf den Gottesdienst vorbereiten kann</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.keywords" approved="yes">
 				<source>Keywords</source> <target state="translated">Stichwörter</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.reference" approved="yes">

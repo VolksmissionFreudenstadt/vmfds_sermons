@@ -92,6 +92,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $furtherReading;
 
 	/**
+	 * Prep
+	 *
+	 * @var \string
+	 */
+	protected $prep;
+
+	/**
 	 * Text reference
 	 *
 	 * @var \string
@@ -311,6 +318,25 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setFurtherReading($furtherReading) {
 		$this->furtherReading = $furtherReading;
+	}
+
+	/**
+	 * Returns the prep questions
+	 *
+	 * @return \string $prep
+	 */
+	public function getPrep() {
+		return $this->prep;
+	}
+
+	/**
+	 * Sets the prep questions
+	 *
+	 * @param \string $prep
+	 * @return void
+	 */
+	public function setPrep($prep) {
+		$this->prep = $prep;
 	}
 
 	/**
