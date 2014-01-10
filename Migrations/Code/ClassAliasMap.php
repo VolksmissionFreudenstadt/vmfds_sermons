@@ -1,3 +1,4 @@
+<?php
 return array(
 	'Tx_VmfdsSermons_Controller_SermonController' => 'TYPO3\\VmfdsSermons\\Controller\\SermonController',
 	'Tx_VmfdsSermons_Controller_SeriesController' => 'TYPO3\\VmfdsSermons\\Controller\\SeriesController',
