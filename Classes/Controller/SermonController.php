@@ -150,6 +150,23 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 
+	/**
+	 * action previewNext
+	 * 
+	 * Display a single sermon: the next one which is on preview
+	 *
+	 * @return void
+	 */
+	public function previewNextAction() {
+	
+		$sermon = $this->sermonRepository->findNextPreview();
+		$this->showAction($sermon);			
+	
+	
+	}
+	
+	
+	
 
 }
 ?>
