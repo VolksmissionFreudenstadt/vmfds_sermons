@@ -121,6 +121,24 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			))->execute()->getFirst();
 	}
 
+	/**
+	 * Find the latest sermon
+	 *
+	 * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
+	 */
+	public function findLatest() {
+		// find latest sermon that's already been preached
+		$this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+		$q = $this->createQuery()->setLimit(1);
+		$constraints = array(
+				$q->lessThanOrEqual('preached', time()),
+		);
+		$sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
+		return $sermon;
+	}
+	
+	
+	
 
 }
 ?>

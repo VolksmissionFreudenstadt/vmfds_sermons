@@ -165,6 +165,21 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	
 	}
 	
+	/**
+	 * action showLatest
+	 *
+	 * Display a single sermon: the latest one
+	 *
+	 * @return void
+	 */
+	public function showLatestAction() {
+	
+		$sermon = $this->sermonRepository->findLatest();
+		$this->showAction($sermon);
+	
+	
+	}
+	
 	
 	
 
