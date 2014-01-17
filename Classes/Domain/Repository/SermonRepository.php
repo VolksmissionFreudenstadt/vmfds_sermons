@@ -33,24 +33,6 @@ namespace TYPO3\VmfdsSermons\Domain\Repository;
  *
  */
 class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
-
-	/**
-	 * Find the next sermon to be previewed
-	 *
-	 * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
-	 */
-	public function findNextPreview() {
-		// find latest sermon with a series
-		$this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING));
-		$q = $this->createQuery()->setLimit(1);
-		$q->getQuerySettings()->setRespectEnableFields(FALSE);
-		$constraints = array(
-				$q->greaterThan('preached', date('Y-m-d')),
-		);
-		$sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
-		return $sermon;
-	}
 	
 	
 	/**
@@ -143,6 +125,7 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
 	 */
 	public function findNextPreview() {
+		
 		// find next sermon for preview
 		$this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING));
 		$q = $this->createQuery()->setLimit(1);
