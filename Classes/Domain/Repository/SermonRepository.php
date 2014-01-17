@@ -137,6 +137,24 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		return $sermon;
 	}
 	
+	/**
+	 * Find the next sermon for a preview
+	 *
+	 * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
+	 */
+	public function findNextPreview() {
+		// find next sermon for preview
+		$this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING));
+		$q = $this->createQuery()->setLimit(1);
+		$q->getQuerySettings()->setRespectEnableFields(FALSE);
+		$constraints = array(
+				$q->greaterThan('preached', time()),
+		);
+		$sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
+		return $sermon;
+	}
+	
+	
 	
 	
 
