@@ -112,10 +112,10 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		}		
 		
 		// calculate week start and end (for bulletin, etc);
-		$weekStart = $sermon->getPreached()->format('U');
-		if (strftime('%w', $weekStart) != 0) $weekStart = strtotime('last Sunday', $weekStart);
+		$weekStartReal = $sermon->getPreached()->format('U');
+		if (strftime('%w', $weekStartReal) != 0) $weekStartReal = strtotime('last Sunday', $weekStartReal);
 		// set to 10:59:
-		$weekStart = mktime(10,59,0,strftime('%m', $weekStart),strftime('%d', $weekStart),strftime('%Y', $weekStart));
+		$weekStart = mktime(10,59,0,strftime('%m', $weekStartReal),strftime('%d', $weekStartReal),strftime('%Y', $weekStartReal));
 		$weekEnd = strtotime('23:59:00', strtotime('+7 days', $weekStart));
 		$weekEndSat = strtotime('23:59:00', strtotime('+6 days', $weekStart));
 				
@@ -124,6 +124,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->view->assign('relatedByPreacher', $relatedByPreacher);		
 		$this->view->assign('sermon', $sermon);
 		$this->view->assign('weekStart', $weekStart);
+		$this->view->assign('weekStartReal', $weekStartReal);
 		$this->view->assign('weekEnd', $weekEnd);
 		$this->view->assign('weekEndSat', $weekEndSat);
 		$this->view->assign('sneakForward', $sneakForward);
