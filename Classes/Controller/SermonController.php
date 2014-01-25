@@ -114,9 +114,9 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		// calculate week start and end (for bulletin, etc);
 		$weekStart = $sermon->getPreached()->format('U');
 		if (strftime('%w', $weekStart) != 0) $weekStart = strtotime('last Sunday', $weekStart);
-		//$weekStart = strtotime('11:00', $weekStart);
-		$weekEnd = strtotime('+23 hours', strtotime('+6 days', $weekStart));
-		$weekEndSat = strtotime('+23 hours', strtotime('+5 days', $weekStart));
+		$weekStart = strtotime('10:59', $weekStart);
+		$weekEnd = strtotime('+13 hours', strtotime('+7 days', $weekStart));
+		$weekEndSat = strtotime('+13 hours', strtotime('+6 days', $weekStart));
 				
 		// pass it all to the view
 		$this->view->assign('relatedBySeries', $relatedBySeries);
