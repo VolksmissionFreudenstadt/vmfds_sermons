@@ -55,6 +55,9 @@
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording">
 				<source>Videorecording</source>
 			</trans-unit>
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.cclicense">
+				<source>This content is licensed under a Creative Commons License (CC-BY-SA 4.0).</source>
+			</trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.preacher">
 				<source>Preacher</source>
 			</trans-unit>

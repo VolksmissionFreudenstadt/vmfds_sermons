@@ -22,6 +22,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
 	handout text NOT NULL,
 	audiorecording text NOT NULL,
 	videorecording text NOT NULL,
+	cclicense tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	preacher int(11) unsigned DEFAULT '0' NOT NULL,
 	series int(11) unsigned DEFAULT '0' NOT NULL,
 

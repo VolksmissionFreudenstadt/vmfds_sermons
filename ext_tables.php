@@ -35,7 +35,7 @@ $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
 			'starttime' => 'starttime',
 			'endtime' => 'endtime',
 		),
-		'searchFields' => 'title,subtitle,preached,description,notes_header,keypoints,questions,further_reading,prep,reference,keywords,image,image_source,handout,audiorecording,videorecording,preacher,series,',
+		'searchFields' => 'title,subtitle,preached,description,notes_header,keypoints,questions,further_reading,prep,reference,keywords,image,image_source,handout,audiorecording,videorecording,cclicense,preacher,series,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Sermon.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vmfdssermons_domain_model_sermon.gif'
 	),

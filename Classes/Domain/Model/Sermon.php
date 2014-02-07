@@ -146,6 +146,14 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \string
 	 */
 	protected $videorecording;
+	
+	/**
+	 * cclicense
+	 *
+	 * @var \int
+	 */
+	protected $cclicense;
+	
 
 	/**
 	 * Preacher
@@ -472,6 +480,25 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->videorecording = $videorecording;
 	}
 
+	/**
+	 * Returns the cclicsense
+	 *
+	 * @return \int $cclicense
+	 */
+	public function getCclicense() {
+		return $this->cclicense;
+	}
+	
+	/**
+	 * Sets the cclicense
+	 *
+	 * @param \int $cclicense
+	 * @return void
+	 */
+	public function setCclicense($cclicense) {
+		$this->cclicense = $cclicense;
+	}
+	
 	/**
 	 * Adds a Preacher
 	 *
