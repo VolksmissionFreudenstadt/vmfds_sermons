@@ -39,7 +39,7 @@
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording" approved="yes">
 				<source>Videorecording</source> <target state="translated">Video</target></trans-unit>
 				
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording" approved="yes">
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.cclicense" approved="yes">
 				<source>This content is licensed under a Creative Commons License (CC-BY-SA 4.0).</source> <target state="translated">Dieser Inhalt steht unter einer Creative-Commons-Lizenz (CC-BY-SA 4.0).</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.preacher" approved="yes">
 				<source>Preacher</source> <target state="translated">Prediger</target></trans-unit>
