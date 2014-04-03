@@ -94,7 +94,7 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	public function findByUid($uid, $respectEnableFields = TRUE) {
 		$query = $this->createQuery();
 		$query->getQuerySettings()->setRespectStoragePage(FALSE);
-		$query->getQuerySettings()->setRespectEnableFields($respectEnableFields);
+		$query->getQuerySettings()->setIgnoreEnableFields(!$respectEnableFields);
 
 		return $query->matching(
 			$query->logicalAnd(

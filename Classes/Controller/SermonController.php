@@ -78,23 +78,26 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon = NULL) {
+
+
 		// permit preview of hidden records?
 		$sneakForward = FALSE;
 		if (is_null($sermon)) {
 			$previewSermonId = ((int)$this->settings['singleSermon'] > 0) ? $this->settings['singleSermon'] : $this->request->getArgument('sermon_preview');
 			//die ('Requested sermon '.$previewSermonId);
-
 			if ($this->settings['previewHiddenRecords']) {
 				$sermon = $this->sermonRepository->findByUid($previewSermonId, FALSE);
 			} else {
 				$sermon = $this->sermonRepository->findByUid($previewSermonId);
 			}
+
 			// check if this is still a sneak preview?
 			if ($sermon->getPreached()->format('U')<=time()) {
 				$sneakForward = TRUE;
 			}
 		}
 		
+;
 
 		
 		// get related by series
