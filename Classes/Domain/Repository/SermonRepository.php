@@ -129,7 +129,7 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		// find next sermon for preview
 		$this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING));
 		$q = $this->createQuery()->setLimit(1);
-		$q->getQuerySettings()->setRespectEnableFields(FALSE);
+		$q->getQuerySettings()->setIgnoreEnableFields(TRUE);
 		$constraints = array(
 				$q->greaterThan('preached', time()),
 		);
