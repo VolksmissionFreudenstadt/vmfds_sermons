@@ -33,6 +33,10 @@
 										<numIndex index="0">Prediger (Admin)</numIndex>
 										<numIndex index="1">Preacher->list;Preacher->show;Preacher->edit;Preacher->update</numIndex>
 									</numIndex>
+									<numIndex index="5">
+										<numIndex index="0">Audio Upload</numIndex>
+										<numIndex index="1">Sermon->audioUploadWelcome;Sermon->audioUploadDone</numIndex>
+									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
