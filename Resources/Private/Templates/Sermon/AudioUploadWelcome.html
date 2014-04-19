@@ -1,1 +1,6 @@
-<f:debug>{sermons}</f:debug>
+<p>Here you can upload sermon audio recordings for any sermon not matched to an existing recording.</p>
+<f:form enctype="multipart/form-data" action="audioUploadDone" controller="Sermon">
+    <label for="sermon">Predigt: </label><f:form.select name="sermon" options="{sermons}" optionLabelField="selectString" /><br />
+    <label for="audiorecording">Aufnahme: </label><f:form.upload name="audiorecording" /><br />
+    <f:form.button>Hochladen</f:form.button>
+</f:form>
