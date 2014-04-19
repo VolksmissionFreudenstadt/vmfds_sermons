@@ -214,7 +214,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		}
 		$file = $this->request->getArgument('audiorecording');
 		if (!$file['error']) {
-			$uploadFolder = \TYPO3\CMS\Extensionmanager\Utility\GeneralUtility::getAbsFileName($this->settings['uploadFolder'].'/'.$file['name']);
+			$uploadFolder = \TYPO3\CMS\Core\Utility\GeneralUtility::getAbsFileName($this->settings['uploadFolder'].'/'.$file['name']);
 			$file['ulf'] = $uploadFolder;
 		}
 		
