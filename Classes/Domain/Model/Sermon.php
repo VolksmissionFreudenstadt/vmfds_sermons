@@ -595,6 +595,10 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	public function setPreached($preached) {
 		$this->preached = $preached;
 	}
+	
+	public function getSelectString() {
+		return strftime('%d.%m.%Y', $this.getPreached()->getTimestamp()).' '.$this->getTitle();
+	}
 
 }
 ?>
