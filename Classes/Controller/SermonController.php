@@ -218,12 +218,28 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 			$destFile = $uploadFolder.$file['name'];
 			move_uploaded_file($file['tmp_name'], $destFile);
 			
+			// get preachers
+			$p = array();
+			foreach ($sermon->getPreacher() as $preacher) {
+				$p[] = $preacher->getFirstName().' '.$preacher->getLastName();
+			}
+			$preacher = join(', ', $p);
+			
+			// get series
+			$s = array();
+			foreach ($sermon->getSeries() as $series) {
+				$s[] = $series->getTitle();
+			}
+			$series = join(', ', $s);
+			
 			// id3 tagging
 			id3_set_tag($destFile, array(
 				'title' => $sermon->getTitle(),
+				'artist' => $preacher,
+				'album' => $series,
 				'year' => strftime('%Y', $sermon->getPreached()->getTimestamp()),
 				'comment' => 'Predigt vom '.strftime('%d.%m.%Y', $sermon->getPreached()->getTimestamp()),
-				'track' => 1
+				'track' => 1,
 			));
 		}
 		
