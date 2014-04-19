@@ -206,7 +206,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function audioUploadDoneAction() {
-		//die('Hi: '.$this->request->getArgument('sermon'));
+
 		global $_FILES;
 		
 		if ($this->request->hasArgument('sermon')) {
@@ -214,8 +214,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		}
 		$file = $this->request->getArgument('audiorecording');
 		if (!$file['error']) {
-			$uploadFolder = \TYPO3\CMS\Core\Utility\GeneralUtility::getAbsFileName($this->settings['uploadFolder'].'/'.$file['name']);
-			$file['ulf'] = $uploadFolder;
+			$uploadFolder = PATH_site.$this->settings['uploadFolder'].'/';
 		}
 		
 		$this->view->assign('sermon', $sermon);
