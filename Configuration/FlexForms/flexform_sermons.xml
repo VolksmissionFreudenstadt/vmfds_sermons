@@ -15,7 +15,7 @@
 								<items>
 									<numIndex index="0">
 										<numIndex index="0">Predigten</numIndex>
-										<numIndex index="1">Sermon->list;Sermon->show;Sermon->audioUploadWelcome;Sermon->audioUploadDone</numIndex>
+										<numIndex index="1">Sermon->list;Sermon->show</numIndex>
 									</numIndex>
 									<numIndex index="1">
 										<numIndex index="0">Predigten: aktuellste Serie</numIndex>
