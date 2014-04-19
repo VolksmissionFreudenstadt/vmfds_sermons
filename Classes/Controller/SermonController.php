@@ -215,7 +215,16 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$file = $this->request->getArgument('audiorecording');
 		if (!$file['error']) {
 			$uploadFolder = PATH_site.$this->settings['uploadFolder'].'/';
-			move_uploaded_file($file['tmp_name'], $uploadFolder.$file['name']);
+			$destFile = $uploadFolder.$file['name'];
+			move_uploaded_file($file['tmp_name'], $destFile);
+			
+			// id3 tagging
+			id3_set_tag($destFile, array(
+				'title' => $sermon->getTitle(),
+				'year' => strftime('%Y', $sermon->getPreached()->getTimestamp()),
+				'comment' => 'Predigt vom '.strftime('%d.%m.%Y', $sermon->getPreached()->getTimestamp()),
+				'track' => 1
+			));
 		}
 		
 		$this->view->assign('sermon', $sermon);
