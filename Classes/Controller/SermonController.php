@@ -215,6 +215,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$file = $this->request->getArgument('audiorecording');
 		if (!$file['error']) {
 			$uploadFolder = PATH_site.$this->settings['uploadFolder'].'/';
+			move_uploaded_file($file['tmp_name'], $uploadFolder.$file['name']);
 		}
 		
 		$this->view->assign('sermon', $sermon);
