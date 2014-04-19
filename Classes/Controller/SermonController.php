@@ -208,8 +208,8 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	public function audioUploadDoneAction() {
 		global $_FILES;
 		
-		if ($this->hasAttribute('sermon')) {
-			$sermon = $this->repository->findByUid($this->getAttribute('sermon'));
+		if ($this->request->hasArgument('sermon')) {
+			$sermon = $this->repository->findByUid($this->getArgument('sermon'));
 		}
 		$this->view->assign('sermon', $sermon);
 		$this->view->assign('files', $_FILES);
