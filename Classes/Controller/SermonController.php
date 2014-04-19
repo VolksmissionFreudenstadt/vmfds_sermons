@@ -185,7 +185,28 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	
 	}
 	
+	/**
+	 * action audioUploadWelcome
+	 *
+	 * Display a form for sermon audio upload
+	 *
+	 * @return void
+	 */
+	public function audioUploadWelcomeAction() {
+		$sermons = $this->sermonRepository->findAllWithoutAudio();
+		$this->view->assign('sermons', $sermons);
+	}
 	
+	
+	/**
+	 * action audioUploadDone
+	 *
+	 * Handle audio upload
+	 *
+	 * @return void
+	 */
+	public function audioUploadDoneAction() {
+	}
 	
 
 }

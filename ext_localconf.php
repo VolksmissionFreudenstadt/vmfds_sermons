@@ -7,7 +7,7 @@ if (!defined('TYPO3_MODE')) {
 	'TYPO3.' . $_EXTKEY,
 	'Sermons',
 	array(
-		'Sermon' => 'list, show, showLatest, byLatestSeries, previewNext',
+		'Sermon' => 'list, show, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone',
 		'Series' => 'list, show, latest',
 		'Preacher' => 'list, show',
 		

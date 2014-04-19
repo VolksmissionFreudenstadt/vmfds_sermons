@@ -137,6 +137,21 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		return $sermon;
 	}
 	
+
+	/**
+	 * Find all sermons without audio recording
+	 *
+	 * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
+	 */
+	public function findAllWithoutAudio() {
+		$this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+		$q = $this->createQuery();
+		$constraints = array(
+				$q->isEmpty('audiorecording'),
+		);
+		$sermons = $q->matching($q->logicalAnd($constraints))->execute();
+		return $sermons;
+	}
 	
 	
 	
