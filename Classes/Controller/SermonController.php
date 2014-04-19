@@ -212,8 +212,14 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		if ($this->request->hasArgument('sermon')) {
 			$sermon = $this->sermonRepository->findByUid($this->request->getArgument('sermon'));
 		}
+		$file = $this->request->getArgument('audiorecording');
+		if (!$file['error']) {
+			$uploadFolder = \TYPO3\CMS\Extensionmanager\Utility\FileHandlingUtility::getAbsolutePath($this->settings['uploadFolder']);
+			$file['ulf'] = $uploadFolder;
+		}
+		
 		$this->view->assign('sermon', $sermon);
-		$this->view->assign('files', $this->request->getArgument('audiorecording'));
+		$this->view->assign('files', $file);
 	}
 	
 
