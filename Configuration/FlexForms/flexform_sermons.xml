@@ -37,6 +37,14 @@
 										<numIndex index="0">Audio Upload</numIndex>
 										<numIndex index="1">Sermon->audioUploadWelcome;Sermon->audioUploadDone</numIndex>
 									</numIndex>
+									<numIndex index="6">
+										<numIndex index="0">Neueste Predigt</numIndex>
+										<numIndex index="1">Sermon->showLatest</numIndex>
+									</numIndex>
+									<numIndex index="7">
+										<numIndex index="0">Vorschau auf nächste Predigt</numIndex>
+										<numIndex index="1">Sermon->previewNext</numIndex>
+									</numIndex>
 								</items>
 							</config>
 						</TCEforms>
