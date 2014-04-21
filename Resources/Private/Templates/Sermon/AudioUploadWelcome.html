@@ -1,6 +1,19 @@
 <p>Here you can upload sermon audio recordings for any sermon not matched to an existing recording.</p>
-<f:form enctype="multipart/form-data" action="audioUploadDone" controller="Sermon">
+<f:form enctype="multipart/form-data" controller="Sermon" action="audioUploadDone">
     <label for="sermon">Predigt: </label><f:form.select name="sermon" options="{sermons}" optionLabelField="selectString" /><br />
     <label for="audiorecording">Aufnahme: </label><f:form.upload name="audiorecording" /><br />
+    
+    <div id="fileuploader">Upload</div>
+    
     <f:form.button>Hochladen</f:form.button>
+    
+<script>
+    $(document).ready(function(){
+		$("#fileuploader").uploadFile({
+			url:'<f:uri.action controller="Sermon" action="audioUploadDone" />',
+			fileName:'myfile'
+		});
+	});
+    
+</script>
 </f:form>
