@@ -256,20 +256,5 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	}
 	
 	
-	/**
-	 * File Uploader
-	 *
-	 * @return void
-	 */
-	public function fileUploadAction() {
-		$fileName = $this->div->uploadFile();
-		header('Content-Type: text/plain');
-		$result = array(
-				'success' => ($fileName ? TRUE : FALSE),
-				'uploadName' => $fileName
-		);
-		echo json_encode($result);
-	}	
-
 }
 ?>
