@@ -196,6 +196,10 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
 												.\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
 												.'Resources/Public/Styles/uploadfile.min.css" />');
+		$this->response->addAdditionalHeaderData('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" />');
+		$this->response->addAdditionalHeaderData('<script type="text/javascript" src="'
+				.\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey())
+				.'" />');
 		
 		$sermons = $this->sermonRepository->findAllWithoutAudio();
 		$this->view->assign('sermons', $sermons);
