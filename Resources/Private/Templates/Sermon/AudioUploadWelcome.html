@@ -1,18 +1,43 @@
 <p>Here you can upload sermon audio recordings for any sermon not matched to an existing recording.</p>
 <f:form enctype="multipart/form-data" controller="Sermon" action="audioUploadDone">
     <label for="sermon">Predigt: </label><f:form.select name="sermon" options="{sermons}" optionLabelField="selectString" /><br />
-    <label for="audiorecording">Aufnahme: </label><f:form.upload name="audiorecording" /><br />
+    <label for="audiorecording">Aufnahme: </label><f:form.upload id="audiorecording" name="audiorecording" /><br />
     
-    <div id="fileuploader">Upload</div>
+    <div id="fileuploader">Aufnahme hochladen</div>
     
-    <f:form.button>Hochladen</f:form.button>
+    <f:form.button id="origUploadButton">Hochladen</f:form.button>
     
 <script>
     $(document).ready(function(){
 		$("#fileuploader").uploadFile({
 			url:'<f:uri.action controller="Sermon" action="audioUploadDone" />',
-			fileName:'myfile'
+			fileName:'tx_vmfdssermons_sermons[audiorecording]',
+			downloadStr:'Hochladen',
+			cancelStr:'Abbrechen',
+			abortStr:'Abbrechen',
+			doneStr:'Fertig',
+			dragDropStr: "<span><b>Du kannst auch einfach eine Datei auf dieses Feld ziehen.</b></span>",
+			maxFileCount:1,
+			maxFileSize: 100*1024*1024,
+			multiple: false,
+			dynamicFormData: function(){
+				var data = {
+					    'tx_vmfdssermons_sermons[__referrer][@extension]':'VmfdsSermons',
+					    'tx_vmfdssermons_sermons[__referrer][@vendor]':'TYPO3',
+					    'tx_vmfdssermons_sermons[__referrer][@controller]':'Sermon',
+					    'tx_vmfdssermons_sermons[__referrer][@action]':'audioUploadWelcome',
+					    'tx_vmfdssermons_sermons[__referrer][arguments]':$("input[name='tx_vmfdssermons_sermons[__referrer][arguments]']").val(),
+					    'tx_vmfdssermons_sermons[__trustedProperties]':$("input[name='tx_vmfdssermons_sermons[__trustedProperties]']").val(),
+					    'tx_vmfdssermons_sermons[sermon]':$("select[name='tx_vmfdssermons_sermons[sermon]']").val()
+					}
+				return data;
+			},
+			afterUploadAll:function(){
+			    window.location.href = '<f:uri.action controller="Sermon" action="audioUploadWelcome" />';
+			}
 		});
+		$('#audiorecording').hide();
+		$('#origUploadButton').hide();
 	});
     
 </script>
