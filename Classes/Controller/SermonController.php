@@ -249,10 +249,14 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 				'comment' => 'Predigt vom '.strftime('%d.%m.%Y', $sermon->getPreached()->getTimestamp()),
 				'track' => 1,
 			));
+			
+			// add file to sermon record
+			$sermon->setAudioRecording($file['name']);
+			
+			// persist the changes
+			$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
+			$persistenceManager->persistAll();
 		}
-		
-		$this->view->assign('sermon', $sermon);
-		$this->view->assign('files', $file);
 	}
 	
 	
