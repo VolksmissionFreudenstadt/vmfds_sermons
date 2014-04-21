@@ -193,6 +193,8 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 * @return void
 	 */
 	public function audioUploadWelcomeAction() {
+		$this->response->addAdditionalHeaderData(<link rel="stylesheet" type="text/css" href="' . \TYPO3\CMS\Core\Utility\GeneralUtility::siteRelPath($this->request->getControllerExtensionKey()) . 'Resources/Public/Styles/uploadfile.min.css" />')
+		
 		$sermons = $this->sermonRepository->findAllWithoutAudio();
 		$this->view->assign('sermons', $sermons);
 	}
@@ -247,6 +249,21 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 		$this->view->assign('files', $file);
 	}
 	
+	
+	/**
+	 * File Uploader
+	 *
+	 * @return void
+	 */
+	public function fileUploadAction() {
+		$fileName = $this->div->uploadFile();
+		header('Content-Type: text/plain');
+		$result = array(
+				'success' => ($fileName ? TRUE : FALSE),
+				'uploadName' => $fileName
+		);
+		echo json_encode($result);
+	}	
 
 }
 ?>
