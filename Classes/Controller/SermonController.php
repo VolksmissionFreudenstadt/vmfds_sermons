@@ -251,7 +251,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 			));
 			
 			// add file to sermon record
-			$sermon->setAudioRecording($file['name']);
+			$sermon->setAudiorecording($file['name']);
 			
 			// persist the changes
 			$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
