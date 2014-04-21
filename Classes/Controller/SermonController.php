@@ -194,7 +194,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 	 */
 	public function audioUploadWelcomeAction() {
 		$this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="' 
-												.\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($this->request->getControllerExtensionKey()) 
+												.\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey()) 
 												.'Resources/Public/Styles/uploadfile.min.css" />');
 		
 		$sermons = $this->sermonRepository->findAllWithoutAudio();
