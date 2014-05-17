@@ -10,7 +10,7 @@
 				<source>Title</source> <target state="translated">Titel</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.subtitle" approved="yes">
 				<source>Subtitle</source> <target state="translated">Untertitel</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.date" approved="yes">
+			<trans-unit id="tx_vmfdssermons_domain_model_sermon.preached" approved="yes">
 				<source>Date</source> <target state="translated">Datum</target></trans-unit>
 			<trans-unit id="tx_vmfdssermons_domain_model_sermon.description" approved="yes">
 				<source>Description</source> <target state="translated">Beschreibung</target></trans-unit>
