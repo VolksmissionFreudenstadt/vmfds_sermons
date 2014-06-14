@@ -13,7 +13,9 @@ namespace TYPO3\VmfdsSermons\ViewHelpers;
  *
  */
 
-class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\ImageViewHelper {
+use \TYPO3\CMS\Fluid\ViewHelpers\ImageViewHelper;
+
+class YouVersionViewHelper extends ImageViewHelper {
 	
 	
 	private $OSISNames = array(
@@ -84,6 +86,14 @@ class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\ImageViewHel
 		'JUD' => 'Judas',
 		'REV' => 'Offenbarung',  
 	);
+	
+
+	/**
+	 * @return void
+	 */
+	public function initializeArguments() {
+		parent::initializeArguments();
+	}	
 
     /**
      * Renders a bible reference as a qr code for YouVersion
