@@ -12,7 +12,8 @@ namespace TYPO3\VmfdsSermons\ViewHelpers;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+
+class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\ImageViewHelper {
 	
 	
 	private $OSISNames = array(
@@ -88,10 +89,24 @@ class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
      * Renders a bible reference as a qr code for YouVersion
      *
      * @param string $reference
-     * @return string as qr code
+	 * @param integer $size size of the qrcode dots [px]
+	 * @param integer $margin margin of the qrcode [qrdots]
+	 *
+	 * @param string $width width of the image. This can be a numeric value representing the fixed width of the image in pixels. But you can also perform simple calculations by adding "m" or "c" to the value. See imgResource.width for possible options.
+	 * @param string $height height of the image. This can be a numeric value representing the fixed height of the image in pixels. But you can also perform simple calculations by adding "m" or "c" to the value. See imgResource.width for possible options.
+	 * @param integer $minWidth minimum width of the image
+	 * @param integer $minHeight minimum height of the image
+	 * @param integer $maxWidth maximum width of the image
+	 * @param integer $maxHeight maximum height of the image
+	 *
+     * @return rendered tag
      * @author Christoph Fischer <christoph.fischer@volksmission.de>
      */
-    public function render($reference) {
+    public function render($reference = NULL, $size = NULL, $margin = NULL, $width = NULL, $height = NULL, $minWidth = NULL, $minHeight = NULL, $maxWidth = NULL, $maxHeight = NULL) {
+    	if (is_null($reference)) $reference = $this->renderChildren();
+    	
+    	$qrcodeRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('B263\\Qrcode\\Domain\\Repository\\QrcodeRepository');
+    	
     	$o = array();
     	$refs = explode(';', $reference);
     	foreach ($refs as $ref) {
@@ -108,7 +123,15 @@ class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
     		$tmp = explode('.', $ref);
     		$ref = str_replace($tmp[0], array_search($tmp[0], $this->OSISNames), $ref);
     		
-    		$o[] = 'youversion://bible?reference='.$ref; 
+    		$size = 3;
+    		$margin = 0;
+    		
+    		$url = 'youversion://bible?reference='.$ref;
+    		$qrcode = $qrcodeRepository->getQrcode($url, $size, $margin);
+    		$src = $qrcode->getFile();
+    		
+    		$o[] = parent::render($src, $width, $height, $minWidth, $minHeight, $maxWidth, $maxHeight);
+    		
     	}
     	return join (' ', $o); 
     }
