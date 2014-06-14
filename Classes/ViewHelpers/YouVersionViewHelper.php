@@ -22,7 +22,19 @@ class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
      * @author Christoph Fischer <christoph.fischer@volksmission.de>
      */
     public function render($reference) {
-    	return 'Youversion: '.$reference;
+    	$o = array();
+    	$refs = explode(';', $reference);
+    	foreach ($refs as $ref) {
+    		if (strpos($ref, '-') !== FALSE) $ref = trim(substr($ref, 0, strpos($ref, '-')));
+    		if (strpos($ref, '.') !== FALSE) $ref = trim(substr($ref, 0, strpos($ref, '.')));
+    		
+    		$ref = str_replace(',', '.', $ref);
+    		$ref = str_replace(':', '.', $ref);
+    		$ref = str_replace(' ', '.', $ref);
+    		
+    		$o[] = 'youversion://bible?reference='.$reference; 
+    	}
+    	return join (' ', $o); 
     }
 }
 
