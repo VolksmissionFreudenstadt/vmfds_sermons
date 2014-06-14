@@ -13,6 +13,11 @@ namespace TYPO3\VmfdsSermons\ViewHelpers;
  *
  */
 class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
+	
+	
+	private $OSISNames = array(
+		'MAT' => 'Matthäus',
+	);
 
     /**
      * Renders a bible reference as a qr code for YouVersion
@@ -25,12 +30,18 @@ class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
     	$o = array();
     	$refs = explode(';', $reference);
     	foreach ($refs as $ref) {
+    		// remove all verse ranges (we only link to the first verse)
     		if (strpos($ref, '-') !== FALSE) $ref = trim(substr($ref, 0, strpos($ref, '-')));
     		if (strpos($ref, '.') !== FALSE) $ref = trim(substr($ref, 0, strpos($ref, '.')));
     		
+    		// replace all separators with a dot
     		$ref = str_replace(',', '.', $ref);
     		$ref = str_replace(':', '.', $ref);
     		$ref = str_replace(' ', '.', $ref);
+    		
+    		// replace book name with OSIS code
+    		$tmp = explode('.', $ref);
+    		$ref = str_replace($tmp[0], array_search($tmp[0], $this->OSISNames), $ref);
     		
     		$o[] = 'youversion://bible?reference='.$ref; 
     	}
