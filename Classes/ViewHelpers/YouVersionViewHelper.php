@@ -113,9 +113,6 @@ class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
     public function render($reference = NULL, $size = NULL, $margin = NULL, $width = NULL, $height = NULL, $minWidth = NULL, $minHeight = NULL, $maxWidth = NULL, $maxHeight = NULL) {
     	if (is_null($reference)) $reference = $this->renderChildren();
     	
-    	$qrcodeVH = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('B263\\Qrcode\\ViewHelpers\\\\QrcodeViewHelper');
-    	
-    	
     	$o = array();
     	$refs = explode(';', $reference);
     	if (is_array($refs)) $ref = $refs[0]; else $ref = $refs;
