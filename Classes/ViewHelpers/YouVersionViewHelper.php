@@ -13,9 +13,7 @@ namespace TYPO3\VmfdsSermons\ViewHelpers;
  *
  */
 
-use \TYPO3\CMS\Fluid\ViewHelpers\ImageViewHelper;
-
-class YouVersionViewHelper extends AbstractViewHelper {
+class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper {
 	
 	
 	private $OSISNames = array(
