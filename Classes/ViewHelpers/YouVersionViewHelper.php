@@ -15,7 +15,7 @@ namespace TYPO3\VmfdsSermons\ViewHelpers;
 
 use \TYPO3\CMS\Fluid\ViewHelpers\ImageViewHelper;
 
-class YouVersionViewHelper extends ImageViewHelper {
+class YouVersionViewHelper extends AbstractViewHelper {
 	
 	
 	private $OSISNames = array(
@@ -115,7 +115,8 @@ class YouVersionViewHelper extends ImageViewHelper {
     public function render($reference = NULL, $size = NULL, $margin = NULL, $width = NULL, $height = NULL, $minWidth = NULL, $minHeight = NULL, $maxWidth = NULL, $maxHeight = NULL) {
     	if (is_null($reference)) $reference = $this->renderChildren();
     	
-    	$qrcodeRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('B263\\Qrcode\\Domain\\Repository\\QrcodeRepository');
+    	$qrcodeVH = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('B263\\Qrcode\\ViewHelpers\\\\QrcodeViewHelper');
+    	
     	
     	$o = array();
     	$refs = explode(';', $reference);
@@ -137,10 +138,7 @@ class YouVersionViewHelper extends ImageViewHelper {
     		$margin = 0;
     		
     		$url = 'youversion://bible?reference='.$ref;
-    		$qrcode = $qrcodeRepository->getQrcode($url, $size, $margin);
-    		$src = $qrcode->getFile();
-    		
-    		$o[] = parent::render($src, $width, $height, $minWidth, $minHeight, $maxWidth, $maxHeight);
+    		$o[] = $qrcodeVH->render($url, $width, $height, $minWidth, $minHeight, $maxWidth, $maxHeight);
     		
     	}
     	return join (' ', $o); 
