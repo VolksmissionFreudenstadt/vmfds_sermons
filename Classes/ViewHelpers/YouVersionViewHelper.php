@@ -32,7 +32,7 @@ class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
     		$ref = str_replace(':', '.', $ref);
     		$ref = str_replace(' ', '.', $ref);
     		
-    		$o[] = 'youversion://bible?reference='.$reference; 
+    		$o[] = 'youversion://bible?reference='.$ref; 
     	}
     	return join (' ', $o); 
     }
