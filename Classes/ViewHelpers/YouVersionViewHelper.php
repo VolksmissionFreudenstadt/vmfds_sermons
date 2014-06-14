@@ -120,28 +120,22 @@ class YouVersionViewHelper extends AbstractViewHelper {
     	
     	$o = array();
     	$refs = explode(';', $reference);
-    	foreach ($refs as $ref) {
-    		// remove all verse ranges (we only link to the first verse)
-    		if (strpos($ref, '-') !== FALSE) $ref = trim(substr($ref, 0, strpos($ref, '-')));
-    		if (strpos($ref, '.') !== FALSE) $ref = trim(substr($ref, 0, strpos($ref, '.')));
-    		
-    		// replace all separators with a dot
-    		$ref = str_replace(',', '.', $ref);
-    		$ref = str_replace(':', '.', $ref);
-    		$ref = str_replace(' ', '.', $ref);
-    		
-    		// replace book name with OSIS code
-    		$tmp = explode('.', $ref);
-    		$ref = str_replace($tmp[0], array_search($tmp[0], $this->OSISNames), $ref);
-    		
-    		$size = 3;
-    		$margin = 0;
-    		
-    		$url = 'youversion://bible?reference='.$ref;
-    		$o[] = $qrcodeVH->render($url, $width, $height, $minWidth, $minHeight, $maxWidth, $maxHeight);
-    		
-    	}
-    	return join (' ', $o); 
+    	if (is_array($refs)) $ref = $refs[0]; else $ref = $refs;
+    	
+		// remove all verse ranges (we only link to the first verse)
+		if (strpos($ref, '-') !== FALSE) $ref = trim(substr($ref, 0, strpos($ref, '-')));
+		if (strpos($ref, '.') !== FALSE) $ref = trim(substr($ref, 0, strpos($ref, '.')));
+		    		
+		// replace all separators with a dot
+		$ref = str_replace(',', '.', $ref);
+		$ref = str_replace(':', '.', $ref);
+		$ref = str_replace(' ', '.', $ref);
+		    		
+		// replace book name with OSIS code
+		$tmp = explode('.', $ref);
+		$ref = str_replace($tmp[0], array_search($tmp[0], $this->OSISNames), $ref);
+
+		return  'youversion://bible?reference='.$ref;
     }
 }
 
