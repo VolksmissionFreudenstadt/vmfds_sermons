@@ -1,6 +1,8 @@
 <?php
+
 namespace TYPO3\VmfdsSermons\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -22,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class Tx_Vmfds_sermons_Controller_SermonController.
@@ -36,26 +38,32 @@ namespace TYPO3\VmfdsSermons\Tests;
  *
  * @author Christoph Fischer <christoph.fischer@volksmission.de>
  */
-class SermonControllerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var 
-	 */
-	protected $fixture;
+class SermonControllerTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase
+{
 
-	public function setUp() {
-		$this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Sermon();
-	}
+    /**
+     * @var 
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp()
+    {
+        $this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Sermon();
+    }
 
-	/**
-	 * @test
-	 */
-	public function dummyMethod() {
-		$this->markTestIncomplete();
-	}
+    public function tearDown()
+    {
+        unset($this->fixture);
+    }
+
+    /**
+     * @test
+     */
+    public function dummyMethod()
+    {
+        $this->markTestIncomplete();
+    }
 
 }
+
 ?>

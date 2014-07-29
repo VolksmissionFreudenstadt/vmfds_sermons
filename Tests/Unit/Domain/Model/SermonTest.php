@@ -1,7 +1,8 @@
 <?php
 
 namespace TYPO3\VmfdsSermons\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \TYPO3\VmfdsSermons\Domain\Model\Sermon.
@@ -37,298 +38,336 @@ namespace TYPO3\VmfdsSermons\Tests;
  *
  * @author Christoph Fischer <christoph.fischer@volksmission.de>
  */
-class SermonTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var \TYPO3\VmfdsSermons\Domain\Model\Sermon
-	 */
-	protected $fixture;
+class SermonTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase
+{
 
-	public function setUp() {
-		$this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Sermon();
-	}
+    /**
+     * @var \TYPO3\VmfdsSermons\Domain\Model\Sermon
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp()
+    {
+        $this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Sermon();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getTitleReturnsInitialValueForString() { }
+    public function tearDown()
+    {
+        unset($this->fixture);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setTitleForStringSetsTitle() { 
-		$this->fixture->setTitle('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getTitleReturnsInitialValueForString()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getTitle()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getSubtitleReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setTitleForStringSetsTitle()
+    {
+        $this->fixture->setTitle('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setSubtitleForStringSetsSubtitle() { 
-		$this->fixture->setSubtitle('Conceived at T3CON10');
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getTitle()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getSubtitle()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getPreachedReturnsInitialValueForDateTime() { }
+    /**
+     * @test
+     */
+    public function getSubtitleReturnsInitialValueForString()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setPreachedForDateTimeSetsPreached() { }
-	
-	/**
-	 * @test
-	 */
-	public function getDescriptionReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setSubtitleForStringSetsSubtitle()
+    {
+        $this->fixture->setSubtitle('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setDescriptionForStringSetsDescription() { 
-		$this->fixture->setDescription('Conceived at T3CON10');
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getSubtitle()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getDescription()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getReferenceReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function getPreachedReturnsInitialValueForDateTime()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setReferenceForStringSetsReference() { 
-		$this->fixture->setReference('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setPreachedForDateTimeSetsPreached()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getReference()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getKeywordsReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function getDescriptionReturnsInitialValueForString()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setKeywordsForStringSetsKeywords() { 
-		$this->fixture->setKeywords('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setDescriptionForStringSetsDescription()
+    {
+        $this->fixture->setDescription('Conceived at T3CON10');
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getKeywords()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getImageReturnsInitialValueForString() { }
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getDescription()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setImageForStringSetsImage() { 
-		$this->fixture->setImage('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getReferenceReturnsInitialValueForString()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getImage()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getHandoutReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setReferenceForStringSetsReference()
+    {
+        $this->fixture->setReference('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setHandoutForStringSetsHandout() { 
-		$this->fixture->setHandout('Conceived at T3CON10');
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getReference()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getHandout()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getAudiorecordingReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function getKeywordsReturnsInitialValueForString()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setAudiorecordingForStringSetsAudiorecording() { 
-		$this->fixture->setAudiorecording('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setKeywordsForStringSetsKeywords()
+    {
+        $this->fixture->setKeywords('Conceived at T3CON10');
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getAudiorecording()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getVideorecordingReturnsInitialValueForString() { }
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getKeywords()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setVideorecordingForStringSetsVideorecording() { 
-		$this->fixture->setVideorecording('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getImageReturnsInitialValueForString()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getVideorecording()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getPreacherReturnsInitialValueForPreacher() { 
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->fixture->getPreacher()
-		);
-	}
+    /**
+     * @test
+     */
+    public function setImageForStringSetsImage()
+    {
+        $this->fixture->setImage('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setPreacherForObjectStorageContainingPreacherSetsPreacher() { 
-		$preacher = new \TYPO3\VmfdsSermons\Domain\Model\Preacher();
-		$objectStorageHoldingExactlyOnePreacher = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOnePreacher->attach($preacher);
-		$this->fixture->setPreacher($objectStorageHoldingExactlyOnePreacher);
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getImage()
+        );
+    }
 
-		$this->assertSame(
-			$objectStorageHoldingExactlyOnePreacher,
-			$this->fixture->getPreacher()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function addPreacherToObjectStorageHoldingPreacher() {
-		$preacher = new \TYPO3\VmfdsSermons\Domain\Model\Preacher();
-		$objectStorageHoldingExactlyOnePreacher = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOnePreacher->attach($preacher);
-		$this->fixture->addPreacher($preacher);
+    /**
+     * @test
+     */
+    public function getHandoutReturnsInitialValueForString()
+    {
+        
+    }
 
-		$this->assertEquals(
-			$objectStorageHoldingExactlyOnePreacher,
-			$this->fixture->getPreacher()
-		);
-	}
+    /**
+     * @test
+     */
+    public function setHandoutForStringSetsHandout()
+    {
+        $this->fixture->setHandout('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function removePreacherFromObjectStorageHoldingPreacher() {
-		$preacher = new \TYPO3\VmfdsSermons\Domain\Model\Preacher();
-		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$localObjectStorage->attach($preacher);
-		$localObjectStorage->detach($preacher);
-		$this->fixture->addPreacher($preacher);
-		$this->fixture->removePreacher($preacher);
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getHandout()
+        );
+    }
 
-		$this->assertEquals(
-			$localObjectStorage,
-			$this->fixture->getPreacher()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getSeriesReturnsInitialValueForSeries() { 
-		$newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$this->assertEquals(
-			$newObjectStorage,
-			$this->fixture->getSeries()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getAudiorecordingReturnsInitialValueForString()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setSeriesForObjectStorageContainingSeriesSetsSeries() { 
-		$series = new \TYPO3\VmfdsSermons\Domain\Model\Series();
-		$objectStorageHoldingExactlyOneSeries = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneSeries->attach($series);
-		$this->fixture->setSeries($objectStorageHoldingExactlyOneSeries);
+    /**
+     * @test
+     */
+    public function setAudiorecordingForStringSetsAudiorecording()
+    {
+        $this->fixture->setAudiorecording('Conceived at T3CON10');
 
-		$this->assertSame(
-			$objectStorageHoldingExactlyOneSeries,
-			$this->fixture->getSeries()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function addSeriesToObjectStorageHoldingSeries() {
-		$series = new \TYPO3\VmfdsSermons\Domain\Model\Series();
-		$objectStorageHoldingExactlyOneSeries = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$objectStorageHoldingExactlyOneSeries->attach($series);
-		$this->fixture->addSeries($series);
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getAudiorecording()
+        );
+    }
 
-		$this->assertEquals(
-			$objectStorageHoldingExactlyOneSeries,
-			$this->fixture->getSeries()
-		);
-	}
+    /**
+     * @test
+     */
+    public function getVideorecordingReturnsInitialValueForString()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function removeSeriesFromObjectStorageHoldingSeries() {
-		$series = new \TYPO3\VmfdsSermons\Domain\Model\Series();
-		$localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
-		$localObjectStorage->attach($series);
-		$localObjectStorage->detach($series);
-		$this->fixture->addSeries($series);
-		$this->fixture->removeSeries($series);
+    /**
+     * @test
+     */
+    public function setVideorecordingForStringSetsVideorecording()
+    {
+        $this->fixture->setVideorecording('Conceived at T3CON10');
 
-		$this->assertEquals(
-			$localObjectStorage,
-			$this->fixture->getSeries()
-		);
-	}
-	
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getVideorecording()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getPreacherReturnsInitialValueForPreacher()
+    {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $this->assertEquals(
+                $newObjectStorage, $this->fixture->getPreacher()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setPreacherForObjectStorageContainingPreacherSetsPreacher()
+    {
+        $preacher = new \TYPO3\VmfdsSermons\Domain\Model\Preacher();
+        $objectStorageHoldingExactlyOnePreacher = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOnePreacher->attach($preacher);
+        $this->fixture->setPreacher($objectStorageHoldingExactlyOnePreacher);
+
+        $this->assertSame(
+                $objectStorageHoldingExactlyOnePreacher, $this->fixture->getPreacher()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function addPreacherToObjectStorageHoldingPreacher()
+    {
+        $preacher = new \TYPO3\VmfdsSermons\Domain\Model\Preacher();
+        $objectStorageHoldingExactlyOnePreacher = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOnePreacher->attach($preacher);
+        $this->fixture->addPreacher($preacher);
+
+        $this->assertEquals(
+                $objectStorageHoldingExactlyOnePreacher, $this->fixture->getPreacher()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function removePreacherFromObjectStorageHoldingPreacher()
+    {
+        $preacher = new \TYPO3\VmfdsSermons\Domain\Model\Preacher();
+        $localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $localObjectStorage->attach($preacher);
+        $localObjectStorage->detach($preacher);
+        $this->fixture->addPreacher($preacher);
+        $this->fixture->removePreacher($preacher);
+
+        $this->assertEquals(
+                $localObjectStorage, $this->fixture->getPreacher()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getSeriesReturnsInitialValueForSeries()
+    {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $this->assertEquals(
+                $newObjectStorage, $this->fixture->getSeries()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function setSeriesForObjectStorageContainingSeriesSetsSeries()
+    {
+        $series = new \TYPO3\VmfdsSermons\Domain\Model\Series();
+        $objectStorageHoldingExactlyOneSeries = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneSeries->attach($series);
+        $this->fixture->setSeries($objectStorageHoldingExactlyOneSeries);
+
+        $this->assertSame(
+                $objectStorageHoldingExactlyOneSeries, $this->fixture->getSeries()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function addSeriesToObjectStorageHoldingSeries()
+    {
+        $series = new \TYPO3\VmfdsSermons\Domain\Model\Series();
+        $objectStorageHoldingExactlyOneSeries = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $objectStorageHoldingExactlyOneSeries->attach($series);
+        $this->fixture->addSeries($series);
+
+        $this->assertEquals(
+                $objectStorageHoldingExactlyOneSeries, $this->fixture->getSeries()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function removeSeriesFromObjectStorageHoldingSeries()
+    {
+        $series = new \TYPO3\VmfdsSermons\Domain\Model\Series();
+        $localObjectStorage = new \TYPO3\CMS\Extbase\Persistence\Generic\ObjectStorage();
+        $localObjectStorage->attach($series);
+        $localObjectStorage->detach($series);
+        $this->fixture->addSeries($series);
+        $this->fixture->removeSeries($series);
+
+        $this->assertEquals(
+                $localObjectStorage, $this->fixture->getSeries()
+        );
+    }
+
 }
+
 ?>

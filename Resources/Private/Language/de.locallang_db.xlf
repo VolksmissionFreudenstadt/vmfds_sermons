@@ -1,96 +1,178 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2012-12-17T13:44:07Z" product-name="vmfds_sermons">
-		<header/>
-		<body>
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2012-12-17T13:44:07Z" product-name="vmfds_sermons">
+        <header/>
+        <body>
 
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon" approved="yes">
-				<source>Sermon</source> <target state="translated">Predigt</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.title" approved="yes">
-				<source>Title</source> <target state="translated">Titel</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.subtitle" approved="yes">
-				<source>Subtitle</source> <target state="translated">Untertitel</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.preached" approved="yes">
-				<source>Date</source> <target state="translated">Datum</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.description" approved="yes">
-				<source>Description</source> <target state="translated">Beschreibung</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.notes_header" approved="yes">
-				<source>Heading for notes section</source> <target state="translated">Überschrift für den Notizteil</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.keypoints" approved="yes">
-				<source>Key points</source> <target state="translated">Hauptpunkte der Predigt</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.questions" approved="yes">
-				<source>Questions for smallgroups</source> <target state="translated">Fragen für Kleingruppen</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.further_reading" approved="yes">
-				<source>Material for further reading</source> <target state="translated">Lesestoff</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.prep" approved="yes">
-				<source>How to prepare for the service</source> <target state="translated">Wie man sich auf den Gottesdienst vorbereiten kann</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.keywords" approved="yes">
-				<source>Keywords</source> <target state="translated">Stichwörter</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.reference" approved="yes">
-				<source>Reference</source> <target state="translated">Bibelstellen</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.image" approved="yes">
-				<source>Image</source> <target state="translated">Titelbild</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.image_source" approved="yes">
-				<source>Image source</source> <target state="translated">Quellenangaben zum Bild</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.handout" approved="yes">
-				<source>Handout</source> <target state="translated">Predigtzettel</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.audiorecording" approved="yes">
-				<source>Audiorecording</source> <target state="translated">Predigtaufnahme</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording" approved="yes">
-				<source>Videorecording</source> <target state="translated">Video</target></trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon" approved="yes">
+                <source>Sermon</source> 
+                <target state="translated">Predigt</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.title" approved="yes">
+                <source>Title</source> 
+                <target state="translated">Titel</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.subtitle" approved="yes">
+                <source>Subtitle</source> 
+                <target state="translated">Untertitel</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.preached" approved="yes">
+                <source>Date</source> 
+                <target state="translated">Datum</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.description" approved="yes">
+                <source>Description</source> 
+                <target state="translated">Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.notes_header" approved="yes">
+                <source>Heading for notes section</source> 
+                <target state="translated">Überschrift für den Notizteil</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.keypoints" approved="yes">
+                <source>Key points</source> 
+                <target state="translated">Hauptpunkte der Predigt</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.questions" approved="yes">
+                <source>Questions for smallgroups</source> 
+                <target state="translated">Fragen für Kleingruppen</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.further_reading" approved="yes">
+                <source>Material for further reading</source> 
+                <target state="translated">Lesestoff</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.prep" approved="yes">
+                <source>How to prepare for the service</source> 
+                <target state="translated">Wie man sich auf den Gottesdienst vorbereiten kann</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.keywords" approved="yes">
+                <source>Keywords</source> 
+                <target state="translated">Stichwörter</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.reference" approved="yes">
+                <source>Reference</source> 
+                <target state="translated">Bibelstellen</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.image" approved="yes">
+                <source>Image</source> 
+                <target state="translated">Titelbild</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.image_source" approved="yes">
+                <source>Image source</source> 
+                <target state="translated">Quellenangaben zum Bild</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.handout" approved="yes">
+                <source>Handout</source> 
+                <target state="translated">Predigtzettel</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.audiorecording" approved="yes">
+                <source>Audiorecording</source> 
+                <target state="translated">Predigtaufnahme</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording" approved="yes">
+                <source>Videorecording</source> 
+                <target state="translated">Video</target>
+            </trans-unit>
 				
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.cclicense" approved="yes">
-				<source>This content is licensed under a Creative Commons License (CC-BY-SA 4.0).</source> <target state="translated">Dieser Inhalt steht unter einer Creative-Commons-Lizenz (CC-BY-SA 4.0).</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.preacher" approved="yes">
-				<source>Preacher</source> <target state="translated">Prediger</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.series" approved="yes">
-				<source>Series</source> <target state="translated">Reihe</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_sermon.tag" approved="yes">
-				<source>Tag</source> <target state="translated">Schlagwort</target></trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.cclicense" approved="yes">
+                <source>This content is licensed under a Creative Commons License (CC-BY-SA 4.0).</source> 
+                <target state="translated">Dieser Inhalt steht unter einer Creative-Commons-Lizenz (CC-BY-SA 4.0).</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.preacher" approved="yes">
+                <source>Preacher</source> 
+                <target state="translated">Prediger</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.series" approved="yes">
+                <source>Series</source> 
+                <target state="translated">Reihe</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.tag" approved="yes">
+                <source>Tag</source> 
+                <target state="translated">Schlagwort</target>
+            </trans-unit>
 
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher" approved="yes">
-				<source>Preacher</source> <target state="translated">Prediger</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.name" approved="yes">
-				<source>Name</source> <target state="translated">Name</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.first_name" approved="yes">
-				<source>Name</source> <target state="translated">Vorname</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.last_name" approved="yes">
-				<source>Name</source> <target state="translated">Nachname</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.email" approved="yes">
-				<source>Email</source> <target state="translated">E-Mail</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.organization" approved="yes">
-				<source>Organization</source> <target state="translated">Organisation</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.url" approved="yes">
-				<source>Url</source> <target state="translated">Adresse (URL)</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.blog" approved="yes">
-				<source>Blog</source> <target state="translated">Blog</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.facebook_id" approved="yes">
-				<source>Name</source> <target state="translated">Facebook ID</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.about" approved="yes">
-				<source>About the preacher</source> <target state="translated">Kurzbeschreibung</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_preacher.image" approved="yes">
-				<source>Image</source> <target state="translated">Bild</target></trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher" approved="yes">
+                <source>Preacher</source> 
+                <target state="translated">Prediger</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.name" approved="yes">
+                <source>Name</source> 
+                <target state="translated">Name</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.first_name" approved="yes">
+                <source>Name</source> 
+                <target state="translated">Vorname</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.last_name" approved="yes">
+                <source>Name</source> 
+                <target state="translated">Nachname</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.email" approved="yes">
+                <source>Email</source> 
+                <target state="translated">E-Mail</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.organization" approved="yes">
+                <source>Organization</source> 
+                <target state="translated">Organisation</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.url" approved="yes">
+                <source>Url</source> 
+                <target state="translated">Adresse (URL)</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.blog" approved="yes">
+                <source>Blog</source> 
+                <target state="translated">Blog</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.facebook_id" approved="yes">
+                <source>Name</source> 
+                <target state="translated">Facebook ID</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.about" approved="yes">
+                <source>About the preacher</source> 
+                <target state="translated">Kurzbeschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.image" approved="yes">
+                <source>Image</source> 
+                <target state="translated">Bild</target>
+            </trans-unit>
 
-			<trans-unit id="tx_vmfdssermons_domain_model_series" approved="yes">
-				<source>Series</source> <target state="translated">Reihe</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_series.title" approved="yes">
-				<source>Title</source> <target state="translated">Titel</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_series.subtitle" approved="yes">
-				<source>Subtitle</source> <target state="translated">Untertitel</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_series.startdate" approved="yes">
-				<source>Startdate</source> <target state="translated">Anfangsdatum</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_series.enddate" approved="yes">
-				<source>Enddate</source> <target state="translated">Enddatum</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_series.description" approved="yes">
-				<source>Description</source> <target state="translated">Beschreibung</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_series.image" approved="yes">
-				<source>Image</source> <target state="translated">Titel</target></trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series" approved="yes">
+                <source>Series</source> 
+                <target state="translated">Reihe</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.title" approved="yes">
+                <source>Title</source> 
+                <target state="translated">Titel</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.subtitle" approved="yes">
+                <source>Subtitle</source> 
+                <target state="translated">Untertitel</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.startdate" approved="yes">
+                <source>Startdate</source> 
+                <target state="translated">Anfangsdatum</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.enddate" approved="yes">
+                <source>Enddate</source> 
+                <target state="translated">Enddatum</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.description" approved="yes">
+                <source>Description</source> 
+                <target state="translated">Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.image" approved="yes">
+                <source>Image</source> 
+                <target state="translated">Titel</target>
+            </trans-unit>
 
-			<trans-unit id="tx_vmfdssermons_domain_model_tag" approved="yes">
-				<source>Tag</source> <target state="translated">Schlagwort</target></trans-unit>
-			<trans-unit id="tx_vmfdssermons_domain_model_tag.title" approved="yes">
-				<source>Title</source> <target state="translated">Titel</target></trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_tag" approved="yes">
+                <source>Tag</source> 
+                <target state="translated">Schlagwort</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_tag.title" approved="yes">
+                <source>Title</source> 
+                <target state="translated">Titel</target>
+            </trans-unit>
 
-		</body>
-	</file>
+        </body>
+    </file>
 </xliff>

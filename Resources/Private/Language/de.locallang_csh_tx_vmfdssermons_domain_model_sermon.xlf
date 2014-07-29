@@ -1,35 +1,61 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff version="1.0">
-	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2012-12-17T13:44:07Z" product-name="vmfds_sermons">
-		<header/>
-		<body>
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2012-12-17T13:44:07Z" product-name="vmfds_sermons">
+        <header/>
+        <body>
 
-			<trans-unit id="title.description">
-				<source>Title</source> <target>Titel</target> </trans-unit>
-			<trans-unit id="subtitle.description">
-				<source>Subtitle</source> <target>Untertitel</target> </trans-unit>
-			<trans-unit id="preached.description">
-				<source>Preaching date</source> <target>Predigtdatum</target> </trans-unit>
-			<trans-unit id="description.description">
-				<source>Description</source> <target>Beschreibung</target> </trans-unit>
-			<trans-unit id="reference.description">
-				<source>Text reference</source> <target>Bibelstellen</target> </trans-unit>
-			<trans-unit id="keywords.description">
-				<source>Key words</source> <target state="needs-translation">Stichwörter</target> </trans-unit>
-			<trans-unit id="image.description">
-				<source>Title image</source> <target>Titelbild</target> </trans-unit>
-			<trans-unit id="handout.description">
-				<source>Handout</source> <target>Predigtzettel</target> </trans-unit>
-			<trans-unit id="audiorecording.description">
-				<source>Audio recording</source> <target>Predigtaufnahme</target> </trans-unit>
-			<trans-unit id="videorecording.description">
-				<source>videorecording</source> <target state="needs-translation">Video</target> </trans-unit>
-			<trans-unit id="preacher.description">
-				<source>Preacher</source> <target>Prediger</target> </trans-unit>
-			<trans-unit id="series.description">
-				<source>series</source> <target state="needs-translation">Reihe</target> </trans-unit>
-			<trans-unit id="tag.description">
-				<source>tag</source> <target state="needs-translation">Schlagwort</target> </trans-unit>
-		</body>
-	</file>
+            <trans-unit id="title.description">
+                <source>Title</source> 
+                <target>Titel</target> 
+            </trans-unit>
+            <trans-unit id="subtitle.description">
+                <source>Subtitle</source> 
+                <target>Untertitel</target> 
+            </trans-unit>
+            <trans-unit id="preached.description">
+                <source>Preaching date</source> 
+                <target>Predigtdatum</target> 
+            </trans-unit>
+            <trans-unit id="description.description">
+                <source>Description</source> 
+                <target>Beschreibung</target> 
+            </trans-unit>
+            <trans-unit id="reference.description">
+                <source>Text reference</source> 
+                <target>Bibelstellen</target> 
+            </trans-unit>
+            <trans-unit id="keywords.description">
+                <source>Key words</source> 
+                <target state="needs-translation">Stichwörter</target> 
+            </trans-unit>
+            <trans-unit id="image.description">
+                <source>Title image</source> 
+                <target>Titelbild</target> 
+            </trans-unit>
+            <trans-unit id="handout.description">
+                <source>Handout</source> 
+                <target>Predigtzettel</target> 
+            </trans-unit>
+            <trans-unit id="audiorecording.description">
+                <source>Audio recording</source> 
+                <target>Predigtaufnahme</target> 
+            </trans-unit>
+            <trans-unit id="videorecording.description">
+                <source>videorecording</source> 
+                <target state="needs-translation">Video</target> 
+            </trans-unit>
+            <trans-unit id="preacher.description">
+                <source>Preacher</source> 
+                <target>Prediger</target> 
+            </trans-unit>
+            <trans-unit id="series.description">
+                <source>series</source> 
+                <target state="needs-translation">Reihe</target> 
+            </trans-unit>
+            <trans-unit id="tag.description">
+                <source>tag</source> 
+                <target state="needs-translation">Schlagwort</target> 
+            </trans-unit>
+        </body>
+    </file>
 </xliff>

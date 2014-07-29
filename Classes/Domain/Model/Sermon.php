@@ -1,7 +1,8 @@
 <?php
+
 namespace TYPO3\VmfdsSermons\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,573 +33,619 @@ namespace TYPO3\VmfdsSermons\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+{
 
-	/**
-	 * Title
-	 *
-	 * @var \string
-	 * @validate NotEmpty
-	 */
-	protected $title;
+    /**
+     * Title
+     *
+     * @var \string
+     * @validate NotEmpty
+     */
+    protected $title;
 
-	/**
-	 * Subtitle
-	 *
-	 * @var \string
-	 */
-	protected $subtitle;
+    /**
+     * Subtitle
+     *
+     * @var \string
+     */
+    protected $subtitle;
 
-	/**
-	 * Preaching date
-	 *
-	 * @var \DateTime
-	 */
-	protected $preached;
+    /**
+     * Preaching date
+     *
+     * @var \DateTime
+     */
+    protected $preached;
 
-	/**
-	 * Description
-	 *
-	 * @var \string
-	 */
-	protected $description;
+    /**
+     * Description
+     *
+     * @var \string
+     */
+    protected $description;
 
-	/**
-	 * Notes header
-	 *
-	 * @var \string
-	 */
-	protected $notesHeader;
+    /**
+     * Notes header
+     *
+     * @var \string
+     */
+    protected $notesHeader;
 
-	/**
-	 * Key points
-	 *
-	 * @var \string
-	 */
-	protected $keypoints;
+    /**
+     * Key points
+     *
+     * @var \string
+     */
+    protected $keypoints;
 
-	/**
-	 * Questions
-	 *
-	 * @var \string
-	 */
-	protected $questions;
+    /**
+     * Questions
+     *
+     * @var \string
+     */
+    protected $questions;
 
-	/**
-	 * Further reading
-	 *
-	 * @var \string
-	 */
-	protected $furtherReading;
+    /**
+     * Further reading
+     *
+     * @var \string
+     */
+    protected $furtherReading;
 
-	/**
-	 * Prep
-	 *
-	 * @var \string
-	 */
-	protected $prep;
+    /**
+     * Prep
+     *
+     * @var \string
+     */
+    protected $prep;
 
-	/**
-	 * Text reference
-	 *
-	 * @var \string
-	 */
-	protected $reference;
+    /**
+     * Text reference
+     *
+     * @var \string
+     */
+    protected $reference;
 
-	/**
-	 * Key words
-	 *
-	 * @var \string
-	 */
-	protected $keywords;
+    /**
+     * Key words
+     *
+     * @var \string
+     */
+    protected $keywords;
 
-	/**
-	 * Title image
-	 *
-	 * @var \string
-	 */
-	protected $image;
+    /**
+     * Title image
+     *
+     * @var \string
+     */
+    protected $image;
 
-	/**
-	 * Image source
-	 *
-	 * @var \string
-	 */
-	protected $imageSource;
+    /**
+     * Image source
+     *
+     * @var \string
+     */
+    protected $imageSource;
 
-	/**
-	 * Handout
-	 *
-	 * @var \string
-	 */
-	protected $handout;
+    /**
+     * Handout
+     *
+     * @var \string
+     */
+    protected $handout;
 
-	/**
-	 * Audio recording
-	 *
-	 * @var \string
-	 */
-	protected $audiorecording;
+    /**
+     * Audio recording
+     *
+     * @var \string
+     */
+    protected $audiorecording;
 
-	/**
-	 * videorecording
-	 *
-	 * @var \string
-	 */
-	protected $videorecording;
-	
-	/**
-	 * cclicense
-	 *
-	 * @var \int
-	 */
-	protected $cclicense;
-	
+    /**
+     * videorecording
+     *
+     * @var \string
+     */
+    protected $videorecording;
 
-	/**
-	 * Preacher
-	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Preacher>
-	 */
-	protected $preacher;
+    /**
+     * cclicense
+     *
+     * @var \int
+     */
+    protected $cclicense;
 
-	/**
-	 * series
-	 *
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Series>
-	 */
-	protected $series;
+    /**
+     * Preacher
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Preacher>
+     */
+    protected $preacher;
 
-	/**
-	 * __construct
-	 *
-	 * @return Sermon
-	 */
-	public function __construct() {
-		//Do not remove the next line: It would break the functionality
-		$this->initStorageObjects();
-	}
+    /**
+     * series
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Series>
+     */
+    protected $series;
 
-	/**
-	 * Initializes all ObjectStorage properties.
-	 *
-	 * @return void
-	 */
-	protected function initStorageObjects() {
-		/**
-		 * Do not modify this method!
-		 * It will be rewritten on each save in the extension builder
-		 * You may modify the constructor of this class instead
-		 */
-		$this->preacher = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-		
-		$this->series = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-	}
+    /**
+     * __construct
+     *
+     * @return Sermon
+     */
+    public function __construct()
+    {
+        //Do not remove the next line: It would break the functionality
+        $this->initStorageObjects();
+    }
 
-	/**
-	 * Returns the title
-	 *
-	 * @return \string $title
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
+    /**
+     * Initializes all ObjectStorage properties.
+     *
+     * @return void
+     */
+    protected function initStorageObjects()
+    {
+        /**
+         * Do not modify this method!
+         * It will be rewritten on each save in the extension builder
+         * You may modify the constructor of this class instead
+         */
+        $this->preacher = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
 
-	/**
-	 * Sets the title
-	 *
-	 * @param \string $title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+        $this->series = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
 
-	/**
-	 * Returns the subtitle
-	 *
-	 * @return \string $subtitle
-	 */
-	public function getSubtitle() {
-		return $this->subtitle;
-	}
+    /**
+     * Returns the title
+     *
+     * @return \string $title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
-	/**
-	 * Sets the subtitle
-	 *
-	 * @param \string $subtitle
-	 * @return void
-	 */
-	public function setSubtitle($subtitle) {
-		$this->subtitle = $subtitle;
-	}
+    /**
+     * Sets the title
+     *
+     * @param \string $title
+     * @return void
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
-	/**
-	 * Returns the description
-	 *
-	 * @return \string $description
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+    /**
+     * Returns the subtitle
+     *
+     * @return \string $subtitle
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
 
-	/**
-	 * Sets the description
-	 *
-	 * @param \string $description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+    /**
+     * Sets the subtitle
+     *
+     * @param \string $subtitle
+     * @return void
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+    }
 
-	/**
-	 * Returns the notes header
-	 *
-	 * @return \string $notesHeader
-	 */
-	public function getNotesHeader() {
-		return $this->notesHeader;
-	}
+    /**
+     * Returns the description
+     *
+     * @return \string $description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
-	/**
-	 * Sets the notes header
-	 *
-	 * @param \string $notesHeader
-	 * @return void
-	 */
-	public function setNotesHeader($notesHeader) {
-		$this->notesHeader = $notesHeader;
-	}
+    /**
+     * Sets the description
+     *
+     * @param \string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 
-	/**
-	 * Returns the key points
-	 *
-	 * @return \string $keypoints
-	 */
-	public function getKeypoints() {
-		return $this->keypoints;
-	}
+    /**
+     * Returns the notes header
+     *
+     * @return \string $notesHeader
+     */
+    public function getNotesHeader()
+    {
+        return $this->notesHeader;
+    }
 
-	/**
-	 * Sets the keypoints
-	 *
-	 * @param \string $keypoints
-	 * @return void
-	 */
-	public function setKeypoints($keypoints) {
-		$this->keypoints = $keypoints;
-	}
+    /**
+     * Sets the notes header
+     *
+     * @param \string $notesHeader
+     * @return void
+     */
+    public function setNotesHeader($notesHeader)
+    {
+        $this->notesHeader = $notesHeader;
+    }
 
-	/**
-	 * Returns the questions
-	 *
-	 * @return \string $questions
-	 */
-	public function getQuestions() {
-		return $this->questions;
-	}
+    /**
+     * Returns the key points
+     *
+     * @return \string $keypoints
+     */
+    public function getKeypoints()
+    {
+        return $this->keypoints;
+    }
 
-	/**
-	 * Sets the questions
-	 *
-	 * @param \string $questions
-	 * @return void
-	 */
-	public function setQuestions($questions) {
-		$this->questions = $questions;
-	}
+    /**
+     * Sets the keypoints
+     *
+     * @param \string $keypoints
+     * @return void
+     */
+    public function setKeypoints($keypoints)
+    {
+        $this->keypoints = $keypoints;
+    }
 
-	/**
-	 * Returns the further reading
-	 *
-	 * @return \string $furtherReading
-	 */
-	public function getFurtherReading() {
-		return $this->furtherReading;
-	}
+    /**
+     * Returns the questions
+     *
+     * @return \string $questions
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
+    }
 
-	/**
-	 * Sets the further reading
-	 *
-	 * @param \string $furtherReading
-	 * @return void
-	 */
-	public function setFurtherReading($furtherReading) {
-		$this->furtherReading = $furtherReading;
-	}
+    /**
+     * Sets the questions
+     *
+     * @param \string $questions
+     * @return void
+     */
+    public function setQuestions($questions)
+    {
+        $this->questions = $questions;
+    }
 
-	/**
-	 * Returns the prep questions
-	 *
-	 * @return \string $prep
-	 */
-	public function getPrep() {
-		return $this->prep;
-	}
+    /**
+     * Returns the further reading
+     *
+     * @return \string $furtherReading
+     */
+    public function getFurtherReading()
+    {
+        return $this->furtherReading;
+    }
 
-	/**
-	 * Sets the prep questions
-	 *
-	 * @param \string $prep
-	 * @return void
-	 */
-	public function setPrep($prep) {
-		$this->prep = $prep;
-	}
+    /**
+     * Sets the further reading
+     *
+     * @param \string $furtherReading
+     * @return void
+     */
+    public function setFurtherReading($furtherReading)
+    {
+        $this->furtherReading = $furtherReading;
+    }
 
-	/**
-	 * Returns the reference
-	 *
-	 * @return \string $reference
-	 */
-	public function getReference() {
-		return $this->reference;
-	}
+    /**
+     * Returns the prep questions
+     *
+     * @return \string $prep
+     */
+    public function getPrep()
+    {
+        return $this->prep;
+    }
 
-	/**
-	 * Sets the reference
-	 *
-	 * @param \string $reference
-	 * @return void
-	 */
-	public function setReference($reference) {
-		$this->reference = $reference;
-	}
+    /**
+     * Sets the prep questions
+     *
+     * @param \string $prep
+     * @return void
+     */
+    public function setPrep($prep)
+    {
+        $this->prep = $prep;
+    }
 
-	/**
-	 * Returns the keywords
-	 *
-	 * @return \string $keywords
-	 */
-	public function getKeywords() {
-		return $this->keywords;
-	}
+    /**
+     * Returns the reference
+     *
+     * @return \string $reference
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
 
-	/**
-	 * Sets the keywords
-	 *
-	 * @param \string $keywords
-	 * @return void
-	 */
-	public function setKeywords($keywords) {
-		$this->keywords = $keywords;
-	}
+    /**
+     * Sets the reference
+     *
+     * @param \string $reference
+     * @return void
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+    }
 
-	/**
-	 * Returns the image
-	 *
-	 * @return \string $image
-	 */
-	public function getImage() {
-		return $this->image;
-	}
+    /**
+     * Returns the keywords
+     *
+     * @return \string $keywords
+     */
+    public function getKeywords()
+    {
+        return $this->keywords;
+    }
 
-	/**
-	 * Sets the image
-	 *
-	 * @param \string $image
-	 * @return void
-	 */
-	public function setImage($image) {
-		$this->image = $image;
-	}
+    /**
+     * Sets the keywords
+     *
+     * @param \string $keywords
+     * @return void
+     */
+    public function setKeywords($keywords)
+    {
+        $this->keywords = $keywords;
+    }
 
-	/**
-	 * Returns the image source
-	 *
-	 * @return \string $imageSource
-	 */
-	public function getImageSource() {
-		return $this->imageSource;
-	}
+    /**
+     * Returns the image
+     *
+     * @return \string $image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 
-	/**
-	 * Sets the image source
-	 *
-	 * @param \string $image source
-	 * @return void
-	 */
-	public function setImageSource($imageSource) {
-		$this->imageSource = $imageSource;
-	}
+    /**
+     * Sets the image
+     *
+     * @param \string $image
+     * @return void
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 
-	/**
-	 * Returns the handout
-	 *
-	 * @return \string $handout
-	 */
-	public function getHandout() {
-		return $this->handout;
-	}
+    /**
+     * Returns the image source
+     *
+     * @return \string $imageSource
+     */
+    public function getImageSource()
+    {
+        return $this->imageSource;
+    }
 
-	/**
-	 * Sets the handout
-	 *
-	 * @param \string $handout
-	 * @return void
-	 */
-	public function setHandout($handout) {
-		$this->handout = $handout;
-	}
+    /**
+     * Sets the image source
+     *
+     * @param \string $image source
+     * @return void
+     */
+    public function setImageSource($imageSource)
+    {
+        $this->imageSource = $imageSource;
+    }
 
-	/**
-	 * Returns the audiorecording
-	 *
-	 * @return \string $audiorecording
-	 */
-	public function getAudiorecording() {
-		return $this->audiorecording;
-	}
+    /**
+     * Returns the handout
+     *
+     * @return \string $handout
+     */
+    public function getHandout()
+    {
+        return $this->handout;
+    }
 
-	/**
-	 * Sets the audiorecording
-	 *
-	 * @param \string $audiorecording
-	 * @return void
-	 */
-	public function setAudiorecording($audiorecording) {
-		$this->audiorecording = $audiorecording;
-	}
+    /**
+     * Sets the handout
+     *
+     * @param \string $handout
+     * @return void
+     */
+    public function setHandout($handout)
+    {
+        $this->handout = $handout;
+    }
 
-	/**
-	 * Returns the videorecording
-	 *
-	 * @return \string $videorecording
-	 */
-	public function getVideorecording() {
-		return $this->videorecording;
-	}
+    /**
+     * Returns the audiorecording
+     *
+     * @return \string $audiorecording
+     */
+    public function getAudiorecording()
+    {
+        return $this->audiorecording;
+    }
 
-	/**
-	 * Sets the videorecording
-	 *
-	 * @param \string $videorecording
-	 * @return void
-	 */
-	public function setVideorecording($videorecording) {
-		$this->videorecording = $videorecording;
-	}
+    /**
+     * Sets the audiorecording
+     *
+     * @param \string $audiorecording
+     * @return void
+     */
+    public function setAudiorecording($audiorecording)
+    {
+        $this->audiorecording = $audiorecording;
+    }
 
-	/**
-	 * Returns the cclicsense
-	 *
-	 * @return \int $cclicense
-	 */
-	public function getCclicense() {
-		return $this->cclicense;
-	}
-	
-	/**
-	 * Sets the cclicense
-	 *
-	 * @param \int $cclicense
-	 * @return void
-	 */
-	public function setCclicense($cclicense) {
-		$this->cclicense = $cclicense;
-	}
-	
-	/**
-	 * Adds a Preacher
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
-	 * @return void
-	 */
-	public function addPreacher(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher) {
-		$this->preacher->attach($preacher);
-	}
+    /**
+     * Returns the videorecording
+     *
+     * @return \string $videorecording
+     */
+    public function getVideorecording()
+    {
+        return $this->videorecording;
+    }
 
-	/**
-	 * Removes a Preacher
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacherToRemove The Preacher to be removed
-	 * @return void
-	 */
-	public function removePreacher(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacherToRemove) {
-		$this->preacher->detach($preacherToRemove);
-	}
+    /**
+     * Sets the videorecording
+     *
+     * @param \string $videorecording
+     * @return void
+     */
+    public function setVideorecording($videorecording)
+    {
+        $this->videorecording = $videorecording;
+    }
 
-	/**
-	 * Returns the preacher
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Preacher> $preacher
-	 */
-	public function getPreacher() {
-		return $this->preacher;
-	}
+    /**
+     * Returns the cclicsense
+     *
+     * @return \int $cclicense
+     */
+    public function getCclicense()
+    {
+        return $this->cclicense;
+    }
 
-	/**
-	 * Sets the preacher
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Preacher> $preacher
-	 * @return void
-	 */
-	public function setPreacher(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $preacher) {
-		$this->preacher = $preacher;
-	}
+    /**
+     * Sets the cclicense
+     *
+     * @param \int $cclicense
+     * @return void
+     */
+    public function setCclicense($cclicense)
+    {
+        $this->cclicense = $cclicense;
+    }
 
-	/**
-	 * Adds a Series
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Model\Series $series
-	 * @return void
-	 */
-	public function addSeries(\TYPO3\VmfdsSermons\Domain\Model\Series $series) {
-		$this->series->attach($series);
-	}
+    /**
+     * Adds a Preacher
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+     * @return void
+     */
+    public function addPreacher(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
+    {
+        $this->preacher->attach($preacher);
+    }
 
-	/**
-	 * Removes a Series
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Model\Series $seriesToRemove The Series to be removed
-	 * @return void
-	 */
-	public function removeSeries(\TYPO3\VmfdsSermons\Domain\Model\Series $seriesToRemove) {
-		$this->series->detach($seriesToRemove);
-	}
+    /**
+     * Removes a Preacher
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacherToRemove The Preacher to be removed
+     * @return void
+     */
+    public function removePreacher(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacherToRemove)
+    {
+        $this->preacher->detach($preacherToRemove);
+    }
 
-	/**
-	 * Returns the series
-	 *
-	 * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Series> $series
-	 */
-	public function getSeries() {
-		return $this->series;
-	}
+    /**
+     * Returns the preacher
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Preacher> $preacher
+     */
+    public function getPreacher()
+    {
+        return $this->preacher;
+    }
 
-	/**
-	 * Sets the series
-	 *
-	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Series> $series
-	 * @return void
-	 */
-	public function setSeries(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $series) {
-		$this->series = $series;
-	}
+    /**
+     * Sets the preacher
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Preacher> $preacher
+     * @return void
+     */
+    public function setPreacher(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $preacher)
+    {
+        $this->preacher = $preacher;
+    }
 
-	/**
-	 * Returns the preached
-	 *
-	 * @return \DateTime preached
-	 */
-	public function getPreached() {
-		return $this->preached;
-	}
+    /**
+     * Adds a Series
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Series $series
+     * @return void
+     */
+    public function addSeries(\TYPO3\VmfdsSermons\Domain\Model\Series $series)
+    {
+        $this->series->attach($series);
+    }
 
-	/**
-	 * Sets the preached
-	 *
-	 * @param \DateTime $preached
-	 * @return \DateTime preached
-	 */
-	public function setPreached($preached) {
-		$this->preached = $preached;
-	}
-	
-	public function getSelectString() {
-		return strftime('%d.%m.%Y', $this->getPreached()->getTimestamp()).' '.$this->getTitle();
-	}
+    /**
+     * Removes a Series
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Series $seriesToRemove The Series to be removed
+     * @return void
+     */
+    public function removeSeries(\TYPO3\VmfdsSermons\Domain\Model\Series $seriesToRemove)
+    {
+        $this->series->detach($seriesToRemove);
+    }
+
+    /**
+     * Returns the series
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Series> $series
+     */
+    public function getSeries()
+    {
+        return $this->series;
+    }
+
+    /**
+     * Sets the series
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Series> $series
+     * @return void
+     */
+    public function setSeries(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $series)
+    {
+        $this->series = $series;
+    }
+
+    /**
+     * Returns the preached
+     *
+     * @return \DateTime preached
+     */
+    public function getPreached()
+    {
+        return $this->preached;
+    }
+
+    /**
+     * Sets the preached
+     *
+     * @param \DateTime $preached
+     * @return \DateTime preached
+     */
+    public function setPreached($preached)
+    {
+        $this->preached = $preached;
+    }
+
+    public function getSelectString()
+    {
+        return strftime('%d.%m.%Y', $this->getPreached()->getTimestamp()) . ' ' . $this->getTitle();
+    }
 
 }
+
 ?>

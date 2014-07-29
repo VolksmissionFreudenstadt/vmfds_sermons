@@ -1,7 +1,8 @@
 <?php
 
 namespace TYPO3\VmfdsSermons\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \TYPO3\VmfdsSermons\Domain\Model\Series.
@@ -37,107 +38,136 @@ namespace TYPO3\VmfdsSermons\Tests;
  *
  * @author Christoph Fischer <christoph.fischer@volksmission.de>
  */
-class SeriesTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var \TYPO3\VmfdsSermons\Domain\Model\Series
-	 */
-	protected $fixture;
+class SeriesTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase
+{
 
-	public function setUp() {
-		$this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Series();
-	}
+    /**
+     * @var \TYPO3\VmfdsSermons\Domain\Model\Series
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp()
+    {
+        $this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Series();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getTitleReturnsInitialValueForString() { }
+    public function tearDown()
+    {
+        unset($this->fixture);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setTitleForStringSetsTitle() { 
-		$this->fixture->setTitle('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getTitleReturnsInitialValueForString()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getTitle()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getSubtitleReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setTitleForStringSetsTitle()
+    {
+        $this->fixture->setTitle('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setSubtitleForStringSetsSubtitle() { 
-		$this->fixture->setSubtitle('Conceived at T3CON10');
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getTitle()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getSubtitle()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getStartdateReturnsInitialValueForDateTime() { }
+    /**
+     * @test
+     */
+    public function getSubtitleReturnsInitialValueForString()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setStartdateForDateTimeSetsStartdate() { }
-	
-	/**
-	 * @test
-	 */
-	public function getEnddateReturnsInitialValueForDateTime() { }
+    /**
+     * @test
+     */
+    public function setSubtitleForStringSetsSubtitle()
+    {
+        $this->fixture->setSubtitle('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setEnddateForDateTimeSetsEnddate() { }
-	
-	/**
-	 * @test
-	 */
-	public function getDescriptionReturnsInitialValueForString() { }
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getSubtitle()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setDescriptionForStringSetsDescription() { 
-		$this->fixture->setDescription('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getStartdateReturnsInitialValueForDateTime()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getDescription()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getImageReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setStartdateForDateTimeSetsStartdate()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setImageForStringSetsImage() { 
-		$this->fixture->setImage('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getEnddateReturnsInitialValueForDateTime()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getImage()
-		);
-	}
-	
+    /**
+     * @test
+     */
+    public function setEnddateForDateTimeSetsEnddate()
+    {
+        
+    }
+
+    /**
+     * @test
+     */
+    public function getDescriptionReturnsInitialValueForString()
+    {
+        
+    }
+
+    /**
+     * @test
+     */
+    public function setDescriptionForStringSetsDescription()
+    {
+        $this->fixture->setDescription('Conceived at T3CON10');
+
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getDescription()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getImageReturnsInitialValueForString()
+    {
+        
+    }
+
+    /**
+     * @test
+     */
+    public function setImageForStringSetsImage()
+    {
+        $this->fixture->setImage('Conceived at T3CON10');
+
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getImage()
+        );
+    }
+
 }
+
 ?>

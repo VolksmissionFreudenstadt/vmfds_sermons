@@ -1,7 +1,8 @@
 <?php
 
 namespace TYPO3\VmfdsSermons\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \TYPO3\VmfdsSermons\Domain\Model\Tag.
@@ -37,36 +38,44 @@ namespace TYPO3\VmfdsSermons\Tests;
  *
  * @author Christoph Fischer <christoph.fischer@volksmission.de>
  */
-class TagTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var \TYPO3\VmfdsSermons\Domain\Model\Tag
-	 */
-	protected $fixture;
+class TagTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase
+{
 
-	public function setUp() {
-		$this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Tag();
-	}
+    /**
+     * @var \TYPO3\VmfdsSermons\Domain\Model\Tag
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp()
+    {
+        $this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Tag();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getTitleReturnsInitialValueForString() { }
+    public function tearDown()
+    {
+        unset($this->fixture);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setTitleForStringSetsTitle() { 
-		$this->fixture->setTitle('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getTitleReturnsInitialValueForString()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getTitle()
-		);
-	}
-	
+    /**
+     * @test
+     */
+    public function setTitleForStringSetsTitle()
+    {
+        $this->fixture->setTitle('Conceived at T3CON10');
+
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getTitle()
+        );
+    }
+
 }
+
 ?>

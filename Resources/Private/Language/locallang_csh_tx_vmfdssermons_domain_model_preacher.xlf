@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-04-16T11:33:03Z" product-name="vmfds_sermons">
-		<header/>
-		<body>
+    <file source-language="en" datatype="plaintext" original="messages" date="2013-04-16T11:33:03Z" product-name="vmfds_sermons">
+        <header/>
+        <body>
 
-			<trans-unit id="name.description">
-				<source>Name</source>
-			</trans-unit>
-			<trans-unit id="email.description">
-				<source>Email address</source>
-			</trans-unit>
-			<trans-unit id="organization.description">
-				<source>Organization</source>
-			</trans-unit>
-			<trans-unit id="url.description">
-				<source>URL</source>
-			</trans-unit>
-			<trans-unit id="blog.description">
-				<source>Blog</source>
-			</trans-unit>
-			<trans-unit id="image.description">
-				<source>Image</source>
-			</trans-unit>
-		</body>
-	</file>
+            <trans-unit id="name.description">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="email.description">
+                <source>Email address</source>
+            </trans-unit>
+            <trans-unit id="organization.description">
+                <source>Organization</source>
+            </trans-unit>
+            <trans-unit id="url.description">
+                <source>URL</source>
+            </trans-unit>
+            <trans-unit id="blog.description">
+                <source>Blog</source>
+            </trans-unit>
+            <trans-unit id="image.description">
+                <source>Image</source>
+            </trans-unit>
+        </body>
+    </file>
 </xliff>

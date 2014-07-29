@@ -1,7 +1,8 @@
 <?php
+
 namespace TYPO3\VmfdsSermons\Controller;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Controller;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,79 +33,79 @@ namespace TYPO3\VmfdsSermons\Controller;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class SeriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class SeriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
 
-	/**
-	 * seriesRepository
-	 *
-	 * @var \TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository
-	 * @inject
-	 */
-	protected $seriesRepository;
+    /**
+     * seriesRepository
+     *
+     * @var \TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository
+     * @inject
+     */
+    protected $seriesRepository;
 
-	/**
-	 * sermonRepository
-	 *
-	 * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
-	 * @inject
-	 */
-	protected $sermonRepository;
+    /**
+     * sermonRepository
+     *
+     * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
+     * @inject
+     */
+    protected $sermonRepository;
 
-	/**
-	 * inject the SermonRepository object 
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
-	 * @return void
-	 */
-	public function injectSermonRepository(\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository) {
-		$this->sermonRepository = $sermonRepository;
-	}
+    /**
+     * inject the SermonRepository object 
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
+     * @return void
+     */
+    public function injectSermonRepository(\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository)
+    {
+        $this->sermonRepository = $sermonRepository;
+    }
 
-	/**
-	 * action list
-	 *
-	 * @return void
-	 */
-	public function listAction() {
-		$this->seriesRepository->setDefaultOrderings(array('startdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+    /**
+     * action list
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $this->seriesRepository->setDefaultOrderings(array('startdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
 
-		$seriess = $this->seriesRepository->findAll();
-		$this->view->assign('seriess', $seriess);
-	}
+        $seriess = $this->seriesRepository->findAll();
+        $this->view->assign('seriess', $seriess);
+    }
 
-	/**
-	 * action show
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Model\Series $series
-	 * @return void
-	 */
-	public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Series $series) {
-		// work around buggy DI:
-		//if (!is_object($this->sermonRepository))
-			//$this->sermonRepository = $this->objectManager->create('\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository');
-		
+    /**
+     * action show
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Series $series
+     * @return void
+     */
+    public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Series $series)
+    {
+        // work around buggy DI:
+        //if (!is_object($this->sermonRepository))
+        //$this->sermonRepository = $this->objectManager->create('\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository');
+        // related sermons
+        $sermons = $this->sermonRepository->findBySeries($series);
 
-		// related sermons
-		$sermons = $this->sermonRepository->findBySeries($series);
+        $this->view->assign('series', $series);
+        $this->view->assign('sermons', $sermons);
+    }
 
-		$this->view->assign('series', $series);
-		$this->view->assign('sermons', $sermons);
-	}
-
-	/**
-	 * action latest
-	 *
-	 * @return void
-	 */
-	public function latestAction() {
-		$seriess = $this->seriesRepository->findLatest(1);
-		$sermons = $this->sermonRepository->findBySeries($sseries[0]);
-		$this->view->assign('seriess', $seriess);
-		
-	}
-	
+    /**
+     * action latest
+     *
+     * @return void
+     */
+    public function latestAction()
+    {
+        $seriess = $this->seriesRepository->findLatest(1);
+        $sermons = $this->sermonRepository->findBySeries($sseries[0]);
+        $this->view->assign('seriess', $seriess);
+    }
 
 }
-
 
 ?>

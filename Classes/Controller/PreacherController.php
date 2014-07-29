@@ -1,7 +1,8 @@
 <?php
+
 namespace TYPO3\VmfdsSermons\Controller;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Controller;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,101 +33,105 @@ namespace TYPO3\VmfdsSermons\Controller;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
 
-	/**
-	 * preacherRepository
-	 *
-	 * @var \TYPO3\VmfdsSermons\Domain\Repository\PreacherRepository
-	 * @inject
-	 */
-	protected $preacherRepository;
+    /**
+     * preacherRepository
+     *
+     * @var \TYPO3\VmfdsSermons\Domain\Repository\PreacherRepository
+     * @inject
+     */
+    protected $preacherRepository;
 
-	/**
-	 * sermonRepository
-	 *
-	 * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
-	 * @inject
-	 */
-	protected $sermonRepository;
+    /**
+     * sermonRepository
+     *
+     * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
+     * @inject
+     */
+    protected $sermonRepository;
 
-	/**
-	 * inject the SermonRepository object 
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
-	 * @return void
-	 */
-	public function injectSermonRepository(\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository) {
-		$this->sermonRepository = $sermonRepository;
-	}
+    /**
+     * inject the SermonRepository object 
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
+     * @return void
+     */
+    public function injectSermonRepository(\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository)
+    {
+        $this->sermonRepository = $sermonRepository;
+    }
 
-	/**
+    /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-	 * @inject
+     * @inject
      */
     protected $objectManager;
-  
-     /**
-      * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
-      */
-     //public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
-     //    $this->objectManager = $objectManager;
-     //}
- 
 
-	/**
-	 * action list
-	 *
-	 * @return void
-	 */
-	public function listAction() {
-		$preachers = $this->preacherRepository->findAll();
-		$this->view->assign('preachers', $preachers);
-	}
+    /**
+     * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
+     */
+    //public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
+    //    $this->objectManager = $objectManager;
+    //}
 
-	/**
-	 * action show
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
-	 * @return void
-	 */
-	public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher) {
-		
-		
-		// work around buggy DI:
-		//if (!is_object($this->sermonRepository))
-			//$this->sermonRepository = $this->objectManager->create('\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository');
-		
+    /**
+     * action list
+     *
+     * @return void
+     */
+    public function listAction()
+    {
+        $preachers = $this->preacherRepository->findAll();
+        $this->view->assign('preachers', $preachers);
+    }
 
-		// related sermons
-		$sermons = $this->sermonRepository->findByPreacher($preacher);
-		
-		$this->view->assign('preacher', $preacher);
-		$this->view->assign('sermons', $sermons);
-	}
+    /**
+     * action show
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+     * @return void
+     */
+    public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
+    {
 
-	/**
-	 * action edit
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
-	 * @return void
-	 */
-	public function editAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher) {
-		$this->view->assign('preacher', $preacher);
-	}
 
-	/**
-	 * action update
-	 *
-	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
-	 * @return void
-	 */
-	public function updateAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher) {
-		
-		$this->preacherRepository->update($preacher);
-		$this->flashMessageContainer->add('Your Preacher was updated.');
-		$this->redirect('list');
-	}
+        // work around buggy DI:
+        //if (!is_object($this->sermonRepository))
+        //$this->sermonRepository = $this->objectManager->create('\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository');
+        // related sermons
+        $sermons = $this->sermonRepository->findByPreacher($preacher);
+
+        $this->view->assign('preacher', $preacher);
+        $this->view->assign('sermons', $sermons);
+    }
+
+    /**
+     * action edit
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+     * @return void
+     */
+    public function editAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
+    {
+        $this->view->assign('preacher', $preacher);
+    }
+
+    /**
+     * action update
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+     * @return void
+     */
+    public function updateAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
+    {
+
+        $this->preacherRepository->update($preacher);
+        $this->flashMessageContainer->add('Your Preacher was updated.');
+        $this->redirect('list');
+    }
 
 }
+
 ?>
