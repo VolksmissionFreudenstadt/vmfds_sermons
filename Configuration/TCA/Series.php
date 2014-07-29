@@ -7,10 +7,10 @@ if (!defined('TYPO3_MODE')) {
 $TCA['tx_vmfdssermons_domain_model_series'] = array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_series']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, startdate, enddate, description, image',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, startdate, enddate, description, image, hashtags',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, startdate, enddate, description, image,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, startdate, enddate, description, image, hashtags,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -24,8 +24,10 @@ $TCA['tx_vmfdssermons_domain_model_series'] = array(
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => array(
-                    array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages', -1),
-                    array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value', 0)
+                    array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        -1),
+                    array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value',
+                        0)
                 ),
             ),
         ),
@@ -166,6 +168,15 @@ $TCA['tx_vmfdssermons_domain_model_series'] = array(
                 'size' => 5,
                 'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
                 'disallowed' => '',
+            ),
+        ),
+        'hashtags' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.hashtags',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
             ),
         ),
     ),

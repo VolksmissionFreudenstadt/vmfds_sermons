@@ -48,6 +48,10 @@
                 <source>videorecording</source>
                 <target state="translated">Video</target> 
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.hashtags" approved="yes">
+                <source>hashtags</source>
+                <target state="translated">Hashtags</target> 
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.preacher" approved="yes">
                 <source>Preacher</source>
                 <target state="translated">Prediger</target> 
@@ -89,6 +93,10 @@
                 <source>Image</source>
                 <target state="translated">Bild</target> 
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.twitter" approved="yes">
+                <source>Twitter ID</source>
+                <target state="translated">Twitter ID</target> 
+            </trans-unit>
 			
             <trans-unit id="tx_vmfdssermons_domain_model_series" approved="yes">
                 <source>Series</source>
@@ -117,6 +125,10 @@
             <trans-unit id="tx_vmfdssermons_domain_model_series.image" approved="yes">
                 <source>Title image</source>
                 <target state="translated">Titelbild</target> 
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.hashtags" approved="yes">
+                <source>hashtags</source>
+                <target state="translated">Hashtags</target> 
             </trans-unit>
 			
             <trans-unit id="tx_vmfdssermons_domain_model_tag" approved="yes">

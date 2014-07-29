@@ -108,6 +108,13 @@ class Preacher extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $image;
 
     /**
+     * Twitter
+     *
+     * @var \string
+     */
+    protected $twitter;
+
+    /**
      * Returns the name
      *
      * @return \string $name
@@ -315,6 +322,27 @@ class Preacher extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * Returns the twitter id
+     *
+     * @return \int $twitter
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * Sets the twitter id
+     *
+     * @param \string $hashtags
+     * @return void
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
     }
 
 }

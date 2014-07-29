@@ -79,6 +79,13 @@ class Series extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $image;
 
     /**
+     * hashtags
+     *
+     * @var \string
+     */
+    protected $hashtags;
+
+    /**
      * Returns the title
      *
      * @return \string $title
@@ -202,6 +209,27 @@ class Series extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setImage($image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * Returns the hashtags
+     *
+     * @return \int $hashtags
+     */
+    public function getHashtags()
+    {
+        return $this->hashtags;
+    }
+
+    /**
+     * Sets the hashtags
+     *
+     * @param \string $hashtags
+     * @return void
+     */
+    public function setHashtags($hashtags)
+    {
+        $this->hashtags = $hashtags;
     }
 
 }

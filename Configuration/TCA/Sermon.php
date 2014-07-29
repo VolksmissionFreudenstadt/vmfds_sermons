@@ -7,10 +7,10 @@ if (!defined('TYPO3_MODE')) {
 $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_sermon']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, keywords, image, image_source, no_handout, handout, audiorecording, videorecording, cclicense, preacher, series',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, keywords, image, image_source, no_handout, handout, audiorecording, videorecording, hashtags, cclicense, preacher, series',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, preached, description, --div--;Studienmaterial, reference, notes_header, keypoints, questions, further_reading, keywords,--div--;Vorbereitung, prep, --div--;Ressourcen, cclicense, image, image_source, no_handout, handout, audiorecording, videorecording,--div--;Prediger, preacher,--div--;Reihe, series,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, preached, description, --div--;Studienmaterial, reference, notes_header, keypoints, questions, further_reading, keywords,--div--;Vorbereitung, prep, --div--;Ressourcen, cclicense, image, image_source, no_handout, handout, audiorecording, videorecording, hashtags,--div--;Prediger, preacher,--div--;Reihe, series,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -299,6 +299,15 @@ $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
                 'allowed' => '*',
                 'disallowed' => 'php',
                 'size' => 5,
+            ),
+        ),
+        'hashtags' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_sermon.hashtags',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
             ),
         ),
         'cclicense' => array(

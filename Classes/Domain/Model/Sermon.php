@@ -157,6 +157,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $videorecording;
 
     /**
+     * hashtags
+     *
+     * @var \string
+     */
+    protected $hashtags;
+
+    /**
      * cclicense
      *
      * @var \int
@@ -539,6 +546,27 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setVideorecording($videorecording)
     {
         $this->videorecording = $videorecording;
+    }
+
+    /**
+     * Returns the hashtags
+     *
+     * @return \int $hashtags
+     */
+    public function getHashtags()
+    {
+        return $this->hashtags;
+    }
+
+    /**
+     * Sets the hashtags
+     *
+     * @param \string $hashtags
+     * @return void
+     */
+    public function setHashtags($hashtags)
+    {
+        $this->hashtags = $hashtags;
     }
 
     /**

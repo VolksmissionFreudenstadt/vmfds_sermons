@@ -58,6 +58,9 @@
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording">
                 <source>Videorecording</source>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.hashtags">
+                <source>Hash tags</source>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.cclicense">
                 <source>This content is licensed under a Creative Commons License (CC-BY-SA 4.0).</source>
             </trans-unit>
@@ -95,6 +98,9 @@
             <trans-unit id="tx_vmfdssermons_domain_model_preacher.facebook_id">
                 <source>Facebook ID</source>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.twitter">
+                <source>Twitter ID</source>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_preacher.about">
                 <source>About the preacher</source>
             </trans-unit>
@@ -122,6 +128,9 @@
             </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_series.image">
                 <source>Image</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.hashtags">
+                <source>Hash tags</source>
             </trans-unit>
 
         </body>
