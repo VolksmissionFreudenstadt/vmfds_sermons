@@ -129,6 +129,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $imageSource;
 
     /**
+     * No handout links
+     *
+     * @var \int
+     */
+    protected $noHandout;
+
+    /**
      * Handout
      *
      * @var \string
@@ -448,6 +455,27 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setImageSource($imageSource)
     {
         $this->imageSource = $imageSource;
+    }
+
+    /**
+     * Returns the hoHandout check
+     *
+     * @return \int $noHandout
+     */
+    public function getNoHandout()
+    {
+        return $this->noHandout;
+    }
+
+    /**
+     * Sets the hoHandout check
+     *
+     * @param \int $noHandout
+     * @return void
+     */
+    public function setNoHandout($noHandout)
+    {
+        $this->noHandout = $noHandout;
     }
 
     /**

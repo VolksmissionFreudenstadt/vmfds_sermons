@@ -60,6 +60,10 @@
                 <source>Image source</source> 
                 <target state="translated">Quellenangaben zum Bild</target>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.no_handout" approved="yes">
+                <source>Do not link to a handout for this sermon.</source>
+                <target>Links zum Begleitzettel nicht anzeigen.</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.handout" approved="yes">
                 <source>Handout</source> 
                 <target state="translated">Predigtzettel</target>

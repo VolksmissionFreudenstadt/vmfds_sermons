@@ -19,6 +19,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
 	keywords varchar(255) DEFAULT '' NOT NULL,
 	image text NOT NULL,
 	image_source varchar(255) DEFAULT '' NOT NULL,
+        no_handout tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	handout text NOT NULL,
 	audiorecording text NOT NULL,
 	videorecording text NOT NULL,

@@ -32,6 +32,10 @@
                 <source>Title image</source> 
                 <target>Titelbild</target> 
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.no_handout" approved="yes">
+                <source>Do not link to a handout for this sermon.</source>
+                <target>Links zum Begleitzettel nicht anzeigen.</target>
+            </trans-unit>
             <trans-unit id="handout.description">
                 <source>Handout</source> 
                 <target>Predigtzettel</target> 

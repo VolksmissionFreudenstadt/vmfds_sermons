@@ -46,6 +46,9 @@
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.image_source">
                 <source>Image source</source>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.no_handout">
+                <source>Do not link to a handout for this sermon.</source>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.handout">
                 <source>Handout</source>
             </trans-unit>
