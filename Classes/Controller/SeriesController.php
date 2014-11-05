@@ -104,6 +104,7 @@ class SeriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $seriess = $this->seriesRepository->findLatest(1);
         $sermons = $this->sermonRepository->findBySeries($sseries[0]);
         $this->view->assign('seriess', $seriess);
+        $this->view->assign('sermons', $sermons);
     }
 
 }
