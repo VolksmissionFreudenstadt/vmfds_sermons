@@ -289,6 +289,28 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $this->assign('sermon', $sermon);
     }
 
+    /**
+     * action byDate
+     *
+     * @return void
+     */
+    public function byDateAction()
+    {
+        if ($this->request->hasArgument('date')) {
+            $date = new \DateTime($this->request->getArgument('date'));
+        } else {
+            $date = new DateTime(time());
+        }
+        $sermons = $this->sermonRepository->findByPreached($date);
+        $this->view->assign('sermons', $sermons);
+
+        // JSON:
+        if ($this->request->getFormat() == 'json') {
+            $this->view->setVariablesToRender(array('sermons'));
+            $this->view->setConfiguration = (array('sermons', array()));
+        }
+    }
+
 }
 
 ?>

@@ -6,7 +6,7 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'TYPO3.' . $_EXTKEY, 'Sermons', array(
-    'Sermon' => 'list, show, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone',
+    'Sermon' => 'list, show, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone, byDate',
     'Series' => 'list, show, latest',
     'Preacher' => 'list, show',
         ),
