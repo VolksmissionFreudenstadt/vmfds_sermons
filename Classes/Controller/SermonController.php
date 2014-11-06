@@ -37,6 +37,18 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 {
 
     /**
+     * !!! This property behavior has changed in [see], was formerly named $supportedFormats
+     * @var array
+     * @see http://git.typo3.org/FLOW3/Packages/TYPO3.FLOW3.git?a=commit;h=03b6d85916e46ed8b2e99bc549d7248957dca935
+     */
+    protected $supportedMediaTypes = array('text/html', 'application/json');
+
+    /**
+     * @var array
+     */
+    protected $viewFormatToObjectNameMap = array('json' => 'TYPO3\CMS\Extbase\Mvc\View\JsonView');
+
+    /**
      * sermonRepository
      *
      * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
@@ -102,7 +114,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             }
         }
 
-        ;
+
 
 
         // get related by series
@@ -137,6 +149,12 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $this->view->assign('weekEnd', $weekEnd);
         $this->view->assign('weekEndSat', $weekEndSat);
         $this->view->assign('sneakForward', $sneakForward);
+
+        // JSON:
+        if ($this->request->getFormat() == 'json') {
+            $this->view->setVariablesToRender(array('sermon'));
+            $this->view->setConfiguration = (array('sermon', array()));
+        }
     }
 
     /**
@@ -258,6 +276,17 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             // persist the changes
             $this->sermonRepository->update($sermon);
         }
+    }
+
+    /**
+     * action ajax
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     * @return void
+     */
+    public function ajaxAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon = NULL)
+    {
+        $this->assign('sermon', $sermon);
     }
 
 }
