@@ -160,6 +160,27 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $sermons;
     }
 
+    /**
+     * Find all sermons from a specific date
+     *
+     * This function overrides the auto-generated findByPreached() and sets
+     * the ignoreEnableFields flag, in order to include sermons that have a
+     * future date and have not been officially published yet.
+     *
+     * @param \DateTime $date Date
+     * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
+     */
+    public function findByPreached(\DateTime $date)
+    {
+        $q = $this->createQuery();
+        $q->getQuerySettings()->setIgnoreEnableFields(TRUE);
+        $constraints = array(
+            $q->equals('preached', $date),
+        );
+        $sermons = $q->matching($q->logicalAnd($constraints))->execute();
+        return $sermons;
+    }
+
 }
 
 ?>
