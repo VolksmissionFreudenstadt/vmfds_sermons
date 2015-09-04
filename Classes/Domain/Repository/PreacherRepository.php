@@ -1,7 +1,8 @@
 <?php
+
 namespace TYPO3\VmfdsSermons\Domain\Repository;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Domain\Repository;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,7 +33,9 @@ namespace TYPO3\VmfdsSermons\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class PreacherRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
+class PreacherRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
+    
 }
+
 ?>

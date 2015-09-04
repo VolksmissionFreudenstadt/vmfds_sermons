@@ -1,1 +1,330 @@
-{"modules":[{"config":{"position":[202,24]},"name":"New Model Object","value":{"actionGroup":{"_default0_list":true,"_default1_show":true,"_default2_new_create":false,"_default3_edit_update":false,"_default4_delete":false,"customActions":[]},"name":"Sermon","objectsettings":{"aggregateRoot":true,"description":"A Sermon","mapToTable":"","parentClass":"","sorting":false,"type":"Entity","uid":"288988159127"},"propertyGroup":{"properties":[{"propertyDescription":"Title","propertyIsExcludeField":false,"propertyIsRequired":true,"propertyName":"title","propertyType":"String","uid":"438798343298"},{"propertyDescription":"Subtitle","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"subtitle","propertyType":"Text","uid":"1230388094427"},{"propertyDescription":"Preaching date","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"preached","propertyType":"Date","uid":"905228461909"},{"propertyDescription":"Description","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"description","propertyType":"RichText","uid":"431287728485"},{"propertyDescription":"Text reference","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"reference","propertyType":"String","uid":"1004069958103"},{"propertyDescription":"Key words","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"keywords","propertyType":"String","uid":"823356530104"},{"propertyDescription":"Title image","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"image","propertyType":"Image","uid":"1119994275551"},{"propertyDescription":"Handout","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"handout","propertyType":"File","uid":"994583986234"},{"propertyDescription":"Audio recording","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"audiorecording","propertyType":"FileReference","uid":"537107089806"},{"propertyDescription":"","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"videorecording","propertyType":"FileReference","uid":"1245677477358"}]},"relationGroup":{"relations":[{"foreignRelationClass":"","lazyLoading":false,"propertyIsExcludeField":false,"relationDescription":"Preacher","relationName":"preacher","relationType":"manyToMany","relationWire":"[wired]","uid":"13227184463"},{"foreignRelationClass":"","lazyLoading":false,"propertyIsExcludeField":false,"relationDescription":"","relationName":"series","relationType":"manyToMany","relationWire":"[wired]","uid":"1337376487948"}]}}},{"config":{"position":[623,27]},"name":"New Model Object","value":{"actionGroup":{"_default0_list":true,"_default1_show":true,"_default2_new_create":false,"_default3_edit_update":true,"_default4_delete":false,"customActions":[]},"name":"Preacher","objectsettings":{"aggregateRoot":true,"description":"","mapToTable":"","parentClass":"","sorting":false,"type":"Entity","uid":"711879715624"},"propertyGroup":{"properties":[{"propertyDescription":"Name","propertyIsExcludeField":false,"propertyIsRequired":true,"propertyName":"name","propertyType":"String","uid":"1070279405953"},{"propertyDescription":"Email address","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"email","propertyType":"String","uid":"1271370744909"},{"propertyDescription":"Organization","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"organization","propertyType":"String","uid":"799901801639"},{"propertyDescription":"URL","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"url","propertyType":"String","uid":"1163751478771"},{"propertyDescription":"Blog","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"blog","propertyType":"String","uid":"314655128593"},{"propertyDescription":"Image","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"image","propertyType":"Image","uid":"1181325027808"}]},"relationGroup":{"relations":[]}}},{"config":{"position":[624,225]},"name":"New Model Object","value":{"actionGroup":{"_default0_list":true,"_default1_show":true,"_default2_new_create":false,"_default3_edit_update":false,"_default4_delete":false,"customActions":[]},"name":"Series","objectsettings":{"aggregateRoot":true,"description":"","mapToTable":"","parentClass":"","sorting":false,"type":"Entity","uid":"873988344093"},"propertyGroup":{"properties":[{"propertyDescription":"Title","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"title","propertyType":"String","uid":"490265637778"},{"propertyDescription":"","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"subtitle","propertyType":"Text","uid":"379944184791"},{"propertyDescription":"Start date","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"startdate","propertyType":"Date","uid":"138775454239"},{"propertyDescription":"enddate","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"enddate","propertyType":"Date","uid":"203039129620"},{"propertyDescription":"","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"description","propertyType":"RichText","uid":"866403446519"},{"propertyDescription":"Title image","propertyIsExcludeField":false,"propertyIsRequired":false,"propertyName":"image","propertyType":"Image","uid":"45051878159"}]},"relationGroup":{"relations":[]}}}],"properties":{"backendModules":[],"description":"","emConf":{"category":"plugin","custom_category":"","dependsOn":"extbase => undefined\nfluid => undefined\ntypo3 => 6.0\n","disableVersioning":false,"priority":"","shy":false,"state":"alpha","targetVersion":"4.7","version":""},"extensionKey":"vmfds_sermons","name":"Sermons","originalExtensionKey":"vmfds_sermons","persons":[{"company":"Volksmission Freudenstadt","email":"christoph.fischer@volksmission.de","name":"Christoph Fischer","role":"Developer"}],"plugins":[{"actions":{"controllerActionCombinations":"Sermon=>list,show,byLatestSeries\nSeries=>list,show,latest\nPreacher=>list,show\n","noncacheableActions":"Preacher=>update\n","switchableActions":""},"key":"sermons","name":"Sermons"}],"vendorName":"TYPO3"},"wires":[{"src":{"moduleId":0,"terminal":"relationWire_1","uid":"1337376487948"},"tgt":{"moduleId":2,"terminal":"SOURCES","uid":"873988344093"}},{"src":{"moduleId":0,"terminal":"relationWire_0","uid":"13227184463"},"tgt":{"moduleId":1,"terminal":"SOURCES","uid":"711879715624"}}],"log":{"last_modified":"2013-04-16 11:33","extension_builder_version":"2.5.1","be_user":"Christoph Fischer (1)"}}
+{
+    "modules": [{
+            "config": {
+                "position": [202, 24]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": false,
+                    "_default3_edit_update": false,
+                    "_default4_delete": false,
+                    "customActions": []
+                },
+                "name": "Sermon",
+                "objectsettings": {
+                    "aggregateRoot": true,
+                    "description": "A Sermon",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "288988159127"
+                },
+                "propertyGroup": {
+                    "properties": [{
+                            "propertyDescription": "Title",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": true,
+                            "propertyName": "title",
+                            "propertyType": "String",
+                            "uid": "438798343298"
+                        }, {
+                            "propertyDescription": "Subtitle",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "subtitle",
+                            "propertyType": "Text",
+                            "uid": "1230388094427"
+                        }, {
+                            "propertyDescription": "Preaching date",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "preached",
+                            "propertyType": "Date",
+                            "uid": "905228461909"
+                        }, {
+                            "propertyDescription": "Description",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "description",
+                            "propertyType": "RichText",
+                            "uid": "431287728485"
+                        }, {
+                            "propertyDescription": "Text reference",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "reference",
+                            "propertyType": "String",
+                            "uid": "1004069958103"
+                        }, {
+                            "propertyDescription": "Key words",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "keywords",
+                            "propertyType": "String",
+                            "uid": "823356530104"
+                        }, {
+                            "propertyDescription": "Title image",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "image",
+                            "propertyType": "Image",
+                            "uid": "1119994275551"
+                        }, {
+                            "propertyDescription": "Handout",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "handout",
+                            "propertyType": "File",
+                            "uid": "994583986234"
+                        }, {
+                            "propertyDescription": "Audio recording",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "audiorecording",
+                            "propertyType": "FileReference",
+                            "uid": "537107089806"
+                        }, {
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "videorecording",
+                            "propertyType": "FileReference",
+                            "uid": "1245677477358"
+                        }]
+                },
+                "relationGroup": {
+                    "relations": [{
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": false,
+                            "relationDescription": "Preacher",
+                            "relationName": "preacher",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "13227184463"
+                        }, {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": false,
+                            "relationDescription": "",
+                            "relationName": "series",
+                            "relationType": "manyToMany",
+                            "relationWire": "[wired]",
+                            "uid": "1337376487948"
+                        }]
+                }
+            }
+        }, {
+            "config": {
+                "position": [623, 27]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": false,
+                    "_default3_edit_update": true,
+                    "_default4_delete": false,
+                    "customActions": []
+                },
+                "name": "Preacher",
+                "objectsettings": {
+                    "aggregateRoot": true,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "711879715624"
+                },
+                "propertyGroup": {
+                    "properties": [{
+                            "propertyDescription": "Name",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": true,
+                            "propertyName": "name",
+                            "propertyType": "String",
+                            "uid": "1070279405953"
+                        }, {
+                            "propertyDescription": "Email address",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "email",
+                            "propertyType": "String",
+                            "uid": "1271370744909"
+                        }, {
+                            "propertyDescription": "Organization",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "organization",
+                            "propertyType": "String",
+                            "uid": "799901801639"
+                        }, {
+                            "propertyDescription": "URL",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "url",
+                            "propertyType": "String",
+                            "uid": "1163751478771"
+                        }, {
+                            "propertyDescription": "Blog",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "blog",
+                            "propertyType": "String",
+                            "uid": "314655128593"
+                        }, {
+                            "propertyDescription": "Image",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "image",
+                            "propertyType": "Image",
+                            "uid": "1181325027808"
+                        }]
+                },
+                "relationGroup": {
+                    "relations": []
+                }
+            }
+        }, {
+            "config": {
+                "position": [624, 225]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": false,
+                    "_default3_edit_update": false,
+                    "_default4_delete": false,
+                    "customActions": []
+                },
+                "name": "Series",
+                "objectsettings": {
+                    "aggregateRoot": true,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "873988344093"
+                },
+                "propertyGroup": {
+                    "properties": [{
+                            "propertyDescription": "Title",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "title",
+                            "propertyType": "String",
+                            "uid": "490265637778"
+                        }, {
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "subtitle",
+                            "propertyType": "Text",
+                            "uid": "379944184791"
+                        }, {
+                            "propertyDescription": "Start date",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "startdate",
+                            "propertyType": "Date",
+                            "uid": "138775454239"
+                        }, {
+                            "propertyDescription": "enddate",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "enddate",
+                            "propertyType": "Date",
+                            "uid": "203039129620"
+                        }, {
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "description",
+                            "propertyType": "RichText",
+                            "uid": "866403446519"
+                        }, {
+                            "propertyDescription": "Title image",
+                            "propertyIsExcludeField": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "image",
+                            "propertyType": "Image",
+                            "uid": "45051878159"
+                        }]
+                },
+                "relationGroup": {
+                    "relations": []
+                }
+            }
+        }],
+    "properties": {
+        "backendModules": [],
+        "description": "",
+        "emConf": {
+            "category": "plugin",
+            "custom_category": "",
+            "dependsOn": "extbase => undefined\nfluid => undefined\ntypo3 => 6.0\n",
+            "disableVersioning": false,
+            "priority": "",
+            "shy": false,
+            "state": "alpha",
+            "targetVersion": "4.7",
+            "version": ""
+        },
+        "extensionKey": "vmfds_sermons",
+        "name": "Sermons",
+        "originalExtensionKey": "vmfds_sermons",
+        "persons": [{
+                "company": "Volksmission Freudenstadt",
+                "email": "christoph.fischer@volksmission.de",
+                "name": "Christoph Fischer",
+                "role": "Developer"
+            }],
+        "plugins": [{
+                "actions": {
+                    "controllerActionCombinations": "Sermon=>list,show,byLatestSeries\nSeries=>list,show,latest\nPreacher=>list,show\n",
+                    "noncacheableActions": "Preacher=>update\n",
+                    "switchableActions": ""
+                },
+                "key": "sermons",
+                "name": "Sermons"
+            }],
+        "vendorName": "TYPO3"
+    },
+    "wires": [{
+            "src": {
+                "moduleId": 0,
+                "terminal": "relationWire_1",
+                "uid": "1337376487948"
+            },
+            "tgt": {
+                "moduleId": 2,
+                "terminal": "SOURCES",
+                "uid": "873988344093"
+            }
+        }, {
+            "src": {
+                "moduleId": 0,
+                "terminal": "relationWire_0",
+                "uid": "13227184463"
+            },
+            "tgt": {
+                "moduleId": 1,
+                "terminal": "SOURCES",
+                "uid": "711879715624"
+            }
+        }],
+    "log": {
+        "last_modified": "2013-04-16 11:33",
+        "extension_builder_version": "2.5.1",
+        "be_user": "Christoph Fischer (1)"
+    }
+}

@@ -1,7 +1,8 @@
 <?php
 
 namespace TYPO3\VmfdsSermons\Tests;
-/***************************************************************
+
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2013 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Tests;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  * Test case for class \TYPO3\VmfdsSermons\Domain\Model\Preacher.
@@ -37,121 +38,144 @@ namespace TYPO3\VmfdsSermons\Tests;
  *
  * @author Christoph Fischer <christoph.fischer@volksmission.de>
  */
-class PreacherTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase {
-	/**
-	 * @var \TYPO3\VmfdsSermons\Domain\Model\Preacher
-	 */
-	protected $fixture;
+class PreacherTest extends \TYPO3\CMS\Extbase\Tests\Unit\BaseTestCase
+{
 
-	public function setUp() {
-		$this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Preacher();
-	}
+    /**
+     * @var \TYPO3\VmfdsSermons\Domain\Model\Preacher
+     */
+    protected $fixture;
 
-	public function tearDown() {
-		unset($this->fixture);
-	}
+    public function setUp()
+    {
+        $this->fixture = new \TYPO3\VmfdsSermons\Domain\Model\Preacher();
+    }
 
-	/**
-	 * @test
-	 */
-	public function getNameReturnsInitialValueForString() { }
+    public function tearDown()
+    {
+        unset($this->fixture);
+    }
 
-	/**
-	 * @test
-	 */
-	public function setNameForStringSetsName() { 
-		$this->fixture->setName('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getNameReturnsInitialValueForString()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getName()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getEmailReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setNameForStringSetsName()
+    {
+        $this->fixture->setName('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setEmailForStringSetsEmail() { 
-		$this->fixture->setEmail('Conceived at T3CON10');
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getName()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getEmail()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getOrganizationReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function getEmailReturnsInitialValueForString()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setOrganizationForStringSetsOrganization() { 
-		$this->fixture->setOrganization('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setEmailForStringSetsEmail()
+    {
+        $this->fixture->setEmail('Conceived at T3CON10');
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getOrganization()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getUrlReturnsInitialValueForString() { }
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getEmail()
+        );
+    }
 
-	/**
-	 * @test
-	 */
-	public function setUrlForStringSetsUrl() { 
-		$this->fixture->setUrl('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function getOrganizationReturnsInitialValueForString()
+    {
+        
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getUrl()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getBlogReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function setOrganizationForStringSetsOrganization()
+    {
+        $this->fixture->setOrganization('Conceived at T3CON10');
 
-	/**
-	 * @test
-	 */
-	public function setBlogForStringSetsBlog() { 
-		$this->fixture->setBlog('Conceived at T3CON10');
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getOrganization()
+        );
+    }
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getBlog()
-		);
-	}
-	
-	/**
-	 * @test
-	 */
-	public function getImageReturnsInitialValueForString() { }
+    /**
+     * @test
+     */
+    public function getUrlReturnsInitialValueForString()
+    {
+        
+    }
 
-	/**
-	 * @test
-	 */
-	public function setImageForStringSetsImage() { 
-		$this->fixture->setImage('Conceived at T3CON10');
+    /**
+     * @test
+     */
+    public function setUrlForStringSetsUrl()
+    {
+        $this->fixture->setUrl('Conceived at T3CON10');
 
-		$this->assertSame(
-			'Conceived at T3CON10',
-			$this->fixture->getImage()
-		);
-	}
-	
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getUrl()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getBlogReturnsInitialValueForString()
+    {
+        
+    }
+
+    /**
+     * @test
+     */
+    public function setBlogForStringSetsBlog()
+    {
+        $this->fixture->setBlog('Conceived at T3CON10');
+
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getBlog()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getImageReturnsInitialValueForString()
+    {
+        
+    }
+
+    /**
+     * @test
+     */
+    public function setImageForStringSetsImage()
+    {
+        $this->fixture->setImage('Conceived at T3CON10');
+
+        $this->assertSame(
+                'Conceived at T3CON10', $this->fixture->getImage()
+        );
+    }
+
 }
+
 ?>

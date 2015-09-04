@@ -1,7 +1,8 @@
 <?php
+
 namespace TYPO3\VmfdsSermons\Domain\Model;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Domain\Model;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,163 +33,205 @@ namespace TYPO3\VmfdsSermons\Domain\Model;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class Series extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Series extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+{
 
-	/**
-	 * Title
-	 *
-	 * @var \string
-	 */
-	protected $title;
+    /**
+     * Title
+     *
+     * @var \string
+     */
+    protected $title;
 
-	/**
-	 * subtitle
-	 *
-	 * @var \string
-	 */
-	protected $subtitle;
+    /**
+     * subtitle
+     *
+     * @var \string
+     */
+    protected $subtitle;
 
-	/**
-	 * Start date
-	 *
-	 * @var \DateTime
-	 */
-	protected $startdate;
+    /**
+     * Start date
+     *
+     * @var \DateTime
+     */
+    protected $startdate;
 
-	/**
-	 * enddate
-	 *
-	 * @var \DateTime
-	 */
-	protected $enddate;
+    /**
+     * enddate
+     *
+     * @var \DateTime
+     */
+    protected $enddate;
 
-	/**
-	 * description
-	 *
-	 * @var \string
-	 */
-	protected $description;
+    /**
+     * description
+     *
+     * @var \string
+     */
+    protected $description;
 
-	/**
-	 * Title image
-	 *
-	 * @var \string
-	 */
-	protected $image;
+    /**
+     * Title image
+     *
+     * @var \string
+     */
+    protected $image;
 
-	/**
-	 * Returns the title
-	 *
-	 * @return \string $title
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
+    /**
+     * hashtags
+     *
+     * @var \string
+     */
+    protected $hashtags;
 
-	/**
-	 * Sets the title
-	 *
-	 * @param \string $title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+    /**
+     * Returns the title
+     *
+     * @return \string $title
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
-	/**
-	 * Returns the subtitle
-	 *
-	 * @return \string $subtitle
-	 */
-	public function getSubtitle() {
-		return $this->subtitle;
-	}
+    /**
+     * Sets the title
+     *
+     * @param \string $title
+     * @return void
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
 
-	/**
-	 * Sets the subtitle
-	 *
-	 * @param \string $subtitle
-	 * @return void
-	 */
-	public function setSubtitle($subtitle) {
-		$this->subtitle = $subtitle;
-	}
+    /**
+     * Returns the subtitle
+     *
+     * @return \string $subtitle
+     */
+    public function getSubtitle()
+    {
+        return $this->subtitle;
+    }
 
-	/**
-	 * Returns the startdate
-	 *
-	 * @return \DateTime $startdate
-	 */
-	public function getStartdate() {
-		return $this->startdate;
-	}
+    /**
+     * Sets the subtitle
+     *
+     * @param \string $subtitle
+     * @return void
+     */
+    public function setSubtitle($subtitle)
+    {
+        $this->subtitle = $subtitle;
+    }
 
-	/**
-	 * Sets the startdate
-	 *
-	 * @param \DateTime $startdate
-	 * @return void
-	 */
-	public function setStartdate($startdate) {
-		$this->startdate = $startdate;
-	}
+    /**
+     * Returns the startdate
+     *
+     * @return \DateTime $startdate
+     */
+    public function getStartdate()
+    {
+        return $this->startdate;
+    }
 
-	/**
-	 * Returns the enddate
-	 *
-	 * @return \DateTime $enddate
-	 */
-	public function getEnddate() {
-		return $this->enddate;
-	}
+    /**
+     * Sets the startdate
+     *
+     * @param \DateTime $startdate
+     * @return void
+     */
+    public function setStartdate($startdate)
+    {
+        $this->startdate = $startdate;
+    }
 
-	/**
-	 * Sets the enddate
-	 *
-	 * @param \DateTime $enddate
-	 * @return void
-	 */
-	public function setEnddate($enddate) {
-		$this->enddate = $enddate;
-	}
+    /**
+     * Returns the enddate
+     *
+     * @return \DateTime $enddate
+     */
+    public function getEnddate()
+    {
+        return $this->enddate;
+    }
 
-	/**
-	 * Returns the description
-	 *
-	 * @return \string $description
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+    /**
+     * Sets the enddate
+     *
+     * @param \DateTime $enddate
+     * @return void
+     */
+    public function setEnddate($enddate)
+    {
+        $this->enddate = $enddate;
+    }
 
-	/**
-	 * Sets the description
-	 *
-	 * @param \string $description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+    /**
+     * Returns the description
+     *
+     * @return \string $description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
-	/**
-	 * Returns the image
-	 *
-	 * @return \string $image
-	 */
-	public function getImage() {
-		return $this->image;
-	}
+    /**
+     * Sets the description
+     *
+     * @param \string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 
-	/**
-	 * Sets the image
-	 *
-	 * @param \string $image
-	 * @return void
-	 */
-	public function setImage($image) {
-		$this->image = $image;
-	}
+    /**
+     * Returns the image
+     *
+     * @return \string $image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Sets the image
+     *
+     * @param \string $image
+     * @return void
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Returns the hashtags
+     *
+     * @return \int $hashtags
+     */
+    public function getHashtags()
+    {
+        return $this->hashtags;
+    }
+
+    /**
+     * Sets the hashtags
+     *
+     * @param \string $hashtags
+     * @return void
+     */
+    public function setHashtags($hashtags)
+    {
+        $this->hashtags = $hashtags;
+    }
 
 }
+
 ?>

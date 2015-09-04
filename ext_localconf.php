@@ -1,23 +1,19 @@
 <?php
+
 if (!defined('TYPO3_MODE')) {
-	die ('Access denied.');
+    die('Access denied.');
 }
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-	'TYPO3.' . $_EXTKEY,
-	'Sermons',
-	array(
-		'Sermon' => 'list, show, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone',
-		'Series' => 'list, show, latest',
-		'Preacher' => 'list, show',
-		
-	),
-	// non-cacheable actions
-	array(
-		'Sermon' => 'audioUploadWelcome, audioUploadDone',
-		'Preacher' => 'update',
-		
-	)
+        'TYPO3.' . $_EXTKEY, 'Sermons', array(
+    'Sermon' => 'list, show, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone, byDate',
+    'Series' => 'list, show, latest',
+    'Preacher' => 'list, show',
+        ),
+        // non-cacheable actions
+        array(
+    'Sermon' => 'audioUploadWelcome, audioUploadDone',
+    'Preacher' => 'update',
+        )
 );
-
 ?>

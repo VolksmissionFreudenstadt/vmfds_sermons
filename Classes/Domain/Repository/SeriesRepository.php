@@ -1,7 +1,8 @@
 <?php
+
 namespace TYPO3\VmfdsSermons\Domain\Repository;
 
-/***************************************************************
+/* * *************************************************************
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
@@ -23,7 +24,7 @@ namespace TYPO3\VmfdsSermons\Domain\Repository;
  *  GNU General Public License for more details.
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+ * ************************************************************* */
 
 /**
  *
@@ -32,27 +33,30 @@ namespace TYPO3\VmfdsSermons\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class SeriesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-	
-	/**
-	 * Find latest series
-	 * 
-	 * @return \TYPO3\VmfdsSermons\Domain\Model\Series
-	 */
-	public function findLatest() {
-		$this->setDefaultOrderings(array('startdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
-		$q=$this->createQuery();
-		$r = $q->setLimit(1)
-				  ->matching(
-				  		$q->logicalAnd(array(
-				  				$q->lessThanOrEqual('startdate', time()),
-				  				$q->greaterThanOrEqual('enddate', time())								
-							  ))
-							)
-				  ->execute()
-				  ->getFirst();
-		return $r;
-	}	
+class SeriesRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+{
+
+    /**
+     * Find latest series
+     * 
+     * @return \TYPO3\VmfdsSermons\Domain\Model\Series
+     */
+    public function findLatest()
+    {
+        $this->setDefaultOrderings(array('startdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
+        $q = $this->createQuery();
+        $r = $q->setLimit(1)
+                ->matching(
+                        $q->logicalAnd(array(
+                            $q->lessThanOrEqual('startdate', time()),
+                            $q->greaterThanOrEqual('enddate', time())
+                        ))
+                )
+                ->execute()
+                ->getFirst();
+        return $r;
+    }
 
 }
+
 ?>

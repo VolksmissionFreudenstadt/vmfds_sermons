@@ -1,76 +1,76 @@
 <T3DataStructure>
-	<sheets>
-		<sDEF>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>Function</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<switchableControllerActions>
-						<TCEforms>
-							<label>Select function</label>
-							<config>
-								<type>select</type>
-								<items>
-									<numIndex index="0">
-										<numIndex index="0">Predigten</numIndex>
-										<numIndex index="1">Sermon->list;Sermon->show</numIndex>
-									</numIndex>
-									<numIndex index="1">
-										<numIndex index="0">Predigten: aktuellste Serie</numIndex>
-										<numIndex index="1">Sermon->byLatestSeries;Sermon->list;Sermon->show</numIndex>
-									</numIndex>
-									<numIndex index="2">
-										<numIndex index="0">Reihen</numIndex>
-										<numIndex index="1">Series->list;Series->show</numIndex>
-									</numIndex>
-									<numIndex index="3">
-										<numIndex index="0">Prediger</numIndex>
-										<numIndex index="1">Preacher->list;Preacher->show</numIndex>
-									</numIndex>
-									<numIndex index="4">
-										<numIndex index="0">Prediger (Admin)</numIndex>
-										<numIndex index="1">Preacher->list;Preacher->show;Preacher->edit;Preacher->update</numIndex>
-									</numIndex>
-									<numIndex index="5">
-										<numIndex index="0">Audio Upload</numIndex>
-										<numIndex index="1">Sermon->audioUploadWelcome;Sermon->audioUploadDone</numIndex>
-									</numIndex>
-									<numIndex index="6">
-										<numIndex index="0">Neueste Predigt</numIndex>
-										<numIndex index="1">Sermon->showLatest</numIndex>
-									</numIndex>
-									<numIndex index="7">
-										<numIndex index="0">Vorschau auf nächste Predigt</numIndex>
-										<numIndex index="1">Sermon->previewNext</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</switchableControllerActions>
-				</el>
-			</ROOT>
-		</sDEF>
-		<sViewConfig>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>Vorlagenoptionen</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<view.templateRootPath>
-					  <TCEforms>
-					    <label>LLL:EXT:vmfds_resources/Resources/Private/Language/locallang_flexform.xml:tx_vmfdssermons_flexform_view_templaterootpath</label>
-					    <config>
-					      <type>input</type>
-					      <size>20</size>
-					      <eval>trim</eval>
-					    </config>
-					  </TCEforms>
-					</view.templateRootPath>				
-				</el>
-			</ROOT>
-		</sViewConfig>
-	</sheets>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Function</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <switchableControllerActions>
+                        <TCEforms>
+                            <label>Select function</label>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">Predigten</numIndex>
+                                        <numIndex index="1">Sermon->list;Sermon->show</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">Predigten: aktuellste Serie</numIndex>
+                                        <numIndex index="1">Sermon->byLatestSeries;Sermon->list;Sermon->show</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2">
+                                        <numIndex index="0">Reihen</numIndex>
+                                        <numIndex index="1">Series->list;Series->show</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3">
+                                        <numIndex index="0">Prediger</numIndex>
+                                        <numIndex index="1">Preacher->list;Preacher->show</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4">
+                                        <numIndex index="0">Prediger (Admin)</numIndex>
+                                        <numIndex index="1">Preacher->list;Preacher->show;Preacher->edit;Preacher->update</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5">
+                                        <numIndex index="0">Audio Upload</numIndex>
+                                        <numIndex index="1">Sermon->audioUploadWelcome;Sermon->audioUploadDone</numIndex>
+                                    </numIndex>
+                                    <numIndex index="6">
+                                        <numIndex index="0">Neueste Predigt</numIndex>
+                                        <numIndex index="1">Sermon->showLatest</numIndex>
+                                    </numIndex>
+                                    <numIndex index="7">
+                                        <numIndex index="0">Vorschau auf nächste Predigt</numIndex>
+                                        <numIndex index="1">Sermon->previewNext</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </switchableControllerActions>
+                </el>
+            </ROOT>
+        </sDEF>
+        <sViewConfig>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>Vorlagenoptionen</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <view.templateRootPath>
+                        <TCEforms>
+                            <label>LLL:EXT:vmfds_resources/Resources/Private/Language/locallang_flexform.xml:tx_vmfdssermons_flexform_view_templaterootpath</label>
+                            <config>
+                                <type>input</type>
+                                <size>20</size>
+                                <eval>trim</eval>
+                            </config>
+                        </TCEforms>
+                    </view.templateRootPath>				
+                </el>
+            </ROOT>
+        </sViewConfig>
+    </sheets>
 </T3DataStructure>
