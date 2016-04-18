@@ -1,21 +1,59 @@
-<f:layout name="Default" />
-
-This Template is responsible for displaying a single view for a domain object
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-Resources:
-Private:
-Templates:
-Show.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
-<f:section name="main">
-    <h1>Single View for Preacher</h1>
-
-    <f:flashMessages />
-    <f:render partial="Preacher/Properties" arguments="{preacher:preacher}" />
-    <f:link.action action="list">Back to list</f:link.action><br />
-    <f:link.action action="new">New Preacher</f:link.action>
-</f:section>
+<div class="row">
+    <div class="col-md-3">
+        <f:if condition="{preacher.image}">
+            <f:then>
+                <f:image src="uploads/tx_vmfdssermons/{preacher.image}" class="img-responsive img-circle" width="243" height="243c"/>
+            </f:then>
+            <f:else>
+                <f:image src="EXT:vmfds_sermons/Resources/Public/Images/user-red.jpg" class="img-responsive img-circle preacher-icon" width="243" height="243c"/>
+            </f:else>
+        </f:if>
+    </div>
+    <div class="col-md-9">
+        <h1>{preacher.name}</h1>
+        <p>{preacher.organization}</p>
+        <div class="contact-buttons">
+            <f:if condition="{preacher.email}">
+                <a type="button" href="mailto:{preacher.email}" class="btn btn-wzm btn-circle"><i class="fa fa-envelope"></i></a>
+            </f:if>
+            <f:if condition="{preacher.url}">
+                <a type="button" href="{preacher.url}" class="btn btn-wzm btn-circle"><i class="fa fa-globe"></i></a>
+            </f:if>            
+            <f:if condition="{preacher.blog}">
+                <a type="button" href="{preacher.blog}" class="btn btn-wzm btn-circle"><i class="fa fa-rss"></i></a>
+            </f:if>            
+            <f:if condition="{preacher.facebookId}">
+                <a type="button" href="https://www.facebook.com/{preacher.facebookId}" class="btn btn-wzm btn-circle"><i class="fa fa-facebook"></i></a>
+            </f:if>            
+            <f:if condition="{preacher.facebookId}">
+                <a type="button" href="https://www.twitter.com/{preacher.twitter}" class="btn btn-wzm btn-circle"><i class="fa fa-twitter"></i></a>
+            </f:if>            
+        </div>
+        <hr />
+        {preacher.about ->f:format.html()}
+    </div>
+</div>
+<div class="row"><hr /></div>
+<div class="row">
+    <h3>Alle Predigten von {preacher.firstName}</h3>
+    <f:if condition="{settings.sermon.list.paginate}">
+        <f:then>                
+            <f:widget.paginate objects="{sermons}" as="paginatedSermons" configuration="{itemsPerPage: settings.sermon.list.paginateItems, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks: 5}">
+                <div class="row">
+                    <f:for each="{paginatedSermons}" as="sermon" iteration="i">
+                        <f:render partial="Sermon/ListPreview" arguments="{sermon: sermon}" />
+                        <f:if condition="{i.cycle} % 4"><f:else></div><div class="row"></f:else></f:if>
+                    </f:for>
+                </div>
+            </f:widget.paginate>                
+        </f:then>
+        <f:else>
+            <div class="row">
+                <f:for each="{sermons}" as="sermon" iteration="i">
+                    <f:render partial="Sermon/ListPreview" arguments="{sermon: sermon}" />
+                    <f:if condition="{i.cycle} % 4"><f:else></div><div class="row"></f:else></f:if>
+                </f:for>
+            </div>                
+        </f:else>
+    </f:if>
+</div>

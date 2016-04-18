@@ -6,9 +6,9 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'TYPO3.' . $_EXTKEY, 'Sermons', array(
-    'Sermon' => 'list, show, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone, byDate',
-    'Series' => 'list, show, latest',
-    'Preacher' => 'list, show',
+    'Sermon' => 'show, list, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone, byDate',
+    'Series' => 'show, list, latest',
+    'Preacher' => 'show, list, feed',
         ),
         // non-cacheable actions
         array(
@@ -16,4 +16,5 @@ if (!defined('TYPO3_MODE')) {
     'Preacher' => 'update',
         )
 );
-?>
+
+\FluidTYPO3\Flux\Core::registerProviderExtensionKey('VMFDS.VmfdsSermons', 'Content');

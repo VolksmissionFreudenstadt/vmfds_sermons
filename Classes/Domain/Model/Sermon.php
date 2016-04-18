@@ -6,7 +6,7 @@ namespace TYPO3\VmfdsSermons\Domain\Model;
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -35,7 +35,6 @@ namespace TYPO3\VmfdsSermons\Domain\Model;
  */
 class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     /**
      * Title
      *
@@ -183,6 +182,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Series>
      */
     protected $series;
+
+    /**
+     * syncuid
+     *
+     * @var \string
+     */
+    protected $syncuid;
 
     /**
      * __construct
@@ -699,9 +705,17 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     public function getSelectString()
     {
-        return strftime('%d.%m.%Y', $this->getPreached()->getTimestamp()) . ' ' . $this->getTitle();
+        return strftime('%d.%m.%Y', $this->getPreached()->getTimestamp()).' '.$this->getTitle();
     }
 
-}
+    public function getSyncuid()
+    {
+        return $this->syncuid;
+    }
 
+    public function setSyncuid($syncuid)
+    {
+        $this->syncuid = $syncuid;
+    }
+}
 ?>

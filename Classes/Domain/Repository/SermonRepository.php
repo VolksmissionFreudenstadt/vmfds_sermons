@@ -6,7 +6,7 @@ namespace TYPO3\VmfdsSermons\Domain\Repository;
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -38,53 +38,55 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * Find the latest sermon with a series
-     * 
+     *
      * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
      */
     public function findLatestWithSeries()
     {
         // find latest sermon with a series
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
-        $q = $this->createQuery()->setLimit(1);
+        $q           = $this->createQuery()->setLimit(1);
         $constraints = array(
             $q->greaterThan('series', 0),
         );
-        $sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
+        $sermon      = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
         return $sermon;
     }
 
     /**
      * Find all sermons belonging to a series
-     * 
+     *
      * @param \TYPO3\VmfdsSermons\Domain\Model\Series $series The series to which all returned sermons should belong
      * @param int $limit Limit to this number of records
      * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
      */
-    public function findBySeries(\TYPO3\VmfdsSermons\Domain\Model\Series $series, $limit = 0)
+    public function findBySeries(\TYPO3\VmfdsSermons\Domain\Model\Series $series,
+                                 $limit = 0)
     {
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
         $q = $this->createQuery();
-        if ($limit)
-            $q->setLimit($limit);
+        if ($limit) $q->setLimit($limit);
         return $q->matching($q->contains('series', $series))
-                        ->execute();
+                ->execute();
     }
 
     /**
      * Find all sermons preacher by a specific preacher
-     * 
+     *
      * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher The preacher
      * @param int $limit Limit to this number of records
+     * @param bool $includeHidden True, if hidden records should be included
      * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
      */
-    public function findByPreacher(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher, $limit = 0)
+    public function findByPreacher(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher,
+                                   $limit = 0, $includeHidden = FALSE)
     {
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
         $q = $this->createQuery();
-        if ($limit)
-            $q->setLimit($limit);
+        if ($limit) $q->setLimit($limit);
+        $q->getQuerySettings()->setIgnoreEnableFields($includeHidden);
         return $q->matching($q->contains('preacher', $preacher))
-                        ->execute();
+                ->execute();
     }
 
     /**
@@ -103,9 +105,9 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query->getQuerySettings()->setIgnoreEnableFields(!$respectEnableFields);
 
         return $query->matching(
-                        $query->logicalAnd(
-                                $query->equals('uid', $uid), $query->equals('deleted', 0)
-                ))->execute()->getFirst();
+                $query->logicalAnd(
+                    $query->equals('uid', $uid), $query->equals('deleted', 0)
+            ))->execute()->getFirst();
     }
 
     /**
@@ -117,11 +119,11 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
         // find latest sermon that's already been preached
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
-        $q = $this->createQuery()->setLimit(1);
+        $q           = $this->createQuery()->setLimit(1);
         $constraints = array(
             $q->lessThanOrEqual('preached', time()),
         );
-        $sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
+        $sermon      = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
         return $sermon;
     }
 
@@ -135,12 +137,12 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         // find next sermon for preview
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING));
-        $q = $this->createQuery()->setLimit(1);
+        $q           = $this->createQuery()->setLimit(1);
         $q->getQuerySettings()->setIgnoreEnableFields(TRUE);
         $constraints = array(
             $q->greaterThan('preached', time()),
         );
-        $sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
+        $sermon      = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
         return $sermon;
     }
 
@@ -152,11 +154,11 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function findAllWithoutAudio()
     {
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
-        $q = $this->createQuery();
+        $q           = $this->createQuery();
         $constraints = array(
             $q->equals('audiorecording', ''),
         );
-        $sermons = $q->matching($q->logicalAnd($constraints))->execute();
+        $sermons     = $q->matching($q->logicalAnd($constraints))->execute();
         return $sermons;
     }
 
@@ -172,13 +174,12 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function findByPreached(\DateTime $date)
     {
-        $q = $this->createQuery();
+        $q           = $this->createQuery();
         $q->getQuerySettings()->setIgnoreEnableFields(TRUE);
         $constraints = array(
             $q->equals('preached', $date),
         );
-        $sermons = $q->matching($q->logicalAnd($constraints))->execute();
+        $sermons     = $q->matching($q->logicalAnd($constraints))->execute();
         return $sermons;
     }
-
 }

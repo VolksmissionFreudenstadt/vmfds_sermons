@@ -6,7 +6,7 @@ namespace TYPO3\VmfdsSermons\Controller;
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -53,7 +53,7 @@ class SeriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $sermonRepository;
 
     /**
-     * inject the SermonRepository object 
+     * inject the SermonRepository object
      *
      * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
      * @return void
@@ -82,8 +82,11 @@ class SeriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      * @param \TYPO3\VmfdsSermons\Domain\Model\Series $series
      * @return void
      */
-    public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Series $series)
+    public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Series $series = NULL)
     {
+        if (is_null($series))
+            $this->forward('list');
+
         // work around buggy DI:
         //if (!is_object($this->sermonRepository))
         //$this->sermonRepository = $this->objectManager->create('\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository');

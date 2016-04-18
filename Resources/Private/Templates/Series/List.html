@@ -1,46 +1,26 @@
 <f:layout name="Default" />
 
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-Resources:
-Private:
-Templates:
-List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-    <h1>Listing for Series</h1>
-
-    <f:flashMessages />
-
-    <table  class="tx_vmfdssermons" >
-        <tr>
-            <th><f:translate key="tx_vmfdssermons_domain_model_series.title" /></th>
-        <th><f:translate key="tx_vmfdssermons_domain_model_series.subtitle" /></th>
-        <th><f:translate key="tx_vmfdssermons_domain_model_series.startdate" /></th>
-        <th><f:translate key="tx_vmfdssermons_domain_model_series.enddate" /></th>
-        <th><f:translate key="tx_vmfdssermons_domain_model_series.description" /></th>
-        <th><f:translate key="tx_vmfdssermons_domain_model_series.image" /></th>
-        <th> </th>
-        <th> </th>
-        </tr>
-
-        <f:for each="{seriess}" as="series">
-            <tr>
-                <td><f:link.action action="show" arguments="{series : series}"> {series.title}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{series : series}"> {series.subtitle}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{series : series}"> {series.startdate -> f:format.date()}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{series : series}"> {series.enddate -> f:format.date()}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{series : series}"> {series.description}</f:link.action></td>
-            <td><f:link.action action="show" arguments="{series : series}"> {series.image}</f:link.action></td>
-            <td><f:link.action action="edit" arguments="{series : series}">Edit</f:link.action></td>
-            <td><f:link.action action="delete" arguments="{series : series}">Delete</f:link.action></td>
-            </tr>
-        </f:for>
-    </table>
-
-    <f:link.action action="new">New Series</f:link.action>
+    <div class="container">
+        <h1>Alle Predigtreihen</h1>
+        <f:flashMessages />
+        <f:if condition="{settings.series.list.paginate}">
+            <f:then>                
+                <f:widget.paginate objects="{seriess}" as="paginatedSeries" configuration="{itemsPerPage: settings.sermon.list.paginateItems, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks: 5}">
+                <div class="row">
+                    <f:for each="{paginatedSeries}" as="series" iteration="i">
+                        <f:render partial="Series/ListPreview" arguments="{series: series}" />
+                    </f:for>
+                </div>
+                </f:widget.paginate>                
+            </f:then>
+            <f:else>
+                <div class="row">
+                    <f:for each="{seriess}" as="series" iteration="i">
+                        <f:render partial="Series/ListPreview" arguments="{series: series}" />
+                    </f:for>
+                </div>                
+            </f:else>
+        </f:if>
+    </div>
 </f:section>

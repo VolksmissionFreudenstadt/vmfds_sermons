@@ -27,6 +27,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
         hashtags varchar(255) DEFAULT '' NOT NULL,
 	preacher int(11) unsigned DEFAULT '0' NOT NULL,
 	series int(11) unsigned DEFAULT '0' NOT NULL,
+        syncuid varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

@@ -6,7 +6,7 @@ namespace TYPO3\VmfdsSermons\Controller;
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -53,7 +53,12 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     protected $sermonRepository;
 
     /**
-     * inject the SermonRepository object 
+     * @var array
+     */
+    protected $viewFormatToObjectNameMap = array('json' => 'TYPO3\CMS\Extbase\Mvc\View\JsonView');
+
+    /**
+     * inject the SermonRepository object
      *
      * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
      * @return void
@@ -93,9 +98,10 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
      * @return void
      */
-    public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
+    public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher = NULL)
     {
-
+        if (is_null($preacher))
+            $this->forward('list');
 
         // work around buggy DI:
         //if (!is_object($this->sermonRepository))
@@ -130,6 +136,43 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->preacherRepository->update($preacher);
         $this->flashMessageContainer->add('Your Preacher was updated.');
         $this->redirect('list');
+    }
+
+    public function feedAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
+    {
+        $sermons = $this->sermonRepository->findByPreacher($preacher, null, true);
+
+        // make this an array:
+        $s = array();
+        foreach ($sermons as $sermon)
+            $s[] = $sermon;
+
+        $data = array();
+        foreach ($s as $key => $sermon) {
+            if ($i = $sermon->getImage()) {
+                $s[$key]->setImage($this->settings['prefix']['image'] . $i);
+            }
+            $series = $sermon->getSeries();
+            if ($a = $sermon->getAudiorecording()) {
+                $s[$key]->setAudioRecording($this->settings['prefix']['audiorecording'] . $a);
+            }
+            if ($h = $s[$key]->getHandout()) {
+                $s[$key]->setHandout($this->settings['prefix']['handout'] . $h);
+            } else {
+                $s[$key]->setHandout(sprintf($this->settings['dynamicHandout'], $s[$key]->getUid()));
+            }
+            $data[] = array('sermon' => $sermon, 'series' => $sermon->getSeries(),
+                'preacher' => $preacher, 'preached' => $sermon->getPreached(),
+                'url' => sprintf($this->settings['url'], $s[$key]->getUid()));
+        }
+
+        $this->view->assign('sermons', $data);
+
+        // JSON:
+        if ($this->request->getFormat() == 'json') {
+            $this->view->setVariablesToRender(array('sermons'));
+            $this->view->setConfiguration = (array('sermons', array()));
+        }
     }
 
 }

@@ -6,7 +6,7 @@ namespace TYPO3\VmfdsSermons\Controller;
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -65,7 +65,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $seriesRepository;
 
     /**
-     * inject the SeriesRepository object 
+     * inject the SeriesRepository object
      *
      * @param \TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository $seriesRepository
      * @return void
@@ -82,6 +82,11 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function listAction()
     {
+        if (intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('sermon')) > 0)
+            $this->forward('show');
+        if (intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GET('sermon_preview')) > 0)
+            $this->forward('show');
+
         $this->sermonRepository->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
         $sermons = $this->sermonRepository->findAll();
         $this->view->assign('sermons', $sermons);
@@ -96,31 +101,42 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon = NULL)
     {
 
-
         // permit preview of hidden records?
         $sneakForward = FALSE;
         if (is_null($sermon)) {
             if ((int) $this->settings['singleSermon'] > 0)
-		$previewSermonId = $this->settings['singleSermon'];
-	    elseif ($this->request->hasArgument('sermon_preview'))
-		$previewSermonId = $this->request->getArgument('sermon_preview');
-	    else
-		die('oops. ');
-            //die ('Requested sermon '.$previewSermonId);
+                $previewSermonId = $this->settings['singleSermon'];
+            elseif ($this->request->hasArgument('sermon_preview'))
+                $previewSermonId = $this->request->getArgument('sermon_preview');
+            else
+                $this->forward('list');
+            //die('Requested sermon ' . $previewSermonId);
             if ($this->settings['previewHiddenRecords']) {
                 $sermon = $this->sermonRepository->findByUid($previewSermonId, FALSE);
             } else {
                 $sermon = $this->sermonRepository->findByUid($previewSermonId);
             }
 
+            if (is_null($sermon))
+                $this->forward('list');
+
+            $isPreview = TRUE;
+
             // check if this is still a sneak preview?
             if ($sermon->getPreached()->format('U') <= time()) {
                 $sneakForward = TRUE;
             }
+        } else {
+            $isPreview = FALSE;
         }
 
 
-
+        if ($this->settings['setPageTitle']) {
+            // meta data
+            $GLOBALS['TSFE']->page['title'] = $sermon->getTitle() . ($isPreview ? ' (Vorschau)' : '');
+            $GLOBALS['TSFE']->page['description'] = $sermon->getDescription();
+            $GLOBALS['TSFE']->indexedDocTitle = $sermon->getTitle() . ($isPreview ? ' (Vorschau)' : '');
+        }
 
         // get related by series
         $mySeries = $sermon->getSeries();
@@ -169,7 +185,6 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function byLatestSeriesAction()
     {
-
         // get latest series
         $series = $this->seriesRepository->findLatest(1);
 
@@ -183,7 +198,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action previewNext
-     * 
+     *
      * Display a single sermon: the next one which is on preview
      *
      * @return void
@@ -192,7 +207,10 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     {
 
         $sermon = $this->sermonRepository->findNextPreview();
-        $this->showAction($sermon);
+        if ($sermon)
+            $this->showAction($sermon);
+        else
+            return '';
     }
 
     /**
@@ -301,17 +319,20 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function byDateAction()
     {
+        $date = NULL;
+        $sermons = [];
+        $isFuture = FALSE;
+
         if ($this->request->hasArgument('date')) {
             $date = new \DateTime($this->request->getArgument('date'));
-        } else {
-            $date = new DateTime(time());
         }
 
-        $isFuture = ($date->getTimestamp() > time());
-        $this->view->assign('isFuture', $isFuture);
+        if (!is_null($date)) {
+            $isFuture = ($date->getTimestamp() > time());
+            $this->view->assign('isFuture', $isFuture);
+            $sermons = $this->sermonRepository->findByPreached($date);
+        }
 
-
-        $sermons = $this->sermonRepository->findByPreached($date);
         $this->view->assign('sermons', $sermons);
 
         // JSON:
