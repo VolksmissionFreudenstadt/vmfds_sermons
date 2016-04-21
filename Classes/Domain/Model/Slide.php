@@ -45,6 +45,18 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $title;
 
     /**
+     * Slide title for presentation
+     * @var \string
+     */
+    protected $presentationTitle;
+
+    /**
+     * Font size for presentation
+     * @var \int
+     */
+    protected $presentationFontSize;
+
+    /**
      * Image
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
      */
@@ -56,6 +68,12 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \string
      */
     protected $imageSource;
+
+    /**
+     * Full text story
+     * @var \string
+     */
+    protected $story;
 
     /**
      * Bible text
@@ -204,6 +222,36 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTechNotes($techNotes)
     {
         $this->techNotes = $techNotes;
+    }
+
+    public function getPresentationTitle()
+    {
+        return $this->presentationTitle;
+    }
+
+    public function getPresentationFontSize()
+    {
+        return $this->presentationFontSize;
+    }
+
+    public function getStory()
+    {
+        return $this->story;
+    }
+
+    public function setPresentationTitle(\string $presentationTitle)
+    {
+        $this->presentationTitle = $presentationTitle;
+    }
+
+    public function setPresentationFontSize(\int $presentationFontSize)
+    {
+        $this->presentationFontSize = $presentationFontSize;
+    }
+
+    public function setStory(\string $story)
+    {
+        $this->story = $story;
     }
 
 }

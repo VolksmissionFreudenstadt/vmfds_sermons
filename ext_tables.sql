@@ -194,9 +194,12 @@ CREATE TABLE tx_vmfdssermons_domain_model_slide (
         sermon_id INT(11) DEFAULT '0' NOT NULL,
         sorting INT(11) DEFAULT '0' NOT NULL,
         title varchar(255) DEFAULT '' NOT NULL,
+        presentation_title varchar(255) DEFAULT '' NOT NULL,
+        presentation_font_size INT(11) UNSIGNED DEFAULT '60' NOT NULL,
 	image text NOT NULL,
         image_source varchar(255) DEFAULT '' NOT NULL,
         bible_text text NOT NULL,
+        story text NOT NULL,
         preacher_notes text NOT NULL,
         tech_notes text NOT NULL,
 

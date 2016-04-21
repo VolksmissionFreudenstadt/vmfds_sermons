@@ -7,10 +7,10 @@ if (!defined('TYPO3_MODE')) {
 $TCA['tx_vmfdssermons_domain_model_slide'] = array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_slide']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, image, image_source, bible_text, preacher_notes, tech_notes',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, presentation_title, presentation_font_size, image, image_source, story, bible_text, preacher_notes, tech_notes',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, image, image_source, bible_text, preacher_notes, tech_notes'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, presentation_title, presentation_font_size, image, image_source, story, bible_text, preacher_notes, tech_notes'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -107,6 +107,24 @@ $TCA['tx_vmfdssermons_domain_model_slide'] = array(
                 'eval' => 'trim,required'
             ),
         ),
+        'presentation_title' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_slide.presentation_title',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ),
+        ),
+        'presentation_font_size' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_slide.presentation_font_size',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim,required'
+            ),
+        ),
         'image' => array(
             'exclude' => 0,
             'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_slide.image',
@@ -120,6 +138,17 @@ $TCA['tx_vmfdssermons_domain_model_slide'] = array(
                 'size' => 30,
                 'eval' => 'trim'
             ),
+        ),
+        'story' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_slide.story',
+            'config' => array(
+                'type' => 'text',
+                'cols' => 40,
+                'rows' => 15,
+                'eval' => 'trim',
+            ),
+            'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
         ),
         'bible_text' => array(
             'exclude' => 0,

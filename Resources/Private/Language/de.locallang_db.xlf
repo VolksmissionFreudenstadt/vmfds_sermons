@@ -184,6 +184,14 @@
                 <source>Title</source> 
                 <target state="translated">Titel</target>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.presentation_title" approved="yes">
+                <source>Slide title for presentation</source> 
+                <target state="translated">Folientitel in der Präsentation</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.presentation_font_size" approved="yes">
+                <source>Font size for presentation</source> 
+                <target state="translated">Schriftgröße in der Präsentation</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_slide.image" approved="yes">
                 <source>Image</source> 
                 <target state="translated">Bild</target>
@@ -191,6 +199,10 @@
             <trans-unit id="tx_vmfdssermons_domain_model_slide.image_source" approved="yes">
                 <source>Image source</source> 
                 <target state="translated">Bildquelle</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.bible_text" approved="yes">
+                <source>Full text</source> 
+                <target state="translated">Volltext</target>
             </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_slide.bible_text" approved="yes">
                 <source>Bible text</source> 

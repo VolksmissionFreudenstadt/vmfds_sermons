@@ -342,6 +342,11 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         }
     }
 
+    function presentationAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
+    {
+        $this->view->assign('sermon', $sermon);
+    }
+
 }
 
 ?>

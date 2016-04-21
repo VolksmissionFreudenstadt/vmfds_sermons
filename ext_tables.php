@@ -119,7 +119,7 @@ $TCA['tx_vmfdssermons_domain_model_slide'] = array(
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ),
-        'searchFields' => 'title,image,image_source,bible_text,preacher_notes,tech_notes',
+        'searchFields' => 'title,presentation_title,image,image_source,story,bible_text,preacher_notes,tech_notes',
         'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Slide.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vmfdssermons_domain_model_slide.gif'
     ),
