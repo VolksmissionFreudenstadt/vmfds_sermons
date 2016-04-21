@@ -9,6 +9,7 @@ if (!defined('TYPO3_MODE')) {
     'Sermon' => 'show, list, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone, byDate',
     'Series' => 'show, list, latest',
     'Preacher' => 'show, list, feed',
+    'Slide' => 'show, list',
         ),
         // non-cacheable actions
         array(

@@ -1,0 +1,19 @@
+{
+	"name": "vmfds/sermons",
+	"description": "VMFDS Sermon Archive",
+	"version": "1.0.0",
+	"type": "typo3-cms-extension",
+	"authors": [
+		{
+			"name": "Christoph Fischer",
+			"email": "christoph.fischer@volksmission.de",
+			"role": "Developer"
+		}
+	],
+	"require": {
+
+	},
+	"suggest": {
+
+	}
+}
