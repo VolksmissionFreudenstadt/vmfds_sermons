@@ -10,8 +10,11 @@
 			"role": "Developer"
 		}
 	],
+        "repositories": [
+            { "type": "composer", "url": "https://composer.typo3.org/" }
+          ],
 	"require": {
-
+            "phpoffice/phppresentation": "dev-master"
 	},
 	"suggest": {
 
