@@ -1,0 +1,20 @@
+{namespace vms=TYPO3\VmfdsSermons\ViewHelpers}
+{namespace vmpdf=VMFDS\VmfdsPdf\ViewHelpers}
+{namespace kool=VMFDS\VmfdsKool\ViewHelpers}
+{namespace qr=B263\Qrcode\ViewHelpers}
+<vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Lernkarten.pdf" css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4" orientation="P" defaultfontsize="9" defaultfont="opensans" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" footermargin="0" headermargin="0" alternatePages="1">
+    <f:for each="{sermon.slides}" as="slide" iteration="i">
+        <div style="width: 9.6cm; height: 6.6cm; margin: 0; padding: 4mm; float: left; text-align: center; border-bottom: dotted 1px darkgray; {f:if(condition: '{i.cycle} % 2', then: 'border-right: dotted 1px darkgray')}">
+            {i.cycle} <f:image src="{slide.image.originalResource.publicUrl}" width="300" />
+        </div>
+    </f:for>
+    <pagebreak />
+    <f:for each="{sermon.slides}" as="slide" iteration="i">
+        <div style="width: 9.6cm; height: 6.6cm; margin: 0; padding: 4mm; float: right; border-bottom: dotted 1px darkgray; {f:if(condition: '{i.cycle} % 2', then: 'border-right: dotted 1px darkgray')}">
+            <p>{i.cycle} &mdash; <b>{slide.title}</b></p>
+            <div style="float: left; width: 100%; padding: 0; font-size: 1.5em;">
+                {slide.preacherNotes -> f:format.html()}
+            </div>
+        </div>
+    </f:for>
+</vmpdf:pdf>

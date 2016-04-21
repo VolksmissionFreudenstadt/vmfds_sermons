@@ -1,0 +1,32 @@
+{namespace vms=TYPO3\VmfdsSermons\ViewHelpers}
+{namespace vmpdf=VMFDS\VmfdsPdf\ViewHelpers}
+<vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Technik.pdf" css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4" orientation="P" defaultfontsize="9" defaultfont="opensans" leftmargin="10" rightmargin="10" topmargin="10" bottommargin="10" footermargin="0" headermargin="0">
+    
+    
+    {sermon.preached -> f:format.date(format: '%A, %d. %B %Y')}        
+    <h1>{sermon.title}<f:if condition="{sermon.subtitle}"><br />{sermon.subtitle}</f:if></h1>
+<f:for each="{sermon.preacher}" as="preacher">
+    <p>{preacher.name}<f:if condition="{preacher.email}">, {preacher.email}</f:if></p>
+</f:for>
+<h2>Folienübersicht</h2>
+<hr />
+<f:for each="{sermon.slides}" as="slide" iteration="i">
+    <div class="infoblock" style="float:left; width: 8.9cm; height: 5cm; padding: 10px">
+        <div style="margin-bottom: 5px;">
+            <div style="float: left; color: #fff; text-align: center; font-size: 16px; background: #1a1a1a; border-radius: 50%; padding: 2px; padding-top: 4px; margin-right: 10px; width: 30px; height: 30px;">
+                {i.cycle}
+            </div> 
+            <div style="margin-left: 7px; padding-top: 7px; float: left;">
+                <h3>{slide.title}</h3>
+            </div>
+        </div>
+        <div style="float: left; margin: 0 10px 10px 0; width: 160px;">
+        <f:image style="border: solid 1px darkgray;" src="{slide.image.originalResource.publicUrl}" width="150" />
+        </div>
+        <div style="float: left; ">
+        {slide.techNotes -> f:format.html()}            
+        </div>
+    </div>
+        
+</f:for>
+</vmpdf:pdf>
