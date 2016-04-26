@@ -87,7 +87,30 @@
             <trans-unit id="tx_vmfdssermons_domain_model_series.image">
                 <source>Title image</source>
             </trans-unit>
-			
+
+                        
+            <trans-unit id="tx_vmfdssermons_domain_model_slide">
+                <source>Slide</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.title">
+                <source>Title</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.image">
+                <source>Image</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.image_source">
+                <source>Image source</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.bible_text">
+                <source>Bible text</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.preacher_notes">
+                <source>Preacher notes</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_slide.tech_notes">
+                <source>Technician's notes</source>
+            </trans-unit>
+                                                			
         </body>
     </file>
 </xliff>

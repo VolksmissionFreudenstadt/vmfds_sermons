@@ -239,10 +239,6 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $this->response->addAdditionalHeaderData('<link rel="stylesheet" type="text/css" href="'
                 . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey())
                 . 'Resources/Public/Styles/uploadfile.min.css" />');
-        $this->response->addAdditionalHeaderData('<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" /></script>');
-        $this->response->addAdditionalHeaderData('<script type="text/javascript" src="'
-                . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath($this->request->getControllerExtensionKey())
-                . 'Resources/Public/Javascript/jquery.uploadfile.min.js" /></script>');
 
         $sermons = $this->sermonRepository->findAllWithoutAudio();
         $this->view->assign('sermons', $sermons);
@@ -340,6 +336,11 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $this->view->setVariablesToRender(array('sermons'));
             $this->view->setConfiguration = (array('sermons', array()));
         }
+    }
+
+    function presentationAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
+    {
+        $this->view->assign('sermon', $sermon);
     }
 
 }
