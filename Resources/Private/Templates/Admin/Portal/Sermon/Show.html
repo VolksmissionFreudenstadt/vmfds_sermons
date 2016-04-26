@@ -1,0 +1,66 @@
+<html lang="de"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" media="all"> 
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" media="all">                 
+    </head>
+    <body>
+        <div class="container">
+            <h1>Administrative Links zur Predigt</h1>
+            <h2>{sermon.title}<f:if condition="{sermon.subtitle}">: {sermon.subtitle}</f:if></h2>
+            {sermon.preached -> f:format.date(format: '%d.%m.%Y')}
+            <hr />
+            <div class="row">
+                <div class="col-md-3"><h4>                    
+                        Predigtseite
+                    </h4><f:link.action class="btn btn-default" action="show" pageType="0" arguments="{sermon: sermon}" pageUid="{settings.pid.sermon.single}" target="_blank">
+                        Öffnen
+                    </f:link.action>
+                </div>
+                <div class="col-md-3"><h4>                    
+                        Vorschauseite
+                    </h4><f:link.action class="btn btn-default" action="show" pageType="0" arguments="{sermon_preview: sermon}" pageUid="{settings.pid.sermon.preview}" target="_blank">
+                        Öffnen
+                    </f:link.action>
+                </div>
+                <div class="col-md-3"><h4>                    
+                        Powerpoint
+                    </h4><f:link.action class="btn btn-default" action="show" pageType="815" arguments="{sermon: sermon}" pageUid="{settings.pid.sermon.single}" target="_blank">
+                        Herunterladen
+                    </f:link.action>
+                </div>
+                <div class="col-md-3"><h4>                    
+                        Begleitzettel (leer)
+                    </h4><f:link.action class="btn btn-default" action="show" pageType="801" arguments="{sermon: sermon}" pageUid="{settings.pid.sermon.single}" target="_blank">
+                        Öffnen
+                    </f:link.action>
+                </div>
+                <div class="col-md-3"><h4>                    
+                        Begleitzettel (ausgefüllt)
+                    </h4><f:link.action class="btn btn-default" action="show" pageType="800" arguments="{sermon: sermon}" pageUid="{settings.pid.sermon.single}" target="_blank">
+                        Öffnen
+                    </f:link.action>
+                </div>
+                <div class="col-md-3"><h4>                    
+                        Lernkarten
+                    </h4><f:link.action class="btn btn-default" action="show" pageType="810" arguments="{sermon: sermon}" pageUid="{settings.pid.sermon.single}" target="_blank">
+                        Öffnen
+                    </f:link.action>
+                </div>
+                <div class="col-md-3"><h4>                    
+                        Begleitzettel für Prediger
+                    </h4><f:link.action class="btn btn-default" action="show" pageType="811" arguments="{sermon: sermon}" pageUid="{settings.pid.sermon.single}" target="_blank">
+                        Öffnen
+                    </f:link.action>
+                </div>
+                <div class="col-md-3"><h4>                    
+                        Übersicht für Techniker
+                    </h4><f:link.action class="btn btn-default" action="show" pageType="812" arguments="{sermon: sermon}" pageUid="{settings.pid.sermon.single}" target="_blank">
+                        Öffnen
+                    </f:link.action>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+        <f:flashMessages />
+        <f:if condition="{settings.preacher.list.paginate}">
+            <f:then>                
+                <f:widget.paginate objects="{preachers}" as="paginatedPreachers" configuration="{itemsPerPage: settings.sermon.list.paginateItems, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks: 5}">
+                <div class="row">
+                    <f:for each="{paginatedPreachers}" as="preacher" iteration="i">
+                        <f:render partial="Preacher/ListPreview" arguments="{preacher: preacher}" />
+                    </f:for>
+                </div>
+                </f:widget.paginate>                
+            </f:then>
+            <f:else>
+                <div class="row">
+                    <f:for each="{preachers}" as="preacher" iteration="i">
+                        <f:render partial="Preacher/ListPreview" arguments="{preacher: preacher}" />
+                    </f:for>
+                </div>                
+            </f:else>
+        </f:if>
+</f:section>
