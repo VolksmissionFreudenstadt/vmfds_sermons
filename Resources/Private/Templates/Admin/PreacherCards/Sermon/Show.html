@@ -12,7 +12,7 @@
     <f:for each="{sermon.slides}" as="slide" iteration="i">
         <div style="width: 9.6cm; height: 6.6cm; margin: 0; padding: 4mm; float: right; border-bottom: dotted 1px darkgray; {f:if(condition: '{i.cycle} % 2', then: 'border-right: dotted 1px darkgray')}">
             <p>{i.cycle} &mdash; <b>{slide.title}</b></p>
-            <div style="float: left; width: 100%; padding: 0; font-size: 1.5em;">
+            <div style="float: left; width: 100%; padding: 0; font-size: 1em;">
                 {slide.preacherNotes -> f:format.html()}
             </div>
         </div>

@@ -2,6 +2,7 @@
 {namespace vmpdf=VMFDS\VmfdsPdf\ViewHelpers}
 {namespace kool=VMFDS\VmfdsKool\ViewHelpers}
 {namespace qr=B263\Qrcode\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Prediger.pdf" css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4-L" orientation="L" defaultfontsize="9" defaultfont="opensans" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" footermargin="0" headermargin="0">
     <div style="width: 9cm; margin: 0; padding: 4mm; float: left; ">
         <f:for each="{sermon.slides}" as="slide" iteration="i">
@@ -18,6 +19,15 @@
             <f:if condition="{i.cycle} % 6"><f:else></div><div class="column" style="width: 9.0cm; margin: 0; padding: 4mm; float: left;"></f:else></f:if>
         </f:for>
     </div>
+    <f:if condition="{sermon.slides -> f:count()} < 15">
+    {v:math.subtract(a: 3, b:"{v:math.division(a:'{sermon.slides -> f:count()}' , b: 5) -> v:math.ceil()}") -> v:variable.set(name: 'missingColumns')}
+        <f:if condition="{missingColumns}">
+            <div class="column">&nbsp;</div>
+        </f:if>
+        <f:if condition="{missingColumns} > 1">
+            <div class="column">&nbsp;</div>
+        </f:if>
+    </f:if>
     <div class="column">
         <f:if condition="{sermon.keypoints}">
             <h3>Hauptpunkte</h3>
@@ -29,7 +39,7 @@
         <p>{sermon.reference}</p>
         <f:for each="{sermon.slides}" as="slide" iteration="i">
             <f:if condition="{slide.bibleText}">
-                ({i.cycle}) &mdash; {slide.bibleText -> f:format.html()}
+                {slide.bibleText -> f:format.html()}
             </f:if>
         </f:for>
     </div>
