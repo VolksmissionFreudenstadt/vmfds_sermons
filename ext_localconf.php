@@ -6,9 +6,10 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'TYPO3.' . $_EXTKEY, 'Sermons', array(
-    'Sermon' => 'show, list, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone, byDate',
+    'Sermon' => 'show, list, showLatest, byLatestSeries, previewNext, audioUploadWelcome, audioUploadDone, byDate, presentation',
     'Series' => 'show, list, latest',
     'Preacher' => 'show, list, feed',
+    'Slide' => 'show, list',
         ),
         // non-cacheable actions
         array(

@@ -1,0 +1,11 @@
+<f:if condition="{sermon.image}">
+    <div class="item">    
+        <f:link.action action="show" arguments="{sermon : sermon}" pageUid="{settings.pid.sermon.single}">
+            <f:image src="predigten/Titelbilder/{sermon.image}" alt="{sermon.title}" title="{sermon.title}" class="img-responsive" width="1400"/>
+            <div class="carousel-caption">
+                Die neue Predigt vom <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
+                <h1>{sermon.title}</h1>
+            </div>
+        </f:link.action>
+    </div>
+</f:if>

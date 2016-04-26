@@ -1,0 +1,27 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+    <div class="container">
+        <h1>Alle Predigten</h1>
+        <f:flashMessages />
+        <f:if condition="{settings.sermon.list.paginate}">
+            <f:then>                
+                <f:widget.paginate objects="{sermons}" as="paginatedSermons" configuration="{itemsPerPage: settings.sermon.list.paginateItems, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks: 5}">
+                <div class="row">
+                    <f:for each="{paginatedSermons}" as="sermon" iteration="i">
+                        <f:render partial="Sermon/ListPreview" arguments="{sermon: sermon}" />
+                    </f:for>
+                </div>
+                </f:widget.paginate>                
+            </f:then>
+            <f:else>
+                <div class="row">
+                    <f:for each="{sermons}" as="sermon" iteration="i">
+                        <f:render partial="Sermon/ListPreview" arguments="{sermon: sermon}" />
+                        <f:if condition="{i.cycle} % 4"><f:else></div><div class="row"></f:else></f:if>
+                    </f:for>
+                </div>                
+            </f:else>
+        </f:if>
+    </div>
+</f:section>

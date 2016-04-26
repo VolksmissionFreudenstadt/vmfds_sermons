@@ -1,0 +1,17 @@
+<script>
+<f:if condition="{sermons}">
+<f:then>
+    <f:if condition="{isFuture}">
+    <f:then>
+    window.location.href= "{f:uri.action(action: 'show', pageUid: settings.pid.sermon.preview, arguments: {sermon_preview: sermons.0})}";
+    </f:then><f:else>
+    window.location.href= "{f:uri.action(action: 'show', pageUid: settings.pid.sermon.single, arguments: {sermon: sermons.0})}";
+    </f:else>
+    </f:if>
+    
+    </f:then>
+    <f:else>
+    window.location.href= "{f:uri.action(action: 'show', pageUid: settings.pid.sermon.list)}";
+    </f:else> 
+</f:if>
+</script>

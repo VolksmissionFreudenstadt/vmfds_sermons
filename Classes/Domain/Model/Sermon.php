@@ -35,6 +35,7 @@ namespace TYPO3\VmfdsSermons\Domain\Model;
  */
 class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
+
     /**
      * Title
      *
@@ -182,6 +183,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Series>
      */
     protected $series;
+
+    /**
+     * slides
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\VmfdsSermons\Domain\Model\Slide>
+     */
+    protected $slides;
 
     /**
      * syncuid
@@ -705,7 +713,7 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     public function getSelectString()
     {
-        return strftime('%d.%m.%Y', $this->getPreached()->getTimestamp()).' '.$this->getTitle();
+        return strftime('%d.%m.%Y', $this->getPreached()->getTimestamp()) . ' ' . $this->getTitle();
     }
 
     public function getSyncuid()
@@ -717,5 +725,17 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->syncuid = $syncuid;
     }
+
+    public function getSlides()
+    {
+        return $this->slides;
+    }
+
+    public function setSlides($slides)
+    {
+        $this->slides = $slides;
+    }
+
 }
+
 ?>

@@ -1,0 +1,29 @@
+<f:layout name="Default" />
+
+
+<f:section name="main">
+    <div class="container">
+        <h1>Alle Prediger</h1>
+        <f:flashMessages />
+        <f:if condition="{settings.preacher.list.paginate}">
+            <f:then>                
+                <f:widget.paginate objects="{preachers}" as="paginatedPreachers" configuration="{itemsPerPage: settings.preacher.list.paginateItems, insertAbove: 1, insertBelow: 1, maximumNumberOfLinks: 5}">
+                <div class="row">
+                    <f:for each="{paginatedPreachers}" as="preacher" iteration="i">
+                        <f:render partial="Preacher/ListPreview" arguments="{preacher: preacher}" />
+                        <f:if condition="{i.cycle} % 6"><f:else></div><div class="row"></f:else></f:if>
+                    </f:for>
+                </div>
+                </f:widget.paginate>                
+            </f:then>
+            <f:else>
+                <div class="row">
+                    <f:for each="{preachers}" as="preacher" iteration="i">
+                        <f:render partial="Preacher/ListPreview" arguments="{preacher: preacher}" />
+                        <f:if condition="{i.cycle} % 6"><f:else></div><div class="row"></f:else></f:if>
+                    </f:for>
+                </div>                
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
