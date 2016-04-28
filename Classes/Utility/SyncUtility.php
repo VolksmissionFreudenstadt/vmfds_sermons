@@ -21,8 +21,19 @@ class SyncUtility
             }
             foreach ($properties as $property => $propertyGetter) {
                 $content = $o->$propertyGetter();
-                if (!is_object($content))
-                    $a[$property] = $prefix[$property] . $content;
+                if (!is_object($content)) {
+                    if (isset($prefix[$property]['dynamic'])) {
+                        if (method_exists($o, 'getTitle')) {
+                            $title = $o->getTitle();
+                            $title = strtolower(str_replace(' ', '-', $title));
+                        }
+                        $uid = $o->getUid();
+                        if ($content == '')
+                            $a[$property] = str_replace('###TITLE###', $title, str_replace('###UID###', $uid, $prefix[$property]['dynamic']));
+                    } else {
+                        $a[$property] = $prefix[$property] . $content;
+                    }
+                }
             }
         }
         return $a;
