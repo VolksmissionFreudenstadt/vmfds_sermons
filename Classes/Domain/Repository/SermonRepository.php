@@ -197,4 +197,18 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $query->matching($query->logicalAnd($constraints))->execute()->count();
     }
 
+    /**
+     * Find by Syncuid already exists
+     * @param string $uid
+     * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon Sermon
+     */
+    public function findBySyncuid($uid)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $constraints = array($query->equals('syncuid', $uid));
+
+        return $query->matching($query->logicalAnd($constraints))->execute()->getFirst();
+    }
+
 }

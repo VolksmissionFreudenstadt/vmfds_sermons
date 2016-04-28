@@ -115,10 +115,12 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         $uid = parse_url($feed->getUrl(), PHP_URL_HOST) . ':' . $s['uid'];
 
         // check if we've already got that uid:
-        $sermon = $this->sermonRepository->findBySyncuid($uid);
-        $existing = !is_null($sermon);
-        if (!$existing)
+        $existing = $this->sermonRepository->checkSyncuid($uid);
+        if (!$existing) {
             $sermon = $this->objectManager->get(\TYPO3\VmfdsSermons\Domain\Model\Sermon::class);
+	} else {
+	    $sermon = $this->sermonRepository->findBySyncuid($uid);
+	}
         $sermon->setSyncuid($uid);
         $sermon->setChurch($feed->getChurch());
         $sermon->setChurchUrl($feed->getChurchUrl());
@@ -153,10 +155,10 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         }
         if ($existing) {
             $this->sermonRepository->update($sermon);
-            console('Updated');
+            $this->console('Updated');
         } else {
             $this->sermonRepository->add($sermon);
-            console('OK');
+            $this->console('OK');
         }
 
         return $sermon;
