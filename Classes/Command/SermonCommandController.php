@@ -72,18 +72,25 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
     {
         // get settings
         $this->initializeCommand();
-        echo 'Settings: ' . print_r($this->settings, 1) . "\r\n\r\n";
+        $this->console('Settings: ' . print_r($this->settings, 1));
 
         // here is the processing
         $feeds = $this->feedRepository->findAll();
+        $this->console(count($feeds) . ' feeds found.');
         foreach ($feeds as $feed) {
-            $data = json_decode(file_get_contents($feed->getUrl()), true);
-            if (is_array($data)) {
-                foreach ($data as $rec) {
-                    $rec['sermon']['preached'] = $rec['preached'];
+            $this->console('Fetching feed "' . $feed->getTitle() . '" from ' . $feed->getUrl() . '... ', false);
+            $rawData = file_get_contents($feed->getUrl());
+            $data = json_decode($rawData, true);
+            $this->console('OK');
+            if (is_array($data['sermons'])) {
+                $this->console(count($data['sermons']) . ' records received.');
+                foreach ($data['sermons'] as $rec) {
+                    $rec['sermon']['preached'] = $rec['preached']['date'];
+                    $this->console('Analyzing sermon ' . $rec['sermon']['uid'] . '... ', false);
                     $sermon = $this->mapSermon($rec['sermon'], $feed, $rec['url']);
                     if (NULL !== $sermon)
                         $this->sermonRepository->add($sermon);
+                    $this->console('OK');
                 }
             }
         }
@@ -107,7 +114,7 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         // check if we've already got that uid:
         $existing = $this->sermonRepository->checkSyncuid($uid);
         if ($existing) {
-            echo 'Skip existing ' . $uid . "\r\n";
+            $this->console('Skipped');
             return NULL;
         }
 
@@ -118,6 +125,7 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         $sermon->setRemoteUrl($remoteUrl);
 
         foreach ($s as $key => $val) {
+            $this->console('Property ' . $key);
             if (trim($val)) {
                 $setter = 'set' . ucfirst($key);
                 // treat special cases first
@@ -148,6 +156,11 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         return $sermon;
     }
 
+    protected function console($text, $newline = true)
+    {
+        echo $text . ($newline ? "\r\n" : '');
+    }
+
     protected function retrieveFile($url, $key)
     {
         if ($url) {
@@ -156,16 +169,16 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                 $baseName = str_replace('.html', '.pdf', $baseName);
             $target = $this->settings['paths'][$key] . $baseName;
             if (!file_exists(PATH_site . $target)) {
-                echo 'Retrieving ' . $key . ' from ' . $url . ' ... ';
-                echo 'writing to ' . $target . ' ... ';
+                $this->console('Retrieving ' . $key . ' from ' . $url . ' ... ');
+                $this->console('writing to ' . $target . ' ... ', false);
                 try {
                     $data = file_get_contents($url);
                     $fp = fopen(PATH_site . $target, 'w');
                     fwrite($fp, $data);
                     fclose($fp);
-                    echo "OK\r\n";
+                    $this->console('OK');
                 } catch (\Exception $e) {
-                    echo "Failed.\r\n";
+                    $this->console('Failed');
                 }
             }
             return $baseName;

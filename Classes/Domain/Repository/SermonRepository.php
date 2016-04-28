@@ -183,4 +183,18 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         return $sermons;
     }
 
+    /**
+     * Check if Syncuid already exists
+     * @param string $uid
+     * @return \int Number of existing records
+     */
+    public function checkSyncuid($uid)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $constraints = array($query->equals('syncuid', $uid));
+
+        return $query->matching($query->logicalAnd($constraints))->execute()->count();
+    }
+
 }

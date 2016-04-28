@@ -150,6 +150,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $audiorecording;
 
     /**
+     * Remote Audio
+     *
+     * @var \string
+     */
+    protected $remoteAudio;
+
+    /**
      * videorecording
      *
      * @var \string
@@ -197,6 +204,24 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \string
      */
     protected $syncuid;
+
+    /**
+     * church
+     * @var \string
+     */
+    protected $church;
+
+    /**
+     * churchUrl
+     * @var \string
+     */
+    protected $churchUrl;
+
+    /**
+     * remoteUrl
+     * @var \string
+     */
+    protected $remoteUrl;
 
     /**
      * __construct
@@ -734,6 +759,46 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setSlides($slides)
     {
         $this->slides = $slides;
+    }
+
+    function getChurch()
+    {
+        return $this->church;
+    }
+
+    function getChurchUrl()
+    {
+        return $this->churchUrl;
+    }
+
+    function getRemoteUrl()
+    {
+        return $this->remoteUrl;
+    }
+
+    function setChurch($church)
+    {
+        $this->church = $church;
+    }
+
+    function setChurchUrl($churchUrl)
+    {
+        $this->churchUrl = $churchUrl;
+    }
+
+    function setRemoteUrl($remoteUrl)
+    {
+        $this->remoteUrl = $remoteUrl;
+    }
+
+    function getRemoteAudio()
+    {
+        return $this->remoteAudio;
+    }
+
+    function setRemoteAudio($remoteAudio)
+    {
+        $this->remoteAudio = $remoteAudio;
     }
 
 }

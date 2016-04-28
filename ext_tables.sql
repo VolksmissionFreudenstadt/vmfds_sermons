@@ -22,6 +22,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
         no_handout tinyint(4) unsigned DEFAULT '0' NOT NULL,
 	handout text NOT NULL,
 	audiorecording text NOT NULL,
+        remote_audio varchar(255) DEFAULT '' NOT NULL,
 	videorecording text NOT NULL,
 	cclicense tinyint(4) unsigned DEFAULT '0' NOT NULL,
         hashtags varchar(255) DEFAULT '' NOT NULL,
@@ -29,6 +30,9 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
 	preacher int(11) unsigned DEFAULT '0' NOT NULL,
 	series int(11) unsigned DEFAULT '0' NOT NULL,
         syncuid varchar(255) DEFAULT '' NOT NULL,
+        church varchar(255) DEFAULT '' NOT NULL,
+        church_url varchar(255) DEFAULT '' NOT NULL,
+        remote_url varchar(255) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
