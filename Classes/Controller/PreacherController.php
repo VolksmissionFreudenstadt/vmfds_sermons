@@ -180,41 +180,26 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->redirect('admin');
     }
 
-    public function feedAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
+    public function feedAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher = NULL)
     {
-        $sermons = $this->sermonRepository->findByPreacher($preacher, null, true);
+
+        if (is_null($preacher)) {
+            $preacher = $this->preacherRepository->findByUid($this->request->getArgument('preacher'));
+        }
+        $sermons = $this->sermonRepository->findByPreacher($preacher, null, true)->toArray();
 
         // make this an array:
         $s = array();
-        foreach ($sermons as $sermon)
-            $s[] = $sermon;
-
-        $data = array();
-        foreach ($s as $key => $sermon) {
-            if ($i = $sermon->getImage()) {
-                $s[$key]->setImage($this->settings['prefix']['image'] . $i);
-            }
-            $series = $sermon->getSeries();
-            if ($a = $sermon->getAudiorecording()) {
-                $s[$key]->setAudioRecording($this->settings['prefix']['audiorecording'] . $a);
-            }
-            if ($h = $s[$key]->getHandout()) {
-                $s[$key]->setHandout($this->settings['prefix']['handout'] . $h);
-            } else {
-                $s[$key]->setHandout(sprintf($this->settings['dynamicHandout'], $s[$key]->getUid()));
-            }
-            $data[] = array('sermon' => $sermon, 'series' => $sermon->getSeries(),
-                'preacher' => $preacher, 'preached' => $sermon->getPreached(),
-                'url' => sprintf($this->settings['url'], $s[$key]->getUid()));
+        foreach ($sermons as $sermon) {
+            $data[] = [
+                'sermon' => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject($sermon, $this->settings['prefix']['sermon']),
+                'series' => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject($sermon->getSeries(), $this->settings['prefix']['series'], true),
+                'preacher' => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject($preacher, $this->settings['prefix']['preacher']),
+                'preached' => $sermon->getPreached(),
+                'url' => sprintf($this->settings['url'], $sermon->getUid())
+            ];
         }
-
-        $this->view->assign('sermons', $data);
-
-        // JSON:
-        if ($this->request->getFormat() == 'json') {
-            $this->view->setVariablesToRender(array('sermons'));
-            $this->view->setConfiguration = (array('sermons', array()));
-        }
+        return json_encode(['sermons' => $data]);
     }
 
     /**
