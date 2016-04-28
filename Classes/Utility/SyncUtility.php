@@ -5,6 +5,19 @@ namespace TYPO3\VmfdsSermons\Utility;
 class SyncUtility
 {
 
+    public static function convertToSafeString($string, $spaceCharacter = '-')
+    {
+        $processedTitle = $GLOBALS['TSFE']->csConvObj->conv_case('utf-8', $string, 'toLower');
+        $processedTitle = strip_tags($processedTitle);
+        $processedTitle = preg_replace('/[ \-+_]+/', $spaceCharacter, $processedTitle);
+        $processedTitle = $GLOBALS['TSFE']->csConvObj->specCharsToASCII('utf-8', $processedTitle);
+        $processedTitle = preg_replace('/[^\p{L}0-9' . preg_quote($spaceCharacter) . ']/u', '', $processedTitle);
+        $processedTitle = preg_replace('/' . preg_quote($spaceCharacter) . '{2,}/', $spaceCharacter, $processedTitle);
+        $processedTitle = trim($processedTitle, $spaceCharacter);
+        $processedTitle = strtolower($processedTitle);
+        return $processedTitle;
+    }
+
     public static function convertObject($o, $prefix = [], $traverse = FALSE)
     {
         $a = [];
@@ -24,8 +37,7 @@ class SyncUtility
                 if (!is_object($content)) {
                     if (isset($prefix[$property]['dynamic'])) {
                         if (method_exists($o, 'getTitle')) {
-                            $title = $o->getTitle();
-                            $title = strtolower(str_replace(' ', '-', $title));
+                            $title = self::convertToSafeString($o->getTitle());
                         }
                         $uid = $o->getUid();
                         if ($content == '')
