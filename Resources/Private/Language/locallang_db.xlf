@@ -159,6 +159,23 @@
                 <source>Hash tags</source>
             </trans-unit>
 
+            <trans-unit id="tx_vmfdssermons_domain_model_feed">
+                <source>Feed</source> 
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_feed.title">
+                <source>Title</source> 
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_feed.url">
+                <source>Url</source> 
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_feed.church">
+                <source>Church</source> 
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_feed.churchUrl">
+                <source>Church website</source> 
+            </trans-unit>
+
+
         </body>
     </file>
 </xliff>
