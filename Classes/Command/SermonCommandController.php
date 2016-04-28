@@ -91,12 +91,9 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                         unset($rec['sermon']['audiorecording']);
                     }
                     $rec['sermon']['preached'] = $rec['preached']['date'];
-		    $date = new \DateTime($rec['sermon']['preached']);
-                    $this->console('Sermon "' . $rec['sermon']['title'] . '" ('.$date->format('Y-m-d').') ... ', false);
+                    $date = new \DateTime($rec['sermon']['preached']);
+                    $this->console('Sermon "' . $rec['sermon']['title'] . '" (' . $date->format('Y-m-d') . ') ... ', false);
                     $sermon = $this->mapSermon($rec['sermon'], $feed, $rec['url']);
-                    if (NULL !== $sermon)
-                        $this->sermonRepository->add($sermon);
-                    $this->console('OK');
                 }
             }
         }
@@ -118,13 +115,10 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         $uid = parse_url($feed->getUrl(), PHP_URL_HOST) . ':' . $s['uid'];
 
         // check if we've already got that uid:
-        $existing = $this->sermonRepository->checkSyncuid($uid);
-        if ($existing) {
-            $this->console('Skipped');
-            return NULL;
-        }
-
-        $sermon = $this->objectManager->get(\TYPO3\VmfdsSermons\Domain\Model\Sermon::class);
+        $sermon = $this->sermonRepository->findBySyncuid($uid);
+        $existing = !is_null($sermon);
+        if (!$existing)
+            $sermon = $this->objectManager->get(\TYPO3\VmfdsSermons\Domain\Model\Sermon::class);
         $sermon->setSyncuid($uid);
         $sermon->setChurch($feed->getChurch());
         $sermon->setChurchUrl($feed->getChurchUrl());
@@ -141,19 +135,30 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                         $sermon->setPid($this->settings['storagePid']);
                         break;
                     case 'preached':
-                        $sermon->setPreached(new \DateTime($val));
+                        if ($val)
+                            $sermon->setPreached(new \DateTime($val));
                         break;
                     case 'image':
                     case 'handout':
-                        $sermon->$setter($this->retrieveFile($val, $key));
+                        if ($val)
+                            $sermon->$setter($this->retrieveFile($val, $key));
                         break;
                     default:
                         if (method_exists($sermon, $setter)) {
-                            $sermon->$setter($val);
+                            if ($val)
+                                $sermon->$setter($val);
                         }
                 }
             }
         }
+        if ($existing) {
+            $this->sermonRepository->update($sermon);
+            console('Updated');
+        } else {
+            $this->sermonRepository->add($sermon);
+            console('OK');
+        }
+
         return $sermon;
     }
 
