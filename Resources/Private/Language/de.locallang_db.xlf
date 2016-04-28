@@ -80,6 +80,22 @@
                 <source>Videorecording</source> 
                 <target state="translated">Video</target>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.syncuid" approved="yes">
+                <source>Sync ID</source> 
+                <target state="translated">ID für Synchronisation</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.church" approved="yes">
+                <source>Church</source> 
+                <target state="translated">Gemeinde</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.church_url" approved="yes">
+                <source>Church website</source> 
+                <target state="translated">Webseite der Gemeinde</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.remote_url" approved="yes">
+                <source>Original sermon url</source> 
+                <target state="translated">Link zur ursprünglichen Predigtseite</target>
+            </trans-unit>
 				
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.cclicense" approved="yes">
                 <source>This content is licensed under a Creative Commons License (CC-BY-SA 4.0).</source> 

@@ -73,6 +73,18 @@
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.series">
                 <source>Series</source>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.syncuid">
+                <source>Sync ID</source> 
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.church">
+                <source>Church</source> 
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.church_url">
+                <source>Church website</source> 
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.remote_url">
+                <source>Original sermon url</source> 
+            </trans-unit>
 
             <trans-unit id="tx_vmfdssermons_domain_model_preacher">
                 <source>Preacher</source>
