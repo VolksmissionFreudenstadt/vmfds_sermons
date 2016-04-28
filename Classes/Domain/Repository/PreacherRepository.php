@@ -6,7 +6,7 @@ namespace TYPO3\VmfdsSermons\Domain\Repository;
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -35,7 +35,15 @@ namespace TYPO3\VmfdsSermons\Domain\Repository;
  */
 class PreacherRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-    
+
+    public function findByUserId($user)
+    {
+        $q = $this->createQuery();
+        $q->matching($q->equals('userId', $user));
+        $res = $q->execute(false);
+        return $res[0];
+    }
+
 }
 
 ?>

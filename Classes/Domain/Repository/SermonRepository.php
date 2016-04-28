@@ -45,11 +45,11 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
         // find latest sermon with a series
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
-        $q           = $this->createQuery()->setLimit(1);
+        $q = $this->createQuery()->setLimit(1);
         $constraints = array(
             $q->greaterThan('series', 0),
         );
-        $sermon      = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
+        $sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
         return $sermon;
     }
 
@@ -60,14 +60,14 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param int $limit Limit to this number of records
      * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
      */
-    public function findBySeries(\TYPO3\VmfdsSermons\Domain\Model\Series $series,
-                                 $limit = 0)
+    public function findBySeries(\TYPO3\VmfdsSermons\Domain\Model\Series $series, $limit = 0)
     {
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
         $q = $this->createQuery();
-        if ($limit) $q->setLimit($limit);
+        if ($limit)
+            $q->setLimit($limit);
         return $q->matching($q->contains('series', $series))
-                ->execute();
+                        ->execute();
     }
 
     /**
@@ -78,15 +78,15 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param bool $includeHidden True, if hidden records should be included
      * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
      */
-    public function findByPreacher(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher,
-                                   $limit = 0, $includeHidden = FALSE)
+    public function findByPreacher(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher, $limit = 0, $includeHidden = FALSE)
     {
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
         $q = $this->createQuery();
-        if ($limit) $q->setLimit($limit);
+        if ($limit)
+            $q->setLimit($limit);
         $q->getQuerySettings()->setIgnoreEnableFields($includeHidden);
         return $q->matching($q->contains('preacher', $preacher))
-                ->execute();
+                        ->execute();
     }
 
     /**
@@ -98,16 +98,16 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param boolean $respectEnableFields if set to false, hidden records are shown
      * @return \TYPO3\VmfdsSermons\Domain\Model\Sermon
      */
-    public function findByUid($uid, $respectEnableFields = TRUE)
+    public function findByUid($uid, $respectEnableFields = FALSE)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(FALSE);
         $query->getQuerySettings()->setIgnoreEnableFields(!$respectEnableFields);
 
         return $query->matching(
-                $query->logicalAnd(
-                    $query->equals('uid', $uid), $query->equals('deleted', 0)
-            ))->execute()->getFirst();
+                        $query->logicalAnd(
+                                $query->equals('uid', $uid), $query->equals('deleted', 0)
+                ))->execute()->getFirst();
     }
 
     /**
@@ -119,11 +119,11 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
         // find latest sermon that's already been preached
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
-        $q           = $this->createQuery()->setLimit(1);
+        $q = $this->createQuery()->setLimit(1);
         $constraints = array(
             $q->lessThanOrEqual('preached', time()),
         );
-        $sermon      = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
+        $sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
         return $sermon;
     }
 
@@ -137,12 +137,12 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         // find next sermon for preview
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING));
-        $q           = $this->createQuery()->setLimit(1);
+        $q = $this->createQuery()->setLimit(1);
         $q->getQuerySettings()->setIgnoreEnableFields(TRUE);
         $constraints = array(
             $q->greaterThan('preached', time()),
         );
-        $sermon      = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
+        $sermon = $q->matching($q->logicalAnd($constraints))->execute()->getFirst();
         return $sermon;
     }
 
@@ -154,11 +154,11 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     public function findAllWithoutAudio()
     {
         $this->setDefaultOrderings(array('preached' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING));
-        $q           = $this->createQuery();
+        $q = $this->createQuery();
         $constraints = array(
             $q->equals('audiorecording', ''),
         );
-        $sermons     = $q->matching($q->logicalAnd($constraints))->execute();
+        $sermons = $q->matching($q->logicalAnd($constraints))->execute();
         return $sermons;
     }
 
@@ -174,12 +174,13 @@ class SermonRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     public function findByPreached(\DateTime $date)
     {
-        $q           = $this->createQuery();
+        $q = $this->createQuery();
         $q->getQuerySettings()->setIgnoreEnableFields(TRUE);
         $constraints = array(
             $q->equals('preached', $date),
         );
-        $sermons     = $q->matching($q->logicalAnd($constraints))->execute();
+        $sermons = $q->matching($q->logicalAnd($constraints))->execute();
         return $sermons;
     }
+
 }

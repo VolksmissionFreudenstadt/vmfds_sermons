@@ -44,6 +44,13 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $supportedMediaTypes = array('text/html', 'application/json');
 
     /**
+     * Upload utility class
+     * @var \TYPO3\VmfdsSermons\Utility\UploadUtility
+     * @inject
+     */
+    protected $uploadUtility;
+
+    /**
      * @var array
      */
     protected $viewFormatToObjectNameMap = array('json' => 'TYPO3\CMS\Extbase\Mvc\View\JsonView');
@@ -65,6 +72,14 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $seriesRepository;
 
     /**
+     * preacherRepository
+     *
+     * @var \TYPO3\VmfdsSermons\Domain\Repository\PreacherRepository
+     * @inject
+     */
+    protected $preacherRepository;
+
+    /**
      * inject the SeriesRepository object
      *
      * @param \TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository $seriesRepository
@@ -73,6 +88,16 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function injectSeriesRepository(\TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository $seriesRepository)
     {
         $this->seriesRepository = $seriesRepository;
+    }
+
+    /**
+     * initialize action
+     */
+    public function initializeAction()
+    {
+        if ($this->arguments->hasArgument('sermon')) {
+            $this->arguments->getArgument('sermon')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+        }
     }
 
     /**
@@ -106,16 +131,14 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         if (is_null($sermon)) {
             if ((int) $this->settings['singleSermon'] > 0)
                 $previewSermonId = $this->settings['singleSermon'];
+            elseif ($this->request->hasArgument('sermon'))
+                $previewSermonId = $this->request->getArgument('sermon');
             elseif ($this->request->hasArgument('sermon_preview'))
                 $previewSermonId = $this->request->getArgument('sermon_preview');
             else
                 $this->forward('list');
-            //die('Requested sermon ' . $previewSermonId);
-            if ($this->settings['previewHiddenRecords']) {
-                $sermon = $this->sermonRepository->findByUid($previewSermonId, FALSE);
-            } else {
-                $sermon = $this->sermonRepository->findByUid($previewSermonId);
-            }
+
+            $sermon = $this->sermonRepository->findByUid($previewSermonId, FALSE);
 
             if (is_null($sermon))
                 $this->forward('list');
@@ -341,6 +364,136 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     function presentationAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
     {
         $this->view->assign('sermon', $sermon);
+    }
+
+    /**
+     * action edit
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     * @return void
+     */
+    public function editAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon = NULL)
+    {
+        $this->view->assign('sermon', $sermon);
+        if (is_null($sermon)) {
+            if ($this->request->hasArgument('sermon')) {
+                $previewSermonId = $this->request->getArgument('sermon');
+                $sermon = $this->sermonRepository->findByUid($previewSermonId, FALSE);
+            }
+        }
+        $this->view->assign('sermon', $sermon);
+
+        if ($this->request->hasArgument('preacher')) {
+            $preacher = $this->preacherRepository->findByUid($this->request->getArgument('preacher'));
+            $this->view->assign('preacher', $preacher);
+        }
+    }
+
+    /**
+     * action update
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     * @return void
+     */
+    public function updateAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
+    {
+        $formData = $this->request->getArgument('sermon');
+        $imageField = $formData['image'];
+        if ($imageField['name']) {
+            $fileName = $this->uploadUtility->uploadFile($imageField, 'tx_vmfdssermons_domain_model_sermon', 'image');
+            $sermon->setImage($fileName);
+        } else {
+            $oldImage = $this->request->getArgument('oldImage');
+            $sermon->setImage($oldImage);
+        }
+
+        $this->sermonRepository->update($sermon);
+
+        if ($this->request->hasArgument('preacher')) {
+            $preacher = $this->preacherRepository->findByUid($this->request->getArgument('preacher'));
+            $service = [];
+            if ($this->request->hasArgument('service')) {
+                $service = $this->request->getArgument('service');
+                $preacher->setMic($service['mic']);
+                $preacher->setPulpit($service['pulpit']);
+                $preacher->setPpt($service['ppt']);
+                $preacher->setLaptop($service['laptop']);
+            }
+            $fee = [];
+            if ($this->request->hasArgument('fee')) {
+                $fee = $this->request->getArgument('fee');
+                $preacher->setTravelCost($fee['amount']);
+                $preacher->setAccountHolder($fee['accountHolder']);
+                $preacher->setIban($fee['iban']);
+                $preacher->setBic($fee['bic']);
+            }
+            $this->preacherRepository->update($preacher);
+
+            $recipients = $this->settings['preacher']['editNotifyMail']['recipients'];
+            if ($preacherEMail = $preacher->getEmail()) {
+                $recipients[$preacherEMail] = $preacher->getName();
+            }
+
+            $attachments = [];
+            if ($img = $preacher->getImage()) {
+                $attachments[] = PATH_site . 'uploads/tx_vmfdssermons/' . $img;
+            }
+            if ($img = $sermon->getImage()) {
+                $attachments[] = PATH_site . 'predigten/Titelbilder/' . $img;
+            }
+
+            $subject = $sermon->getTitle() . ' (' . $sermon->getPreached()->format('d.m.Y') . ', ' . $preacher->getName() . ')';
+
+            $vars = [
+                'sermon' => $sermon,
+                'preacher' => $preacher,
+                'service' => $service,
+                'fee' => $fee
+            ];
+
+            // send notification email
+            $this->sendTemplateEmail($recipients, [
+                $this->settings['preacher']['editNotifyMail']['sender']['email'] => $this->settings['preacher']['editNotifyMail']['sender']['name']
+                    ], $subject, 'GuestPreacherSubmittedSermon', $vars, $attachments
+            );
+        }
+    }
+
+    /**
+     * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
+     * @param array $sender sender of the email in the format array('sender@domain.tld' => 'Sender Name')
+     * @param string $subject subject of the email
+     * @param string $templateName template name (UpperCamelCase)
+     * @param array $variables variables to be passed to the Fluid view
+     * @return boolean TRUE on success, otherwise false
+     */
+    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array(), array $attachments = [])
+    {
+        /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
+        $emailView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
+        $templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.html';
+        $emailView->setTemplatePathAndFilename($templatePathAndFilename);
+        $emailView->assignMultiple($variables);
+        $emailBody = $emailView->render();
+
+        /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
+        $message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+        $message->setTo($recipient)
+                ->setFrom($sender)
+                ->setSubject($subject);
+
+        foreach ($attachments as $attachment) {
+            $message->attach(\Swift_Attachment::fromPath($attachment));
+        }
+
+        // HTML Email
+        $message->setBody($emailBody, 'text/html');
+
+        $message->send();
+        return $message->isSent();
     }
 
 }

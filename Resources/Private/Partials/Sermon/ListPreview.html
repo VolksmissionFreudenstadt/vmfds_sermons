@@ -22,7 +22,11 @@
 
             {sermon.description -> f:format.html() -> f:format.crop(maxCharacters: 200, respectWordBoundaries: true)}
 
-
+            <f:if condition="{showAdminButton}">
+                <f:if condition="{sermon.preached.timestamp} > {now}">
+                    <f:link.action class="btn btn-primary" controller="Sermon" action="edit" pageUid="{settings.pid.sermon.edit}">Daten ergänzen</f:link.action>
+                </f:if>
+            </f:if>
         </div>
     </div>
 </div>

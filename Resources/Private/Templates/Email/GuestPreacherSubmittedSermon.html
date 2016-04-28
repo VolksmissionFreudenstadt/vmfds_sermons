@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Predigtdaten ergänzt</title>
+    </head>
+    <body style="font-family: Arial, Helvetica, sans-serif;">
+<h1>Predigtdaten wurden ergänzt</h1>
+<p>{preacher.name} hat soeben die Daten zur Predigt vom {sermon.preached -> f:format.date(format: '%d.%m.%Y')} ergänzt.</p>
+
+<h2>Daten zum Prediger</h2>
+<table style="font-family: Arial, Helvetica, sans-serif; width: 100%">
+    <tr>
+        <td>Name</td>
+        <td>{preacher.name}</td>
+    </tr>
+    <tr>
+        <td>Organisation</td>
+        <td>{preacher.organization}</td>
+    </tr>
+    <tr>
+        <td>Über {preacher.firstName}</td>
+        <td>{preacher.about -> f:format.html()}</td>
+    </tr>
+    <tr>
+        <td>E-Mail</td>
+        <td>{preacher.email}</td>
+    </tr>
+    <tr>
+        <td>WWW</td>
+        <td>{preacher.url}</td>
+    </tr>
+    <tr>
+        <td>Blog</td>
+        <td>{preacher.blog}</td>
+    </tr>
+    <tr>
+        <td>Facebook</td>
+        <td>{preacher.facebookId}</td>
+    </tr>
+    <tr>
+        <td>Twitter</td>
+        <td>{preacher.twitter}</td>
+    </tr>
+    <tr>
+        <td>Bild</td>
+        <td>{preacher.image}</td>
+    </tr>
+</table>
+
+<hr />
+
+
+
+<h2>Daten zur Predigt</h2>
+<table style="font-family: Arial, Helvetica, sans-serif; width: 100%">
+    <tr>
+        <td>Titel</td>
+        <td>{sermon.title}</td>
+    </tr>
+    <tr>
+        <td>Untertitel</td>
+        <td>{sermon.subtitle}</td>
+    </tr>
+    <tr>
+        <td>Bibelstelle</td>
+        <td>{sermon.reference}</td>
+    </tr>
+    <tr>
+        <td>Beschreibung</td>
+        <td>{sermon.description -> f:format.html()}</td>
+    </tr>
+    <tr>
+        <td>Hauptpunkte</td>
+        <td>{sermon.keypoints -> f:format.nl2br()}</td>
+    </tr>
+    <tr>
+        <td>Vorbereitung</td>
+        <td>{sermon.prep -> f:format.nl2br()}</td>
+    </tr>
+    <tr>
+        <td>Kleingruppenfragen</td>
+        <td>{sermon.questions -> f:format.nl2br()}</td>
+    </tr>
+    <tr>
+        <td>Literaturtipps</td>
+        <td>{sermon.furtherReading -> f:format.html()}</td>
+    </tr>
+    <tr>
+        <td>Titelbild</td>
+        <td>{sermon.image}</td>
+    </tr>
+    <tr>
+        <td>Quellenangaben zum Bild</td>
+        <td>{sermon.imageSource}</td>
+    </tr>
+    <tr>
+        <td>CC-Lizenz</td>
+        <td><f:if condition="{sermon.cclicense}"><f:then>ja</f:then><f:else>nein</f:else></f:if></td>
+    </tr>
+</table>
+
+<hr />
+
+
+<h2>Informationen für die Techniker</h2>
+
+<table style="font-family: Arial, Helvetica, sans-serif; width: 100%">
+    <tr>
+        <td>Bevorzugtes Mikrofon</td>
+        <td>{service.mic}</td>
+    </tr>
+    <tr>
+        <td>Braucht Notenständer</td>
+        <td><f:if condition="{service.pulpit}"><f:then>ja</f:then><f:else>nein</f:else></f:if></td>
+    </tr>
+    <tr>
+        <td>Powerpoint auf USB-Stick</td>
+        <td><f:if condition="{service.ppt}"><f:then>ja</f:then><f:else>nein</f:else></f:if></td>
+    </tr>
+    <tr>
+        <td>Eigener Laptop</td>
+        <td><f:if condition="{service.laptop}"><f:then>ja</f:then><f:else>nein</f:else></f:if></td>
+    </tr>
+</table>
+
+<hr />
+
+<h2>Informationen für die Buchhaltung</h2>
+
+<table style="font-family: Arial, Helvetica, sans-serif; width: 100%">
+    <tr>
+        <td>Reisekosten</td>
+        <td>{fee.amount}</td>
+    </tr>
+    <tr>
+        <td>Kontoinhaber</td>
+        <td>{fee.accountHolder}</td>
+    </tr>
+    <tr>
+        <td>IBAN</td>
+        <td>{fee.iban}</td>
+    </tr>
+    <tr>
+        <td>BIC</td>
+        <td>{fee.bic}</td>
+    </tr>
+</table>
+</body></html>

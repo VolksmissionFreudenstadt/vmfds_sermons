@@ -1,0 +1,133 @@
+<h1>Angaben zur Predigt vom {sermon.preached ->f:format.date(format: '%d.%m.%Y')}</h1>
+
+<f:form method="post" controller="Sermon" action="update" name="sermon" object="{sermon}" pageUid="{settings.pid.sermon.edit}" enctype="multipart/form-data">
+    <f:if condition="{preacher}">
+        <f:form.hidden name="preacher" value="{preacher.uid}" />
+    </f:if>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#sermon-contents">Inhalte</a></li>
+        <li><a data-toggle="tab" href="#sermon-image">Titelbild</a></li>
+        <li><a data-toggle="tab" href="#sermon-study">Vor &amp; Nachbereitung</a></li>
+        <li><a data-toggle="tab" href="#sermon-rights">Rechte</a></li>
+        <li><a data-toggle="tab" href="#sermon-general">Angaben zur Technik</a></li>
+        <li><a data-toggle="tab" href="#sermon-travel">Reisekosten</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="sermon-contents" class="tab-pane fade in active" style="padding-top: 30px;">
+            <div class="form-group">
+                <label for="title">Titel der Predigt</label>
+                <f:form.textfield class="form-control" property="title" />
+            </div>
+            <div class="form-group">
+                <label for="subtitle">Untertitel (wenn gewünscht)</label>
+                <f:form.textfield class="form-control" property="subtitle" />
+            </div>
+            <div class="form-group">
+                <label for="reference">Bibelstelle</label><br />
+                Wenn du mehrere Bibelstellen verwendest, gib hier bitte die Stelle an, die 
+                in der Schriftlesung gelesen werden soll.
+                <f:form.textfield class="form-control" property="reference" />
+            </div>
+            <div class="form-group">
+                <label for="description">Beschreibung</label><br />
+                Bitte beschreibe in 2-3 Sätzen den Inhalt der Predigt.
+                <f:form.textarea class="form-control" property="description" />
+            </div>
+            <div class="form-group">
+                <label for="keypoints">Hauptpunkte</label><br />
+                Wenn du hier die Hauptpunkte deiner Predigt eingibst, werden diese im Begleitzettel mit abgedruckt.
+                Bitte verwende eine Zeile pro Hauptpunkt. <br />Um einen Lückentext zu erzeugen, kannst du die Wörter, die in die Lücke gehören, mit
+                eckigen Klammern [ ] einrahmen (z.B. wird aus "Gott ist [gut]" dann "Gott ist _____").
+                <f:form.textarea class="form-control" property="keypoints" rows="5"/>
+            </div>
+        </div>
+        <div id="sermon-image" class="tab-pane fade" style="padding-top: 30px;">
+            <f:form.hidden name="oldImage" value="{sermon.image}" />
+            <div class="form-group">
+                <label for="image">Titelbild</label><br />
+                Hier kannst du ein Titelbild zur Predigt hochladen. Bitte achte darauf, dass du die Rechte 
+                zu deinem Titelbild besitzst.
+                <br />Wenn du kein Bild hochlädst, werden wir ein passendes Bild auswählen.
+                <f:form.upload property="image" />
+            </div>            
+            <div class="form-group">
+                <label for="title">Quellenangabe zum Bild</label>
+                <f:form.textfield class="form-control" property="imageSource" />
+            </div>
+        </div>
+        <div id="sermon-study" class="tab-pane fade" style="padding-top: 30px;">
+            <div class="form-group">
+                <label for="prep">Tipps zur Vorbereitung</label><br />
+                Wie können sich deine Zuhörer am Besten auf den Gottesdienst vorbereiten?
+                <f:form.textarea class="form-control" property="prep" />
+            </div>
+            <div class="form-group">
+                <label for="questions">Fragen für Kleingruppen</label><br />
+                Welche Fragen sollten deine Zuhörer hinterher in ihrer Kleingruppe diskutieren? Bitte verwende eine Zeile pro Frage.
+                <f:form.textarea class="form-control" property="questions" />
+            </div>
+            <div class="form-group">
+                <label for="furtherReading">Literaturtipps</label><br />
+                Wenn du möchtest, kannst du hier weiterführende Literatur zum Thema empfehlen.
+                <f:form.textarea class="form-control" property="furtherReading" />
+            </div>
+        </div>
+        <div id="sermon-rights" class="tab-pane fade" style="padding-top: 30px;">
+            <div class="checkbox">
+                <label>
+                    <f:form.checkbox property="cclicense" value="1" /> Ich stelle meine Predigt unter der Creative Commons Lizenz (CC-BY-SA 4.0) zur Verfügung. 
+                </label>
+            </div>
+        </div>
+        <div id="sermon-general" class="tab-pane fade" style="padding-top: 30px;">
+            <div class="form-group">
+                <label for="service[mic]">Mikrofon</label><br />
+                Welche Art von Mikrofon bevorzugst du?
+                <f:form.select class="form-control" name="service[mic]" options="{Headset: 'Headset', Funkmikrofon: 'Handmikrofon (kabellos)', Standmikrofon: 'Kabelgebundenes Mikrofon auf einem Ständer'}" value="{preacher.mic}" />
+            </div>
+            <div class="checkbox">
+                <label>
+                    <f:form.checkbox name="service[pulpit]" value="1" checked="{preacher.pulpit}" /> Ich brauche einen Ständer für Bibel, Notizen, etc.  
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <f:form.checkbox name="service[ppt]" value="1" checked="{preacher.ppt}" /> Ich bringe eine Powerpoint-Präsentation auf einem USB-Stick mit.  
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <f:form.checkbox name="service[laptop]" value="1" checked="{preacher.laptop}" /> Ich bringe einen eigenen Laptop mit und brauche Zugang zum Beamer.  
+                </label>
+            </div>
+        </div>
+        <div id="sermon-travel" class="tab-pane fade" style="padding-top: 30px;">
+            <div class="form-group">
+                <label for="fee[amount]">Folgende Reisekosten werden fällig</label>
+                <f:form.textfield class="form-control" name="fee[amount]" value="{preacher.travelCost} "/>
+            </div>
+            <div class="form-group">
+                <label for="fee[accountHolder]">Kontoinhaber</label>
+                <f:form.textfield class="form-control" name="fee[accountHolder]" value="{preacher.accountHolder}" />
+            </div>
+            <div class="form-group">
+                <label for="fee[iban]">IBAN</label>
+                <f:form.textfield class="form-control" name="fee[iban]" value="{preacher.iban}" />
+            </div>
+            <div class="form-group">
+                <label for="fee[iban]">BIC</label><br />
+                Die BIC muss nur bei Überweisungen ins Ausland angegeben werden.
+                <f:form.textfield class="form-control" name="fee[bic]" value="{preacher.bic}" />
+            </div>
+            
+        </div>
+        
+    </div>
+    <hr />
+
+    <f:form.submit class="btn btn-primary" value="Αngaben speichern" />
+    <f:link.action class="btn btn-default" controller="Preacher" action="admin" pageUid="{settings.pid.preacher.admin}">Zurück zum Profil</f:link.action>
+
+</f:form>

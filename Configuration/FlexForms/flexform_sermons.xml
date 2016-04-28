@@ -35,11 +35,19 @@
                                     </numIndex>
                                     <numIndex index="5">
                                         <numIndex index="0">Prediger (Admin)</numIndex>
-                                        <numIndex index="1">Preacher->list;Preacher->show;Preacher->edit;Preacher->update</numIndex>
+                                        <numIndex index="1">Preacher->admin;Preacher->list;Preacher->show;Preacher->edit;Preacher->update;Sermon->edit;Sermon->update</numIndex>
                                     </numIndex>
                                     <numIndex index="6">
                                         <numIndex index="0">Audio Upload</numIndex>
                                         <numIndex index="1">Sermon->audioUploadWelcome;Sermon->audioUploadDone</numIndex>
+                                    </numIndex>
+                                    <numIndex index="7">
+                                        <numIndex index="0">Predigerprofil </numIndex>
+                                        <numIndex index="1">Preacher->edit;Preacher->update</numIndex>
+                                    </numIndex>
+                                    <numIndex index="8">
+                                        <numIndex index="0">Predigtdaten </numIndex>
+                                        <numIndex index="1">Sermon->edit;Sermon->update</numIndex>
                                     </numIndex>
                                 </items>
                             </config>

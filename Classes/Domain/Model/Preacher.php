@@ -6,7 +6,7 @@ namespace TYPO3\VmfdsSermons\Domain\Model;
  *  Copyright notice
  *
  *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -113,6 +113,69 @@ class Preacher extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \string
      */
     protected $twitter;
+
+    /**
+     * User id
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+     */
+    protected $userId = NULL;
+
+    /**
+     * Mic
+     *
+     * @var \string
+     */
+    protected $mic;
+
+    /**
+     * needs pulpit
+     *
+     * @var \int
+     */
+    protected $pulpit;
+
+    /**
+     * brings ppt
+     *
+     * @var \int
+     */
+    protected $ppt;
+
+    /**
+     * brings laptop
+     *
+     * @var \int
+     */
+    protected $laptop;
+
+    /**
+     * Travel cost
+     *
+     * @var \string
+     */
+    protected $travelCost;
+
+    /**
+     * Travel cost
+     *
+     * @var \string
+     */
+    protected $accountHolder;
+
+    /**
+     * IBAN
+     *
+     * @var \string
+     */
+    protected $iban;
+
+    /**
+     * BIC
+     *
+     * @var \string
+     */
+    protected $bic;
 
     /**
      * Returns the name
@@ -343,6 +406,104 @@ class Preacher extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTwitter($twitter)
     {
         $this->twitter = $twitter;
+    }
+
+    /**
+     *
+     * @return TYPO3\CMS\Extbase\Domain\Model\FrontendUser User Id
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     *
+     * @param TYPO3\CMS\Extbase\Domain\Model\FrontendUser $userId User id
+     */
+    public function setUserId(\TYPO3\CMS\Extbase\Domain\Model\FrontendUser $userId)
+    {
+        $this->userId = $userId;
+    }
+
+    public function getMic()
+    {
+        return $this->mic;
+    }
+
+    public function getPulpit()
+    {
+        return $this->pulpit;
+    }
+
+    public function getPpt()
+    {
+        return $this->ppt;
+    }
+
+    public function getLaptop()
+    {
+        return $this->laptop;
+    }
+
+    public function getTravelCost()
+    {
+        return $this->travelCost;
+    }
+
+    public function getAccountHolder()
+    {
+        return $this->accountHolder;
+    }
+
+    public function getIban()
+    {
+        return $this->iban;
+    }
+
+    public function getBic()
+    {
+        return $this->bic;
+    }
+
+    public function setMic($mic)
+    {
+        $this->mic = $mic;
+    }
+
+    public function setPulpit($pulpit)
+    {
+        $this->pulpit = $pulpit;
+    }
+
+    public function setPpt($ppt)
+    {
+        $this->ppt = $ppt;
+    }
+
+    public function setLaptop($laptop)
+    {
+        $this->laptop = $laptop;
+    }
+
+    public function setTravelCost($travelCost)
+    {
+        $this->travelCost = $travelCost;
+    }
+
+    public function setAccountHolder($accountHolder)
+    {
+        $this->accountHolder = $accountHolder;
+    }
+
+    public function setIban($iban)
+    {
+        $this->iban = $iban;
+    }
+
+    public function setBic($bic)
+    {
+        $this->bic = $bic;
     }
 
 }

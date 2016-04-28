@@ -7,10 +7,10 @@ if (!defined('TYPO3_MODE')) {
 $TCA['tx_vmfdssermons_domain_model_preacher'] = array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_preacher']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, first_name, last_name, email, organization, url, blog, facebook_id, twitter, about, image',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, first_name, last_name, email, organization, url, blog, facebook_id, twitter, about, image, user_id, mic, pulpit, ppt, laptop, travel_cost, account_holder, iban, bic',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, first_name, last_name, email, organization, url, blog, facebook_id, twitter, about, image,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, name, first_name, last_name, email, organization, url, blog, facebook_id, twitter, about, image,--div--;Administration,user_id,--div--;Technik,mic, pulpit, ppt, laptop, --div--;Buchhaltung,travel_cost, account_holder, iban, bic,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -21,6 +21,7 @@ $TCA['tx_vmfdssermons_domain_model_preacher'] = array(
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
             'config' => array(
                 'type' => 'select',
+                'renderType' => 'selectSingle',
                 'foreign_table' => 'sys_language',
                 'foreign_table_where' => 'ORDER BY sys_language.title',
                 'items' => array(
@@ -185,16 +186,6 @@ $TCA['tx_vmfdssermons_domain_model_preacher'] = array(
                 'cols' => 40,
                 'rows' => 15,
                 'eval' => 'trim',
-                'wizards' => array(
-                    'RTE' => array(
-                        'icon' => 'wizard_rte2.gif',
-                        'notNewRecords' => 1,
-                        'RTEonly' => 1,
-                        'script' => 'wizard_rte.php',
-                        'title' => 'LLL:EXT:cms/locallang_ttc.xlf:bodytext.W.RTE',
-                        'type' => 'script'
-                    )
-                )
             ),
             'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
         ),
@@ -209,6 +200,94 @@ $TCA['tx_vmfdssermons_domain_model_preacher'] = array(
                 'size' => 5,
                 'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
                 'disallowed' => '',
+            ),
+        ),
+        'user_id' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.user_id',
+            'config' => array(
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [['', 0]],
+                'foreign_table' => 'fe_users',
+                'minitems' => 0,
+                'maxitems' => 1,
+                'appearance' => array(
+                    'collapseAll' => 0,
+                    'levelLinksPosition' => 'top',
+                    'showSynchronizationLink' => 1,
+                    'showPossibleLocalizationRecords' => 1,
+                    'showAllLocalizationLink' => 1
+                ),
+            ),
+        ),
+        'mic' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.mic',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ),
+        ),
+        'pulpit' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.pulpit',
+            'config' => array(
+                'type' => 'check',
+                'default' => 1,
+            ),
+        ),
+        'ppt' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.ppt',
+            'config' => array(
+                'type' => 'check',
+                'default' => 1,
+            ),
+        ),
+        'laptop' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.laptop',
+            'config' => array(
+                'type' => 'check',
+                'default' => 1,
+            ),
+        ),
+        'travel_cost' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.travel_cost',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ),
+        ),
+        'account_holder' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.account_holder',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ),
+        ),
+        'iban' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.iban',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ),
+        ),
+        'bic' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_preacher.bic',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
             ),
         ),
     ),

@@ -36,6 +36,15 @@ namespace TYPO3\VmfdsSermons\Controller;
 class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
+    protected $databaseHandle;
+
+    /**
+     * Upload utility class
+     * @var \TYPO3\VmfdsSermons\Utility\UploadUtility
+     * @inject
+     */
+    protected $uploadUtility;
+
     /**
      * preacherRepository
      *
@@ -51,6 +60,14 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      * @inject
      */
     protected $sermonRepository;
+
+    /**
+     * User Repository
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+     * @inject
+     */
+    protected $userRepository;
 
     /**
      * @var array
@@ -80,6 +97,23 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     //public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
     //    $this->objectManager = $objectManager;
     //}
+
+
+
+    public function initializeObject()
+    {
+
+    }
+
+    /**
+     * initialize action
+     */
+    public function initializeAction()
+    {
+        if ($this->arguments->hasArgument('preacher')) {
+            $this->arguments->getArgument('preacher')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+        }
+    }
 
     /**
      * action list
@@ -132,10 +166,18 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
      */
     public function updateAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
     {
+        $formData = $this->request->getArgument('preacher');
+        $imageField = $formData['image'];
+        if ($imageField['name']) {
+            $fileName = $this->uploadUtility->uploadFile($imageField, 'tx_vmfdssermons_domain_model_preacher', 'image');
+            $preacher->setImage($fileName);
+        } else {
+            $oldImage = $this->request->getArgument('oldImage');
+            $preacher->setImage($oldImage);
+        }
 
         $this->preacherRepository->update($preacher);
-        $this->flashMessageContainer->add('Your Preacher was updated.');
-        $this->redirect('list');
+        $this->redirect('admin');
     }
 
     public function feedAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
@@ -173,6 +215,27 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
             $this->view->setVariablesToRender(array('sermons'));
             $this->view->setConfiguration = (array('sermons', array()));
         }
+    }
+
+    /**
+     * action admin
+     *
+     * Show the admin portal for the preacher
+     *
+     * @return void
+     */
+    public function adminAction()
+    {
+
+        $user = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
+        $preacher = $this->preacherRepository->findByUserId($user);
+
+        $sermons = $this->sermonRepository->findByPreacher($preacher, 0, true);
+
+        $this->view->assign('now', time());
+        $this->view->assign('user', $user);
+        $this->view->assign('preacher', $preacher);
+        $this->view->assign('sermons', $sermons);
     }
 
 }

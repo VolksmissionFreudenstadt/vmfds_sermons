@@ -107,7 +107,33 @@
             <trans-unit id="tx_vmfdssermons_domain_model_preacher.image">
                 <source>Image</source>
             </trans-unit>
-
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.user_id">
+                <source>Associated frontend user</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.mic">
+                <source>Preferred microphone</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.pulpit">
+                <source>Needs pulpit or note stand</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.ppt">
+                <source>Brings presentation on a memory stick</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.laptop">
+                <source>Brings own laptop</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.travel_cost">
+                <source>Travel cost</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.account_holder">
+                <source>Account holder</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.iban">
+                <source>IBAN</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.bic">
+                <source>BIC</source>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_series">
                 <source>Series</source>
             </trans-unit>
