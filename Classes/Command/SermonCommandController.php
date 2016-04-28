@@ -144,7 +144,8 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                     case 'preached':
                         if ($val) {
                             $date = new \DateTime($val);
-                            if ($sermon->getPreached()->format('Ymd') !== $date->format('Ymd')) {
+		            $exDate = $sermon->getPreached();
+                            if ((!$exDate) || ($exDate->format('Ymd') !== $date->format('Ymd'))) {
                                 $changed = true;
                                 $sermon->setPreached($date);
                             }
