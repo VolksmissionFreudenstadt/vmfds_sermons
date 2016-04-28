@@ -86,10 +86,12 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                 $this->console(count($data['sermons']) . ' records received.');
                 foreach ($data['sermons'] as $rec) {
                     // switch audiorecording to remoteAudio
-                    $data['audiorecording'] = $data['remoteAudio'];
-                    unset($data['remoteAudio']);
+                    if ($rec['sermon']['remoteAudio'] == '') {
+                        $rec['sermon']['remoteAudio'] = $rec['sermon']['audiorecording'];
+                        unset($rec['sermon']['audiorecording']);
+                    }
                     $rec['sermon']['preached'] = $rec['preached']['date'];
-                    $this->console('Analyzing sermon ' . $rec['sermon']['uid'] . '... ', false);
+                    $this->console('Sermon "' . $rec['sermon']['title'] . '" ('.strftime('%Y-%m-%d', $rec['sermon']['preached'].') ... ', false);
                     $sermon = $this->mapSermon($rec['sermon'], $feed, $rec['url']);
                     if (NULL !== $sermon)
                         $this->sermonRepository->add($sermon);
