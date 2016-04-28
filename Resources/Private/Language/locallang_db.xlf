@@ -55,6 +55,9 @@
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.audiorecording">
                 <source>Audiorecording</source>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.remote_audio">
+                <source>External audio file</source> 
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording">
                 <source>Videorecording</source>
             </trans-unit>

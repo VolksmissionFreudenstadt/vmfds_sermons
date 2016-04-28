@@ -72,6 +72,10 @@
                 <source>Audiorecording</source> 
                 <target state="translated">Predigtaufnahme</target>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.remote_audio" approved="yes">
+                <source>External audio file</source> 
+                <target state="translated">Externe Predigtaufnahme</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording" approved="yes">
                 <source>Videorecording</source> 
                 <target state="translated">Video</target>

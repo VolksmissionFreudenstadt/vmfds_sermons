@@ -7,10 +7,10 @@ if (!defined('TYPO3_MODE')) {
 $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_sermon']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, keywords, image, image_source, no_handout, handout, audiorecording, videorecording, hashtags, cclicense, preacher, series, syncuid, slides',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, keywords, image, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags, cclicense, preacher, series, syncuid, slides',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, preached, description, --div--;Studienmaterial, reference, notes_header, keypoints, questions, further_reading, keywords,--div--;Vorbereitung, prep, --div--;Ressourcen, cclicense, image, image_source, no_handout, handout, audiorecording, videorecording, hashtags,--div--;Folien, slides, --div--;Prediger und Reihe, preacher, series,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime, syncuid'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, preached, description, --div--;Studienmaterial, reference, notes_header, keypoints, questions, further_reading, keywords,--div--;Vorbereitung, prep, --div--;Ressourcen, cclicense, image, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags,--div--;Folien, slides, --div--;Prediger und Reihe, preacher, series,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime, syncuid'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -259,6 +259,15 @@ $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
                 'allowed' => 'mp3',
                 'disallowed' => '',
                 'size' => 5,
+            ),
+        ),
+        'remote_audio' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_sermon.remote_audio',
+            'config' => array(
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
             ),
         ),
         'videorecording' => array(

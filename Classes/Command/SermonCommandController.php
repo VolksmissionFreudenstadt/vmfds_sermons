@@ -140,6 +140,7 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                         break;
                     case 'audiorecording':
                         $sermon->setRemoteAudio($val);
+			$this->console($val.' || '.$sermon->getRemoteAudio());
                         break;
                     case 'image':
                     case 'handout':
