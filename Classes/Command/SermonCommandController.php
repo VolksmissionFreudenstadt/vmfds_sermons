@@ -91,7 +91,8 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                         unset($rec['sermon']['audiorecording']);
                     }
                     $rec['sermon']['preached'] = $rec['preached']['date'];
-                    $this->console('Sermon "' . $rec['sermon']['title'] . '" ('.strftime('%Y-%m-%d', $rec['sermon']['preached'].') ... ', false);
+		    $date = new \DateTime($rec['sermon']['preached']);
+                    $this->console('Sermon "' . $rec['sermon']['title'] . '" ('.$date->format('Y-m-d').') ... ', false);
                     $sermon = $this->mapSermon($rec['sermon'], $feed, $rec['url']);
                     if (NULL !== $sermon)
                         $this->sermonRepository->add($sermon);
