@@ -85,6 +85,9 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
             if (is_array($data['sermons'])) {
                 $this->console(count($data['sermons']) . ' records received.');
                 foreach ($data['sermons'] as $rec) {
+                    // switch audiorecording to remoteAudio
+                    $data['audiorecording'] = $data['remoteAudio'];
+                    unset($data['remoteAudio']);
                     $rec['sermon']['preached'] = $rec['preached']['date'];
                     $this->console('Analyzing sermon ' . $rec['sermon']['uid'] . '... ', false);
                     $sermon = $this->mapSermon($rec['sermon'], $feed, $rec['url']);
@@ -125,7 +128,6 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         $sermon->setRemoteUrl($remoteUrl);
 
         foreach ($s as $key => $val) {
-            $this->console('Property ' . $key);
             if (trim($val)) {
                 $setter = 'set' . ucfirst($key);
                 // treat special cases first
@@ -138,17 +140,12 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                     case 'preached':
                         $sermon->setPreached(new \DateTime($val));
                         break;
-                    case 'audiorecording':
-                        $sermon->setRemoteAudio($val);
-			$this->console($val.' || '.$sermon->getRemoteAudio());
-                        break;
                     case 'image':
                     case 'handout':
                         $sermon->$setter($this->retrieveFile($val, $key));
                         break;
                     default:
                         if (method_exists($sermon, $setter)) {
-                            echo 'Setting ' . $key . ' to ' . $val . "\r\n";
                             $sermon->$setter($val);
                         }
                 }
