@@ -118,44 +118,65 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         $existing = $this->sermonRepository->checkSyncuid($uid);
         if (!$existing) {
             $sermon = $this->objectManager->get(\TYPO3\VmfdsSermons\Domain\Model\Sermon::class);
-	} else {
-	    $sermon = $this->sermonRepository->findBySyncuid($uid);
-	}
+        } else {
+            $sermon = $this->sermonRepository->findBySyncuid($uid);
+        }
         $sermon->setSyncuid($uid);
         $sermon->setChurch($feed->getChurch());
         $sermon->setChurchUrl($feed->getChurchUrl());
         $sermon->setRemoteUrl($remoteUrl);
+        $changed = false;
 
         foreach ($s as $key => $val) {
             if (trim($val)) {
                 $setter = 'set' . ucfirst($key);
+                $getter = 'get' . ucfirst($key);
                 // treat special cases first
                 switch ($key) {
                     case 'uid':
                         break;
                     case 'pid':
-                        $sermon->setPid($this->settings['storagePid']);
+                        if ($sermon->getPid() !== $this->settings['storagePid']) {
+                            $changed = true;
+                            $sermon->setPid($this->settings['storagePid']);
+                        }
                         break;
                     case 'preached':
-                        if ($val)
-                            $sermon->setPreached(new \DateTime($val));
+                        if ($val) {
+                            $date = new \DateTime($val);
+                            if ($sermon->getPreached()->format('Ymd') !== $date->format('Ymd')) {
+                                $changed = true;
+                                $sermon->setPreached($date);
+                            }
+                        }
                         break;
                     case 'image':
                     case 'handout':
                         if ($val)
-                            $sermon->$setter($this->retrieveFile($val, $key));
+                            if (basename($sermon->$getter()) !== basename($val)) {
+                                $changed = true;
+                                $sermon->$setter($this->retrieveFile($val, $key));
+                            }
                         break;
                     default:
                         if (method_exists($sermon, $setter)) {
-                            if ($val)
-                                $sermon->$setter($val);
+                            if ($val) {
+                                if ($sermon->$getter() !== $val) {
+                                    $changed = true;
+                                    $sermon->$setter($val);
+                                }
+                            }
                         }
                 }
             }
         }
         if ($existing) {
-            $this->sermonRepository->update($sermon);
-            $this->console('Updated');
+            if ($changed) {
+                $this->sermonRepository->update($sermon);
+                $this->console('Updated');
+            } else {
+                $this->console('Skipped');
+            }
         } else {
             $this->sermonRepository->add($sermon);
             $this->console('OK');
