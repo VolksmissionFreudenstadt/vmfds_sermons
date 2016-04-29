@@ -30,16 +30,16 @@ class OrderedListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
      */
     public function render($list, $underlineMode = 'html5', $listStyle = '', $itemStyle = '', $breakAfter = FALSE)
     {
-        $list = str_replace(['<u>', '</u>'], ['[', ']']);
+        $list = str_replace(['<u>', '</u>'], ['[', ']'], $list);
         switch ($underlineMode) {
             case 'blank':
-                $list = str_replace(array('[', ']'), array('<span style="color: white; border-bottom: solid 1px black">', '</span>'), $list);
+                $list = str_replace(['[', ']'], ['<span style="color: white; border-bottom: solid 1px black">', '</span>'], $list);
                 break;
             case 'html5':
-                $list = str_replace(array('[', ']'), array('<span style="text-decoration: underline;">', '</span>'), $list);
+                $list = str_replace(['[', ']'], ['<span style="text-decoration: underline;">', '</span>'], $list);
                 break;
             case 'remove':
-                $list = str_replace(array('[', ']'), array('', ''), $list);
+                $list = str_replace(['[', ']'], ['', ''], $list);
                 break;
         }
         $items = explode("\r", $list);
