@@ -85,6 +85,8 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
             if (is_array($data['sermons'])) {
                 $this->console(count($data['sermons']) . ' records received.');
                 foreach ($data['sermons'] as $rec) {
+                    // forget foreign syncuid
+                    unset ($rec['syncuid']);
                     // switch audiorecording to remoteAudio
                     if ($rec['sermon']['remoteAudio'] == '') {
                         $rec['sermon']['remoteAudio'] = $rec['sermon']['audiorecording'];
@@ -93,7 +95,7 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                     $rec['sermon']['preached'] = $rec['preached']['date'];
                     $date = new \DateTime($rec['sermon']['preached']);
                     $this->console('Sermon "' . $rec['sermon']['title'] . '" (' . $date->format('Y-m-d') . ') ... ', false);
-                    $sermon = $this->mapSermon($rec['sermon'], $feed, $rec['url']);
+                    $sermon = $this->mapSermon($rec['sermon'], $feed, $rec['url'], $date);
                 }
             }
         }
@@ -107,9 +109,10 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
      * @param array $s Associative array with the data
      * @param TYPO3\VmfdsSermons\Domain\Model\Feed $feed Feed object
      * @param \string $remoteUrl Remote url
+     * @param \DateTime $date Sermon date
      * @return TYPO3\VmfdsSermons\Domain\Model\Sermon Sermon object
      */
-    protected function mapSermon($s, $feed, $remoteUrl)
+    protected function mapSermon($s, $feed, $remoteUrl, $date)
     {
         //$uid = $feed->getUid().sprintf('%04d', $s['uid']);
         $uid = parse_url($feed->getUrl(), PHP_URL_HOST) . ':' . $s['uid'];
@@ -127,6 +130,9 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         $sermon->setRemoteUrl($remoteUrl);
         $changed = false;
 
+        $sermon->setPreached($date);
+        $filename = $date->format('Ymd');
+
         foreach ($s as $key => $val) {
             if (trim($val)) {
                 $setter = 'set' . ucfirst($key);
@@ -142,6 +148,7 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                         }
                         break;
                     case 'preached':
+<<<<<<< HEAD
                         if ($val) {
                             $date = new \DateTime($val);
                             $exDate = $sermon->getPreached();
@@ -150,14 +157,24 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                                 $sermon->setPreached($date);
                             }
                         }
+=======
+>>>>>>> 4a87b9a29d9b81b502ba10bbc06eee4cb0354712
                         break;
                     case 'image':
-                    case 'handout':
                         if ($val)
                             if (basename($sermon->$getter()) !== basename($val)) {
                                 $changed = true;
                                 $sermon->$setter($this->retrieveFile($val, $key));
                             }
+                        break;
+                    case 'handout':
+                        if ($val) {
+                            if ($sermon->$getter() == '') {
+                                $this->console($filename . '_Begleitzettel.pdf');
+                                $changed = true;
+                                $sermon->$setter($this->retrieveFile($val, $key, $filename . '_Begleitzettel.pdf'));
+                            }
+                        }
                         break;
                     default:
                         if (method_exists($sermon, $setter)) {
@@ -191,10 +208,10 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         echo $text . ($newline ? "\r\n" : '');
     }
 
-    protected function retrieveFile($url, $key)
+    protected function retrieveFile($url, $key, $target = '')
     {
         if ($url) {
-            $baseName = basename($url);
+            $baseName = $target ? $target : basename($url);
             if ($key == 'handout')
                 $baseName = str_replace('.html', '.pdf', $baseName);
             $target = $this->settings['paths'][$key] . $baseName;
