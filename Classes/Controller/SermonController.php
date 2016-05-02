@@ -279,10 +279,19 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         global $_FILES;
 
+        $fp = fopen('debug-upload.txt', 'w');
+        fwrite($fp, print_r($_FILES, 1));
+        fwrite($fp, print_r($this->settings, 1));
+
         if ($this->request->hasArgument('sermon')) {
             $sermon = $this->sermonRepository->findByUid($this->request->getArgument('sermon'));
         }
+
+        fwrite($fp, print_r($sermon, 1));
+
         $file = $this->request->getArgument('audiorecording');
+        fwrite($fp, print_r($file, 1));
+        fclose($fp);
         if (!$file['error']) {
             $uploadFolder = PATH_site . $this->settings['uploadFolder'] . '/';
             $destFile = $uploadFolder . $file['name'];

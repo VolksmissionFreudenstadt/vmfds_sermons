@@ -3,6 +3,10 @@
     <label for="sermon">Predigt: </label><f:form.select name="sermon" options="{sermons}" optionLabelField="selectString" /><br />
     <div style="height:20px;">&nbsp;</div>
     <label for="audiorecording">Aufnahme: </label><f:form.upload id="audiorecording" name="audiorecording" /><br />
+    <script>
+        var uploadUrl = '{f:uri.action(controller:"Sermon" action: "audioUploadDone")}';
+        var afterUploadUrl = '<f:uri.action controller="Sermon" action="show" pageUid="{settings.sermon.pid.single}" />';
+    </script>
     <div id="fileuploader">Aufnahme hochladen</div>
 
     <f:form.button id="origUploadButton">Hochladen</f:form.button>

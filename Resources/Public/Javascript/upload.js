@@ -1,6 +1,6 @@
 $(document).ready(function() {
             $("#fileuploader").uploadFile({
-                url: '<f:uri.action controller="Sermon" action="audioUploadDone" />',
+                url: uploadUrl,
                 fileName: 'tx_vmfdssermons_sermons[audiorecording]',
                 downloadStr: 'Hochladen',
                 cancelStr: 'Abbrechen',
@@ -26,7 +26,7 @@ $(document).ready(function() {
                     return data;
                 },
                 afterUploadAll: function() {
-                    window.location.href = '<f:uri.action controller="Sermon" action="audioUploadWelcome" />';
+                    window.location.href = afterUploadUrl;
                 }
             });
             $('#audiorecording').hide();
