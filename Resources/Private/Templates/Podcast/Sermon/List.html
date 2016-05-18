@@ -1,0 +1,53 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}{namespace s=TYPO3\VmfdsSermons\ViewHelpers}<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+
+    <channel>
+        <atom:link href="{settings.podcast.url}" rel="self" type="application/rss+xml" />
+        <title>{settings.podcast.title}</title>
+        <description>{settings.podcast.description}</description>
+        <link>{settings.podcast.site_link}</link>
+        <language>{settings.podcast.language}</language>
+        <copyright>Copyright <f:format.date format="Y">now</f:format.date> {settings.podcast.copyright_holder}</copyright>
+        <lastBuildDate><f:format.date format="r">now</f:format.date></lastBuildDate>
+        <pubDate><f:format.date format="r">now</f:format.date></pubDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <webMaster>{settings.podcast.webmaster}</webMaster>
+        <itunes:author>{settings.podcast.author}</itunes:author>
+        <itunes:subtitle>{settings.podcast.summary}</itunes:subtitle>
+        <itunes:summary>{settings.podcast.summary}</itunes:summary>
+
+        <itunes:owner>
+            <itunes:name>{settings.podcast.owner.name}</itunes:name>
+            <itunes:email>{settings.podcast.owner.email}</itunes:email>
+        </itunes:owner>
+
+        <itunes:explicit>No</itunes:explicit>
+
+        <itunes:image href="{settings.podcast.image}"/>
+
+        <itunes:category text="Religion &amp; Spirituality">
+            <itunes:category text="Christianity"/>
+        </itunes:category>
+        <f:for each="{sermons}" as="sermon">
+            <f:if condition="{sermon.audiorecording}">
+                <f:if condition="{v:media.exists(then: '1', else: '0', file: '{sermon.audiorecording}')}">
+                    <item>
+                        <title>{sermon.title}</title>
+                        <f:if condition="{sermon.image}"><itunes:image href="{f:uri.image(src: 'predigten/Titelbilder/{sermon.image}', minWidth: 1400, minHeight: 1400)}"/></f:if>
+                        <link>{f:uri.action(controller: 'Sermon', action: 'show', pageUid: '{settings.pid.sermon.single}', arguments: {sermon: sermon})}</link>
+                        <guid>{f:uri.action(controller: 'Sermon', action: 'show', pageUid: '{settings.pid.sermon.single}', arguments: {sermon: sermon})}</guid>
+                        <description>{sermon.description -> f:format.stripTags() -> f:format.htmlentitiesDecode()}</description>
+                        <enclosure type="audio/mpeg" url="{v:site.url()}predigten/Aufnahmen/{sermon.audiorecording -> v:format.replace(substring: 'predigten/Aufnahmen/', replacement: '') -> v:format.url.encode()}" length="{v:media.size(path: '{sermon.audiorecording}')}" />
+                        <category>Podcasts</category>
+                        <pubDate>{sermon.preached -> f:format.date(format: 'r')}</pubDate>
+                        <itunes:author><f:for each="{sermon.preacher}" as="preacher" iteration="i">{preacher.name}</f:for></itunes:author>
+                        <itunes:explicit>No</itunes:explicit>
+                        <f:if condition="{sermon.subtitle}"><itunes:subtitle>{sermon.subtitle}</itunes:subtitle></f:if>
+                        <itunes:summary>{sermon.description -> f:format.stripTags() -> f:format.htmlentitiesDecode()}</itunes:summary>
+                    </item>                
+                </f:if>
+            </f:if>
+        </f:for>
+
+    </channel>
+</rss>

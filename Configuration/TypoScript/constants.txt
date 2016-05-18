@@ -30,6 +30,44 @@ plugin.tx_vmfdssermons {
 
 		 # cat=plugin.tx_vmfdssermons/links; type=int+; label=Page id of the preacher detail page
 		preacherDetailsPID =
+
+            podcast {
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast title
+		title =
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast url
+		url =
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast description
+		description =
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Link to main site
+		site_link =
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast language
+		language = de-de
+                
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Copyright holder
+		copyright_holder = 
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Webmaster
+		webmaster = 
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast author
+		author = 
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast summary
+		summary = 
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast owner (name)
+		owner.name = 
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast owner (email address)
+		owner.email = 
+
+		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast image
+		image = 
+            }
 	}
 
 }

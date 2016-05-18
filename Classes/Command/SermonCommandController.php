@@ -86,7 +86,7 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                 $this->console(count($data['sermons']) . ' records received.');
                 foreach ($data['sermons'] as $rec) {
                     // forget foreign syncuid
-                    unset ($rec['syncuid']);
+                    unset($rec['syncuid']);
                     // switch audiorecording to remoteAudio
                     if ($rec['sermon']['remoteAudio'] == '') {
                         $rec['sermon']['remoteAudio'] = $rec['sermon']['audiorecording'];
@@ -148,17 +148,6 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                         }
                         break;
                     case 'preached':
-<<<<<<< HEAD
-                        if ($val) {
-                            $date = new \DateTime($val);
-                            $exDate = $sermon->getPreached();
-                            if ((!$exDate) || ($exDate->format('Ymd') !== $date->format('Ymd'))) {
-                                $changed = true;
-                                $sermon->setPreached($date);
-                            }
-                        }
-=======
->>>>>>> 4a87b9a29d9b81b502ba10bbc06eee4cb0354712
                         break;
                     case 'image':
                         if ($val)
