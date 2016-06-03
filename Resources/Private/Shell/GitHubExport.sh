@@ -33,7 +33,7 @@ cd ..
 
 echo Deleting local repository
 echo rm -Rf $1
-#rm -Rf $1
+rm -Rf $1
 
 echo Done. 
 
