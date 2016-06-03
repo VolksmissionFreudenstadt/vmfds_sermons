@@ -34,6 +34,14 @@ plugin.tx_vmfdssermons {
                 owner.email = {$plugin.tx_vmfdssermons.settings.podcast.owner.email}
                 image = {$plugin.tx_vmfdssermons.settings.podcast.image}
             }
+            github {
+                user = {$plugin.tx_vmfdssermons.settings.github.user}
+                org = {$plugin.tx_vmfdssermons.settings.github.org}
+                user = {$plugin.tx_vmfdssermons.settings.github.user}
+                token = {$plugin.tx_vmfdssermons.settings.github.token}
+                containerPrefix = {$plugin.tx_vmfdssermons.settings.github.containerPrefix}
+                descriptionPrefix = {$plugin.tx_vmfdssermons.settings.github.descriptionPrefix}
+            }
 	}
 
 }

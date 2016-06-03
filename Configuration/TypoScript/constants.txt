@@ -1,3 +1,6 @@
+# customsubcategory=github=GitHub export
+# customsubcategory=podcast=Podcast settings
+
 plugin.tx_vmfdssermons {
 	view {
 		# cat=plugin.tx_vmfdssermons/file; type=string; label=Path to template root (FE)
@@ -67,6 +70,30 @@ plugin.tx_vmfdssermons {
 
 		 # cat=plugin.tx_vmfdssermons/podcast; type=string; label=Podcast image
 		image = 
+            }
+
+            # customcategory=github=GitHub export
+
+            github {
+                 # cat=plugin.tx_vmfdssermons/github; type=string; label=User on GitHub
+		user = 
+
+
+                 # cat=plugin.tx_vmfdssermons/github; type=string; label=Organization on GitHub
+		org = 
+
+                 # cat=plugin.tx_vmfdssermons/github; type=string; label=User name for GitHub
+		user = 
+
+                 # cat=plugin.tx_vmfdssermons/github; type=string; label=Prefix for repository name
+                containerPrefix = 
+
+                 # cat=plugin.tx_vmfdssermons/github; type=string; label=Access token for GitHub
+		token = 
+
+                 # cat=plugin.tx_vmfdssermons/github; type=string; label=Description prefix (title will be added) for GitHub
+		descriptionPrefix = 
+
             }
 	}
 

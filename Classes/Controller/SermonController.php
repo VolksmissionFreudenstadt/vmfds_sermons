@@ -505,6 +505,62 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         return $message->isSent();
     }
 
+    function gitHubExportAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
+    {
+        $gitHubConfig = $this->settings['github'];
+
+        // get sermon page
+        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+        $uriBuilder = $objectManager->get('TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder');
+        $uriBuilder->initializeObject();
+        $uri = $uriBuilder->reset()->setTargetPageUid($this->settings['pid']['sermon']['single'])->setCreateAbsoluteUri(true)->uriFor('show', ['sermon' => $sermon], 'Sermon', 'VmfdsSermons', 'Sermons');
+
+        // get container title and path:
+        $containerTitle = ($gitHubConfig['containerPrefix'] ? $gitHubConfig['containerPrefix'] : '')
+                . \TYPO3\VmfdsSermons\Utility\SyncUtility::convertToSafeString($sermon->getTitle());
+        $containerPath = 'typo3temp/vmfds_sermons/github/'
+                . $containerTitle;
+        $this->view->assign('containerPath', $containerPath);
+
+        // init GitHub framework
+        require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('vmfds_sermons') . 'vendor/autoload.php');
+        $client = new \Github\Client();
+        $client->authenticate($gitHubConfig['token'], '', \Github\Client::AUTH_HTTP_TOKEN);
+
+        // check if repository exists already
+        $repo = $gitHubConfig['org'] . '/' . $containerTitle;
+        $repositories = $client->api('organizations')->repositories($gitHubConfig['org']);
+        $found = false;
+        foreach ($repositories as $repository) {
+            if ($repository['name'] == $containerTitle) {
+                $found = true;
+                continue;
+            }
+        }
+
+        if (!$found) {
+            // must create new repo
+            $client->api('repo')->create($containerTitle, ($gitHubConfig['descriptionPrefix'] ? $gitHubConfig['descriptionPrefix'] . ' ' : '') . $sermon->getTitle(), $uri, true, $gitHubConfig['org'], true, true, true);
+        }
+
+        // create local temp repository
+        $this->view->assign('sermon', $sermon);
+        $output = $this->view->render();
+
+
+        // git
+        $githubLog = PATH_site . 'typo3temp/vmfds_sermons/github/github.log';
+        $githubCmd = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('vmfds_sermons') . 'Resources/Private/Shell/GitHubExport.sh '
+                . PATH_site . $containerPath . ' ' . $gitHubConfig['org'] . ' ' . $containerTitle . ' potofcoffee ' . $gitHubConfig['token'] . ' >> ' . $githubLog . ' &>> ' . PATH_site . 'typo3temp/vmfds_sermons/github/github.error.log';
+        $fp = fopen($githubLog, 'a');
+        fwrite($fp, '===> ' . $githubCmd);
+        fclose($fp);
+        exec($githubCmd, $o, $r);
+
+        Header('Location: https://github.com/' . $repo);
+        return '';
+    }
+
 }
 
 ?>

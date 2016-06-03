@@ -1,0 +1,79 @@
+{namespace vms=TYPO3\VmfdsSermons\ViewHelpers}
+<vms:export.container path="{containerPath}" as="container">
+    <!-- create README.md -->
+    <vms:export.createFile container="{container}" file="README.md">
+#{sermon.title}<f:if condition="{sermon.subtitle}">
+##{sermon.subtitle}</f:if>
+
+Gepredigt am {sermon.preached -> f:format.date(format: 'd.m.Y')} von <f:for each="{sermon.preacher}" as="preacher">{preacher.name}</f:for>.
+<f:if condition="{sermon.series}">Aus der Reihe <f:for each="{sermon.series}" as="series">"{series.title}".</f:for></f:if>
+Eine Predigt aus der [Volksmission Freudenstadt](http://www.volksmission-freudenstadt.de)
+
+<f:if condition="{sermon.image}">![{sermon.title}](images/{sermon.image})Bild: {sermon.imageSource}</f:if>
+
+###Beschreibung
+
+{sermon.description}
+
+###Bibelstelle:
+{sermon.reference}
+
+<f:if condition="{sermon.keypoints}"><f:if condition="{sermon.notesHeader}"><f:then>###{sermon.notesHeader}</f:then><f:else>###Hauptpunkt der Predigt</f:else></f:if>
+{sermon.keypoints}</f:if>
+
+<f:if condition="{sermon.questions}">###Fragen für Kleingruppen
+{sermon.questions}</f:if>
+
+<f:if condition="{sermon.furtherReading}">###Material zur Vertiefung
+{sermon.furtherReading}</f:if>
+
+###Lizenz
+<f:if condition="{sermon.cclicense}">Die Predigt "{sermon.title}" von <f:for each="{sermon.preacher}" as="preacher"> {preacher.name}</f:for> und alle dazu gehörigen Ressourcen (Predigtzettel, Aufnahme) sind lizenziert unter einer Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz. 
+Verwendete Bilder stehen eventuell unter eigenen Lizenzbedingungen. Ausdrücklich von der Creative Commons-Lizenz ausgenommen sind die Logos und Namen der Volksmission Freudenstadt und ihrer Arbeitsbereiche.</f:if>
+
+###Bildnachweise
+<f:if condition="{sermon.imageSource}"> * {sermon.image}: {sermon.imageSource}</f:if><f:for each="{sermon.series}" as="series"><f:if condition="{series.imageSource}">
+ * {series.image}: {series.imageSource}</f:if></f:for><f:for each="{sermon.slides}" as="slide"><f:if condition="{slide.imageSource}">
+ * {slide.image.originalResource.originalFile.name}: {slide.imageSource}</f:if></f:for>
+
+###Links
+ * [Predigtseite]({f:uri.action(pageUid: '{settings.pid.sermon.single}', controller: 'Sermon', action: 'show', arguments: '{sermon: sermon}')})
+ * [Vorschauseite]({f:uri.action(pageUid: '{settings.pid.sermon.preview}', controller: 'Sermon', action: 'show', arguments: '{sermon_preview: sermon}')})
+
+
+    </vms:export.createFile>
+    <f:if condition="{sermon.cclicense}">
+        <vms:export.getFile container="{container}" file="LICENSE" url="http://creativecommons.org/licenses/by-sa/4.0/legalcode.txt" />
+    </f:if>
+    
+<!-- IMAGES -->
+<vms:export.copyFile container="{container}" path="images/" source="predigten/Titelbilder/{sermon.image}" />
+<f:for each="{sermon.preacher}" as="preacher">
+    <f:if condition="{preacher.image}">
+        <vms:export.copyFile container="{container}" path="images/preacher/" source="uploads/tx_vmfdssermons/{preacher.image}" target="{preacher.name -> vms:format.urlSafe()}" />
+    </f:if>
+</f:for>
+<f:for each="{sermon.series}" as="series">
+    <f:if condition="{series.image}">
+        <vms:export.copyFile container="{container}" path="images/series/" source="predigten/Titelbilder/{series.image}"  />
+    </f:if>
+</f:for>
+<f:for each="{sermon.slides}" as="slide">
+    <f:if condition="{slide.image}">
+        <vms:export.copyFile container="{container}" path="images/slides/" source="{slide.image.originalResource.publicUrl}"  />
+    </f:if>    
+</f:for>
+
+
+<!-- AUDIO -->
+<vms:export.copyFile container="{container}" path="audio/" source="{sermon.audiorecording}" />
+
+<!-- DOCUMENTS -->
+<vms:export.getFile container="{container}" path="documents/" url="{f:uri.action(pageUid: '{settings.pid.sermon.single}', controller: 'Sermon', action: 'show', arguments: '{sermon: sermon}', pageType: 800)}" />
+<vms:export.getFile container="{container}" path="documents/" url="{f:uri.action(pageUid: '{settings.pid.sermon.single}', controller: 'Sermon', action: 'show', arguments: '{sermon: sermon}', pageType: 801)}" />
+<vms:export.getFile container="{container}" path="documents/" file="lernkarten.pdf" url="{f:uri.action(pageUid: '{settings.pid.sermon.single}', controller: 'Sermon', action: 'show', arguments: '{sermon: sermon}', pageType: 810)}" />
+<vms:export.getFile container="{container}" path="documents/" url="{f:uri.action(pageUid: '{settings.pid.sermon.single}', controller: 'Sermon', action: 'show', arguments: '{sermon: sermon}', pageType: 811)}" />
+<vms:export.getFile container="{container}" path="documents/" url="{f:uri.action(pageUid: '{settings.pid.sermon.single}', controller: 'Sermon', action: 'show', arguments: '{sermon: sermon}', pageType: 812)}" />
+<vms:export.getFile container="{container}" path="documents/" file="{sermon.title -> vms:format.urlSafe()}.ppt" url="{f:uri.action(pageUid: '{settings.pid.sermon.single}', controller: 'Sermon', action: 'presentation', arguments: '{sermon: sermon}', pageType: 814)}" />
+
+</vms:export.container>

@@ -83,9 +83,13 @@ class Presentation extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView
         $fileName = ($settings['forceFileName'] ? $settings['forceFileName'] : '/typo3temp/predigt.pptx');
         $oWriterPPTX = IOFactory::createWriter($ppt, 'PowerPoint2007');
         $oWriterPPTX->save(PATH_site . $fileName);
-        Header('Location: ' . $fileName);
-
-        return '';
+        if (!$settings['noRedirect']) {
+            Header('Location: ' . $fileName);
+            return '';
+        } else {
+            Header('Content-Type: application/vnd.openxmlformats-officedocument.presentationml.presentation');
+            return readfile(PATH_site . $fileName);
+        }
     }
 
 }
