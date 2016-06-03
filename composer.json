@@ -15,7 +15,8 @@
           ],
 	"require": {
             "phpoffice/phppresentation": "dev-master",
-            "knplabs/github-api": "dev-master"
+            "knplabs/github-api": "dev-master",
+            "league/html-to-markdown": "dev-master"
 	},
 	"suggest": {
 

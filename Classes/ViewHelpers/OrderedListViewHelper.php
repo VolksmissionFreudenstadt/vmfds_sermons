@@ -28,8 +28,10 @@ class OrderedListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
      * @return string as ordered list
      * @author Christoph Fischer <christoph.fischer@volksmission.de>
      */
-    public function render($list, $underlineMode = 'html5', $listStyle = '', $itemStyle = '', $breakAfter = FALSE)
+    public function render($list = NULL, $underlineMode = 'html5', $listStyle = '', $itemStyle = '', $breakAfter = FALSE)
     {
+        if (!$list)
+            $list = $this->renderChildren();
         $list = str_replace(['<u>', '</u>'], ['[', ']'], $list);
         switch ($underlineMode) {
             case 'blank':

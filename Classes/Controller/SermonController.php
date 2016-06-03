@@ -547,7 +547,6 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         $this->view->assign('sermon', $sermon);
         $output = $this->view->render();
 
-
         // git
         $githubLog = PATH_site . 'typo3temp/vmfds_sermons/github/github.log';
         $githubCmd = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('vmfds_sermons') . 'Resources/Private/Shell/GitHubExport.sh '

@@ -7,25 +7,26 @@
 
 Gepredigt am {sermon.preached -> f:format.date(format: 'd.m.Y')} von <f:for each="{sermon.preacher}" as="preacher">{preacher.name}</f:for>.
 <f:if condition="{sermon.series}">Aus der Reihe <f:for each="{sermon.series}" as="series">"{series.title}".</f:for></f:if>
+
 Eine Predigt aus der [Volksmission Freudenstadt](http://www.volksmission-freudenstadt.de)
 
 <f:if condition="{sermon.image}">![{sermon.title}](images/{sermon.image})Bild: {sermon.imageSource}</f:if>
 
 ###Beschreibung
 
-{sermon.description}
+<vms:format.markdown>{sermon.description}</vms:format.markdown>
 
 ###Bibelstelle:
 {sermon.reference}
 
 <f:if condition="{sermon.keypoints}"><f:if condition="{sermon.notesHeader}"><f:then>###{sermon.notesHeader}</f:then><f:else>###Hauptpunkt der Predigt</f:else></f:if>
-{sermon.keypoints}</f:if>
+<vms:format.markdown><vms:orderedList list="{sermon.keypoints}" /></vms:format.markdown></f:if>
 
 <f:if condition="{sermon.questions}">###Fragen für Kleingruppen
-{sermon.questions}</f:if>
+<vms:format.markdown><vms:orderedList list="{sermon.questions}" /></vms:format.markdown></f:if>
 
 <f:if condition="{sermon.furtherReading}">###Material zur Vertiefung
-{sermon.furtherReading}</f:if>
+<vms:format.markdown>{sermon.furtherReading}</vms:format.markdown></f:if>
 
 ###Lizenz
 <f:if condition="{sermon.cclicense}">Die Predigt "{sermon.title}" von <f:for each="{sermon.preacher}" as="preacher"> {preacher.name}</f:for> und alle dazu gehörigen Ressourcen (Predigtzettel, Aufnahme) sind lizenziert unter einer Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz. 
