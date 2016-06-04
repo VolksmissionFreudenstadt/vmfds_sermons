@@ -2,37 +2,29 @@
 
 namespace TYPO3\VmfdsSermons\Controller;
 
-/* * *************************************************************
- *  Copyright notice
- *
- *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
-
-/**
- *
- *
+/*
  * @package vmfds_sermons
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+ * @site http://open.vmfds.de
+ * @author Christoph Fischer <chris@toph.de>
+ * @date 2016-06-04
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
 class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
@@ -47,7 +39,6 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * preacherRepository
-     *
      * @var \TYPO3\VmfdsSermons\Domain\Repository\PreacherRepository
      * @inject
      */
@@ -55,28 +46,26 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * sermonRepository
-     *
      * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
      * @inject
      */
     protected $sermonRepository;
 
     /**
-     * User Repository
-     *
+     * frontentUserRepository
      * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
      * @inject
      */
     protected $userRepository;
 
     /**
+     * Map view format to object
      * @var array
      */
     protected $viewFormatToObjectNameMap = array('json' => 'TYPO3\CMS\Extbase\Mvc\View\JsonView');
 
     /**
      * inject the SermonRepository object
-     *
      * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
      * @return void
      */
@@ -86,27 +75,15 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     }
 
     /**
+     * objectManager
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
      * @inject
      */
     protected $objectManager;
 
     /**
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
-     */
-    //public function injectObjectManager(\TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager) {
-    //    $this->objectManager = $objectManager;
-    //}
-
-
-
-    public function initializeObject()
-    {
-
-    }
-
-    /**
      * initialize action
+     * @return void
      */
     public function initializeAction()
     {
@@ -117,7 +94,7 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * action list
-     *
+     * List all preachers
      * @return void
      */
     public function listAction()
@@ -128,7 +105,7 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * action show
-     *
+     * Show details for a single preacher
      * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
      * @return void
      */
@@ -149,7 +126,7 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * action edit
-     *
+     * Show the edit form for a single preacher
      * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
      * @return void
      */
@@ -160,7 +137,7 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * action update
-     *
+     * Update a preacher record
      * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
      * @return void
      */
@@ -180,6 +157,12 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $this->redirect('admin');
     }
 
+    /**
+     * action feed
+     * Show a synchronizable feed of all sermons for a single preacher
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+     * @return string JSON-encoded data
+     */
     public function feedAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher = NULL)
     {
 
@@ -204,9 +187,8 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 
     /**
      * action admin
-     *
      * Show the admin portal for the preacher
-     *
+     * Note: The preacher is determined by the currently logged-in user
      * @return void
      */
     public function adminAction()
@@ -224,5 +206,3 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
     }
 
 }
-
-?>

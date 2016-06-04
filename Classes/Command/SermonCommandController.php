@@ -1,53 +1,77 @@
 <?php
 
+/*
+ * @package vmfds_sermons
+ * @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+ * @site http://open.vmfds.de
+ * @author Christoph Fischer <chris@toph.de>
+ * @date 2016-06-04
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 namespace TYPO3\VmfdsSermons\Command;
 
 class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandController
 {
 
     /**
+     * configurationManager
      * @var TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
      * @inject
      */
     protected $configurationManager;
 
     /**
-     *
+     * objectManager
      * @var TYPO3\CMS\Extbase\Object\ObjectManager
      * @inject
      */
     protected $objectManager;
 
     /**
-     *
+     * sermonRepository
      * @var TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
      * @inject
      */
     protected $sermonRepository;
 
     /**
-     *
+     * feedRepository
      * @var TYPO3\VmfdsSermons\Domain\Repository\FeedRepository
      * @inject
      */
     protected $feedRepository;
 
     /**
-     *
+     * dataMapper
      * @var TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper
      * @inject
      */
     protected $dataMapper;
 
     /**
-     * The settings.
+     * Settings for this context
      * @var array
      */
     protected $settings = array();
 
     /**
      * Initialize the controller.
-     *
+     * @return void
      */
     protected function initializeCommand()
     {
@@ -61,6 +85,7 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
     }
 
     /**
+     * command import
      * Updates all existing sermon feeds, importing new sermons as necessary
      *
      * This will retrieve each feed url, check which sermons are already present locally
@@ -192,11 +217,24 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         return $sermon;
     }
 
+    /**
+     * Write a text to the console
+     * @param string $text Text
+     * @param bool $newline Add line feed?
+     * @return void
+     */
     protected function console($text, $newline = true)
     {
         echo $text . ($newline ? "\r\n" : '');
     }
 
+    /**
+     * Retrieve a file from a remote url
+     * @param string $url Url
+     * @param string $key The field this file is used for
+     * @param string $target Optional new file name
+     * @return string File name
+     */
     protected function retrieveFile($url, $key, $target = '')
     {
         if ($url) {

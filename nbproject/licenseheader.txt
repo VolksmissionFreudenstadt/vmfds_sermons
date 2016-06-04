@@ -1,0 +1,27 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}@package vmfds_sermons
+${licensePrefix}@copyright Copyright (c) 2012-${date?date?string("yyyy")} Volksmission Freudenstadt
+${licensePrefix}@license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+${licensePrefix}@site http://open.vmfds.de
+${licensePrefix}@file ${nameAndExt}
+${licensePrefix}@author ${user}
+${licensePrefix}@date ${date?date?string("yyyy-MM-dd")}
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}This program is free software: you can redistribute it and/or modify
+${licensePrefix}it under the terms of the GNU General Public License as published by
+${licensePrefix}the Free Software Foundation, either version 3 of the License, or
+${licensePrefix}(at your option) any later version.
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}This program is distributed in the hope that it will be useful,
+${licensePrefix}but WITHOUT ANY WARRANTY; without even the implied warranty of
+${licensePrefix}MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+${licensePrefix}GNU General Public License for more details.
+${licensePrefix?replace(" +$", "", "r")}
+${licensePrefix}You should have received a copy of the GNU General Public License
+${licensePrefix}along with this program.  If not, see <http://www.gnu.org/licenses/>.
+${licensePrefix}
+<#if licenseLast??>
+${licenseLast}
+</#if>

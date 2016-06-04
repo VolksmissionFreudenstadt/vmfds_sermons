@@ -1,45 +1,36 @@
 <?php
 
-namespace TYPO3\VmfdsSermons\Controller;
-
-/* * *************************************************************
- *  Copyright notice
- *
- *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
-
-/**
- *
- *
+/*
  * @package vmfds_sermons
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+ * @site http://open.vmfds.de
+ * @author Christoph Fischer <chris@toph.de>
+ * @date 2016-06-04
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+namespace TYPO3\VmfdsSermons\Controller;
+
 class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
     /**
-     * !!! This property behavior has changed in [see], was formerly named $supportedFormats
+     * Supported media types
      * @var array
-     * @see http://git.typo3.org/FLOW3/Packages/TYPO3.FLOW3.git?a=commit;h=03b6d85916e46ed8b2e99bc549d7248957dca935
      */
     protected $supportedMediaTypes = array('text/html', 'application/json');
 
@@ -51,13 +42,13 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     protected $uploadUtility;
 
     /**
+     * Map view format to object name
      * @var array
      */
     protected $viewFormatToObjectNameMap = array('json' => 'TYPO3\CMS\Extbase\Mvc\View\JsonView');
 
     /**
      * sermonRepository
-     *
      * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
      * @inject
      */
@@ -65,7 +56,6 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * seriesRepository
-     *
      * @var \TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository
      * @inject
      */
@@ -73,7 +63,6 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * preacherRepository
-     *
      * @var \TYPO3\VmfdsSermons\Domain\Repository\PreacherRepository
      * @inject
      */
@@ -81,7 +70,6 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * inject the SeriesRepository object
-     *
      * @param \TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository $seriesRepository
      * @return void
      */
@@ -102,7 +90,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action list
-     *
+     * Display a list of sermons
      * @return void
      */
     public function listAction()
@@ -119,7 +107,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action show
-     *
+     * Show details for a single sermon
      * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
      * @return void
      */
@@ -203,7 +191,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action byLatestSeries
-     *
+     * List sermons from latest series
      * @return void
      */
     public function byLatestSeriesAction()
@@ -221,9 +209,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action previewNext
-     *
-     * Display a single sermon: the next one which is on preview
-     *
+     * Display the next sermon on preview
      * @return void
      */
     public function previewNextAction()
@@ -238,9 +224,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action showLatest
-     *
      * Display a single sermon: the latest one
-     *
      * @return void
      */
     public function showLatestAction()
@@ -252,9 +236,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action audioUploadWelcome
-     *
      * Display a form for sermon audio upload
-     *
      * @return void
      */
     public function audioUploadWelcomeAction()
@@ -269,9 +251,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action audioUploadDone
-     *
-     * Handle audio upload
-     *
+     * Handle uploaded audio
      * @return void
      */
     public function audioUploadDoneAction()
@@ -331,7 +311,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action ajax
-     *
+     * Return sermon details for AJAX
      * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
      * @return void
      */
@@ -342,7 +322,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action byDate
-     *
+     * Display a single sermon by date
      * @return void
      */
     public function byDateAction()
@@ -370,6 +350,15 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         }
     }
 
+    /**
+     * action presentation
+     * Create a powerpoint presentation for a single sermon
+     *
+     * Note that this action outputs to a PHP-based view
+     * @see Classes/View/Sermon/Presentation.php
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     */
     function presentationAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
     {
         $this->view->assign('sermon', $sermon);
@@ -377,7 +366,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action edit
-     *
+     * Show the edit form for a sermon
      * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
      * @return void
      */
@@ -400,7 +389,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action update
-     *
+     * Update a sermon record
      * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
      * @return void
      */
@@ -469,6 +458,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     /**
+     * Send an E-mail created by rendering a stand-alone Fluid view
      * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
      * @param array $sender sender of the email in the format array('sender@domain.tld' => 'Sender Name')
      * @param string $subject subject of the email
@@ -505,6 +495,23 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         return $message->isSent();
     }
 
+    /**
+     * action gitHubExport
+     * Export a single sermon to GitHub
+     *
+     * If a repository doesn't already exist, it will be created.
+     * Right now, an existing repository will be overwritten.
+     * @todo Allow updating existing repository
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     *
+     * Note: The view for this action is rendered internally and never displayed.
+     * The action will forward the user to GitHub at the end and will return an
+     * empty string to the TYPO3 rendering engine.
+     * Note: Forwarding might take place before the commits are completely pushed.
+     * If you see an empty repository, wait a few seconds and refresh.
+     * @return string
+     */
     function gitHubExportAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
     {
         $gitHubConfig = $this->settings['github'];
@@ -561,5 +568,3 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
 }
-
-?>
