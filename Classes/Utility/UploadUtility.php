@@ -63,7 +63,6 @@ class UploadUtility
         $newFile = $basicFileFunctions->getUniqueName(
                 $imageField['name'], \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(self::getUploadFolderFromTca($table, $field))
         );
-        #\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($newFile,'$newFile in uploadFile()');
         if (\TYPO3\CMS\Core\Utility\GeneralUtility::upload_copy_move($imageField['tmp_name'], $newFile)) {
             $fileInfo = pathinfo($newFile);
             return $fileInfo['basename'];

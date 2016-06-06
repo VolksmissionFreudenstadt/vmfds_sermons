@@ -40,7 +40,6 @@ class Mp3Utility
 
     public static function formatTime($duration) //as hh:mm:ss
     {
-        //return sprintf("%d:%02d", $duration/60, $duration%60);
         $hours = floor($duration / 3600);
         $minutes = floor(($duration - ($hours * 3600)) / 60);
         $seconds = $duration - ($hours * 3600) - ($minutes * 60);
@@ -173,16 +172,8 @@ class Mp3Utility
         $info = array();
         $info['Version'] = $version; //MPEGVersion
         $info['Layer'] = $layer;
-        //$info['Protection Bit'] = $protection_bit; //0=> protected by 2 byte CRC, 1=>not protected
         $info['Bitrate'] = $bitrate;
         $info['Sampling Rate'] = $sample_rate;
-        //$info['Padding Bit'] = $padding_bit;
-        //$info['Private Bit'] = $private_bit;
-        //$info['Channel Mode'] = $channel_mode_bits;
-        //$info['Mode Extension'] = $mode_extension_bits;
-        //$info['Copyright'] = $copyright_bit;
-        //$info['Original'] = $original_bit;
-        //$info['Emphasis'] = $emphasis;
         $info['Framesize'] = self::framesize($layer, $bitrate, $sample_rate, $padding_bit);
         $info['Samples'] = $samples[$simple_version][$layer];
         return $info;

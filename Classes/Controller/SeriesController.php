@@ -77,9 +77,6 @@ class SeriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         if (is_null($series))
             $this->forward('list');
 
-        // work around buggy DI:
-        //if (!is_object($this->sermonRepository))
-        //$this->sermonRepository = $this->objectManager->create('\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository');
         // related sermons
         $sermons = $this->sermonRepository->findBySeries($series);
 

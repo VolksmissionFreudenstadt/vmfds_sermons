@@ -139,7 +139,6 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
      */
     protected function mapSermon($s, $feed, $remoteUrl, $date)
     {
-        //$uid = $feed->getUid().sprintf('%04d', $s['uid']);
         $uid = parse_url($feed->getUrl(), PHP_URL_HOST) . ':' . $s['uid'];
 
         // check if we've already got that uid:

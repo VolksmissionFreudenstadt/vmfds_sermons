@@ -114,9 +114,6 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         if (is_null($preacher))
             $this->forward('list');
 
-        // work around buggy DI:
-        //if (!is_object($this->sermonRepository))
-        //$this->sermonRepository = $this->objectManager->create('\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository');
         // related sermons
         $sermons = $this->sermonRepository->findByPreacher($preacher);
 
