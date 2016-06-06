@@ -40,7 +40,6 @@ class Labels
      */
     public function getSlideLabel(array &$params)
     {
-        $title = '<b>' . $params['row']['title'] . '</b> [' . $params['row']['sorting'] . ']';
         if (!empty($params['row']['image'])) {
             $params['row']['image'] = $this->splitFileName($params['row']['image']);
             try {

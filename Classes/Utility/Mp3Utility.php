@@ -50,7 +50,7 @@ class Mp3Utility
     //Read first mp3 frame only...  use for CBR constant bit rate MP3s
     public function getDurationEstimate()
     {
-        return $this->getDuration($use_cbr_estimate = true);
+        return $this->getDuration(true);
     }
 
     //Read entire file, frame by frame... ie: Variable Bit Rate (VBR)

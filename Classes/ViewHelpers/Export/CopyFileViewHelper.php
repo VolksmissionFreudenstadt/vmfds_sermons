@@ -41,7 +41,7 @@ class CopyFileViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
             $target = pathinfo($source, PATHINFO_BASENAME);
         if (pathinfo($target, PATHINFO_EXTENSION) == '')
             $target .= '.' . pathinfo($source, PATHINFO_EXTENSION);
-        $x = $this->createFilePath($container, $path . $target);
+        $this->createFilePath($container, $path . $target);
         copy(PATH_site . $source, $container['fullPath'] . $path . $target);
         return '<h2>' . $path . $target . '</h2>Copied from ' . PATH_site . $source . '<hr />';
     }

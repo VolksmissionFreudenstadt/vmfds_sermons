@@ -139,7 +139,6 @@ class YouVersionViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractView
         if (is_null($reference))
             $reference = $this->renderChildren();
 
-        $o = array();
         $refs = explode(';', $reference);
         if (is_array($refs))
             $ref = $refs[0];
