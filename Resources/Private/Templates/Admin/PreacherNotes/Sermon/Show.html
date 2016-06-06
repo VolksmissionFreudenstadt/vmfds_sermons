@@ -3,6 +3,28 @@
 {namespace kool=VMFDS\VmfdsKool\ViewHelpers}
 {namespace qr=B263\Qrcode\ViewHelpers}
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<!--
+@package vmfds_sermons
+@copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+@license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+@site http://open.vmfds.de
+@author Christoph Fischer <chris@toph.de>
+@date 2016-06-06
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
 <vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Prediger.pdf" css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4-L" orientation="L" defaultfontsize="9" defaultfont="opensans" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" footermargin="0" headermargin="0">
     <div style="width: 9cm; margin: 0; padding: 4mm; float: left; ">
         <f:for each="{sermon.slides}" as="slide" iteration="i">
