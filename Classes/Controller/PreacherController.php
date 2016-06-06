@@ -172,7 +172,7 @@ class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
         $sermons = $this->sermonRepository->findByPreacher($preacher, null, true)->toArray();
 
         // make this an array:
-        $s = array();
+        $data = [];
         foreach ($sermons as $sermon) {
             $data[] = [
                 'sermon' => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject($sermon, $this->settings['prefix']['sermon']),
