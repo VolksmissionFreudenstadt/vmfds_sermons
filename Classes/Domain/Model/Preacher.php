@@ -499,5 +499,3 @@ class Preacher extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
 }
-
-?>

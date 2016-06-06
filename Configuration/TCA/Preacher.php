@@ -316,4 +316,4 @@ $TCA['tx_vmfdssermons_domain_model_preacher'] = array(
         ),
     ),
 );
-?>
+

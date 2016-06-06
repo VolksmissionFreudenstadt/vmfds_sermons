@@ -208,4 +208,4 @@ $TCA['tx_vmfdssermons_domain_model_slide'] = array(
         ),
     ),
 );
-?>
+

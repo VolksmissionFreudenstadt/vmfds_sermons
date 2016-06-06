@@ -206,4 +206,4 @@ $TCA['tx_vmfdssermons_domain_model_series'] = array(
         ),
     ),
 );
-?>
+

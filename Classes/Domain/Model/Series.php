@@ -226,5 +226,3 @@ class Series extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
 }
-
-?>
