@@ -257,8 +257,6 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     public function audioUploadDoneAction()
     {
 
-        global $_FILES;
-
         $fp = fopen('debug-upload.txt', 'w');
         fwrite($fp, print_r($_FILES, 1));
         fwrite($fp, print_r($this->settings, 1));
