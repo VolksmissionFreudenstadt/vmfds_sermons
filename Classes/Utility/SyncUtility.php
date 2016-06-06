@@ -28,6 +28,12 @@ namespace TYPO3\VmfdsSermons\Utility;
 class SyncUtility
 {
 
+    /**
+     * Convert a title to a safe url part
+     * @param string $string Title string
+     * @param string $spaceCharacter Replace spaces with this character
+     * @return string Converted string
+     */
     public static function convertToSafeString($string, $spaceCharacter = '-')
     {
         $processedTitle = $GLOBALS['TSFE']->csConvObj->conv_case('utf-8', $string, 'toLower');
@@ -41,6 +47,13 @@ class SyncUtility
         return $processedTitle;
     }
 
+    /**
+     * Recursively build object(s) from data array
+     * @param array $o Object data
+     * @param array $prefix Configuration
+     * @param bool $traverse Treat highest level as traversable array of objects
+     * @return object
+     */
     public static function convertObject($o, $prefix = [], $traverse = FALSE)
     {
         $a = [];
