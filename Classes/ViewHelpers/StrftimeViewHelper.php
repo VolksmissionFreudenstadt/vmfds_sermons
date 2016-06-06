@@ -52,7 +52,7 @@ class StrftimeViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHe
         if ($date instanceof \DateTime) {
             try {
                 return strftime($format, $date->getTimestamp());
-            } catch (Exception $exception) {
+            } catch (\Exception $exception) {
                 throw new \TYPO3\CMS\Fluid\Core\ViewHelper\Exception('"' . $date . '" was DateTime and could not be converted to UNIX-Timestamp by DateTime.', 200000001);
             }
         }
