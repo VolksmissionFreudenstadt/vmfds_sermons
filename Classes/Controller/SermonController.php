@@ -550,7 +550,9 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         // create local temp repository
         $this->view->assign('sermon', $sermon);
-        $output = $this->view->render();
+
+        // build temp folder by rendering output view
+        $this->view->render();
 
         // git
         $githubLog = PATH_site . 'typo3temp/vmfds_sermons/github/github.log';
