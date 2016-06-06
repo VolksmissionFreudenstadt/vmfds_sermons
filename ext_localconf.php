@@ -52,12 +52,3 @@ if (!defined('TYPO3_MODE')) {
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = 'TYPO3\VmfdsSermons\Command\SermonCommandController';
 
 
-/*
-$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\TYPO3\VmfdsSermons\Task\FeedImportTask::class]
-    = array(
-    'extension' => 'vmfds_sermons',
-    'title' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang.xlf:feedImportTask.name',
-    'description' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang.xlf:feedImportTask.description',
-);
- *
- */
