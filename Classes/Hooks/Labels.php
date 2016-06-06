@@ -27,8 +27,6 @@ namespace TYPO3\VmfdsSermons\Hooks;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
 use TYPO3\CMS\Core\Resource\Exception\FolderDoesNotExistException;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class Labels
 {

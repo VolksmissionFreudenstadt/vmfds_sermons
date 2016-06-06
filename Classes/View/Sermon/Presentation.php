@@ -29,9 +29,6 @@ use PhpOffice\PhpPresentation\PhpPresentation;
 use PhpOffice\PhpPresentation\IOFactory;
 use PhpOffice\PhpPresentation\Style\Color;
 use PhpOffice\PhpPresentation\Style\Alignment;
-use PhpOffice\PhpPresentation\Shape\Drawing\File;
-use PhpOffice\PhpPresentation\DocumentLayout;
-use PhpOffice\PhpPresentation\Style\Font;
 
 class Presentation extends \TYPO3\CMS\Extbase\Mvc\View\AbstractView
 {
