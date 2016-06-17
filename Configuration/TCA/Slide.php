@@ -144,8 +144,9 @@ $TCA['tx_vmfdssermons_domain_model_slide'] = array(
             'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_slide.presentation_font_size',
             'config' => array(
                 'type' => 'input',
+                'default' => '40',
                 'size' => 30,
-                'eval' => 'trim,required'
+                'eval' => 'trim,int'
             ),
         ),
         'image' => array(
