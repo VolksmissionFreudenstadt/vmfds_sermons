@@ -31,10 +31,10 @@ if (!defined('TYPO3_MODE')) {
 $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_sermon']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, keywords, image, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags, cclicense, preacher, series, syncuid, slides, church, church_url, remote_url',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, bible_text, keywords, image, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags, cclicense, preacher, series, syncuid, slides, church, church_url, remote_url',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, preached, description, --div--;Studienmaterial, reference, notes_header, keypoints, questions, further_reading, keywords,--div--;Vorbereitung, prep, --div--;Ressourcen, cclicense, image, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags,--div--;Folien, slides, --div--;Prediger und Reihe, preacher, series,,--div--;Sync,syncuid, church, church_url, remote_url,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, preached, description, --div--;Studienmaterial, reference, bible_text, notes_header, keypoints, questions, further_reading, keywords,--div--;Vorbereitung, prep, --div--;Ressourcen, cclicense, image, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags,--div--;Folien, slides, --div--;Prediger und Reihe, preacher, series,,--div--;Sync,syncuid, church, church_url, remote_url,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -160,7 +160,7 @@ $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
                 'rows' => 15,
                 'eval' => 'trim',
             ),
-            'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
+            'defaultExtras' => 'richtext[]',
         ),
         'notes_header' => array(
             'exclude' => 0,
@@ -220,6 +220,16 @@ $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
+            ),
+        ),
+        'bible_text' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_sermon.bible_text',
+            'config' => array(
+                'type' => 'text',
+                'cols' => 80,
+                'rows' => 5,
+                'eval' => 'trim',
             ),
         ),
         'keywords' => array(
