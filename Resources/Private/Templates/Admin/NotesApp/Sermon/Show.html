@@ -1,0 +1,253 @@
+{namespace vms=TYPO3\VmfdsSermons\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+<!--
+@package vmfds_sermons
+@copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+@license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+@site http://open.vmfds.de
+@author Christoph Fischer <chris@toph.de>
+@date 2016-06-06
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default" style="margin-bottom: 0;">
+                <div class="panel-heading">
+                    <a onClick="toggleFullScreen();" class="btn btn-primary">Vollbild umschalten</a>
+                    <button id="fontSmaller" class="btn btn-default">-</button>
+                    <span id="fontSizeInfo"></span>
+                    <button id="fontLarger" class="btn btn-default">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="row" style="padding-top: 50px;">
+    <div class="col-sm-12">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: #ffdddd;">
+                    <h1>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseIntro">
+                            <i class="fa fa-file" aria-hidden="true"></i>
+                            {sermon.title}</a>
+                    </h1>
+                </div>
+                <div id="collapseIntro" class="panel-collapse collapse">
+                    <div class="container">
+                        <f:if condition="{sermon.description}">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Darum geht's</h3>
+                                    {sermon.description -> f:format.html()}
+                                    <hr/>
+                                </div>
+                            </div>
+                        </f:if>
+                        <f:if condition="{sermon.keypoints}">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Hauptpunkte</h3>
+                                    <f:if condition="{sermon.notesHeader}"><h4>{sermon.notesHeader}</h4></f:if>
+                                    <vms:orderedList list="{sermon.keypoints}" underlineMode="html5" breakAfter="1"/>
+                                    <hr/>
+                                </div>
+                            </div>
+                        </f:if>
+                        <f:if condition="{sermon.prep}">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Vorbereitung</h3>
+                                    {sermon.prep -> f:format.html()}
+                                    <hr/>
+                                </div>
+                            </div>
+                        </f:if>
+                        <f:if condition="{sermon.questions}">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Kleingruppenfragen</h3>
+                                    <vms:orderedList list="{sermon.questions}" breakAfter="1"/>
+                                    <hr/>
+                                </div>
+                            </div>
+                        </f:if>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: #ffdddd;">
+                    <h1>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseAdmin">
+                            <i class="fa fa-link" aria-hidden="true"></i>
+                            Material zur Predigt</a>
+                    </h1>
+                </div>
+                <div id="collapseAdmin" class="panel-collapse collapse">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3"><h4>
+                                Predigtseite
+                            </h4>
+                                <f:link.action class="btn btn-default" action="show" pageType="0"
+                                               arguments="{sermon: sermon}"
+                                               pageUid="{settings.pid.sermon.single}" target="_blank">
+                                    Öffnen
+                                </f:link.action>
+                            </div>
+                            <div class="col-sm-3"><h4>
+                                Vorschauseite
+                            </h4>
+                                <f:link.action class="btn btn-default" action="show" pageType="0"
+                                               arguments="{sermon_preview: sermon}"
+                                               pageUid="{settings.pid.sermon.preview}"
+                                               target="_blank">
+                                    Öffnen
+                                </f:link.action>
+                            </div>
+                            <div class="col-sm-3"><h4>
+                                Powerpoint
+                            </h4>
+                                <f:link.action class="btn btn-default" action="show" pageType="815"
+                                               arguments="{sermon: sermon}"
+                                               pageUid="{settings.pid.sermon.single}" target="_blank">
+                                    Herunterladen
+                                </f:link.action>
+                            </div>
+                            <div class="col-sm-3"><h4>
+                                Begleitzettel (leer)
+                            </h4>
+                                <f:link.action class="btn btn-default" action="show" pageType="801"
+                                               arguments="{sermon: sermon}"
+                                               pageUid="{settings.pid.sermon.single}" target="_blank">
+                                    Öffnen
+                                </f:link.action>
+                            </div>
+                            <div class="col-sm-3"><h4>
+                                Begleitzettel (ausgefüllt)
+                            </h4>
+                                <f:link.action class="btn btn-default" action="show" pageType="800"
+                                               arguments="{sermon: sermon}"
+                                               pageUid="{settings.pid.sermon.single}" target="_blank">
+                                    Öffnen
+                                </f:link.action>
+                            </div>
+                            <div class="col-sm-3"><h4>
+                                Lernkarten
+                            </h4>
+                                <f:link.action class="btn btn-default" action="show" pageType="810"
+                                               arguments="{sermon: sermon}"
+                                               pageUid="{settings.pid.sermon.single}" target="_blank">
+                                    Öffnen
+                                </f:link.action>
+                            </div>
+                            <div class="col-sm-3"><h4>
+                                Begleitzettel für Prediger
+                            </h4>
+                                <f:link.action class="btn btn-default" action="show" pageType="811"
+                                               arguments="{sermon: sermon}"
+                                               pageUid="{settings.pid.sermon.single}" target="_blank">
+                                    Öffnen
+                                </f:link.action>
+                            </div>
+                            <div class="col-sm-3"><h4>
+                                Übersicht für Techniker
+                            </h4>
+                                <f:link.action class="btn btn-default" action="show" pageType="812"
+                                               arguments="{sermon: sermon}"
+                                               pageUid="{settings.pid.sermon.single}" target="_blank">
+                                    Öffnen
+                                </f:link.action>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <f:if condition="{sermon.bibleText}">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color: #ddddff;">
+                        <h1>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseBible">
+                                <i class="fa fa-book" aria-hidden="true"></i>
+                                {sermon.reference}</a>
+                        </h1>
+                    </div>
+                    <div id="collapseBible" class="panel-collapse collapse">
+                        <div class="container">
+                            <h3>{sermon.reference}</h3>
+                            {sermon.bibleText}
+                        </div>
+                    </div>
+                </div>
+            </f:if>
+            <f:for each="{sermon.slides}" as="slide" iteration="i">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h1>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{i.cycle}">
+                                <i class="fa fa-picture-o" aria-hidden="true"></i> {slide.title}</a>
+                        </h1>
+                    </div>
+                    <div id="collapse{i.cycle}" class="panel-collapse collapse">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <f:image class="img-responsive" src="{slide.image.originalResource.publicUrl}"
+                                             width="1400"/>
+
+                                </div>
+                                <div class="col-lg-6">
+                                    <h2>{slide.presentationTitle}</h2>
+                                    <f:if condition="{slide.bibleText}">
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h3>Bibelstellen</h3>
+                                                {slide.bibleText -> f:format.html()}
+                                            </div>
+                                        </div>
+                                    </f:if>
+                                    <f:if condition="{slide.preacherNotes}">
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h3>Notizen</h3>
+                                                {slide.preacherNotes -> f:format.html()}
+                                            </div>
+                                        </div>
+                                    </f:if>
+                                    <f:if condition="{slide.techNotes}">
+                                        <hr/>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <h3>Notizen für den Techniker</h3>
+                                                <i>Dies ist Folie {i.cycle}</i><br/>
+                                                {slide.techNotes -> f:format.html()}
+                                            </div>
+                                        </div>
+                                    </f:if>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </f:for>
+        </div>
+    </div>
+</div>
