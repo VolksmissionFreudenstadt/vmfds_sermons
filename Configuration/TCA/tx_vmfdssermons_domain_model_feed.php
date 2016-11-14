@@ -5,7 +5,6 @@
  * @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
  * @site http://open.vmfds.de
- * @file Series.php
  * @author Christoph Fischer <chris@toph.de>
  * @date 2016-06-04
  *
@@ -24,19 +23,17 @@
  *
  */
 
-
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-
-$TCA['tx_vmfdssermons_domain_model_series'] = array(
-    'ctrl' => $TCA['tx_vmfdssermons_domain_model_series']['ctrl'],
+return array(
+    'ctrl' => $TCA['tx_vmfdssermons_domain_model_feed']['ctrl'],
     'interface' => array(
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, startdate, enddate, description, image, hashtags',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, url, church, church_url',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, startdate, enddate, description, image, hashtags,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, url, church, church_url,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -66,8 +63,8 @@ $TCA['tx_vmfdssermons_domain_model_series'] = array(
                 'items' => array(
                     array('', 0),
                 ),
-                'foreign_table' => 'tx_vmfdssermons_domain_model_series',
-                'foreign_table_where' => 'AND tx_vmfdssermons_domain_model_series.pid=###CURRENT_PID### AND tx_vmfdssermons_domain_model_series.sys_language_uid IN (-1,0)',
+                'foreign_table' => 'tx_vmfdssermons_domain_model_feed',
+                'foreign_table_where' => 'AND tx_vmfdssermons_domain_model_feed.pid=###CURRENT_PID### AND tx_vmfdssermons_domain_model_feed.sys_language_uid IN (-1,0)',
             ),
         ),
         'l10n_diffsource' => array(
@@ -124,71 +121,33 @@ $TCA['tx_vmfdssermons_domain_model_series'] = array(
         ),
         'title' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.title',
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_feed.title',
             'config' => array(
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
             ),
         ),
-        'subtitle' => array(
+        'url' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.subtitle',
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_feed.url',
+            'config' => array(
+                'type' => 'input',
+                'size' => 120,
+            ),
+        ),
+        'church' => array(
+            'exclude' => 0,
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_feed.church',
             'config' => array(
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
             ),
         ),
-        'startdate' => array(
+        'church_url' => array(
             'exclude' => 0,
-            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.startdate',
-            'config' => array(
-                'type' => 'input',
-                'size' => 7,
-                'eval' => 'date',
-                'checkbox' => 1,
-                'default' => time()
-            ),
-        ),
-        'enddate' => array(
-            'exclude' => 0,
-            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.enddate',
-            'config' => array(
-                'type' => 'input',
-                'size' => 7,
-                'eval' => 'date',
-                'checkbox' => 1,
-                'default' => time()
-            ),
-        ),
-        'description' => array(
-            'exclude' => 0,
-            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.description',
-            'config' => array(
-                'type' => 'text',
-                'cols' => 40,
-                'rows' => 15,
-                'eval' => 'trim',
-            ),
-            'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
-        ),
-        'image' => array(
-            'exclude' => 0,
-            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.image',
-            'config' => array(
-                'type' => 'group',
-                'internal_type' => 'file',
-                'uploadfolder' => 'predigten/Titelbilder',
-                'show_thumbs' => 1,
-                'size' => 5,
-                'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-                'disallowed' => '',
-            ),
-        ),
-        'hashtags' => array(
-            'exclude' => 0,
-            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_series.hashtags',
+            'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_feed.churchUrl',
             'config' => array(
                 'type' => 'input',
                 'size' => 30,

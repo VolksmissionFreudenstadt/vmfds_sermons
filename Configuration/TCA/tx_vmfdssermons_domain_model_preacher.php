@@ -31,7 +31,7 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_vmfdssermons_domain_model_preacher', 'EXT:vmfds_sermons/Resources/Private/Language/locallang_csh_tx_vmfdssermons_domain_model_preacher.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_vmfdssermons_domain_model_preacher');
 
-$TCA['tx_vmfdssermons_domain_model_preacher'] = array(
+return array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_preacher']['ctrl'],
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, name, first_name, last_name, email, organization, url, blog, facebook_id, twitter, about, image, user_id, mic, pulpit, ppt, laptop, travel_cost, account_holder, iban, bic',

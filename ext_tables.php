@@ -36,7 +36,7 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_vmfdssermons_domain_model_sermon', 'EXT:vmfds_sermons/Resources/Private/Language/locallang_csh_tx_vmfdssermons_domain_model_sermon.xlf');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_vmfdssermons_domain_model_sermon');
-$TCA['tx_vmfdssermons_domain_model_sermon'] = array(
+return array(
     'ctrl' => array(
         'title' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_sermon',
         'label' => 'title',
@@ -58,7 +58,7 @@ $TCA['tx_vmfdssermons_domain_model_sermon'] = array(
             'endtime' => 'endtime',
         ),
         'searchFields' => 'title,subtitle,preached,description,notes_header,keypoints,questions,further_reading,prep,reference,bible_text,keywords,image,image_source,handout,audiorecording,videorecording,cclicense,preacher,series,syncuid',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Sermon.php',
+        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tx_vmfdssermons_domain_model_sermon.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vmfdssermons_domain_model_sermon.gif'
     ),
 );
@@ -86,7 +86,7 @@ $TCA['tx_vmfdssermons_domain_model_preacher'] = array(
             'endtime' => 'endtime',
         ),
         'searchFields' => 'name,first_name,last_name,email,organization,url,blog,facebook_id,about,image,',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Preacher.php',
+        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tx_vmfdssermons_domain_model_preacher.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vmfdssermons_domain_model_preacher.gif'
     ),
 );
@@ -115,7 +115,7 @@ $TCA['tx_vmfdssermons_domain_model_series'] = array(
             'endtime' => 'endtime',
         ),
         'searchFields' => 'title,subtitle,startdate,enddate,description,image,',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Series.php',
+        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tx_vmfdssermons_domain_model_series.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vmfdssermons_domain_model_series.gif'
     ),
 );
@@ -144,7 +144,7 @@ $TCA['tx_vmfdssermons_domain_model_slide'] = array(
             'endtime' => 'endtime',
         ),
         'searchFields' => 'title,presentation_title,image,image_source,story,bible_text,preacher_notes,tech_notes',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Slide.php',
+        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tx_vmfdssermons_domain_model_slide.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vmfdssermons_domain_model_slide.gif'
     ),
 );
@@ -172,7 +172,7 @@ $TCA['tx_vmfdssermons_domain_model_feed'] = array(
             'endtime' => 'endtime',
         ),
         'searchFields' => 'title,url,church,church_url',
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Feed.php',
+        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tx_vmfdssermons_domain_model_feed.php',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_vmfdssermons_domain_model_feed.gif'
     ),
 );

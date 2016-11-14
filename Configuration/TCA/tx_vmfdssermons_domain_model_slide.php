@@ -27,7 +27,7 @@
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
-$TCA['tx_vmfdssermons_domain_model_slide'] = array(
+return array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_slide']['ctrl'],
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, presentation_title, presentation_font_size, image, image_source, story, bible_text, preacher_notes, tech_notes',
