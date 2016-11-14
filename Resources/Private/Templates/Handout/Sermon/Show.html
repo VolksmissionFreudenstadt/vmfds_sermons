@@ -2,6 +2,8 @@
 {namespace vmpdf=VMFDS\VmfdsPdf\ViewHelpers}
 {namespace kool=VMFDS\VmfdsKool\ViewHelpers}
 {namespace qr=B263\Qrcode\ViewHelpers}
+<vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Predigtzettel.pdf" css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4-L" orientation="L" defaultfontsize="9" defaultfont="opensans" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" footermargin="0" headermargin="0">
+
 <!--
 @package vmfds_sermons
 @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
@@ -24,10 +26,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Predigtzettel.pdf" css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4-L" orientation="L" defaultfontsize="9" defaultfont="opensans" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" footermargin="0" headermargin="0">
     <div class="column">
-        <h1 class="sectionheader">diese <b>Woche</b></h1>    
-        <vmpdf:remoteContent url="http://www.wortzummontag.de/service/wochentermine/?tx_vmfdsevents_events[startDate]={weekStart}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1" />
+        <h1 class="sectionheader">diese <b>Woche</b></h1>
+        <vmpdf:remoteContent url="http://www.wortzummontag.de/index.php?id=174&tx_vmfdsevents_events[startDate]={weekStart}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1" />
+        <vmpdf:remoteContent url="http://www.wortzummontag.de/index.php?id=42&tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1" />
         <vmpdf:remoteContent url="http://www.wortzummontag.de/service/geburtstage/?tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEndSat}&no_cache=1" />
         <kool:birthdayList startDate="{weekStart}" endDate="{weekEnd}"/>
     </div>
@@ -144,14 +146,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <f:if condition="{sermon.notesHeader}"><p>{sermon.notesHeader}</p></f:if>
                 <vms:orderedList list="{sermon.keypoints}" underlineMode="{settings.pdf.underlineMode}" itemStyle="margin-bottom: 2mm;" breakAfter="1" />
             </div>
-            <hr />
         </f:if>
-        <h1 class="sectionheader">mit<b>machen</b></h1>
-        <p class="sectionintro">Hier hast du Platz für eigene Notizen. Was spricht dich persönlich an? Was nimmst du mit, um es nächste Woche umzusetzen?</p>
+        <vms:length name="len"><vms:orderedList list="{sermon.keypoints}" underlineMode="{settings.pdf.underlineMode}" itemStyle="margin-bottom: 2mm;" breakAfter="1" /></vms:length>
+        <f:if condition="{len} <= 1000"><f:then>
+            <f:if condition="{sermon.keypoints}">
+                <hr />
+            </f:if>
+            <h1 class="sectionheader">mit<b>machen</b></h1>
+            <p class="sectionintro">Hier hast du Platz für eigene Notizen. Was spricht dich persönlich an? Was nimmst du mit, um es nächste Woche umzusetzen?</p>
+        </f:then></f:if>
     </div>
 
     <!-- Spalte: Weiterlesen -->
     <div class="column">
+        <f:if condition="{len} > 1000"><f:then>
+            <h1 class="sectionheader">mit<b>machen</b></h1>
+            <p class="sectionintro">Hier hast du Platz für eigene Notizen. Was spricht dich persönlich an? Was nimmst du mit, um es nächste Woche umzusetzen?</p>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        </f:then></f:if>
         <h1 class="sectionheader">weiter<b>denken</b></h1>
         <p class="sectionintro">So könnt ihr in deiner Kleingruppe weiter über das Gehörte nachdenken:</p>
         <vms:orderedList list="{sermon.questions}" />
@@ -163,5 +175,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <f:format.html>{sermon.furtherReading}</f:format.html>
         </f:if>
     </div>
-
 </vmpdf:pdf>

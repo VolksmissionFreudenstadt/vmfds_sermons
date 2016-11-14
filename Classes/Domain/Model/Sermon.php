@@ -100,6 +100,14 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $reference;
 
     /**
+     * Bible text of main passage
+     *
+     * @var \string
+     */
+    protected $bibleText;
+
+
+    /**
      * Key words
      *
      * @var \string
@@ -792,5 +800,23 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->remoteAudio = $remoteAudio;
     }
+
+    /**
+     * @return string
+     */
+    public function getBibleText()
+    {
+        return $this->bibleText;
+    }
+
+    /**
+     * @param string $bibleText
+     */
+    public function setBibleText($bibleText)
+    {
+        $this->bibleText = $bibleText;
+    }
+
+
 
 }

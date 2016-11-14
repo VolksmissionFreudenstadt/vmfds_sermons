@@ -59,6 +59,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.reference">
                 <source>Reference</source>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.bible_text">
+                <source>Full Bible text of main passage</source>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.keywords">
                 <source>Keywords</source>
             </trans-unit>

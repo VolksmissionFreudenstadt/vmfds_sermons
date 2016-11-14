@@ -74,6 +74,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <source>Reference</source> 
                 <target state="translated">Bibelstellen</target>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.bible_text" approved="yes">
+                <source>Full Bible text of main passage</source>
+                <target state="translated">Bibeltext</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.image" approved="yes">
                 <source>Image</source> 
                 <target state="translated">Titelbild</target>
