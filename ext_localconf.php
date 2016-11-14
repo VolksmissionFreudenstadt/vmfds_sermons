@@ -42,7 +42,6 @@ if (!defined('TYPO3_MODE')) {
         )
 );
 
-\FluidTYPO3\Flux\Core::registerProviderExtensionKey('VMFDS.VmfdsSermons', 'Content');
 
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerTypeConverter('TYPO3\\VmfdsSermons\\Property\\TypeConverters\\PersistentSermonConverter');
