@@ -231,17 +231,17 @@ class Slide extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         return $this->story;
     }
 
-    public function setPresentationTitle(\string $presentationTitle)
+    public function setPresentationTitle($presentationTitle)
     {
         $this->presentationTitle = $presentationTitle;
     }
 
-    public function setPresentationFontSize(\int $presentationFontSize)
+    public function setPresentationFontSize($presentationFontSize)
     {
         $this->presentationFontSize = $presentationFontSize;
     }
 
-    public function setStory(\string $story)
+    public function setStory($story)
     {
         $this->story = $story;
     }
