@@ -28,11 +28,7 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_vmfdssermons_domain_model_sermon', 'EXT:vmfds_sermons/Resources/Private/Language/locallang_csh_tx_vmfdssermons_domain_model_sermon.xlf');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_vmfdssermons_domain_model_sermon');
-
-$TCA['tx_vmfdssermons_domain_model_sermon'] = array(
+return array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_sermon']['ctrl'],
     'interface' => array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, bible_text, keywords, image, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags, cclicense, preacher, series, syncuid, slides, church, church_url, remote_url',
