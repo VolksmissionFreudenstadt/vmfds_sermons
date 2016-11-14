@@ -28,6 +28,9 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_vmfdssermons_domain_model_preacher', 'EXT:vmfds_sermons/Resources/Private/Language/locallang_csh_tx_vmfdssermons_domain_model_preacher.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_vmfdssermons_domain_model_preacher');
+
 $TCA['tx_vmfdssermons_domain_model_preacher'] = array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_preacher']['ctrl'],
     'interface' => array(

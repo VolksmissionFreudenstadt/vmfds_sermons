@@ -29,6 +29,7 @@ if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
+
 $TCA['tx_vmfdssermons_domain_model_series'] = array(
     'ctrl' => $TCA['tx_vmfdssermons_domain_model_series']['ctrl'],
     'interface' => array(
