@@ -64,6 +64,13 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
     protected $dataMapper;
 
     /**
+     * persistenceManager
+     * @var TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
+     * @inject
+     */
+    protected $persistenceManager;
+
+    /**
      * Settings for this context
      * @var array
      */
@@ -82,6 +89,7 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         $this->feedRepository = $this->objectManager->get(\TYPO3\VmfdsSermons\Domain\Repository\FeedRepository::class);
         $this->sermonRepository = $this->objectManager->get(\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository::class);
         $this->dataMapper = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\Mapper\DataMapper::class);
+        $this->persistenceManager = $this->objectManager->get(\TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager::class);
     }
 
     /**
@@ -97,10 +105,11 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
     {
         // get settings
         $this->initializeCommand();
-        $this->console('Settings: ' . print_r($this->settings, 1));
+        //$this->console('Settings: ' . print_r($this->settings, 1));
 
         // here is the processing
         $feeds = $this->feedRepository->findAll();
+
         $this->console(count($feeds) . ' feeds found.');
         foreach ($feeds as $feed) {
             $this->console('Fetching feed "' . $feed->getTitle() . '" from ' . $feed->getUrl() . '... ', false);
@@ -119,14 +128,17 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                     }
                     $rec['sermon']['preached'] = $rec['preached']['date'];
                     $date = new \DateTime($rec['sermon']['preached']);
-                    $this->console('Sermon "' . $rec['sermon']['title'] . '" (' . $date->format('Y-m-d') . ') ... ', false);
+                    $this->console('------------------------------------------------------------------------------------------------------');
+                    $this->console('Sermon "' . $rec['sermon']['title'] . '"');
+                    $this->console('--> Preached: '.$date->format('Y-m-d'));
                     $sermon = $this->mapSermon($rec['sermon'], $feed, $rec['url'], $date);
                 }
             }
         }
-        echo "Persisting ... \r\n";
-        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance("TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager");
-        $persistenceManager->persistAll();
+        $this->console('------------------------------------------------------------------------------------------------------');
+        $this->console('Persisting all records.');
+
+        $this->persistenceManager->persistAll();
     }
 
     /**
@@ -145,8 +157,10 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         $existing = $this->sermonRepository->checkSyncuid($uid);
         if (!$existing) {
             $sermon = $this->objectManager->get(\TYPO3\VmfdsSermons\Domain\Model\Sermon::class);
+            $this->console('--> This is a new sermon.');
         } else {
             $sermon = $this->sermonRepository->findBySyncuid($uid);
+            $this->console('--> Sermon already exists with uid '.$uid);
         }
         $sermon->setSyncuid($uid);
         $sermon->setChurch($feed->getChurch());
@@ -183,15 +197,22 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                     case 'handout':
                         if ($val) {
                             if ($sermon->$getter() == '') {
-                                $this->console($filename . '_Begleitzettel.pdf');
                                 $changed = true;
                                 $sermon->$setter($this->retrieveFile($val, $key, $filename . '_Begleitzettel.pdf'));
                             }
                         }
                         break;
+                    case 'audiorecording':
+                        $this->console('--> Trying to set audio to "'.$val.'"');
+                        if (trim($val)) {
+                            if ($sermon->$getter() != $val) {
+                                $changed = true;
+                                $sermon->$setter($val);
+                            }
+                        }
                     default:
                         if (method_exists($sermon, $setter)) {
-                            if ($val) {
+                            if (trim($val)) {
                                 if ($sermon->$getter() !== $val) {
                                     $changed = true;
                                     $sermon->$setter($val);
@@ -204,15 +225,15 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
         if ($existing) {
             if ($changed) {
                 $this->sermonRepository->update($sermon);
-                $this->console('Updated');
+                $this->console('--> Sermon updated.');
             } else {
-                $this->console('Skipped');
+                $this->console('--> Sermon skipped.');
             }
         } else {
             $this->sermonRepository->add($sermon);
-            $this->console('OK');
+            $this->console('--> Sermon added.');
         }
-
+        $this->persistenceManager->persistAll();
         return $sermon;
     }
 
@@ -242,8 +263,8 @@ class SermonCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandC
                 $baseName = str_replace('.html', '.pdf', $baseName);
             $target = $this->settings['paths'][$key] . $baseName;
             if (!file_exists(PATH_site . $target)) {
-                $this->console('Retrieving ' . $key . ' from ' . $url . ' ... ');
-                $this->console('writing to ' . $target . ' ... ', false);
+                $this->console('--> Retrieving ' . $key . ' from ' . $url . ' -> ', false);
+                $this->console($target . ' ... ', false);
                 try {
                     $data = file_get_contents($url);
                     $fp = fopen(PATH_site . $target, 'w');
