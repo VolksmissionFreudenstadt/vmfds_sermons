@@ -1,5 +1,6 @@
 {namespace s=TYPO3\VmfdsSermons\ViewHelpers}
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace legal=VMFDS\Legalese\ViewHelpers}
 <!--
 @package vmfds_sermons
 @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
@@ -23,46 +24,68 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
 <!-- some Google+/schema.org markup -->
-<meta itemprop="isFamilyFriendly" content="True" />
-<meta itemprop="genre" content="sermon" />
-<meta itemprop="contentRating" content="G" />
+<meta itemprop="isFamilyFriendly" content="True"/>
+<meta itemprop="genre" content="sermon"/>
+<meta itemprop="contentRating" content="G"/>
 
 <!-- Facebook Graph -->
-<v:page.header.meta property="og:type" content="article" />
-<f:if condition="{sermon.subtitle}"><f:then><v:page.header.meta property="og:title" content="{sermon.title}: {sermon.subtitle}" /></f:then><f:else><v:page.header.meta property="og:title" content="{sermon.title}" /></f:else></f:if>
+<v:page.header.meta property="og:type" content="article"/>
+<f:if condition="{sermon.subtitle}">
+    <f:then>
+        <v:page.header.meta property="og:title" content="{sermon.title}: {sermon.subtitle}"/>
+    </f:then>
+    <f:else>
+        <v:page.header.meta property="og:title" content="{sermon.title}"/>
+    </f:else>
+</f:if>
 <f:for each="{sermon.preacher}" as="preacher">
-<f:if condition="{preacher.facebookId}"><f:then><v:page.header.meta property="article:author" content="https://www.facebook.com/{preacher.facebookId}" /></f:then><f:else><v:page.header.meta name="article:author:first_name" content="{preacher.firstName}" /><v:page.header.meta name="article:author:last_name" content="{preacher.lastName}" /></f:else>	</f:if>
+    <f:if condition="{preacher.facebookId}">
+        <f:then>
+            <v:page.header.meta property="article:author" content="https://www.facebook.com/{preacher.facebookId}"/>
+        </f:then>
+        <f:else>
+            <v:page.header.meta name="article:author:first_name" content="{preacher.firstName}"/>
+            <v:page.header.meta name="article:author:last_name" content="{preacher.lastName}"/>
+        </f:else>
+    </f:if>
 </f:for>
-<v:page.header.meta property="article:section" content="Predigten" />
-<v:page.header.meta property="og:image" content="{v:uri.image(src: '/predigten/Titelbilder/{sermon.image}')}" />
-<v:page.header.meta property="og:url" content="{v:page.absoluteUrl()}" />
-<v:page.header.meta property="og:description" content="{sermon.description}" />
-<v:page.header.meta property="og:site_name" content="Das Wort zum Montag: Predigten aus der Volksmission Freudenstadt" />
-<v:page.header.meta property="og:locale" content="de_DE" />
+<v:page.header.meta property="article:section" content="Predigten"/>
+<v:page.header.meta property="og:image" content="{v:uri.image(src: '/predigten/Titelbilder/{sermon.image}')}"/>
+<v:page.header.meta property="og:url" content="{v:page.absoluteUrl()}"/>
+<v:page.header.meta property="og:description" content="{sermon.description}"/>
+<v:page.header.meta property="og:site_name" content="Das Wort zum Montag: Predigten aus der Volksmission Freudenstadt"/>
+<v:page.header.meta property="og:locale" content="de_DE"/>
 
 <!-- Twitter Cards-->
-<v:page.header.meta property="twitter:card" content="summary_large_image" />
-<v:page.header.meta property="twitter:site" content="@volksmissionfds" />
-<f:if condition="{sermon.subtitle}"><f:then><v:page.header.meta property="twitter:title" content="{sermon.title}: {sermon.subtitle}" /></f:then><f:else><v:page.header.meta property="twitter:title" content="{sermon.title}" /></f:else></f:if>
-<v:page.header.meta property="twitter:description" content="{sermon.description}" />
-<v:page.header.meta property="twitter:creator" content="@volksmissionfds" />
-<v:page.header.meta property="twitter:image:src" content="{v:uri.image(src: '/predigten/Titelbilder/{sermon.image}')}" />
-<v:page.header.meta property="twitter:domain" content="www.wortzummontag.de" />
-
-
+<v:page.header.meta property="twitter:card" content="summary_large_image"/>
+<v:page.header.meta property="twitter:site" content="@volksmissionfds"/>
+<f:if condition="{sermon.subtitle}">
+    <f:then>
+        <v:page.header.meta property="twitter:title" content="{sermon.title}: {sermon.subtitle}"/>
+    </f:then>
+    <f:else>
+        <v:page.header.meta property="twitter:title" content="{sermon.title}"/>
+    </f:else>
+</f:if>
+<v:page.header.meta property="twitter:description" content="{sermon.description}"/>
+<v:page.header.meta property="twitter:creator" content="@volksmissionfds"/>
+<v:page.header.meta property="twitter:image:src" content="{v:uri.image(src: '/predigten/Titelbilder/{sermon.image}')}"/>
+<v:page.header.meta property="twitter:domain" content="www.wortzummontag.de"/>
 
 
 <f:if condition="{sermon.image}">
     <f:then>
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <div class="item active">    
-                    <f:image src="predigten/Titelbilder/{sermon.image}" class="img-responsive" width="1400" />
-                    <div class="carousel-caption">            
+                <div class="item active">
+                    <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" class="img-responsive" width="1400"/>
+                    <div class="carousel-caption">
                         <h1>{sermon.title}</h1>
                         <f:if condition="{sermon.subtitle}">{sermon.subtitle}</f:if>
-                    </div>    
-                    <f:if condition="{sermon.imageSource}"><small class="page-image-source">Bild: {sermon.imageSource}</small><br /><br /></f:if>    
+                    </div>
+                    <f:if condition="{sermon.imageSource}">
+                        <small class="page-image-source">Bild: {sermon.imageSource}</small>
+                        <br/><br/></f:if>
                 </div>
             </div>
         </div>
@@ -77,17 +100,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 </f:if>
 
 
-Gepredigt am {sermon.preached -> f:format.date(format: 'd.m.Y')} von 
+Gepredigt am {sermon.preached -> f:format.date(format: 'd.m.Y')} von
 <f:for each="{sermon.preacher}" as="preacher">
-    <f:link.action controller="Preacher" action="show" pageUid="{settings.pid.preacher.single}" arguments="{preacher: preacher}">{preacher.name}</f:link.action>
-</f:for>.
+    <f:link.action controller="Preacher" action="show" pageUid="{settings.pid.preacher.single}"
+                   arguments="{preacher: preacher}">{preacher.name}
+    </f:link.action>
+</f:for>
+.
 <f:if condition="{sermon.series}">
-    Aus der Reihe 
-    <f:for each="{sermon.series}" as="series">        
-        "<f:link.action controller="Series" action="show" pageUid="{settings.pid.series.single}" arguments="{series: series}">{series.title}</f:link.action>".
+    Aus der Reihe
+    <f:for each="{sermon.series}" as="series">
+        "
+        <f:link.action controller="Series" action="show" pageUid="{settings.pid.series.single}"
+                       arguments="{series: series}">{series.title}
+        </f:link.action>
+        ".
     </f:for>
 </f:if>
-<hr />
+<hr/>
 
 <div class="row">
     <div class="col-md-8">
@@ -99,16 +129,17 @@ Gepredigt am {sermon.preached -> f:format.date(format: 'd.m.Y')} von
                 <f:then><h3>{sermon.notesHeader}</h3></f:then>
                 <f:else><h3>Hauptpunkt der Predigt</h3></f:else>
             </f:if>
-            <s:orderedList list="{sermon.keypoints}" />
+            <s:orderedList list="{sermon.keypoints}"/>
         </f:if>
-        <f:if condition="{sermon.questions}">				
+        <f:if condition="{sermon.questions}">
             <h3>Fragen für Kleingruppen</h3>
-            <i>Die folgenden Fragen sollen dir zu Hause oder in der Kleingruppe helfen, über das Gehörte weiter nachzudenken:</i>
-            <s:orderedList list="{sermon.questions}" />
+            <i>Die folgenden Fragen sollen dir zu Hause oder in der Kleingruppe helfen, über das Gehörte weiter
+                nachzudenken:</i>
+            <s:orderedList list="{sermon.questions}"/>
         </f:if>
-        <f:if condition="{sermon.furtherReading}">				
+        <f:if condition="{sermon.furtherReading}">
             <h3>Material zur Vertiefung</h3>
-            <i>Wenn dich das Thema interessiert, findest du hier noch weiteren Lesestoff:</i><br />
+            <i>Wenn dich das Thema interessiert, findest du hier noch weiteren Lesestoff:</i><br/>
             {sermon.furtherReading -> f:format.html()}
         </f:if>
 
@@ -120,26 +151,30 @@ Gepredigt am {sermon.preached -> f:format.date(format: 'd.m.Y')} von
     <div class="col-md-4">
         <div class="row sidebar-widget">
             <div class="col-md-2">
-                <f:link.action action="show" arguments="{sermon: sermon}" pageType="800" class="btn-round-large"><span class="fa fa-file-text"></span></f:link.action>                 
+                <f:link.action action="show" arguments="{sermon: sermon}" pageType="800" class="btn-round-large">
+                    <span class="fa fa-file-text"></span></f:link.action>
             </div>
             <div class="col-md-10 hidden-sm sidebar-widget">
-                <b>Begleitzettel zum Gottesdienst herunterladen</b><br />
-                Zu jedem Gottesdienst verteilen wir einen Begleitzettel mit Notizen zur Predigt und zusätzlichen Informationen.
+                <b>Begleitzettel zum Gottesdienst herunterladen</b><br/>
+                Zu jedem Gottesdienst verteilen wir einen Begleitzettel mit Notizen zur Predigt und zusätzlichen
+                Informationen.
             </div>
             <f:if condition="{sermon.audiorecording}">
                 <div class="col-md-2">
-                    <a class="btn-round-large button-audio button-play"><span class="fa fa-play"></span></a>                 
+                    <a class="btn-round-large button-audio button-play"><span class="fa fa-play"></span></a>
                 </div>
                 <div class="col-md-10 hidden-sm">
-                    <b>Predigt anhören</b><br />
+                    <b>Predigt anhören</b><br/>
                     Hier kannst du die Aufnahme der Predigt online anhören.
                 </div>
                 <div class="col-md-2 sidebar-widget">
-                    <a class="btn-round-large" href="/{sermon.audiorecording}"><span class="fa fa-download"></span></a>                 
+                    <a class="btn-round-large" href="/{sermon.audiorecording}"><span class="fa fa-download"></span></a>
                 </div>
                 <div class="col-md-10 hidden-sm sidebar-widget">
-                    <b>Predigtaufnahme herunterladen</b><br />
-                    Hier kannst du die Aufnahme der Predigt auf deinem Gerät speichern, um sie später offline anzuhören. In den meisten Browsern funktioniert da, wenn du diesen Button mit der rechten Maustaste anklickst und "Ziel speichern..." wählst.
+                    <b>Predigtaufnahme herunterladen</b><br/>
+                    Hier kannst du die Aufnahme der Predigt auf deinem Gerät speichern, um sie später offline
+                    anzuhören. In den meisten Browsern funktioniert da, wenn du diesen Button mit der rechten
+                    Maustaste anklickst und "Ziel speichern..." wählst.
                 </div>
                 <audio src="http://wzm.v3.vmfds.de/{sermon.audiorecording}" id="audio"></audio>
             </f:if>
@@ -148,22 +183,27 @@ Gepredigt am {sermon.preached -> f:format.date(format: 'd.m.Y')} von
     </div>
 </div>
 <f:if condition="{sermon.cclicense}">
-    <hr />
+    <hr/>
     <div class="row">
         <div class="col-md-1">
             <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.de">
-                <f:image src="EXT:wort_zum_montag/Resources/Public/Images/cc-by-sa.png" class="img-responsive" alt="CC-BY-SA Lizenz" title="CC-BY-SA Lizenz" />
+                <f:image src="EXT:wort_zum_montag/Resources/Public/Images/cc-by-sa.png" class="img-responsive"
+                         alt="CC-BY-SA Lizenz" title="CC-BY-SA Lizenz"/>
             </a>
 
         </div>
         <div class="col-md-11">
-            Die Predigt "<span xmlns:dct="http://purl.org/dc/terms/" name="dct:title">{sermon.title}</span>" 
+            Die Predigt "<span xmlns:dct="http://purl.org/dc/terms/" name="dct:title">{sermon.title}</span>"
             von
-            <f:for each="{sermon.preacher}" as="preacher"> 
-                <span xmlns:cc="http://creativecommons.org/ns#"  name="cc:attributionName" rel="cc:attributionURL">{preacher.name}</span> 
+            <f:for each="{sermon.preacher}" as="preacher">
+                <span xmlns:cc="http://creativecommons.org/ns#" name="cc:attributionName" rel="cc:attributionURL">{preacher.name}</span>
             </f:for>
-            und alle dazu gehörigen Ressourcen (Predigtzettel, Aufnahme) sind lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.de">Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz</a>. 
-            Verwendete Bilder stehen eventuell unter eigenen Lizenzbedingungen. Ausdrücklich von der Creative Commons-Lizenz ausgenommen sind die Logos und Namen der Volksmission Freudenstadt und ihrer Arbeitsbereiche.            
+            und alle dazu gehörigen Ressourcen (Predigtzettel, Aufnahme) sind lizenziert unter einer <a
+                rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/deed.de">Creative Commons
+            Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz</a>.
+            Verwendete Bilder stehen eventuell unter eigenen Lizenzbedingungen. Ausdrücklich von der Creative
+            Commons-Lizenz ausgenommen sind die Logos und Namen der Volksmission Freudenstadt und ihrer
+            Arbeitsbereiche.
         </div>
     </div>
 </f:if>

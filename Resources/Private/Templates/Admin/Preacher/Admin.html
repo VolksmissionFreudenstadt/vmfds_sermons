@@ -20,129 +20,206 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<h1>Hallo {preacher.firstName},</h1>
-<p>Herzlich willkommen beim Gastpredigerportal der Volksmission Freudenstadt! Hier kannst du dein Profil und die Daten zu deiner Predigt ansehen und ergänzen. 
-    Bitte lies dir vor deinem Predigtdienst unbedingt unsere <f:link.page pageUid="86">Hinweise für Prediger</f:link.page> durch.</p>
-<h3>Dein Profil</h3>
-<div class="row">
-    <div class="col-md-6">
-        <p>So sieht dein Profil <f:link.action controller="Preacher" action="show" arguments="{preacher: preacher}" pageUid="{settings.pid.preacher.single}">auf unserer Predigerseite</f:link.action> aus:<br /></p>
-        <div class="well">
-            <div class="row">
-                <div class="col-md-3">
-                    <f:if condition="{preacher.image}">
-                        <f:then>
-                            <f:image src="uploads/tx_vmfdssermons/{preacher.image}" class="img-responsive img-circle" width="243" height="243c"/>
-                        </f:then>
-                        <f:else>
-                            <f:image src="EXT:vmfds_sermons/Resources/Public/Images/user-red.jpg" class="img-responsive img-circle preacher-icon" width="243" height="243c"/>
-                        </f:else>
+<div xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
+    <h1>Hallo {preacher.firstName},</h1>
+    <p>Herzlich willkommen beim Gastpredigerportal der Volksmission Freudenstadt! Hier kannst du dein Profil und die
+        Daten zu deiner Predigt ansehen und ergänzen.
+        Bitte lies dir vor deinem Predigtdienst unbedingt unsere
+        <f:link.page pageUid="86">Hinweise für Prediger</f:link.page>
+        durch.
+    </p>
+    <h3>Dein Profil</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <p>So sieht dein Profil
+                <f:link.action controller="Preacher" action="show" arguments="{preacher: preacher}"
+                               pageUid="{settings.pid.preacher.single}">auf unserer Predigerseite
+                </f:link.action>
+                aus:<br/></p>
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-3">
+                        <f:if condition="{preacher.image}">
+                            <f:then>
+                                <legal:copyrightedImage src="uploads/tx_vmfdssermons/{preacher.image}"
+                                                        class="img-responsive img-circle" width="243" height="243c"/>
+                            </f:then>
+                            <f:else>
+                                <legal:copyrightedImage src="EXT:vmfds_sermons/Resources/Public/Images/user-red.jpg"
+                                                        class="img-responsive img-circle preacher-icon" width="243"
+                                                        height="243c"/>
+                            </f:else>
+                        </f:if>
+                    </div>
+                    <div class="col-md-9">
+                        <h1>{preacher.name}</h1>
+                        <p>{preacher.organization}</p>
+                        <div class="contact-buttons">
+                            <f:if condition="{preacher.email}">
+                                <a type="button" href="mailto:{preacher.email}" class="btn btn-wzm btn-circle"><i
+                                        class="fa fa-envelope"></i></a>
+                            </f:if>
+                            <f:if condition="{preacher.url}">
+                                <a type="button" href="{preacher.url}" class="btn btn-wzm btn-circle"><i
+                                        class="fa fa-globe"></i></a>
+                            </f:if>
+                            <f:if condition="{preacher.blog}">
+                                <a type="button" href="{preacher.blog}" class="btn btn-wzm btn-circle"><i
+                                        class="fa fa-rss"></i></a>
+                            </f:if>
+                            <f:if condition="{preacher.facebookId}">
+                                <a type="button" href="https://www.facebook.com/{preacher.facebookId}"
+                                   class="btn btn-wzm btn-circle"><i class="fa fa-facebook"></i></a>
+                            </f:if>
+                            <f:if condition="{preacher.facebookId}">
+                                <a type="button" href="https://www.twitter.com/{preacher.twitter}"
+                                   class="btn btn-wzm btn-circle"><i class="fa fa-twitter"></i></a>
+                            </f:if>
+                        </div>
+                        <hr/>
+                        {preacher.about ->f:format.html()}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <p>So sieht dein Profil im Begleitzettel zum Gottesdienst aus:<br/></p>
+            <div class="well">
+                <h4 class="sectionheader">über <b>{preacher.firstName}</b></h4>
+                <b>{preacher.name}</b><br/>
+                <f:if condition="{preacher.organization}">{preacher.organization}<br/></f:if>
+                <f:if condition="{preacher.about}">
+                    <f:format.html>{preacher.about}</f:format.html>
+                </f:if>
+                <ul>
+                    <f:if condition="{preacher.url}">
+                        <li>Mehr über {preacher.firstName} findest du auf {preacher.url}</li>
                     </f:if>
+                    <f:if condition="{preacher.blog}">
+                        <li>{preacher.firstName} bloggt auf {preacher.blog}</li>
+                    </f:if>
+                    <f:if condition="{preacher.email}">
+                        <li>Du erreichst {preacher.firstName} per E-Mail unter {preacher.email}</li>
+                    </f:if>
+                    <f:if condition="{preacher.facebookId}">
+                        <li>{preacher.firstName} ist auf Facebook: www.facebook.com/{preacher.facebookId}</li>
+                    </f:if>
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+    <f:link.action class="btn btn-primary" controller="Preacher" action="edit" arguments="{preacher: preacher}"
+                   pageUid="{settings.pid.preacher.edit}">Profil bearbeiten
+    </f:link.action>
+    <hr/>
+    <h3>Aktuelle Predigten</h3>
+    <f:for each="{sermons}" as="sermon" iteration="i">
+        <f:if condition="{sermon.preached.timestamp} > {now}">
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-3">
+                    <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}"
+                                   pageUid="{settings.pid.sermon.single}">
+                        <f:if condition="{sermon.image}">
+                            <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" class="img-responsive"/>
+                        </f:if>
+                    </f:link.action>
                 </div>
                 <div class="col-md-9">
-                    <h1>{preacher.name}</h1>
-                    <p>{preacher.organization}</p>
-                    <div class="contact-buttons">
-                        <f:if condition="{preacher.email}">
-                            <a type="button" href="mailto:{preacher.email}" class="btn btn-wzm btn-circle"><i class="fa fa-envelope"></i></a>
-                        </f:if>
-                        <f:if condition="{preacher.url}">
-                            <a type="button" href="{preacher.url}" class="btn btn-wzm btn-circle"><i class="fa fa-globe"></i></a>
-                        </f:if>            
-                        <f:if condition="{preacher.blog}">
-                            <a type="button" href="{preacher.blog}" class="btn btn-wzm btn-circle"><i class="fa fa-rss"></i></a>
-                        </f:if>            
-                        <f:if condition="{preacher.facebookId}">
-                            <a type="button" href="https://www.facebook.com/{preacher.facebookId}" class="btn btn-wzm btn-circle"><i class="fa fa-facebook"></i></a>
-                        </f:if>            
-                        <f:if condition="{preacher.facebookId}">
-                            <a type="button" href="https://www.twitter.com/{preacher.twitter}" class="btn btn-wzm btn-circle"><i class="fa fa-twitter"></i></a>
-                        </f:if>            
+                    <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
+                    <f:if condition="{sermon.series}">
+                        (
+                        <f:for each="{sermon.series}" as="series">Aus der Reihe
+                            <f:link.action controller="Series" action="show" arguments="{series: series}"
+                                           pageUid="{settings.pid.series.single}">{series.title}
+                            </f:link.action>
+                        </f:for>
+                        )
+                    </f:if>
+                    <h4>
+                        <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}"
+                                       pageUid="{settings.pid.sermon.single}">{sermon.title}
+                        </f:link.action>
+                    </h4>
+
+                    {sermon.description -> f:format.html() -> f:format.crop(maxCharacters: 200, respectWordBoundaries:
+                    true)}
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <f:link.action class="btn btn-primary" controller="Sermon" action="edit"
+                                           pageUid="{settings.pid.sermon.edit}"
+                                           arguments="{sermon: sermon, preacher: preacher}">Daten ergänzen
+                            </f:link.action>
+                            <f:link.action class="btn btn-default" target="_blank" controller="Sermon" action="show"
+                                           pageUid="{settings.pid.sermon.preview}" arguments="{sermon_preview: sermon}">
+                                Vorschauseite
+                            </f:link.action>
+                            <f:link.action class="btn btn-default" target="_blank" controller="Sermon" action="show"
+                                           pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}">
+                                Predigtseite
+                            </f:link.action>
+                            <f:link.action class="btn btn-default" target="_blank" controller="Sermon" action="show"
+                                           pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}"
+                                           pageType="800">Begleitzettel
+                            </f:link.action>
+                            <f:link.action class="btn btn-default" target="_blank" controller="Sermon" action="show"
+                                           pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}"
+                                           pageType="801">Begleitzettel (leer)
+                            </f:link.action>
+                        </div>
                     </div>
-                    <hr />
-                    {preacher.about ->f:format.html()}
                 </div>
             </div>
-        </div>
+        </f:if>
+    </f:for>
+    <hr/>
+    <h3>Frühere Predigten</h3>
+    <f:for each="{sermons}" as="sermon" iteration="i">
+        <f:if condition="{sermon.preached.timestamp} <= {now}">
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-3">
+                    <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}"
+                                   pageUid="{settings.pid.sermon.single}">
+                        <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" class="img-responsive"/>
+                    </f:link.action>
+                </div>
+                <div class="col-md-8">
+                    <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
+                    <f:if condition="{sermon.series}">
+                        (
+                        <f:for each="{sermon.series}" as="series">Aus der Reihe
+                            <f:link.action controller="Series" action="show" arguments="{series: series}"
+                                           pageUid="{settings.pid.series.single}">{series.title}
+                            </f:link.action>
+                        </f:for>
+                        )
+                    </f:if>
+                    <h4>
+                        <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}"
+                                       pageUid="{settings.pid.sermon.single}">{sermon.title}
+                        </f:link.action>
+                    </h4>
 
-    </div>
-    <div class="col-md-6">
-        <p>So sieht dein Profil im Begleitzettel zum Gottesdienst aus:<br /></p>
-        <div class="well">
-            <h4 class="sectionheader">über <b>{preacher.firstName}</b></h4>
-            <b>{preacher.name}</b><br/>
-            <f:if condition="{preacher.organization}">{preacher.organization}<br /></f:if>
-            <f:if condition="{preacher.about}"><f:format.html>{preacher.about}</f:format.html></f:if>
-            <ul>
-                <f:if condition="{preacher.url}"><li>Mehr über {preacher.firstName} findest du auf {preacher.url}</li></f:if>
-                <f:if condition="{preacher.blog}"><li>{preacher.firstName} bloggt auf {preacher.blog}</li></f:if>
-                <f:if condition="{preacher.email}"><li>Du erreichst {preacher.firstName} per E-Mail unter {preacher.email}</li></f:if>
-                <f:if condition="{preacher.facebookId}"><li>{preacher.firstName} ist auf Facebook: www.facebook.com/{preacher.facebookId}</li></f:if>
-            </ul>
+                    {sermon.description -> f:format.html() -> f:format.crop(maxCharacters: 200, respectWordBoundaries:
+                    true)}
 
-        </div>
-    </div>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <f:link.action class="btn btn-default" target="_blank" controller="Sermon" action="show"
+                                           pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}">
+                                Predigtseite
+                            </f:link.action>
+                            <f:link.action class="btn btn-default" target="_blank" controller="Sermon" action="show"
+                                           pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}"
+                                           pageType="800">Begleitzettel
+                            </f:link.action>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:if>
+    </f:for>
 </div>
-<f:link.action class="btn btn-primary" controller="Preacher" action="edit" arguments="{preacher: preacher}" pageUid="{settings.pid.preacher.edit}">Profil bearbeiten</f:link.action>
-<hr />
-<h3>Aktuelle Predigten</h3>
-<f:for each="{sermons}" as="sermon" iteration="i"> 
-    <f:if condition="{sermon.preached.timestamp} > {now}">
-        <div class="row" style="margin-bottom: 10px;">
-            <div class="col-md-3">
-                <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}" pageUid="{settings.pid.sermon.single}">
-                    <f:image src="predigten/Titelbilder/{sermon.image}" class="img-responsive" />
-                </f:link.action>
-            </div>
-            <div class="col-md-9">
-                <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
-                <f:if condition="{sermon.series}">                        
-                    (<f:for each="{sermon.series}" as="series">Aus der Reihe <f:link.action controller="Series" action="show" arguments="{series: series}" pageUid="{settings.pid.series.single}">{series.title}</f:link.action></f:for>)
-                </f:if>
-                <h4><f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}" pageUid="{settings.pid.sermon.single}">{sermon.title}</f:link.action></h4>
-
-                {sermon.description -> f:format.html() -> f:format.crop(maxCharacters: 200, respectWordBoundaries: true)}
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <f:link.action class="btn btn-primary" controller="Sermon" action="edit" pageUid="{settings.pid.sermon.edit}" arguments="{sermon: sermon, preacher: preacher}">Daten ergänzen</f:link.action>
-                        <f:link.action class="btn btn-default" target="_blank" controller="Sermon" action="show" pageUid="{settings.pid.sermon.preview}" arguments="{sermon_preview: sermon}">Vorschauseite</f:link.action>
-                        <f:link.action class="btn btn-default" target="_blank"  controller="Sermon" action="show" pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}">Predigtseite</f:link.action>
-                        <f:link.action class="btn btn-default" target="_blank"  controller="Sermon" action="show" pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}" pageType="800">Begleitzettel</f:link.action>
-                        <f:link.action class="btn btn-default" target="_blank"  controller="Sermon" action="show" pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}" pageType="801">Begleitzettel (leer)</f:link.action>
-                    </div>
-                </div>
-            </div>
-        </div>                
-    </f:if>
-</f:for>
-<hr />
-<h3>Frühere Predigten</h3>
-<f:for each="{sermons}" as="sermon" iteration="i"> 
-    <f:if condition="{sermon.preached.timestamp} <= {now}">
-        <div class="row" style="margin-bottom: 10px;">
-            <div class="col-md-3">
-                <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}" pageUid="{settings.pid.sermon.single}">
-                    <f:image src="predigten/Titelbilder/{sermon.image}" class="img-responsive" />
-                </f:link.action>
-            </div>
-            <div class="col-md-8">
-                <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
-                <f:if condition="{sermon.series}">                        
-                    (<f:for each="{sermon.series}" as="series">Aus der Reihe <f:link.action controller="Series" action="show" arguments="{series: series}" pageUid="{settings.pid.series.single}">{series.title}</f:link.action></f:for>)
-                </f:if>
-                <h4><f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}" pageUid="{settings.pid.sermon.single}">{sermon.title}</f:link.action></h4>
-
-                {sermon.description -> f:format.html() -> f:format.crop(maxCharacters: 200, respectWordBoundaries: true)}
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <f:link.action class="btn btn-default" target="_blank"  controller="Sermon" action="show" pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}">Predigtseite</f:link.action>
-                        <f:link.action class="btn btn-default" target="_blank"  controller="Sermon" action="show" pageUid="{settings.pid.sermon.single}" arguments="{sermon: sermon}" pageType="800">Begleitzettel</f:link.action>
-                    </div>
-                </div>
-            </div>
-        </div>                
-    </f:if>
-</f:for>

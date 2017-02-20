@@ -110,3 +110,15 @@ div.sermonnotes {
     position: relative;
     top: -5px;
 }
+
+.figcaption, .figcaption a {
+    font-size: 7px;
+	color: darkgray;
+	text-decoration: none;
+}
+
+.figcaption a {
+	font-size: 7px;
+	color: darkgray;
+	text-decoration: none;
+}

@@ -1,4 +1,5 @@
 {namespace s=TYPO3\VmfdsSermons\ViewHelpers}
+{namespace legal=VMFDS\Legalese\ViewHelpers}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <!--
@@ -600,7 +601,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                         <tr>
                                             <td valign="top" class="headerContent">
 <f:link.action pageUid="{settings.sermonDetailsPID}" action="show" controller="Sermon" arguments="{sermon : sermon}">
-<f:if condition="{sermon.image}"><f:image src="predigten/Titelbilder/{sermon.image}" alt="Titelbild zur Predigt '{sermon.title}' vom {sermon.preached -> f:format.date(format: 'd.m.Y')}" title="{sermon.title}" width="600"  /></f:if>
+<f:if condition="{sermon.image}"><legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" alt="Titelbild zur Predigt '{sermon.title}' vom {sermon.preached -> f:format.date(format: 'd.m.Y')}" title="{sermon.title}" width="600"  /></f:if>
 </f:link.action>                                        
                                             </td>
                                         </tr>
@@ -667,7 +668,7 @@ Auf unserer Seite "Wort zum Montag" stehen dir nach dem Gottesdienst weitere Mat
                                                 	<tr>
                                                     	<td class="leftColumnContent">
 <f:link.action pageUid="{settings.pid.series.single}" action="show" controller="Series" arguments="{series : series}">
-		<f:image src="predigten/Titelbilder/{series.image}" alt="Titelbild zur Serie '{series.title}'" title="{series.title}" width="260"  />                                        
+		<legal:copyrightedImage src="predigten/Titelbilder/{series.image}" alt="Titelbild zur Serie '{series.title}'" title="{series.title}" width="260"  />                                        
 		</f:link.action>                                                        
 		</td>
                                                     </tr>
@@ -699,7 +700,7 @@ Auf unserer Seite "Wort zum Montag" stehen dir nach dem Gottesdienst weitere Mat
                                                 	<tr>
                                                     	<td class="leftColumnContent">
 		<f:link.action pageUid="{settings.preacherDetailsPID}" action="show" controller="Preacher" arguments="{preacher : preacher}">
-		<f:if condition="{preacher.image}"><f:image src="uploads/tx_vmfdssermons/{preacher.image}" alt="{preacher.name}" title="{preacher.name}" width="260"  /></f:if>                                        
+		<f:if condition="{preacher.image}"><legal:copyrightedImage src="uploads/tx_vmfdssermons/{preacher.image}" alt="{preacher.name}" title="{preacher.name}" width="260"  /></f:if>                                        
 		</f:link.action>
 		</td>
                                                     </tr>

@@ -20,17 +20,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<div class="col-md-3">
-    <div class="thumbnail">
-        <f:link.action action="show" arguments="{series: series}" pageUid="{settings.pid.series.single}">
-            <f:image src="predigten/Titelbilder/{series.image}" class="img-responsive" />
-        </f:link.action>
-        <div class="caption">           
-            <h3><f:link.action action="show" arguments="{series: series}" pageUid="{settings.pid.series.single}">{series.title}</f:link.action></h3>
+<div xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
+    <div class="col-md-3">
+        <div class="thumbnail">
+            <f:link.action action="show" arguments="{series: series}" pageUid="{settings.pid.series.single}">
+                <legal:copyrightedImage src="predigten/Titelbilder/{series.image}" class="img-responsive"/>
+            </f:link.action>
+            <div class="caption">
+                <h3>
+                    <f:link.action action="show" arguments="{series: series}" pageUid="{settings.pid.series.single}">
+                        {series.title}
+                    </f:link.action>
+                </h3>
 
-            {series.description -> f:format.html() -> f:format.crop(maxCharacters: 200, respectWordBoundaries: 1)}
+                {series.description -> f:format.html() -> f:format.crop(maxCharacters: 200, respectWordBoundaries: 1)}
 
 
+            </div>
         </div>
     </div>
 </div>

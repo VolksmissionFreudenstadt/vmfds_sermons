@@ -122,6 +122,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $image;
 
     /**
+     * Preview image
+     *
+     * @var \string
+     */
+    protected $imagePreview;
+
+    /**
      * Image source
      *
      * @var \string
@@ -815,6 +822,22 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setBibleText($bibleText)
     {
         $this->bibleText = $bibleText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImagePreview()
+    {
+        return $this->imagePreview;
+    }
+
+    /**
+     * @param string $imagePreview
+     */
+    public function setImagePreview($imagePreview)
+    {
+        $this->imagePreview = $imagePreview;
     }
 
 

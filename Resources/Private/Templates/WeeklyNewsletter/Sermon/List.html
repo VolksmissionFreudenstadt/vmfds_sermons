@@ -1,117 +1,123 @@
-<f:if condition="{sermons}">
-    <a name="predigten" />
-    <h2>Frische Predigten für meinen Alltag</h2>
-    <f:for each="{sermons}" as="sermon" iteration="i">
-        <f:if condition="{i.cycle} == 1">
-            <tr>
-                <td align="center" valign="top">
-                    <!-- BEGIN BODY // -->
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateHeader">
-                        <tr>
-                            <td valign="top" class="headerContent" mc:edit="body_content">
-                                <f:link.action controller="Sermon" action="show"
-                                               pageUid="{settings.pid.single}"
-                                               arguments="{sermon: sermon}">
-                                    <f:image src="predigten/Titelbilder/{sermon.image}"
-                                             title="{sermon.title}"
-                                             alt="{sermon.title}" width="600"/>
-                                </f:link.action>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            <tr>
-                <td align="center" valign="top">
-                    <!-- BEGIN BODY // -->
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateBody">
-                        <tr>
-                            <td valign="top" class="bodyContent" mc:edit="body_content">
-                                <h2>
-                                    <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}"
-                                                   pageUid="{settings.pid.sermon.single}">{sermon.title}
-                                    </f:link.action>
-                                </h2>
-                                Predigt vom <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date> von
-                                <f:if condition="{sermon.preacher}">
-                                    <f:for each="{sermon.preacher}" as="preacher">
-                                        <f:link.action controller="Preacher" action="show"
-                                                       arguments="{preacher: preacher}"
-                                                       pageUid="{settings.pid.preacher.single}">{preacher.name}
-                                        </f:link.action>
-                                        <br/>
-                                    </f:for>
-                                </f:if>
-                                <f:if condition="{sermon.series}">
-                                    Aus der Reihe
-                                    <f:for each="{sermon.series}" as="series">
-                                        <f:link.action controller="Series" action="show" arguments="{series: series}"
-                                                       pageUid="{settings.pid.series.single}">{series.title}
-                                        </f:link.action>
-                                        <br/>
-                                    </f:for>
-                                </f:if>
-                                {sermon.description -> f:format.html()}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </f:if>
-    </f:for>
-    <tr>
-        <td align="center" valign="top">
-            <!-- BEGIN BODY // -->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateHeader">
+<div xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
+    <f:if condition="{sermons}">
+        <a name="predigten"/>
+        <h2>Frische Predigten für meinen Alltag</h2>
+        <f:for each="{sermons}" as="sermon" iteration="i">
+            <f:if condition="{i.cycle} == 1">
                 <tr>
-                    <td valign="top" class="headerContent" mc:edit="body_content">
-                        <table>
+                    <td align="center" valign="top">
+                        <!-- BEGIN BODY // -->
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateHeader">
                             <tr>
+                                <td valign="top" class="headerContent" mc:edit="body_content">
+                                    <f:link.action controller="Sermon" action="show"
+                                                   pageUid="{settings.pid.single}"
+                                                   arguments="{sermon: sermon}">
+                                        <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}"
+                                                 title="{sermon.title}"
+                                                 alt="{sermon.title}" width="600" useDivs="1" />
+                                    </f:link.action>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" valign="top">
+                        <!-- BEGIN BODY // -->
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateBody">
+                            <tr>
+                                <td valign="top" class="bodyContent" mc:edit="body_content">
+                                    <h2>
+                                        <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}"
+                                                       pageUid="{settings.pid.sermon.single}">{sermon.title}
+                                        </f:link.action>
+                                    </h2>
+                                    Predigt vom
+                                    <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
+                                    von
+                                    <f:if condition="{sermon.preacher}">
+                                        <f:for each="{sermon.preacher}" as="preacher">
+                                            <f:link.action controller="Preacher" action="show"
+                                                           arguments="{preacher: preacher}"
+                                                           pageUid="{settings.pid.preacher.single}">{preacher.name}
+                                            </f:link.action>
+                                            <br/>
+                                        </f:for>
+                                    </f:if>
+                                    <f:if condition="{sermon.series}">
+                                        Aus der Reihe
+                                        <f:for each="{sermon.series}" as="series">
+                                            <f:link.action controller="Series" action="show"
+                                                           arguments="{series: series}"
+                                                           pageUid="{settings.pid.series.single}">{series.title}
+                                            </f:link.action>
+                                            <br/>
+                                        </f:for>
+                                    </f:if>
+                                    {sermon.description -> f:format.html()}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </f:if>
+        </f:for>
+        <tr>
+            <td align="center" valign="top">
+                <!-- BEGIN BODY // -->
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateHeader">
+                    <tr>
+                        <td valign="top" class="headerContent" mc:edit="body_content">
+                            <table>
+                                <tr>
+                                    <f:for each="{sermons}" as="sermon" iteration="i">
+                                        <f:if condition="{i.cycle} > 1">
+                                            <f:if condition="{i.cycle} < 5">
+                                                <td>
+                                                    <f:link.action controller="Sermon" action="show"
+                                                                   pageUid="{settings.pid.single}"
+                                                                   arguments="{sermon: sermon}">
+                                                        <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}"
+                                                                 title="{sermon.title}"
+                                                                 alt="{sermon.title}" width="198" useDivs="1" />
+                                                    </f:link.action>
+                                                </td>
+                                            </f:if>
+                                        </f:if>
+                                    </f:for>
+                                </tr>
                                 <f:for each="{sermons}" as="sermon" iteration="i">
                                     <f:if condition="{i.cycle} > 1">
                                         <f:if condition="{i.cycle} < 5">
-                                            <td>
+                                            <td width="33%" style="padding: 20px;">
                                                 <f:link.action controller="Sermon" action="show"
                                                                pageUid="{settings.pid.single}"
                                                                arguments="{sermon: sermon}">
-                                                    <f:image src="predigten/Titelbilder/{sermon.image}"
-                                                             title="{sermon.title}"
-                                                             alt="{sermon.title}" width="198"/>
+                                                    {sermon.title}
                                                 </f:link.action>
+                                                <br/>
+                                                {sermon.preached -> f:format.date(format: '%d.%m.%Y')}
                                             </td>
                                         </f:if>
                                     </f:if>
                                 </f:for>
-                            </tr>
-                            <f:for each="{sermons}" as="sermon" iteration="i">
-                                <f:if condition="{i.cycle} > 1">
-                                    <f:if condition="{i.cycle} < 5">
-                                        <td width="33%" style="padding: 20px;">
-                                            <f:link.action controller="Sermon" action="show"
-                                                           pageUid="{settings.pid.single}" arguments="{sermon: sermon}">
-                                                {sermon.title}
-                                            </f:link.action>
-                                            <br/>
-                                            {sermon.preached -> f:format.date(format: '%d.%m.%Y')}
-                                        </td>
-                                    </f:if>
-                                </f:if>
-                            </f:for>
-                            <tr>
+                                <tr>
 
-                            </tr>
-                        </table>
+                                </tr>
+                            </table>
 
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <td align="center" valign="top">
-        <!-- BEGIN BODY // -->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateBody">
-            <tr>
-                <td valign="top" class="bodyContent" mc:edit="body_content">
-                    Diese und viele andere Predigten findest du auf unserem Predigtportal "<a
-                        href="http://www.wortzummontag.de/">Das Wort zum Montag</a>".
-</f:if>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <td align="center" valign="top">
+            <!-- BEGIN BODY // -->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="templateBody">
+                <tr>
+                    <td valign="top" class="bodyContent" mc:edit="body_content">
+                        Diese und viele andere Predigten findest du auf unserem Predigtportal "<a
+                            href="http://www.wortzummontag.de/">Das Wort zum Montag</a>".
+    </f:if>
+</div>

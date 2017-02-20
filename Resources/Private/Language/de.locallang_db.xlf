@@ -82,6 +82,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <source>Image</source> 
                 <target state="translated">Titelbild</target>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.image_preview" approved="yes">
+                <source>Preview image</source>
+                <target state="translated">Vorschaubild</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.image_source" approved="yes">
                 <source>Image source</source> 
                 <target state="translated">Quellenangaben zum Bild</target>
@@ -247,6 +251,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <trans-unit id="tx_vmfdssermons_domain_model_series.image" approved="yes">
                 <source>Image</source> 
                 <target state="translated">Titel</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.image_preview" approved="yes">
+                <source>Preview image</source>
+                <target state="translated">Vorschaubild</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.image_source" approved="yes">
+                <source>Image source</source>
+                <target state="translated">Quellenangaben zum Bild</target>
             </trans-unit>
 
             <trans-unit id="tx_vmfdssermons_domain_model_tag" approved="yes">

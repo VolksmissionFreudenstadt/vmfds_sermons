@@ -68,6 +68,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.image">
                 <source>Image</source>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.image_preview" approved="yes">
+                <source>Preview image</source>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.image_source">
                 <source>Image source</source>
             </trans-unit>
@@ -194,6 +197,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_series.image">
                 <source>Image</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.image_preview" approved="yes">
+                <source>Preview image</source>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.image_source" approved="yes">
+                <source>Image source</source>
             </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_series.hashtags">
                 <source>Hash tags</source>

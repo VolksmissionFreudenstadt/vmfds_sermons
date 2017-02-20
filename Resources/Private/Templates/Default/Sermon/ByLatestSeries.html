@@ -20,16 +20,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<f:if condition="{series}">
-    <f:if condition="{series.image}">
-        <div class="item">        
-            <f:link.action action="show" pageUid="{settings.pid.series.single}" arguments="{series: series}">
-                <f:image src="predigten/Titelbilder/{series.image}" alt="{series.title}" title="{series.title}" class="img-responsive" width="1400"/>
-                <div class="carousel-caption">
-                    Die aktuelle Predigtreihe
-                    <h1>{series.title}</h1>
-                </div>
-            </f:link.action>
-        </div>
+<div xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
+    <f:if condition="{series}">
+        <f:if condition="{series.image}">
+            <div class="item">
+                <f:link.action action="show" pageUid="{settings.pid.series.single}" arguments="{series: series}">
+                    <legal:copyrightedImage src="predigten/Titelbilder/{series.image}" alt="{series.title}" title="{series.title}"
+                             class="img-responsive" width="1400"/>
+                    <div class="carousel-caption">
+                        Die aktuelle Predigtreihe
+                        <h1>{series.title}</h1>
+                    </div>
+                </f:link.action>
+            </div>
+        </f:if>
     </f:if>
-</f:if>
+</div>

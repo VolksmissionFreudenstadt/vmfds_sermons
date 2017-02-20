@@ -20,16 +20,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<f:if condition="{sermon}">
-    <f:if condition="{sermon.image}">
-        <div class="item">    
-            <f:link.action action="show" arguments="{sermon_preview : sermon}" pageUid="{settings.pid.sermon.preview}">
-                <f:image src="predigten/Titelbilder/{sermon.image}" alt="{sermon.title}" title="{sermon.title}" class="img-responsive" width="1400"/>
-                <div class="carousel-caption">
-                    Vorschau auf die Predigt vom <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
-                    <h1>{sermon.title}</h1>
-                </div>
-            </f:link.action>
-        </div>
+<div xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
+    <f:if condition="{sermon}">
+        <f:if condition="{sermon.image}">
+            <div class="item">
+                <f:link.action action="show" arguments="{sermon_preview : sermon}"
+                               pageUid="{settings.pid.sermon.preview}">
+                    <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" alt="{sermon.title}" title="{sermon.title}"
+                             class="img-responsive" width="1400"/>
+                    <div class="carousel-caption">
+                        Vorschau auf die Predigt vom
+                        <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
+                        <h1>{sermon.title}</h1>
+                    </div>
+                </f:link.action>
+            </div>
+        </f:if>
     </f:if>
-</f:if>
+</div>

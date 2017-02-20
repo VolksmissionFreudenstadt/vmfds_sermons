@@ -2,7 +2,7 @@
 {namespace vmpdf=VMFDS\VmfdsPdf\ViewHelpers}
 {namespace kool=VMFDS\VmfdsKool\ViewHelpers}
 {namespace qr=B263\Qrcode\ViewHelpers}
-<vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Predigtzettel.pdf" css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4-L" orientation="L" defaultfontsize="9" defaultfont="opensans" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" footermargin="0" headermargin="0">
+{namespace legal=VMFDS\Legalese\ViewHelpers}
 
 <!--
 @package vmfds_sermons
@@ -26,11 +26,18 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
+<vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Predigtzettel.pdf"
+           css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4-L"
+           orientation="L" defaultfontsize="9" defaultfont="opensans" leftmargin="0" rightmargin="0" topmargin="0"
+           bottommargin="0" footermargin="0" headermargin="0">
     <div class="column">
         <h1 class="sectionheader">diese <b>Woche</b></h1>
-        <vmpdf:remoteContent url="http://www.wortzummontag.de/index.php?id=174&tx_vmfdsevents_events[startDate]={weekStart}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1" />
-        <vmpdf:remoteContent url="http://www.wortzummontag.de/index.php?id=42&tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1" />
-        <vmpdf:remoteContent url="http://www.wortzummontag.de/service/geburtstage/?tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEndSat}&no_cache=1" />
+        <vmpdf:remoteContent
+                url="http://www.wortzummontag.de/index.php?id=174&tx_vmfdsevents_events[startDate]={weekStart}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1"/>
+        <vmpdf:remoteContent
+                url="http://www.wortzummontag.de/index.php?id=42&tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1"/>
+        <vmpdf:remoteContent
+                url="http://www.wortzummontag.de/service/geburtstage/?tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEndSat}&no_cache=1"/>
         <kool:birthdayList startDate="{weekStart}" endDate="{weekEnd}"/>
     </div>
     <!-- Spalte: Über den Prediger -->
@@ -38,30 +45,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <f:for each="{sermon.preacher}" as="preacher">
             <h1 class="sectionheader">über <b>{preacher.firstName}</b></h1>
             <b>{preacher.name}</b><br/>
-            <f:if condition="{preacher.organization}">{preacher.organization}<br /></f:if>
-            <f:if condition="{preacher.about}"><f:format.raw>{preacher.about}</f:format.raw></f:if>
+            <f:if condition="{preacher.organization}">{preacher.organization}<br/></f:if>
+            <f:if condition="{preacher.about}">
+                <f:format.raw>{preacher.about}</f:format.raw>
+            </f:if>
             <ul>
-                <f:if condition="{preacher.url}"><li>Mehr über {preacher.firstName} findest du auf <vmpdf:basicUrl url="{preacher.url}" /></li></f:if>
-                <f:if condition="{preacher.blog}"><li>{preacher.firstName} bloggt auf <vmpdf:basicUrl url="{preacher.blog}" /></li></f:if>
-                <f:if condition="{preacher.email}"><li>Du erreichst {preacher.firstName} per E-Mail unter {preacher.email}</li></f:if>
-                <f:if condition="{preacher.facebookId}"><li>{preacher.firstName} ist auf Facebook: www.facebook.com/{preacher.facebookId}</li></f:if>
+                <f:if condition="{preacher.url}">
+                    <li>Mehr über {preacher.firstName} findest du auf
+                        <vmpdf:basicUrl url="{preacher.url}"/>
+                    </li>
+                </f:if>
+                <f:if condition="{preacher.blog}">
+                    <li>{preacher.firstName} bloggt auf
+                        <vmpdf:basicUrl url="{preacher.blog}"/>
+                    </li>
+                </f:if>
+                <f:if condition="{preacher.email}">
+                    <li>Du erreichst {preacher.firstName} per E-Mail unter {preacher.email}</li>
+                </f:if>
+                <f:if condition="{preacher.facebookId}">
+                    <li>{preacher.firstName} ist auf Facebook: www.facebook.com/{preacher.facebookId}</li>
+                </f:if>
             </ul>
         </f:for>
 
-        <hr />
+        <hr/>
         <f:if condition="{sermon.cclicense}">
             <f:then>
-                <f:image src="EXT:wort_zum_montag/Resources/Public/Images/cc-by-sa.png" width="81" height="31" alt="CC-BY-SA Lizenz" title="CC-BY-SA Lizenz" /><br />
+                <f:image src="EXT:wort_zum_montag/Resources/Public/Images/cc-by-sa.png" width="81" height="31"
+                         alt="CC-BY-SA Lizenz" title="CC-BY-SA Lizenz"/>
+                <br/>
                 <div class="smallprint">
-                    <br />Diese Predigt und alle dazu gehörigen Ressourcen (Predigtzettel, Aufnahme) sind lizenziert unter einer Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International Lizenz. 
-                    Verwendete Bilder stehen eventuell unter eigenen Lizenzbedingungen. Ausdrücklich von der Creative Commons-Lizenz ausgenommen sind die Logos und Namen der Volksmission Freudenstadt und ihrer Arbeitsbereiche.
+                    <br/>Diese Predigt und alle dazu gehörigen Ressourcen (Predigtzettel, Aufnahme) sind lizenziert
+                    unter
+                    einer Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International
+                    Lizenz (CC-BY-SA 4.0). Verwendete Bilder stehen eventuell unter eigenen Lizenzbedingungen (siehe unten). Ausdrücklich von der Creative Commons-Lizenz ausgenommen sind die Logos und Namen der Volksmission
+                    Freudenstadt und ihrer Arbeitsbereiche.<br/><br/>
+                    <legal:imageCredits class="titleimage" src="predigten/Titelbilder/{sermon.image}"
+                                        alt="Titelbild zur Predigt"
+                                        title="{sermon.title}" width="300" useFootnote="1" suppressFootnote="1"
+                                        footnoteReference="Titelbild" useLinks="none"/>
+                    <f:if condition="{imageCredits}">
+                        <u>Bildnachweise:</u><br/>
+                        <f:for each="{imageCredits}" as="image">
+                            {image.reference}: {image.credits}<br/>
+                        </f:for>
+                    </f:if>
                 </div>
             </f:then>
             <f:else>
-                Begleitzettel zur Gottesdienst am <f:format.date format="d.m.Y">{sermon.preached}</f:format.date>
-                <br />
-                &copy; <f:format.date format="Y">{sermon.preached}</f:format.date> Volksmission Freudenstadt
-                <br />
+                Begleitzettel zur Gottesdienst am
+                <f:format.date format="d.m.Y">{sermon.preached}</f:format.date>
+                <br/>
+                &copy;
+                <f:format.date format="Y">{sermon.preached}</f:format.date>
+                Volksmission Freudenstadt
+                <br/>
             </f:else>
         </f:if>
 
@@ -71,35 +110,48 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </div>
         </f:if>
 
-        <br />Weitere Informationen, Predigten und Termine:<br />
-        <b>www.volksmission-freudenstadt.de</b>	
+        <br/>Weitere Informationen, Predigten und Termine:<br/>
+        <b>www.volksmission-freudenstadt.de</b>
     </div>
     <!-- Spalte: Titelseite -->
     <div class="column">
         <table style="margin-bottom: 3cm;" border="0" cellspacing="0" cellpadding="0" width="100%">
-            <tr><td valign="top" style="text-align: right; padding-right: 2mm;">
-            <f:image style="padding-bottom: 2mm;" src="d/CI/meine-kirche.jpg" alt="Meine Kirche" title="Meine Kirche" width="150" /><br />
-            Begleitzettel zum Gottesdienst<br /> am <f:format.date format="d.m.Y">{sermon.preached}</f:format.date></td><td style="text-align:center;" valign="top">
-            <qr:qrcode size="5" width="100" alt="QR code">http://vmfds.de/p<f:format.date format="ymd">{sermon.preached}</f:format.date></qr:qrcode>
-            </td></tr></table>
+            <tr>
+                <td valign="top" style="text-align: right; padding-right: 2mm;">
+                    <f:image style="padding-bottom: 2mm;" src="d/CI/meine-kirche.jpg" alt="Meine Kirche"
+                             title="Meine Kirche" width="150"/>
+                    <br/>
+                    Begleitzettel zum Gottesdienst<br/> am
+                    <f:format.date format="d.m.Y">{sermon.preached}</f:format.date>
+                </td>
+                <td style="text-align:center;" valign="top">
+                    <qr:qrcode size="5" width="100" alt="QR code">http://vmfds.de/p
+                        <f:format.date format="ymd">{sermon.preached}</f:format.date>
+                    </qr:qrcode>
+                </td>
+            </tr>
+        </table>
 
         <h1 class="welcome">Herzlich willkommen zum Gottesdienst</h1>
-        <hr />
-        <f:image class="titleimage" src="predigten/Titelbilder/{sermon.image}" alt="Titelbild zur Predigt" title="{sermon.title}" width="300" />
+        <hr/>
+        <f:image class="titleimage" src="predigten/Titelbilder/{sermon.image}" alt="Titelbild zur Predigt"
+                 title="{sermon.title}" width="300"/>
+        <f:debug>{imageCredits}</f:debug>
 
-        <hr />
+        <hr/>
         <div class="titlecontainer">
             <h2 class="title">{sermon.title}</h2>
             <f:if condition="{sermon.subtitle}"><h3 class="subtitle">{sermon.subtitle}</h3></f:if>
         </div>
-        <hr />
+        <hr/>
         <f:if condition="{sermon.series}">
-            Ein Gottesdienst aus der Reihe <f:for each="{sermon.series}" as="series">"{series.title}" </f:for>
+            Ein Gottesdienst aus der Reihe
+            <f:for each="{sermon.series}" as="series">"{series.title}"</f:for>
         </f:if>
     </div>
 
     <!--  2. Seite -->
-    <pagebreak />
+    <pagebreak/>
 
 
     <!-- Spalte: mitlesen -->
@@ -108,33 +160,66 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <h1 class="sectionheader">mit<b>lesen</b></h1>
         <ul>
             <li style="margin-bottom: 5mm; text-indent: 5mm;">
-                In Gottes Wort, der Bibel, begegnet uns Gott und spricht uns direkt und persönlich an. 
-                Deshalb gehört das Lesen des Bibeltextes zu den wichtigsten Momenten im Gottesdienst. 
-                Wir möchten dich gerne herausfordern, regelmäßig deine eigene Bibel (egal ob Buch, Smartphone oder Tablet) mitzubringen,
-                um aktiv mitzulesen, wichtige Stellen anzustreichen und dir Notizen zu machen.</li> 
-            <li>Wenn du heute keine Bibel dabei hast, darfst du dir gerne aus unserer Bibliothek hinten rechts im Saal ein Exemplar ausleihen.</li>
-            <li>Die Bibel wurde ursprünglich nicht auf Deutsch geschrieben. 
-                Es existieren verschiedene Übersetzungen, so dass unsere Lesung vielleicht anders klingt, als der Text, der in deiner Ausgabe steht. 
-                Lass dich davon nicht stören, sondern höre auf die Unterschiede--vielleicht helfen sie dir sogar, den Text besser zu verstehen.</li>
+                In Gottes Wort, der Bibel, begegnet uns Gott und spricht uns direkt und persönlich an.
+                Deshalb gehört das Lesen des Bibeltextes zu den wichtigsten Momenten im Gottesdienst.
+                Wir möchten dich gerne herausfordern, regelmäßig deine eigene Bibel (egal ob Buch, Smartphone oder
+                Tablet)
+                mitzubringen,
+                um aktiv mitzulesen, wichtige Stellen anzustreichen und dir Notizen zu machen.
+            </li>
+            <li>Wenn du heute keine Bibel dabei hast, darfst du dir gerne aus unserer Bibliothek hinten rechts im Saal
+                ein
+                Exemplar ausleihen.
+            </li>
+            <li>Die Bibel wurde ursprünglich nicht auf Deutsch geschrieben.
+                Es existieren verschiedene Übersetzungen, so dass unsere Lesung vielleicht anders klingt, als der Text,
+                der
+                in deiner Ausgabe steht.
+                Lass dich davon nicht stören, sondern höre auf die Unterschiede--vielleicht helfen sie dir sogar, den
+                Text
+                besser zu verstehen.
+            </li>
         </ul>
         <table style="border: solid 1px black; margin-bottom: 0.3cm;" cellspacing="3" cellpadding="0">
-            <tr><td colspan="2" style="border-bottom: solid 1px black;">Im heutigen Gottesdienst lesen wir Folgendes aus Gottes Wort: <b>{sermon.reference}</b></td></tr>                
-            <tr><td valign="center"><qr:qrcode size="4" width="60" alt="QR code">{sermon.reference -> vms:youVersion()}</qr:qrcode></td>
-            <td valign="top">Scanne diesen Code mit deinem Smartphone, um den Bibeltext in der App "Die Bibel" (youversion.com) aufzuschlagen.</td></tr></table>
+            <tr>
+                <td colspan="2" style="border-bottom: solid 1px black;">Im heutigen Gottesdienst lesen wir Folgendes aus
+                    Gottes Wort: <b>{sermon.reference}</b></td>
+            </tr>
+            <tr>
+                <td valign="center">
+                    <qr:qrcode size="4" width="60" alt="QR code">{sermon.reference -> vms:youVersion()}</qr:qrcode>
+                </td>
+                <td valign="top">Scanne diesen Code mit deinem Smartphone, um den Bibeltext in der App "Die Bibel"
+                    (youversion.com) aufzuschlagen.
+                </td>
+            </tr>
+        </table>
 
-        <!--  
+        <!--
         <h1 style="margin-top: 40px; font-size: 20pt; margin-bottom: 10mm;"><span style="font-weight: bold;">mit</span><span style="font-weight: normal;">denken</span></h1>
         <h3>Worum es heute geht:</h3>
         <p><f:format.html>{sermon.description}</f:format.html></p>
-        -->		
+        -->
 
         <h1 class="sectionheader">mit<b>reden</b></h1>
         <ul>
-            <li><b>Du brauchst Gebet?</b><br />Bereits während der Anbetungszeit im Anschluss an die Predigt wartet im hinteren Teil des Saals unser Gebetsteam auf dich. Gerne darfst du während der Lieder einfach aufstehen und dort hingehen, damit jemand mit dir betet.</p></li>
-            <li><b>Du hast Fragen zur Predigt? </b><br />Dann laden wir dich nach dem Gottesdienst vorne beim Sofa zum Pastorengespräch ein.</li> 
-            <f:if condition="{sermon.hashtags}"><li><b>Du willst online diskutieren?</b><br />Hier sind die Hashtags zu dieser Predigt: <f:if condition="{settings.hashtags.default}">{settings.hashtags.default} </f:if>
-                <f:for each="{sermon.series}" as="series"><f:if condition="{series.hashtags}">{series.hashtags} </f:if></f:for>{sermon.hashtags}</li></f:if>
-        </ul>		
+            <li><b>Du brauchst Gebet?</b><br/>Bereits während der Anbetungszeit im Anschluss an die Predigt wartet im
+                hinteren Teil des Saals unser Gebetsteam auf dich. Gerne darfst du während der Lieder einfach aufstehen
+                und
+                dort hingehen, damit jemand mit dir betet.</p></li>
+            <li><b>Du hast Fragen zur Predigt? </b><br/>Dann laden wir dich nach dem Gottesdienst vorne beim Sofa zum
+                Pastorengespräch ein.
+            </li>
+            <f:if condition="{sermon.hashtags}">
+                <li><b>Du willst online diskutieren?</b><br/>Hier sind die Hashtags zu dieser Predigt:
+                    <f:if condition="{settings.hashtags.default}">{settings.hashtags.default}</f:if>
+                    <f:for each="{sermon.series}" as="series">
+                        <f:if condition="{series.hashtags}">{series.hashtags}</f:if>
+                    </f:for>
+                    {sermon.hashtags}
+                </li>
+            </f:if>
+        </ul>
     </div>
 
     <!-- Spalte: Lückentext -->
@@ -144,32 +229,44 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <p class="sectionintro">Hier kannst du während der Predigt die wichtigsten Punkte mitschreiben:</p>
             <div class="sermonnotes">
                 <f:if condition="{sermon.notesHeader}"><p>{sermon.notesHeader}</p></f:if>
-                <vms:orderedList list="{sermon.keypoints}" underlineMode="{settings.pdf.underlineMode}" itemStyle="margin-bottom: 2mm;" breakAfter="1" />
+                <vms:orderedList list="{sermon.keypoints}" underlineMode="{settings.pdf.underlineMode}"
+                                 itemStyle="margin-bottom: 2mm;" breakAfter="1"/>
             </div>
         </f:if>
-        <vms:length name="len"><vms:orderedList list="{sermon.keypoints}" underlineMode="{settings.pdf.underlineMode}" itemStyle="margin-bottom: 2mm;" breakAfter="1" /></vms:length>
-        <f:if condition="{len} <= 1000"><f:then>
-            <f:if condition="{sermon.keypoints}">
-                <hr />
-            </f:if>
-            <h1 class="sectionheader">mit<b>machen</b></h1>
-            <p class="sectionintro">Hier hast du Platz für eigene Notizen. Was spricht dich persönlich an? Was nimmst du mit, um es nächste Woche umzusetzen?</p>
-        </f:then></f:if>
+        <vms:length name="len">
+            <vms:orderedList list="{sermon.keypoints}" underlineMode="{settings.pdf.underlineMode}"
+                             itemStyle="margin-bottom: 2mm;" breakAfter="1"/>
+        </vms:length>
+        <f:if condition="{len} <= 1000">
+            <f:then>
+                <f:if condition="{sermon.keypoints}">
+                    <hr/>
+                </f:if>
+                <h1 class="sectionheader">mit<b>machen</b></h1>
+                <p class="sectionintro">Hier hast du Platz für eigene Notizen. Was spricht dich persönlich an? Was
+                    nimmst du
+                    mit, um es nächste Woche umzusetzen?</p>
+            </f:then>
+        </f:if>
     </div>
 
     <!-- Spalte: Weiterlesen -->
     <div class="column">
-        <f:if condition="{len} > 1000"><f:then>
-            <h1 class="sectionheader">mit<b>machen</b></h1>
-            <p class="sectionintro">Hier hast du Platz für eigene Notizen. Was spricht dich persönlich an? Was nimmst du mit, um es nächste Woche umzusetzen?</p>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        </f:then></f:if>
+        <f:if condition="{len} > 1000">
+            <f:then>
+                <h1 class="sectionheader">mit<b>machen</b></h1>
+                <p class="sectionintro">Hier hast du Platz für eigene Notizen. Was spricht dich persönlich an? Was
+                    nimmst du
+                    mit, um es nächste Woche umzusetzen?</p>
+                <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            </f:then>
+        </f:if>
         <h1 class="sectionheader">weiter<b>denken</b></h1>
         <p class="sectionintro">So könnt ihr in deiner Kleingruppe weiter über das Gehörte nachdenken:</p>
-        <vms:orderedList list="{sermon.questions}" />
+        <vms:orderedList list="{sermon.questions}"/>
 
         <f:if condition="{sermon.furtherReading}">
-            <hr />
+            <hr/>
             <h1 class="sectionheader">weiter<b>lesen</b></h1>
             <p class="sectionintro">Wenn dich das Thema interessiert, findest du hier noch weiteren Lesestoff:</p>
             <f:format.html>{sermon.furtherReading}</f:format.html>

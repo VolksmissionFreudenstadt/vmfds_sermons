@@ -1,5 +1,6 @@
 {namespace s=TYPO3\VmfdsSermons\ViewHelpers}
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace legal=VMFDS\Legalese\ViewHelpers}
 <!--
 @package vmfds_sermons
 @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
@@ -57,7 +58,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
                 <div class="item active">    
-                    <f:image src="predigten/Titelbilder/{sermon.image}" class="img-responsive" width="1400" />
+                    <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" class="img-responsive" width="1400" />
                     <div class="carousel-caption">            
                         <h1>{sermon.title}</h1>
                         <f:if condition="{sermon.subtitle}">{sermon.subtitle}</f:if>

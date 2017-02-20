@@ -72,6 +72,20 @@ class Series extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $image;
 
     /**
+     * Preview image
+     *
+     * @var \string
+     */
+    protected $imagePreview;
+
+    /**
+     * Image source
+     *
+     * @var \string
+     */
+    protected $imageSource;
+
+    /**
      * hashtags
      *
      * @var \string
@@ -224,5 +238,39 @@ class Series extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->hashtags = $hashtags;
     }
+
+    /**
+     * @return string
+     */
+    public function getImagePreview()
+    {
+        return $this->imagePreview;
+    }
+
+    /**
+     * @param string $imagePreview
+     */
+    public function setImagePreview($imagePreview)
+    {
+        $this->imagePreview = $imagePreview;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageSource()
+    {
+        return $this->imageSource;
+    }
+
+    /**
+     * @param string $imageSource
+     */
+    public function setImageSource($imageSource)
+    {
+        $this->imageSource = $imageSource;
+    }
+
+
 
 }

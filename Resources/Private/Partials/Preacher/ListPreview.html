@@ -20,20 +20,28 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<div class="col-md-2">
-    <div class="center">
-        <f:link.action action="show" arguments="{preacher: preacher}" pageUid="{settings.pid.preacher.single}">
-            <f:if condition="{preacher.image}">
-                <f:then>
-                    <f:image src="uploads/tx_vmfdssermons/{preacher.image}" class="img-responsive img-circle" width="243" height="243c"/>
-                </f:then>
-                <f:else>
-                    <f:image src="EXT:vmfds_sermons/Resources/Public/Images/user-red.jpg" class="img-responsive img-circle preacher-icon" width="243" height="243c"/>
-                </f:else>
-            </f:if>
-        </f:link.action>
-        <div class="caption">           
-            <h3><f:link.action action="show" arguments="{preacher : preacher}" pageUid="{settings.pid.preacher.single}">{preacher.name}</f:link.action></h3>
+<div xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
+    <div class="col-md-2">
+        <div class="center">
+            <f:link.action action="show" arguments="{preacher: preacher}" pageUid="{settings.pid.preacher.single}">
+                <f:if condition="{preacher.image}">
+                    <f:then>
+                        <legal:copyrightedImage src="uploads/tx_vmfdssermons/{preacher.image}" class="img-responsive img-circle"
+                                 width="243" height="243c"/>
+                    </f:then>
+                    <f:else>
+                        <legal:copyrightedImage src="EXT:vmfds_sermons/Resources/Public/Images/user-red.jpg"
+                                 class="img-responsive img-circle preacher-icon" width="243" height="243c"/>
+                    </f:else>
+                </f:if>
+            </f:link.action>
+            <div class="caption">
+                <h3>
+                    <f:link.action action="show" arguments="{preacher : preacher}"
+                                   pageUid="{settings.pid.preacher.single}">{preacher.name}
+                    </f:link.action>
+                </h3>
+            </div>
         </div>
     </div>
 </div>

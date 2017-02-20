@@ -22,9 +22,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <f:if condition="{series}">
     <f:if condition="{series.image}">
-        <div class="item">        
+        <div class="item" xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
             <f:link.action action="show" pageUid="{settings.pid.series.single}" arguments="{series: series}">
-                <f:image src="predigten/Titelbilder/{series.image}" alt="{series.title}" title="{series.title}" class="img-responsive" width="1400"/>
+                <legal:copyrightedImage src="predigten/Titelbilder/{series.image}" alt="{series.title}"
+                                        title="{series.title}"
+                                        class="img-responsive" width="1400"/>
                 <div class="carousel-caption">
                     Die aktuelle Predigtreihe
                     <h1>{series.title}</h1>

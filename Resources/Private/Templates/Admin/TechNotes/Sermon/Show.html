@@ -1,5 +1,6 @@
 {namespace vms=TYPO3\VmfdsSermons\ViewHelpers}
 {namespace vmpdf=VMFDS\VmfdsPdf\ViewHelpers}
+{namespace legal=VMFDS\Legalese\ViewHelpers}
 <!--
 @package vmfds_sermons
 @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
@@ -43,7 +44,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             </div>
         </div>
         <div style="float: left; margin: 0 10px 10px 0; width: 160px;">
-        <f:image style="border: solid 1px darkgray;" src="{slide.image.originalResource.publicUrl}" width="150" />
+        <legal:copyrightedImage style="border: solid 1px darkgray;" src="{slide.image.originalResource.publicUrl}" width="150" useDivs="1" />
         </div>
         <div style="float: left; ">
         {slide.techNotes -> f:format.html()}            

@@ -71,6 +71,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                         <numIndex index="0">Predigtdaten </numIndex>
                                         <numIndex index="1">Sermon->edit;Sermon->update</numIndex>
                                     </numIndex>
+                                    <numIndex index="9">
+                                        <numIndex index="0">Aktuelle Reihe</numIndex>
+                                        <numIndex index="1">Sermon->byLatestSeries;Sermon->show;Sermon->list</numIndex>
+                                    </numIndex>
                                 </items>
                             </config>
                         </TCEforms>

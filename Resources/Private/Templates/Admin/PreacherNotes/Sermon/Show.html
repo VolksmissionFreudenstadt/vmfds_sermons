@@ -3,6 +3,7 @@
 {namespace kool=VMFDS\VmfdsKool\ViewHelpers}
 {namespace qr=B263\Qrcode\ViewHelpers}
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace legal=VMFDS\Legalese\ViewHelpers}
 <!--
 @package vmfds_sermons
 @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
@@ -31,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <div class="infoblock" style="float:left; width: 100%; height: 3cm; padding: 5px; {f:if(condition: '{i.cycle} % 6', then: 'border-bottom: dotted 1px black;')}">
                 <div style="width: 100%;">({i.cycle}) <b>{slide.title}</b></div>
                 <div style="float: left; margin: 0 10px 10px 0; width: 100px;">
-                    <f:image style="border: solid 1px darkgray;" src="{slide.image.originalResource.publicUrl}" width="90" />
+                    <legal:copyrightedImage style="border: solid 1px darkgray;" src="{slide.image.originalResource.publicUrl}" width="90" />
 
                 </div>
                 <div style="float: left; width: 6cm; padding: 0;">
@@ -77,7 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     <div class="column">
         <table style="margin-bottom: 3cm;" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr><td valign="top" style="text-align: right; padding-right: 2mm;">
-            <f:image style="padding-bottom: 2mm;" src="d/CI/meine-kirche.jpg" alt="Meine Kirche" title="Meine Kirche" width="150" /><br />
+            <legal:copyrightedImage style="padding-bottom: 2mm;" src="d/CI/meine-kirche.jpg" alt="Meine Kirche" title="Meine Kirche" width="150" /><br />
             <span style="color: red; font-weight: bold;">Nicht zum Verteilen!<f:if condition="{sermon.preacher.0}"><br />Bitte zurück an:<br /> {sermon.preacher.0.name}</f:if></span><br />            
             Predigtnotizen zum Gottesdienst<br /> am <f:format.date format="d.m.Y">{sermon.preached}</f:format.date></td><td style="text-align:center;" valign="top">
             <qr:qrcode size="5" width="100" alt="QR code"><f:uri.action controller="Sermon" action="show" pageUid="{settings.pid.sermon.single}" pageType="820" arguments="{sermon: sermon}" /></qr:qrcode>
@@ -85,7 +86,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         <h1 class="welcome">Herzlich willkommen zum Gottesdienst</h1>
         <hr />
-        <f:image class="titleimage" src="predigten/Titelbilder/{sermon.image}" alt="Titelbild zur Predigt" title="{sermon.title}" width="300" />
+        <legal:copyrightedImage class="titleimage" src="predigten/Titelbilder/{sermon.image}" alt="Titelbild zur Predigt" title="{sermon.title}" width="300" />
 
         <hr />
         <div class="titlecontainer">

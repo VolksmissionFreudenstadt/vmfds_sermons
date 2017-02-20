@@ -20,7 +20,7 @@ function toggleFullScreen() {
 }
 
 function getCurrentFontSize() {
-    var fontSize = parseInt($('.container').first().css('font-size').replace('px', ''));
+    var fontSize = parseInt($('.fontSizeReference').first().css('font-size').replace('px', ''));
     $('#fontSizeInfo').html(fontSize+"px");
     return fontSize;
 }
@@ -74,10 +74,10 @@ $(document).ready(function(){
     getCurrentFontSize();
 
     $('#fontLarger').click(function(){
-        $('.container').css('font-size', getCurrentFontSize()+1+"px");
+        $('.fontSizeReference').css('font-size', getCurrentFontSize()+1+"px");
     });
     $('#fontSmaller').click(function(){
-        $('.container').css('font-size', getCurrentFontSize()-1+"px");
+        $('.fontSizeReference').css('font-size', getCurrentFontSize()-1+"px");
     });
 
 
@@ -91,7 +91,7 @@ $(document).ready(function(){
             }
         }
         var date = new Date();
-        $('#timerTime').html(date.toLocaleTimeString() + ' Uhr');
+        $('#timerTime').html(date.toLocaleTimeString());
     }, 1000);
 
     $('#resetTimer').click(function(){
@@ -136,7 +136,7 @@ $(document).ready(function(){
                 });
 
                 checkToolbarColor();
-                $('#currentSlideNumber').html('<i class="fa fa-picture-o" aria-hidden="true"></i> ' + $(this).data('slide-number')+ '/' + slideCount);
+                $('#currentSlideNumber').html($(this).data('slide-number')+ '/' + slideCount);
                 secOnSlide = 0;
                 timedSlide = false;
                 slideActive = true;

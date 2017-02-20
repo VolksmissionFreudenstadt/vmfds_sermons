@@ -20,71 +20,84 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<h1>Profil für {preacher.name} bearbeiten</h1>
-<hr />
+<div xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
+    <h1>Profil für {preacher.name} bearbeiten</h1>
+    <hr/>
 
-<f:form method="post" controller="Preacher" action="update" name="preacher" object="{preacher}" pageUid="{settings.pid.preacher.admin}" enctype="multipart/form-data">
-    <f:form.hidden name="oldImage" value="{preacher.image}" />
-    <div class="row">
-        <div class="col-md-3">
-            <f:if condition="{preacher.image}">
-                <f:then>
-                    <f:image src="uploads/tx_vmfdssermons/{preacher.image}" class="img-responsive img-circle" width="243" height="243c"/>
-                </f:then>
-                <f:else>
-                    <f:image src="EXT:vmfds_sermons/Resources/Public/Images/user-red.jpg" class="img-responsive img-circle preacher-icon" width="243" height="243c"/>
-                </f:else>
-            </f:if>
-            <div class="form-group">
-                <label for="image">
-                    Neues Profilbild
-                </label>
-                <f:form.upload property="image" /></div>    
+    <f:form method="post" controller="Preacher" action="update" name="preacher" object="{preacher}"
+            pageUid="{settings.pid.preacher.admin}" enctype="multipart/form-data">
+        <f:form.hidden name="oldImage" value="{preacher.image}"/>
+        <div class="row">
+            <div class="col-md-3">
+                <f:if condition="{preacher.image}">
+                    <f:then>
+                        <legal:copyrightedImage src="uploads/tx_vmfdssermons/{preacher.image}" class="img-responsive img-circle"
+                                 width="243" height="243c"/>
+                    </f:then>
+                    <f:else>
+                        <legal:copyrightedImage src="EXT:vmfds_sermons/Resources/Public/Images/user-red.jpg"
+                                 class="img-responsive img-circle preacher-icon" width="243" height="243c"/>
+                    </f:else>
+                </f:if>
+                <div class="form-group">
+                    <label for="image">
+                        Neues Profilbild
+                    </label>
+                    <f:form.upload property="image"/>
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div class="form-group">
+                    <label for="email">
+                        E-Mailadresse
+                    </label>
+                    <f:form.textfield class="form-control" property="email"/>
+                </div>
+                <div class="form-group">
+                    <label for="organization">
+                        Organisation
+                    </label>
+                    <f:form.textfield class="form-control" property="organization"/>
+                </div>
+                <div class="form-group">
+
+
+                    <label for="url">
+                        Deine Homepage bzw. die Homepage deiner Organisation
+                    </label>
+                    <f:form.textfield class="form-control" property="url"/>
+                </div>
+                <div class="form-group">
+                    <label for="blog">
+                        Dein Blog
+                    </label>
+                    <f:form.textfield class="form-control" property="blog"/>
+                </div>
+                <div class="form-group">
+                    <label for="blog">
+                        Über dich
+                    </label>
+                    <f:form.textarea class="form-control" property="about"/>
+                </div>
+                <div class="form-group">
+                    <label for="blog">
+                        Dein Benutzername auf Facebook (http://www.facebook.com/...)
+                    </label>
+                    <f:form.textfield class="form-control" property="facebookId"/>
+                </div>
+                <div class="form-group">
+                    <label for="blog">
+                        Dein Benutzername auf Twitter
+                    </label>
+                    <f:form.textfield class="form-control" property="twitter"/>
+                </div>
+
+            </div>
+
 
         </div>
-        <div class="col-md-9">
-            <div class="form-group">
-                <label for="email">
-                    E-Mailadresse
-                </label>
-                <f:form.textfield class="form-control" property="email" /></div>
-            <div class="form-group">
-                <label for="organization">
-                    Organisation
-                </label>
-                <f:form.textfield class="form-control" property="organization" /></div>
-            <div class="form-group">
-
-
-                <label for="url">
-                    Deine Homepage bzw. die Homepage deiner Organisation
-                </label>
-                <f:form.textfield class="form-control" property="url" /></div>
-            <div class="form-group">
-                <label for="blog">
-                    Dein Blog
-                </label>
-                <f:form.textfield class="form-control" property="blog" /></div>
-            <div class="form-group">
-                <label for="blog">
-                    Über dich
-                </label>
-                <f:form.textarea class="form-control" property="about" /></div>
-            <div class="form-group">
-                <label for="blog">
-                    Dein Benutzername auf Facebook (http://www.facebook.com/...)
-                </label>
-                <f:form.textfield class="form-control" property="facebookId" /></div>
-            <div class="form-group">
-                <label for="blog">
-                    Dein Benutzername auf Twitter
-                </label>
-                <f:form.textfield class="form-control" property="twitter" /></div>
-
-        </div>
-
-
-    </div>
-    <hr />
-    <f:form.submit class="btn btn-primary" value="Profil speichern" />
-</f:form>
+        <hr/>
+        <f:form.submit class="btn btn-primary" value="Profil speichern"/>
+    </f:form>
+</div>
