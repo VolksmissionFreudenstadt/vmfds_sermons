@@ -43,6 +43,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
   bible_text       TEXT                            NOT NULL,
   keywords         VARCHAR(255) DEFAULT ''         NOT NULL,
   image            TEXT                            NOT NULL,
+  image_preview    TEXT                            NOT NULL,
   image_source     VARCHAR(255) DEFAULT ''         NOT NULL,
   no_handout       TINYINT(4) UNSIGNED DEFAULT '0' NOT NULL,
   handout          TEXT                            NOT NULL,
@@ -162,6 +163,8 @@ CREATE TABLE tx_vmfdssermons_domain_model_series (
   enddate          INT(11) DEFAULT '0'             NOT NULL,
   description      TEXT                            NOT NULL,
   image            TEXT                            NOT NULL,
+  image_preview    TEXT                            NOT NULL,
+  image_source     VARCHAR(255) DEFAULT ''         NOT NULL,
   hashtags         VARCHAR(255) DEFAULT ''         NOT NULL,
 
   tstamp           INT(11) UNSIGNED DEFAULT '0'    NOT NULL,
@@ -270,7 +273,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_slide (
 );
 
 #
-# Table structure for table 'tx_vmfdssermons_domain_model_series'
+# Table structure for table 'tx_vmfdssermons_domain_model_feed'
 #
 CREATE TABLE tx_vmfdssermons_domain_model_feed (
 
