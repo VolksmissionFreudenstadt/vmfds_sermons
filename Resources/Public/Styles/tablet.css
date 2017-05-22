@@ -1,0 +1,21 @@
+.container {
+    font-size: 22px;
+}
+
+#toolbar {
+    padding: 10px;
+    background-color: black;
+    color: white
+}
+
+.top-row {
+    padding-top: 50px;
+}
+
+.panel-default > .panel-heading-title {
+    background-color: #ffdddd;
+}
+
+.panel-default > .panel-heading-bible {
+    background-color: #ddddff;
+}

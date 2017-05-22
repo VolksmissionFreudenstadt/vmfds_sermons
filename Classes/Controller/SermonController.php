@@ -1,56 +1,54 @@
 <?php
 
-namespace TYPO3\VmfdsSermons\Controller;
-
-/* * *************************************************************
- *  Copyright notice
- *
- *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
-
-/**
- *
- *
+/*
  * @package vmfds_sermons
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+ * @site http://open.vmfds.de
+ * @author Christoph Fischer <chris@toph.de>
+ * @date 2016-06-04
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+namespace TYPO3\VmfdsSermons\Controller;
+
 class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
 
     /**
-     * !!! This property behavior has changed in [see], was formerly named $supportedFormats
+     * Supported media types
      * @var array
-     * @see http://git.typo3.org/FLOW3/Packages/TYPO3.FLOW3.git?a=commit;h=03b6d85916e46ed8b2e99bc549d7248957dca935
      */
     protected $supportedMediaTypes = array('text/html', 'application/json');
 
     /**
+     * Upload utility class
+     * @var \TYPO3\VmfdsSermons\Utility\UploadUtility
+     * @inject
+     */
+    protected $uploadUtility;
+
+    /**
+     * Map view format to object name
      * @var array
      */
     protected $viewFormatToObjectNameMap = array('json' => 'TYPO3\CMS\Extbase\Mvc\View\JsonView');
 
     /**
      * sermonRepository
-     *
      * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
      * @inject
      */
@@ -58,15 +56,20 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * seriesRepository
-     *
      * @var \TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository
      * @inject
      */
     protected $seriesRepository;
 
     /**
+     * preacherRepository
+     * @var \TYPO3\VmfdsSermons\Domain\Repository\PreacherRepository
+     * @inject
+     */
+    protected $preacherRepository;
+
+    /**
      * inject the SeriesRepository object
-     *
      * @param \TYPO3\VmfdsSermons\Domain\Repository\SeriesRepository $seriesRepository
      * @return void
      */
@@ -76,8 +79,18 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
     }
 
     /**
+     * initialize action
+     */
+    public function initializeAction()
+    {
+        if ($this->arguments->hasArgument('sermon')) {
+            $this->arguments->getArgument('sermon')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
+        }
+    }
+
+    /**
      * action list
-     *
+     * Display a list of sermons
      * @return void
      */
     public function listAction()
@@ -94,28 +107,25 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action show
-     *
+     * Show details for a single sermon
      * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
      * @return void
      */
     public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon = NULL)
     {
-
         // permit preview of hidden records?
         $sneakForward = FALSE;
         if (is_null($sermon)) {
             if ((int) $this->settings['singleSermon'] > 0)
                 $previewSermonId = $this->settings['singleSermon'];
+            elseif ($this->request->hasArgument('sermon'))
+                $previewSermonId = $this->request->getArgument('sermon');
             elseif ($this->request->hasArgument('sermon_preview'))
                 $previewSermonId = $this->request->getArgument('sermon_preview');
             else
                 $this->forward('list');
-            //die('Requested sermon ' . $previewSermonId);
-            if ($this->settings['previewHiddenRecords']) {
-                $sermon = $this->sermonRepository->findByUid($previewSermonId, FALSE);
-            } else {
-                $sermon = $this->sermonRepository->findByUid($previewSermonId);
-            }
+
+            $sermon = $this->sermonRepository->findByUid($previewSermonId, FALSE);
 
             if (is_null($sermon))
                 $this->forward('list');
@@ -180,7 +190,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action byLatestSeries
-     *
+     * List sermons from latest series
      * @return void
      */
     public function byLatestSeriesAction()
@@ -198,9 +208,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action previewNext
-     *
-     * Display a single sermon: the next one which is on preview
-     *
+     * Display the next sermon on preview
      * @return void
      */
     public function previewNextAction()
@@ -215,9 +223,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action showLatest
-     *
      * Display a single sermon: the latest one
-     *
      * @return void
      */
     public function showLatestAction()
@@ -229,9 +235,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action audioUploadWelcome
-     *
      * Display a form for sermon audio upload
-     *
      * @return void
      */
     public function audioUploadWelcomeAction()
@@ -246,24 +250,31 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action audioUploadDone
-     *
-     * Handle audio upload
-     *
+     * Handle uploaded audio
      * @return void
      */
     public function audioUploadDoneAction()
     {
 
-        global $_FILES;
+        $fp = fopen('debug-upload.txt', 'w');
+        fwrite($fp, print_r($_FILES, 1));
+        fwrite($fp, print_r($this->settings, 1));
 
         if ($this->request->hasArgument('sermon')) {
             $sermon = $this->sermonRepository->findByUid($this->request->getArgument('sermon'));
         }
+
+        fwrite($fp, print_r($sermon, 1));
+
         $file = $this->request->getArgument('audiorecording');
+        fwrite($fp, print_r($file, 1));
         if (!$file['error']) {
             $uploadFolder = PATH_site . $this->settings['uploadFolder'] . '/';
             $destFile = $uploadFolder . $file['name'];
+	        fwrite($fp, 'Source: '.$file['tmp_name'].PHP_EOL);
+            fwrite($fp, 'Destination: '.$destFile.PHP_EOL);
             move_uploaded_file($file['tmp_name'], $destFile);
+	        fwrite($fp, 'Moved'.PHP_EOL);
 
             // get preachers
             $p = array();
@@ -271,6 +282,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $p[] = $preacher->getFirstName() . ' ' . $preacher->getLastName();
             }
             $preacher = join(', ', $p);
+	        fwrite($fp, 'Preacher: '.$preacher.PHP_EOL);
 
             // get series
             $s = array();
@@ -278,6 +290,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $s[] = $series->getTitle();
             }
             $series = join(', ', $s);
+	        fwrite($fp, 'Series: '.$series.PHP_EOL);
 
             // id3 tagging
             id3_set_tag($destFile, array(
@@ -288,18 +301,22 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'comment' => 'Predigt vom ' . strftime('%d.%m.%Y', $sermon->getPreached()->getTimestamp()),
                 'track' => 1,
             ));
+	        fwrite($fp, 'Set ID3 tag'.PHP_EOL);
 
             // add file to sermon record
             $sermon->setAudiorecording('predigten/Aufnahmen/' . $file['name']);
+	        fwrite($fp, 'Set audiorecording.'.PHP_EOL);
 
             // persist the changes
             $this->sermonRepository->update($sermon);
+	        fwrite($fp, 'Persisted.'.PHP_EOL);
         }
+	    fclose($fp);
     }
 
     /**
      * action ajax
-     *
+     * Return sermon details for AJAX
      * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
      * @return void
      */
@@ -310,7 +327,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
     /**
      * action byDate
-     *
+     * Display a single sermon by date
      * @return void
      */
     public function byDateAction()
@@ -338,11 +355,228 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
         }
     }
 
+    /**
+     * action presentation
+     * Create a powerpoint presentation for a single sermon
+     *
+     * Note that this action outputs to a PHP-based view
+     * @see Classes/View/Sermon/Presentation.php
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     */
     function presentationAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
     {
         $this->view->assign('sermon', $sermon);
     }
 
-}
+    /**
+     * action edit
+     * Show the edit form for a sermon
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     * @return void
+     */
+    public function editAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon = NULL)
+    {
+        $this->view->assign('sermon', $sermon);
+        if (is_null($sermon)) {
+            if ($this->request->hasArgument('sermon')) {
+                $previewSermonId = $this->request->getArgument('sermon');
+                $sermon = $this->sermonRepository->findByUid($previewSermonId, FALSE);
+            }
+        }
+        $this->view->assign('sermon', $sermon);
 
-?>
+        if ($this->request->hasArgument('preacher')) {
+            $preacher = $this->preacherRepository->findByUid($this->request->getArgument('preacher'));
+            $this->view->assign('preacher', $preacher);
+        }
+    }
+
+    /**
+     * action update
+     * Update a sermon record
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     * @return void
+     */
+    public function updateAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
+    {
+        $formData = $this->request->getArgument('sermon');
+        $imageField = $formData['image'];
+        if ($imageField['name']) {
+            $fileName = $this->uploadUtility->uploadFile($imageField, 'tx_vmfdssermons_domain_model_sermon', 'image');
+            $sermon->setImage($fileName);
+        } else {
+        	if ($this->request->hasArgument('oldimage')) {
+		        $oldImage = $this->request->getArgument('oldImage');
+		        $sermon->setImage($oldImage);
+	        }
+        }
+
+        $this->sermonRepository->update($sermon);
+
+        if ($this->request->hasArgument('preacher')) {
+            $preacher = $this->preacherRepository->findByUid($this->request->getArgument('preacher'));
+            $service = [];
+            if ($this->request->hasArgument('service')) {
+                $service = $this->request->getArgument('service');
+                $preacher->setMic($service['mic']);
+                $preacher->setPulpit($service['pulpit']);
+                $preacher->setPpt($service['ppt']);
+                $preacher->setLaptop($service['laptop']);
+            }
+            $fee = [];
+            if ($this->request->hasArgument('fee')) {
+                $fee = $this->request->getArgument('fee');
+                $preacher->setTravelCost($fee['amount']);
+                $preacher->setAccountHolder($fee['accountHolder']);
+                $preacher->setIban($fee['iban']);
+                $preacher->setBic($fee['bic']);
+            }
+            $this->preacherRepository->update($preacher);
+
+            $recipients = $this->settings['preacher']['editNotifyMail']['recipients'];
+            if ($preacherEMail = $preacher->getEmail()) {
+                $recipients[$preacherEMail] = $preacher->getName();
+            }
+
+            $attachments = [];
+            if ($img = $preacher->getImage()) {
+                $attachments[] = PATH_site . 'uploads/tx_vmfdssermons/' . $img;
+            }
+            if ($img = $sermon->getImage()) {
+                $attachments[] = PATH_site . 'predigten/Titelbilder/' . $img;
+            }
+
+            $subject = $sermon->getTitle() . ' (' . $sermon->getPreached()->format('d.m.Y') . ', ' . $preacher->getName() . ')';
+
+            $vars = [
+                'sermon' => $sermon,
+                'preacher' => $preacher,
+                'service' => $service,
+                'fee' => $fee
+            ];
+
+            // send notification email
+            $this->sendTemplateEmail($recipients, [
+                $this->settings['preacher']['editNotifyMail']['sender']['email'] => $this->settings['preacher']['editNotifyMail']['sender']['name']
+                    ], $subject, 'GuestPreacherSubmittedSermon', $vars, $attachments
+            );
+        }
+        if ($this->request->hasArgument('forward')) {
+        	$this->forward($this->request->getArgument('forward'));
+        }
+    }
+
+    /**
+     * Send an E-mail created by rendering a stand-alone Fluid view
+     * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
+     * @param array $sender sender of the email in the format array('sender@domain.tld' => 'Sender Name')
+     * @param string $subject subject of the email
+     * @param string $templateName template name (UpperCamelCase)
+     * @param array $variables variables to be passed to the Fluid view
+     * @return boolean TRUE on success, otherwise false
+     */
+    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array(), array $attachments = [])
+    {
+        /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
+        $emailView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
+        $templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.html';
+        $emailView->setTemplatePathAndFilename($templatePathAndFilename);
+        $emailView->assignMultiple($variables);
+        $emailBody = $emailView->render();
+
+        /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
+        $message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+        $message->setTo($recipient)
+                ->setFrom($sender)
+                ->setSubject($subject);
+
+        foreach ($attachments as $attachment) {
+            $message->attach(\Swift_Attachment::fromPath($attachment));
+        }
+
+        // HTML Email
+        $message->setBody($emailBody, 'text/html');
+
+        $message->send();
+        return $message->isSent();
+    }
+
+    /**
+     * action gitHubExport
+     * Export a single sermon to GitHub
+     *
+     * If a repository doesn't already exist, it will be created.
+     * Right now, an existing repository will be overwritten.
+     * @todo Allow updating existing repository
+     *
+     * @param \TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon
+     *
+     * Note: The view for this action is rendered internally and never displayed.
+     * The action will forward the user to GitHub at the end and will return an
+     * empty string to the TYPO3 rendering engine.
+     * Note: Forwarding might take place before the commits are completely pushed.
+     * If you see an empty repository, wait a few seconds and refresh.
+     * @return string
+     */
+    function gitHubExportAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon)
+    {
+        $gitHubConfig = $this->settings['github'];
+
+        // get sermon page
+        $objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+        $uriBuilder = $objectManager->get('TYPO3\CMS\Extbase\Mvc\Web\Routing\UriBuilder');
+        $uriBuilder->initializeObject();
+        $uri = $uriBuilder->reset()->setTargetPageUid($this->settings['pid']['sermon']['single'])->setCreateAbsoluteUri(true)->uriFor('show', ['sermon' => $sermon], 'Sermon', 'VmfdsSermons', 'Sermons');
+
+        // get container title and path:
+        $containerTitle = ($gitHubConfig['containerPrefix'] ? $gitHubConfig['containerPrefix'] : '')
+                . \TYPO3\VmfdsSermons\Utility\SyncUtility::convertToSafeString($sermon->getTitle());
+        $containerPath = 'typo3temp/vmfds_sermons/github/'
+                . $containerTitle;
+        $this->view->assign('containerPath', $containerPath);
+
+        // init GitHub framework
+        require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('vmfds_sermons') . 'vendor/autoload.php');
+        $client = new \Github\Client();
+        $client->authenticate($gitHubConfig['token'], '', \Github\Client::AUTH_HTTP_TOKEN);
+
+        // check if repository exists already
+        $repo = $gitHubConfig['org'] . '/' . $containerTitle;
+        $repositories = $client->api('organizations')->repositories($gitHubConfig['org']);
+        $found = false;
+        foreach ($repositories as $repository) {
+            if ($repository['name'] == $containerTitle) {
+                $found = true;
+                continue;
+            }
+        }
+
+        if (!$found) {
+            // must create new repo
+            $client->api('repo')->create($containerTitle, ($gitHubConfig['descriptionPrefix'] ? $gitHubConfig['descriptionPrefix'] . ' ' : '') . $sermon->getTitle(), $uri, true, $gitHubConfig['org'], true, true, true);
+        }
+
+        // create local temp repository
+        $this->view->assign('sermon', $sermon);
+
+        // build temp folder by rendering output view
+        $this->view->render();
+
+        // git
+        $githubLog = PATH_site . 'typo3temp/vmfds_sermons/github/github.log';
+        $githubCmd = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('vmfds_sermons') . 'Resources/Private/Shell/GitHubExport.sh '
+                . PATH_site . $containerPath . ' ' . $gitHubConfig['org'] . ' ' . $containerTitle . ' potofcoffee ' . $gitHubConfig['token'] . ' >> ' . $githubLog . ' &>> ' . PATH_site . 'typo3temp/vmfds_sermons/github/github.error.log';
+        $fp = fopen($githubLog, 'a');
+        fwrite($fp, '===> ' . $githubCmd);
+        fclose($fp);
+        exec($githubCmd, $o, $r);
+
+        Header('Location: https://github.com/' . $repo);
+        return '';
+    }
+
+}

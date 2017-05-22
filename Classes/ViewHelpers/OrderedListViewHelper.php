@@ -1,5 +1,28 @@
 <?php
 
+/*
+ * @package vmfds_sermons
+ * @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+ * @site http://open.vmfds.de
+ * @author Christoph Fischer <chris@toph.de>
+ * @date 2016-06-04
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 namespace TYPO3\VmfdsSermons\ViewHelpers;
 
 /**
@@ -28,17 +51,20 @@ class OrderedListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractVie
      * @return string as ordered list
      * @author Christoph Fischer <christoph.fischer@volksmission.de>
      */
-    public function render($list, $underlineMode = 'html5', $listStyle = '', $itemStyle = '', $breakAfter = FALSE)
+    public function render($list = NULL, $underlineMode = 'html5', $listStyle = '', $itemStyle = '', $breakAfter = FALSE)
     {
+        if (!$list)
+            $list = $this->renderChildren();
+        $list = str_replace(['<u>', '</u>'], ['[', ']'], $list);
         switch ($underlineMode) {
             case 'blank':
-                $list = str_replace(array('<u>', '</u>'), array('<span style="color: white; border-bottom: solid 1px black">', '</span>'), $list);
+                $list = str_replace(['[', ']'], ['<span style="color: white; border-bottom: solid 1px black">', '</span>'], $list);
                 break;
             case 'html5':
-                $list = str_replace(array('<u>', '</u>'), array('<span style="text-decoration: underline;">', '</span>'), $list);
+                $list = str_replace(['[', ']'], ['<span style="text-decoration: underline;">', '</span>'], $list);
                 break;
             case 'remove':
-                $list = str_replace(array('<u>', '</u>'), array('', ''), $list);
+                $list = str_replace(['[', ']'], ['', ''], $list);
                 break;
         }
         $items = explode("\r", $list);

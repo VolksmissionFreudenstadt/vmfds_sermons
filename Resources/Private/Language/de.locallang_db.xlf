@@ -1,4 +1,26 @@
 <?xml version='1.0' encoding='utf-8'?>
+<!--
+@package vmfds_sermons
+@copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+@license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+@site http://open.vmfds.de
+@author Christoph Fischer <chris@toph.de>
+@date 2016-06-06
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
 <xliff version="1.0">
     <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2012-12-17T13:44:07Z" product-name="vmfds_sermons">
         <header/>
@@ -52,9 +74,17 @@
                 <source>Reference</source> 
                 <target state="translated">Bibelstellen</target>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.bible_text" approved="yes">
+                <source>Full Bible text of main passage</source>
+                <target state="translated">Bibeltext</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.image" approved="yes">
                 <source>Image</source> 
                 <target state="translated">Titelbild</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.image_preview" approved="yes">
+                <source>Preview image</source>
+                <target state="translated">Vorschaubild</target>
             </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.image_source" approved="yes">
                 <source>Image source</source> 
@@ -72,11 +102,34 @@
                 <source>Audiorecording</source> 
                 <target state="translated">Predigtaufnahme</target>
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.remote_audio" approved="yes">
+                <source>External audio file</source> 
+                <target state="translated">Externe Predigtaufnahme</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.videorecording" approved="yes">
                 <source>Videorecording</source> 
                 <target state="translated">Video</target>
             </trans-unit>
-				
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.syncuid" approved="yes">
+                <source>Sync ID</source> 
+                <target state="translated">ID für Synchronisation</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.church" approved="yes">
+                <source>Church</source> 
+                <target state="translated">Gemeinde</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.church_url" approved="yes">
+                <source>Church website</source> 
+                <target state="translated">Webseite der Gemeinde</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.remote_url" approved="yes">
+                <source>Original sermon url</source> 
+                <target state="translated">Link zur ursprünglichen Predigtseite</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.transcription" approved="yes">
+                <source>Transcription</source>
+                <target state="translated">Mitschrift</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.cclicense" approved="yes">
                 <source>This content is licensed under a Creative Commons License (CC-BY-SA 4.0).</source> 
                 <target state="translated">Dieser Inhalt steht unter einer Creative-Commons-Lizenz (CC-BY-SA 4.0).</target>
@@ -138,7 +191,42 @@
                 <source>Image</source> 
                 <target state="translated">Bild</target>
             </trans-unit>
-
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.user_id" approved="yes">
+                <source>Associated frontend user</source>
+                <target>Zugehöriges Benutzerkonto</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.mic">
+                <source>Preferred microphone</source>
+                <target>Bevorzugtes Mikrofon</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.pulpit">
+                <source>Needs pulpit or note stand</source>
+                <target>Braucht Notenständer</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.ppt">
+                <source>Brings presentation on a memory stick</source>
+                <target>Bringt Präsentation auf USB-Stick</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.laptop">
+                <source>Brings own laptop</source>
+                <target>Bringt eigenen Laptop</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.travel_cost">
+                <source>Travel cost</source>
+                <target>Reisekosten</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.account_holder">
+                <source>Account holder</source>
+                <target>Kontoinhaber</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.iban">
+                <source>IBAN</source>
+                <target>IBAN</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_preacher.bic">
+                <source>BIC</source>
+                <target>BIC</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_series" approved="yes">
                 <source>Series</source> 
                 <target state="translated">Reihe</target>
@@ -166,6 +254,14 @@
             <trans-unit id="tx_vmfdssermons_domain_model_series.image" approved="yes">
                 <source>Image</source> 
                 <target state="translated">Titel</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.image_preview" approved="yes">
+                <source>Preview image</source>
+                <target state="translated">Vorschaubild</target>
+            </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_series.image_source" approved="yes">
+                <source>Image source</source>
+                <target state="translated">Quellenangaben zum Bild</target>
             </trans-unit>
 
             <trans-unit id="tx_vmfdssermons_domain_model_tag" approved="yes">

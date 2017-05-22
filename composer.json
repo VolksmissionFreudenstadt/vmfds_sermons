@@ -1,7 +1,7 @@
 {
 	"name": "vmfds/sermons",
 	"description": "VMFDS Sermon Archive",
-        "license": "GPL-3.0+",
+	"license": "GPL-3.0+",
 	"type": "typo3-cms-extension",
 	"authors": [
 		{
@@ -14,7 +14,9 @@
             { "type": "composer", "url": "https://composer.typo3.org/" }
           ],
 	"require": {
-            "phpoffice/phppresentation": "dev-master"
+            "phpoffice/phppresentation": "dev-master",
+            "knplabs/github-api": "dev-master",
+            "league/html-to-markdown": "dev-master"
 	},
 	"suggest": {
 

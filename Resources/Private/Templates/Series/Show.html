@@ -1,43 +1,97 @@
 {namespace s=TYPO3\VmfdsSermons\ViewHelpers}
 {namespace v=FluidTYPO3\Vhs\ViewHelpers}
+{namespace legal=VMFDS\Legalese\ViewHelpers}
+<!--
+@package vmfds_sermons
+@copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+@license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+@site http://open.vmfds.de
+@author Christoph Fischer <chris@toph.de>
+@date 2016-06-06
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
 
 <!-- some Google+/schema.org markup -->
-<meta itemprop="isFamilyFriendly" content="True" />
-<meta itemprop="genre" content="sermon" />
-<meta itemprop="contentRating" content="G" />
+<meta itemprop="isFamilyFriendly" content="True"/>
+<meta itemprop="genre" content="sermon"/>
+<meta itemprop="contentRating" content="G"/>
 
 
 <!-- Facebook Graph -->
-<v:page.header.meta property="og:type" content="article" />
-<f:if condition="{series.subtitle}"><f:then><v:page.header.meta property="og:title" content="{series.title}: {series.subtitle}" /></f:then><f:else><v:page.header.meta property="og:title" content="{series.title}" /></f:else></f:if>
-<v:page.header.meta property="article:section" content="Predigten" />
-<v:page.header.meta property="og:image" content="{v:uri.image(src: '/predigten/Titelbilder/{series.image}')}" />
-<v:page.header.meta property="og:url" content="{v:page.absoluteUrl()}" />
-<v:page.header.meta property="og:description" content="{series.description}" />
-<v:page.header.meta property="og:site_name" content="Das Wort zum Montag: Predigten aus der Volksmission Freudenstadt" />
-<v:page.header.meta property="og:locale" content="de_DE" />
+<v:page.header.meta property="og:type" content="article"/>
+<f:if condition="{series.subtitle}">
+    <f:then>
+        <v:page.header.meta property="og:title" content="{series.title}: {series.subtitle}"/>
+    </f:then>
+    <f:else>
+        <v:page.header.meta property="og:title" content="{series.title}"/>
+    </f:else>
+</f:if>
+<v:page.header.meta property="article:section" content="Predigten"/>
+<v:page.header.meta property="og:image" content="{v:uri.image(src: '/predigten/Titelbilder/{series.image}')}"/>
+<v:page.header.meta property="og:url" content="{v:page.absoluteUrl()}"/>
+<v:page.header.meta property="og:description" content="{series.description}"/>
+<v:page.header.meta property="og:site_name" content="Das Wort zum Montag: Predigten aus der Volksmission Freudenstadt"/>
+<v:page.header.meta property="og:locale" content="de_DE"/>
 
 <!-- Twitter Cards-->
-<v:page.header.meta name="twitter:card" content="summary_large_image" />
-<v:page.header.meta name="twitter:site" content="@volksmissionfds" />
-<f:if condition="{series.subtitle}"><f:then><v:page.header.meta name="twitter:title" content="{series.title}: {series.subtitle}" /></f:then><f:else><v:page.header.meta name="twitter:title" content="{series.title}" /></f:else></f:if>
-<v:page.header.meta name="twitter:description" content="{series.description}" />
-<v:page.header.meta name="twitter:creator" content="@volksmissionfds" />
-<v:page.header.meta name="twitter:image:src" content="{v:uri.image(src: '/predigten/Titelbilder/{series.image}')}" />
-<v:page.header.meta name="twitter:domain" content="www.wortzummontag.de" />
+<v:page.header.meta name="twitter:card" content="summary_large_image"/>
+<v:page.header.meta name="twitter:site" content="@volksmissionfds"/>
+<f:if condition="{series.subtitle}">
+    <f:then>
+        <v:page.header.meta name="twitter:title" content="{series.title}: {series.subtitle}"/>
+    </f:then>
+    <f:else>
+        <v:page.header.meta name="twitter:title" content="{series.title}"/>
+    </f:else>
+</f:if>
+<v:page.header.meta name="twitter:description" content="{series.description}"/>
+<v:page.header.meta name="twitter:creator" content="@volksmissionfds"/>
+<v:page.header.meta name="twitter:image:src" content="{v:uri.image(src: '/predigten/Titelbilder/{series.image}')}"/>
+<v:page.header.meta name="twitter:domain" content="www.wortzummontag.de"/>
 
 
 <f:if condition="{series.image}">
     <f:then>
         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
-                <div class="item active">    
-                    <f:image src="predigten/Titelbilder/{series.image}" class="img-responsive" width="1400" />
-                    <div class="carousel-caption">            
+                <div class="item active">
+                    <f:if condition="{series.imagePreview}">
+                        <f:then>
+                            <div class="hidden-xs">
+                                <legal:copyrightedImage src="predigten/Titelbilder/{series.imagePreview}"
+                                                        class="img-responsive" width="2500"/>
+                            </div>
+                            <div class="visible-xs-inline">
+                                <legal:copyrightedImage src="predigten/Titelbilder/{series.image}"
+                                                        class="img-responsive" width="2500"/>
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <legal:copyrightedImage src="predigten/Titelbilder/{series.image}" class="img-responsive"
+                                                    width="2500"/>
+                        </f:else>
+                    </f:if>
+                    <div class="carousel-caption">
                         <h1>{series.title}</h1>
-                        <f:if condition="{series.subtitle}">{series.subtitle}</f:if>
-                    </div>    
-                    <f:if condition="{series.imageSource}"><small class="page-image-source">Bild: {series.imageSource}</small><br /><br /></f:if>    
+                        <f:if condition="{series.subtitle}"><p>{series.subtitle}</p></f:if>
+                    </div>
+                    <f:if condition="{series.imageSource}">
+                        <small class="page-image-source">Bild: {series.imageSource}</small>
+                        <br/><br/></f:if>
                 </div>
             </div>
         </div>
@@ -54,12 +108,20 @@
 <p>{series.startdate -> f:format.date(format: 'd.m.Y')} - {series.enddate -> f:format.date(format: 'd.m.Y')}</p>
 
 {series.description -> f:format.html()}
-<f:if condition="{sermons}"></f:if>
-<h3>Predigten in dieser Reihe</h3>
-                <div class="row">
-                    <f:for each="{sermons}" as="sermon" iteration="i">
-                        <f:render partial="Sermon/ListPreview" arguments="{sermon: sermon}" />
-                    </f:for>
-                </div>                
-
+<f:if condition="{sermons}">
+    <h3>Predigten in dieser Reihe</h3>
+    <div class="row">
+        <f:for each="{sermons}" as="sermon" iteration="i">
+            <f:render partial="Sermon/ListPreview" arguments="{sermon: sermon}"/>
+        </f:for>
+    </div>
+</f:if>
+<f:if condition="{futureSermons}">
+    <h3>Kommende Predigten in dieser Reihe</h3>
+    <div class="row">
+        <f:for each="{futureSermons}" as="sermon" iteration="i">
+            <f:render partial="Sermon/ListPreviewFuture" arguments="{sermon: sermon}"/>
+        </f:for>
+    </div>
+</f:if>
 </div>

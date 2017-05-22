@@ -1,38 +1,30 @@
 <?php
 
-namespace TYPO3\VmfdsSermons\Domain\Model;
-
-/* * *************************************************************
- *  Copyright notice
- *
- *  (c) 2012 Christoph Fischer <christoph.fischer@volksmission.de>, Volksmission Freudenstadt
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- * ************************************************************* */
-
-/**
- *
- *
+/*
  * @package vmfds_sermons
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
+ * @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+ * @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+ * @site http://open.vmfds.de
+ * @author Christoph Fischer <chris@toph.de>
+ * @date 2016-06-04
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+
+namespace TYPO3\VmfdsSermons\Domain\Model;
+
 class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
@@ -108,6 +100,14 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $reference;
 
     /**
+     * Bible text of main passage
+     *
+     * @var \string
+     */
+    protected $bibleText;
+
+
+    /**
      * Key words
      *
      * @var \string
@@ -120,6 +120,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \string
      */
     protected $image;
+
+    /**
+     * Preview image
+     *
+     * @var \string
+     */
+    protected $imagePreview;
 
     /**
      * Image source
@@ -148,6 +155,13 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \string
      */
     protected $audiorecording;
+
+    /**
+     * Remote Audio
+     *
+     * @var \string
+     */
+    protected $remoteAudio;
 
     /**
      * videorecording
@@ -197,6 +211,30 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \string
      */
     protected $syncuid;
+
+    /**
+     * church
+     * @var \string
+     */
+    protected $church;
+
+    /**
+     * churchUrl
+     * @var \string
+     */
+    protected $churchUrl;
+
+    /**
+     * remoteUrl
+     * @var \string
+     */
+    protected $remoteUrl;
+
+	/**
+	 * transcription
+	 * @var \string
+	 */
+    protected $transcription;
 
     /**
      * __construct
@@ -736,6 +774,92 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->slides = $slides;
     }
 
-}
+    function getChurch()
+    {
+        return $this->church;
+    }
 
-?>
+    function getChurchUrl()
+    {
+        return $this->churchUrl;
+    }
+
+    function getRemoteUrl()
+    {
+        return $this->remoteUrl;
+    }
+
+    function setChurch($church)
+    {
+        $this->church = $church;
+    }
+
+    function setChurchUrl($churchUrl)
+    {
+        $this->churchUrl = $churchUrl;
+    }
+
+    function setRemoteUrl($remoteUrl)
+    {
+        $this->remoteUrl = $remoteUrl;
+    }
+
+    function getRemoteAudio()
+    {
+        return $this->remoteAudio;
+    }
+
+    function setRemoteAudio($remoteAudio)
+    {
+        $this->remoteAudio = $remoteAudio;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBibleText()
+    {
+        return $this->bibleText;
+    }
+
+    /**
+     * @param string $bibleText
+     */
+    public function setBibleText($bibleText)
+    {
+        $this->bibleText = $bibleText;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImagePreview()
+    {
+        return $this->imagePreview;
+    }
+
+    /**
+     * @param string $imagePreview
+     */
+    public function setImagePreview($imagePreview)
+    {
+        $this->imagePreview = $imagePreview;
+    }
+
+	/**
+	 * @return string
+	 */
+	public function getTranscription() {
+		return $this->transcription;
+	}
+
+	/**
+	 * @param string $transcription
+	 */
+	public function setTranscription( $transcription ) {
+		$this->transcription = $transcription;
+	}
+
+
+
+}

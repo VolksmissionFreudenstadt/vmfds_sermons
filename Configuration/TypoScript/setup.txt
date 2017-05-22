@@ -20,6 +20,28 @@ plugin.tx_vmfdssermons {
 		preacherDetailsPID = {$plugin.tx_vmfdssermons.settings.preacherDetailsPID}
 		handoutPID = {$plugin.tx_vmfdssermons.settings.handoutPID}
 		handoutType = {$plugin.tx_vmfdssermons.settings.handoutType}
+            podcast {
+                title = {$plugin.tx_vmfdssermons.settings.podcast.title}
+                url = {$plugin.tx_vmfdssermons.settings.podcast.url}
+                description = {$plugin.tx_vmfdssermons.settings.podcast.description}
+                site_link = {$plugin.tx_vmfdssermons.settings.podcast.site_link}
+                language = {$plugin.tx_vmfdssermons.settings.podcast.language}
+                copyright_holder = {$plugin.tx_vmfdssermons.settings.podcast.copyright_holder}
+                webmaster = {$plugin.tx_vmfdssermons.settings.podcast.webmaster}
+                author = {$plugin.tx_vmfdssermons.settings.podcast.author}
+                summary = {$plugin.tx_vmfdssermons.settings.podcast.summary}
+                owner.name = {$plugin.tx_vmfdssermons.settings.podcast.owner.name}
+                owner.email = {$plugin.tx_vmfdssermons.settings.podcast.owner.email}
+                image = {$plugin.tx_vmfdssermons.settings.podcast.image}
+            }
+            github {
+                user = {$plugin.tx_vmfdssermons.settings.github.user}
+                org = {$plugin.tx_vmfdssermons.settings.github.org}
+                user = {$plugin.tx_vmfdssermons.settings.github.user}
+                token = {$plugin.tx_vmfdssermons.settings.github.token}
+                containerPrefix = {$plugin.tx_vmfdssermons.settings.github.containerPrefix}
+                descriptionPrefix = {$plugin.tx_vmfdssermons.settings.github.descriptionPrefix}
+            }
 	}
 
 }
