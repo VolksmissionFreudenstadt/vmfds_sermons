@@ -51,7 +51,7 @@ $TCA['tx_vmfdssermons_domain_model_slide'] = [
         'searchFields' => 'title,presentation_title,image,image_source,story,bible_text,preacher_notes,tech_notes',
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, presentation_title, presentation_font_size, image, image_source, story, bible_text, preacher_notes, tech_notes',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, presentation_title, presentation_font_size, image, image_source, bible_text, preacher_notes, tech_notes',
     ],
     'types' => [
         '1' => ['showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, presentation_title, presentation_font_size, image, image_source, story, bible_text, preacher_notes, tech_notes'],

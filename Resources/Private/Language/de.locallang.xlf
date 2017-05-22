@@ -87,7 +87,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <source>tag</source>
                 <target state="translated">Schlagwort</target> 
             </trans-unit>
-			
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.transcription" approved="yes">
+                <source>Transcription</source>
+                <target state="translated">Mitschrift</target>
+            </trans-unit>
+
             <trans-unit id="tx_vmfdssermons_domain_model_preacher" approved="yes">
                 <source>Preacher</source>
                 <target state="translated">Prediger</target> 

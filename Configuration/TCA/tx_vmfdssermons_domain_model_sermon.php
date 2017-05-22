@@ -49,13 +49,13 @@ $TCA['tx_vmfdssermons_domain_model_sermon'] = [
             'starttime' => 'starttime',
             'endtime' => 'endtime',
         ],
-        'searchFields' => 'title,subtitle,preached,description,notes_header,keypoints,questions,further_reading,prep,reference,bible_text,keywords,image,image_preview,image_source,handout,audiorecording,videorecording,cclicense,preacher,series,syncuid',
+        'searchFields' => 'title,subtitle,preached,description,notes_header,keypoints,questions,further_reading,prep,reference,bible_text,keywords,image,image_preview,image_source,handout,audiorecording,videorecording,cclicense,preacher,series,syncuid,transcription',
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, bible_text, keywords, image, image_preview, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags, cclicense, preacher, series, syncuid, slides, church, church_url, remote_url',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, subtitle, preached, description, notes_header, keypoints, questions, further_reading, prep, reference, bible_text, keywords, image, image_preview, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags, cclicense, preacher, series, syncuid, slides, church, church_url, remote_url,transcription',
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, preached, description, --div--;Studienmaterial, reference, bible_text, notes_header, keypoints, questions, further_reading, keywords,--div--;Vorbereitung, prep, --div--;Ressourcen, cclicense, image, image_preview, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags,--div--;Folien, slides, --div--;Prediger und Reihe, preacher, series,,--div--;Sync,syncuid, church, church_url, remote_url,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'],
+        '1' => ['showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, title, subtitle, preached, description, --div--;Studienmaterial, reference, bible_text, notes_header, keypoints, questions, further_reading, keywords,--div--;Vorbereitung, prep, --div--;Ressourcen, cclicense, image, image_preview, image_source, no_handout, handout, audiorecording, remote_audio, videorecording, hashtags,--div--;Folien, slides, --div--;Prediger und Reihe, preacher, series,--div--;Mitschrift, transcription,--div--;Sync,syncuid, church, church_url, remote_url,--div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'],
     ],
     'palettes' => [
         '1' => ['showitem' => ''],
@@ -459,6 +459,17 @@ $TCA['tx_vmfdssermons_domain_model_sermon'] = [
                 'size' => 30,
                 'eval' => 'trim'
             ],
+        ],
+        'transcription' => [
+	        'exclude' => 0,
+	        'label' => 'LLL:EXT:vmfds_sermons/Resources/Private/Language/locallang_db.xlf:tx_vmfdssermons_domain_model_sermon.transcription',
+	        'config' => [
+		        'type' => 'text',
+		        'cols' => 40,
+		        'rows' => 15,
+		        'eval' => 'trim',
+	        ],
+	        'defaultExtras' => 'richtext:rte_transform[flag=rte_enabled|mode=ts]',
         ],
     ],
 ];

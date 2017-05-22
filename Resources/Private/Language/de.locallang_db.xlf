@@ -126,7 +126,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 <source>Original sermon url</source> 
                 <target state="translated">Link zur ursprünglichen Predigtseite</target>
             </trans-unit>
-				
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.transcription" approved="yes">
+                <source>Transcription</source>
+                <target state="translated">Mitschrift</target>
+            </trans-unit>
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.cclicense" approved="yes">
                 <source>This content is licensed under a Creative Commons License (CC-BY-SA 4.0).</source> 
                 <target state="translated">Dieser Inhalt steht unter einer Creative-Commons-Lizenz (CC-BY-SA 4.0).</target>

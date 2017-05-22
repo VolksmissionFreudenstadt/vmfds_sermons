@@ -59,6 +59,7 @@ CREATE TABLE tx_vmfdssermons_domain_model_sermon (
   church           VARCHAR(255) DEFAULT ''         NOT NULL,
   church_url       VARCHAR(255) DEFAULT ''         NOT NULL,
   remote_url       VARCHAR(255) DEFAULT ''         NOT NULL,
+  transcription    TEXT                            NOT NULL,
 
   tstamp           INT(11) UNSIGNED DEFAULT '0'    NOT NULL,
   crdate           INT(11) UNSIGNED DEFAULT '0'    NOT NULL,

@@ -79,8 +79,10 @@ class SeriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         // related sermons
         $sermons = $this->sermonRepository->findBySeries($series);
+        $futureSermons = $this->sermonRepository->findFutureSermonsBySeries($series);
 
         $this->view->assign('series', $series);
+	    $this->view->assign('futureSermons', $futureSermons);
         $this->view->assign('sermons', $sermons);
     }
 

@@ -113,6 +113,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <trans-unit id="tx_vmfdssermons_domain_model_sermon.remote_url">
                 <source>Original sermon url</source> 
             </trans-unit>
+            <trans-unit id="tx_vmfdssermons_domain_model_sermon.transcription" approved="yes">
+                <source>Transcription</source>
+            </trans-unit>
 
             <trans-unit id="tx_vmfdssermons_domain_model_preacher">
                 <source>Preacher</source>

@@ -230,6 +230,12 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $remoteUrl;
 
+	/**
+	 * transcription
+	 * @var \string
+	 */
+    protected $transcription;
+
     /**
      * __construct
      *
@@ -839,6 +845,20 @@ class Sermon extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->imagePreview = $imagePreview;
     }
+
+	/**
+	 * @return string
+	 */
+	public function getTranscription() {
+		return $this->transcription;
+	}
+
+	/**
+	 * @param string $transcription
+	 */
+	public function setTranscription( $transcription ) {
+		$this->transcription = $transcription;
+	}
 
 
 

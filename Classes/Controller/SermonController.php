@@ -113,7 +113,6 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
      */
     public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Sermon $sermon = NULL)
     {
-
         // permit preview of hidden records?
         $sneakForward = FALSE;
         if (is_null($sermon)) {
@@ -269,11 +268,13 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
 
         $file = $this->request->getArgument('audiorecording');
         fwrite($fp, print_r($file, 1));
-        fclose($fp);
         if (!$file['error']) {
             $uploadFolder = PATH_site . $this->settings['uploadFolder'] . '/';
             $destFile = $uploadFolder . $file['name'];
+	        fwrite($fp, 'Source: '.$file['tmp_name'].PHP_EOL);
+            fwrite($fp, 'Destination: '.$destFile.PHP_EOL);
             move_uploaded_file($file['tmp_name'], $destFile);
+	        fwrite($fp, 'Moved'.PHP_EOL);
 
             // get preachers
             $p = array();
@@ -281,6 +282,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $p[] = $preacher->getFirstName() . ' ' . $preacher->getLastName();
             }
             $preacher = join(', ', $p);
+	        fwrite($fp, 'Preacher: '.$preacher.PHP_EOL);
 
             // get series
             $s = array();
@@ -288,6 +290,7 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $s[] = $series->getTitle();
             }
             $series = join(', ', $s);
+	        fwrite($fp, 'Series: '.$series.PHP_EOL);
 
             // id3 tagging
             id3_set_tag($destFile, array(
@@ -298,13 +301,17 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 'comment' => 'Predigt vom ' . strftime('%d.%m.%Y', $sermon->getPreached()->getTimestamp()),
                 'track' => 1,
             ));
+	        fwrite($fp, 'Set ID3 tag'.PHP_EOL);
 
             // add file to sermon record
             $sermon->setAudiorecording('predigten/Aufnahmen/' . $file['name']);
+	        fwrite($fp, 'Set audiorecording.'.PHP_EOL);
 
             // persist the changes
             $this->sermonRepository->update($sermon);
+	        fwrite($fp, 'Persisted.'.PHP_EOL);
         }
+	    fclose($fp);
     }
 
     /**
@@ -399,8 +406,10 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
             $fileName = $this->uploadUtility->uploadFile($imageField, 'tx_vmfdssermons_domain_model_sermon', 'image');
             $sermon->setImage($fileName);
         } else {
-            $oldImage = $this->request->getArgument('oldImage');
-            $sermon->setImage($oldImage);
+        	if ($this->request->hasArgument('oldimage')) {
+		        $oldImage = $this->request->getArgument('oldImage');
+		        $sermon->setImage($oldImage);
+	        }
         }
 
         $this->sermonRepository->update($sermon);
@@ -452,6 +461,9 @@ class SermonController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControlle
                 $this->settings['preacher']['editNotifyMail']['sender']['email'] => $this->settings['preacher']['editNotifyMail']['sender']['name']
                     ], $subject, 'GuestPreacherSubmittedSermon', $vars, $attachments
             );
+        }
+        if ($this->request->hasArgument('forward')) {
+        	$this->forward($this->request->getArgument('forward'));
         }
     }
 
