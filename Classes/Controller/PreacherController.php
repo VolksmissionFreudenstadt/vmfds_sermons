@@ -25,181 +25,188 @@ namespace TYPO3\VmfdsSermons\Controller;
  *
  */
 
-class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
-{
+class PreacherController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
 
-    protected $databaseHandle;
+	protected $databaseHandle;
 
-    /**
-     * Upload utility class
-     * @var \TYPO3\VmfdsSermons\Utility\UploadUtility
-     * @inject
-     */
-    protected $uploadUtility;
+	/**
+	 * Upload utility class
+	 * @var \TYPO3\VmfdsSermons\Utility\UploadUtility
+	 * @inject
+	 */
+	protected $uploadUtility;
 
-    /**
-     * preacherRepository
-     * @var \TYPO3\VmfdsSermons\Domain\Repository\PreacherRepository
-     * @inject
-     */
-    protected $preacherRepository;
+	/**
+	 * preacherRepository
+	 * @var \TYPO3\VmfdsSermons\Domain\Repository\PreacherRepository
+	 * @inject
+	 */
+	protected $preacherRepository;
 
-    /**
-     * sermonRepository
-     * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
-     * @inject
-     */
-    protected $sermonRepository;
+	/**
+	 * sermonRepository
+	 * @var \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository
+	 * @inject
+	 */
+	protected $sermonRepository;
 
-    /**
-     * frontentUserRepository
-     * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
-     * @inject
-     */
-    protected $userRepository;
+	/**
+	 * frontentUserRepository
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
+	 * @inject
+	 */
+	protected $userRepository;
 
-    /**
-     * Map view format to object
-     * @var array
-     */
-    protected $viewFormatToObjectNameMap = array('json' => 'TYPO3\CMS\Extbase\Mvc\View\JsonView');
+	/**
+	 * Map view format to object
+	 * @var array
+	 */
+	protected $viewFormatToObjectNameMap = [ 'json' => 'TYPO3\CMS\Extbase\Mvc\View\JsonView' ];
+	/**
+	 * objectManager
+	 * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
+	 * @inject
+	 */
+	protected $objectManager;
 
-    /**
-     * inject the SermonRepository object
-     * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
-     * @return void
-     */
-    public function injectSermonRepository(\TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository)
-    {
-        $this->sermonRepository = $sermonRepository;
-    }
+	/**
+	 * inject the SermonRepository object
+	 *
+	 * @param \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository
+	 *
+	 * @return void
+	 */
+	public function injectSermonRepository( \TYPO3\VmfdsSermons\Domain\Repository\SermonRepository $sermonRepository ) {
+		$this->sermonRepository = $sermonRepository;
+	}
 
-    /**
-     * objectManager
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-     * @inject
-     */
-    protected $objectManager;
+	/**
+	 * initialize action
+	 * @return void
+	 */
+	public function initializeAction() {
+		if ( $this->arguments->hasArgument( 'preacher' ) ) {
+			$this->arguments->getArgument( 'preacher' )->getPropertyMappingConfiguration()->setTargetTypeForSubProperty( 'image',
+				'array' );
+		}
+	}
 
-    /**
-     * initialize action
-     * @return void
-     */
-    public function initializeAction()
-    {
-        if ($this->arguments->hasArgument('preacher')) {
-            $this->arguments->getArgument('preacher')->getPropertyMappingConfiguration()->setTargetTypeForSubProperty('image', 'array');
-        }
-    }
+	/**
+	 * action list
+	 * List all preachers
+	 * @return void
+	 */
+	public function listAction() {
+		$preachers = $this->preacherRepository->findAll();
+		$this->view->assign( 'preachers', $preachers );
+	}
 
-    /**
-     * action list
-     * List all preachers
-     * @return void
-     */
-    public function listAction()
-    {
-        $preachers = $this->preacherRepository->findAll();
-        $this->view->assign('preachers', $preachers);
-    }
+	/**
+	 * action show
+	 * Show details for a single preacher
+	 *
+	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+	 *
+	 * @return void
+	 */
+	public function showAction( \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher = null ) {
+		if ( is_null( $preacher ) ) {
+			$this->forward( 'list' );
+		}
 
-    /**
-     * action show
-     * Show details for a single preacher
-     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
-     * @return void
-     */
-    public function showAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher = NULL)
-    {
-        if (is_null($preacher))
-            $this->forward('list');
+		// related sermons
+		$sermons = $this->sermonRepository->findByPreacher( $preacher );
 
-        // related sermons
-        $sermons = $this->sermonRepository->findByPreacher($preacher);
+		$this->view->assign( 'preacher', $preacher );
+		$this->view->assign( 'sermons', $sermons );
+	}
 
-        $this->view->assign('preacher', $preacher);
-        $this->view->assign('sermons', $sermons);
-    }
+	/**
+	 * action edit
+	 * Show the edit form for a single preacher
+	 *
+	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+	 *
+	 * @return void
+	 */
+	public function editAction( \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher ) {
+		$this->view->assign( 'preacher', $preacher );
+	}
 
-    /**
-     * action edit
-     * Show the edit form for a single preacher
-     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
-     * @return void
-     */
-    public function editAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
-    {
-        $this->view->assign('preacher', $preacher);
-    }
+	/**
+	 * action update
+	 * Update a preacher record
+	 *
+	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+	 *
+	 * @return void
+	 */
+	public function updateAction( \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher ) {
+		$formData   = $this->request->getArgument( 'preacher' );
+		$imageField = $formData['image'];
+		if ( $imageField['name'] ) {
+			$fileName = $this->uploadUtility->uploadFile( $imageField, 'tx_vmfdssermons_domain_model_preacher',
+				'image' );
+			$preacher->setImage( $fileName );
+		} else {
+			$oldImage = $this->request->getArgument( 'oldImage' );
+			$preacher->setImage( $oldImage );
+		}
 
-    /**
-     * action update
-     * Update a preacher record
-     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
-     * @return void
-     */
-    public function updateAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher)
-    {
-        $formData = $this->request->getArgument('preacher');
-        $imageField = $formData['image'];
-        if ($imageField['name']) {
-            $fileName = $this->uploadUtility->uploadFile($imageField, 'tx_vmfdssermons_domain_model_preacher', 'image');
-            $preacher->setImage($fileName);
-        } else {
-            $oldImage = $this->request->getArgument('oldImage');
-            $preacher->setImage($oldImage);
-        }
+		$this->preacherRepository->update( $preacher );
+		$this->redirect( 'admin' );
+	}
 
-        $this->preacherRepository->update($preacher);
-        $this->redirect('admin');
-    }
+	/**
+	 * action feed
+	 * Show a synchronizable feed of all sermons for a single preacher
+	 *
+	 * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
+	 *
+	 * @return string JSON-encoded data
+	 */
+	public function feedAction( \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher = null ) {
 
-    /**
-     * action feed
-     * Show a synchronizable feed of all sermons for a single preacher
-     * @param \TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher
-     * @return string JSON-encoded data
-     */
-    public function feedAction(\TYPO3\VmfdsSermons\Domain\Model\Preacher $preacher = NULL)
-    {
+		if ( is_null( $preacher ) ) {
+			$preacher = $this->preacherRepository->findByUid( $this->request->getArgument( 'preacher' ) );
+		}
+		$sermons = $this->sermonRepository->findByPreacher( $preacher, null, true )->toArray();
 
-        if (is_null($preacher)) {
-            $preacher = $this->preacherRepository->findByUid($this->request->getArgument('preacher'));
-        }
-        $sermons = $this->sermonRepository->findByPreacher($preacher, null, true)->toArray();
+		// make this an array:
+		$data = [];
+		foreach ( $sermons as $sermon ) {
+			$data[] = [
+				'sermon'   => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject( $sermon,
+					$this->settings['prefix']['sermon'] ),
+				'series'   => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject( $sermon->getSeries(),
+					$this->settings['prefix']['series'], true ),
+				'preacher' => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject( $preacher,
+					$this->settings['prefix']['preacher'] ),
+				'preached' => $sermon->getPreached(),
+				'url'      => sprintf( $this->settings['url'], $sermon->getUid() ),
+			];
+		}
 
-        // make this an array:
-        $data = [];
-        foreach ($sermons as $sermon) {
-            $data[] = [
-                'sermon' => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject($sermon, $this->settings['prefix']['sermon']),
-                'series' => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject($sermon->getSeries(), $this->settings['prefix']['series'], true),
-                'preacher' => \TYPO3\VmfdsSermons\Utility\SyncUtility::convertObject($preacher, $this->settings['prefix']['preacher']),
-                'preached' => $sermon->getPreached(),
-                'url' => sprintf($this->settings['url'], $sermon->getUid())
-            ];
-        }
-        return json_encode(['sermons' => $data]);
-    }
+		return json_encode( [ 'sermons' => $data ], JSON_HEX_QUOT );
+	}
 
-    /**
-     * action admin
-     * Show the admin portal for the preacher
-     * Note: The preacher is determined by the currently logged-in user
-     * @return void
-     */
-    public function adminAction()
-    {
+	/**
+	 * action admin
+	 * Show the admin portal for the preacher
+	 * Note: The preacher is determined by the currently logged-in user
+	 * @return void
+	 */
+	public function adminAction() {
 
-        $user = $this->userRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
-        $preacher = $this->preacherRepository->findByUserId($user);
+		$user     = $this->userRepository->findByUid( $GLOBALS['TSFE']->fe_user->user['uid'] );
+		$preacher = $this->preacherRepository->findByUserId( $user );
 
-        $sermons = $this->sermonRepository->findByPreacher($preacher, 0, true);
+		$sermons = $this->sermonRepository->findByPreacher( $preacher, 0, true );
 
-        $this->view->assign('now', time());
-        $this->view->assign('user', $user);
-        $this->view->assign('preacher', $preacher);
-        $this->view->assign('sermons', $sermons);
-    }
+		$this->view->assign( 'now', time() );
+		$this->view->assign( 'user', $user );
+		$this->view->assign( 'preacher', $preacher );
+		$this->view->assign( 'sermons', $sermons );
+	}
 
 }
