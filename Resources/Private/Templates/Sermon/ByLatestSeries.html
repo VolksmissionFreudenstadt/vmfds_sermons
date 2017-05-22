@@ -23,20 +23,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <f:if condition="{series}">
     <f:if condition="{series.image}">
         <div class="item" xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
-            <f:link.action action="show" pageUid="{settings.pid.series.single}" arguments="{series: series}">
-                <div class="hidden-xs">
+            <div class="hidden-xs">
                 <legal:copyrightedImage src="predigten/Titelbilder/{series.imagePreview}" alt="{series.title}"
-                                        title="{series.title}" class="img-responsive" width="1400"/>
-                </div>
-                <div class="visible-xs-inline">
-                    <legal:copyrightedImage src="predigten/Titelbilder/{series.image}" alt="{series.title}"
-                                            title="{series.title}" class="img-responsive" width="1400"/>
-                </div>
-                <div class="carousel-caption">
+                                        title="{series.title}" class="img-responsive" width="2500"
+                                        imageLink="{f:uri.action(action: show, pageUid: '{settings.pid.sermon.single}', arguments: {sermon: sermon})}"/>
+            </div>
+            <div class="visible-xs-inline">
+                <legal:copyrightedImage src="predigten/Titelbilder/{series.image}" alt="{series.title}"
+                                        title="{series.title}" class="img-responsive" width="2500"
+                                        imageLink="{f:uri.action(action: show, pageUid: '{settings.pid.sermon.single}', arguments: {sermon: sermon})}"/>
+            </div>
+            <div class="carousel-caption">
+                <f:link.action action="show" pageUid="{settings.pid.series.single}" arguments="{series: series}">
                     <p class="animated bounceInLeft">Die aktuelle Predigtreihe</p>
                     <h1 class="animated bounceInRight">{series.title}</h1>
-                </div>
-            </f:link.action>
+                </f:link.action>
+            </div>
         </div>
     </f:if>
 </f:if>

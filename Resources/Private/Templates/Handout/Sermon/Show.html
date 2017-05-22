@@ -3,41 +3,47 @@
 {namespace kool=VMFDS\VmfdsKool\ViewHelpers}
 {namespace qr=B263\Qrcode\ViewHelpers}
 {namespace legal=VMFDS\Legalese\ViewHelpers}
-
-<!--
-@package vmfds_sermons
-@copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
-@license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
-@site http://open.vmfds.de
-@author Christoph Fischer <chris@toph.de>
-@date 2016-06-06
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
--->
 <vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Predigtzettel.pdf"
-           css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4-L"
-           orientation="L" defaultfontsize="9" defaultfont="opensans" leftmargin="0" rightmargin="0" topmargin="0"
-           bottommargin="0" footermargin="0" headermargin="0">
+           orientation="landscape" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0"><!DOCTYPE html>
+    <!--
+    @package vmfds_sermons
+    @copyright Copyright (c) 2012-2016 Volksmission Freudenstadt
+    @license http://www.gnu.org/licenses/gpl.html GNU General Public License v3 or later
+    @site http://open.vmfds.de
+    @author Christoph Fischer <chris@toph.de>
+    @date 2016-06-06
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+    -->
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" media="all">
+        <link rel="stylesheet" type="text/css"
+              href="http://www.wortzummontag.de/typo3conf/ext/vmfds_sermons/Resources/Public/Styles/handout.css?t={f:format.date(format: 'YmdHis', date: 'now')}"/>
+    </head>
+    </html>
+    <body>
     <div class="column">
         <h1 class="sectionheader">diese <b>Woche</b></h1>
         <vmpdf:remoteContent
-                url="http://www.wortzummontag.de/index.php?id=174&tx_vmfdsevents_events[startDate]={weekStart}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1"/>
+                url="http://www.wortzummontag.de/service/veranstaltungen.html?tx_vmfdsevents_events[startDate]={weekStart}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1"/>
         <vmpdf:remoteContent
-                url="http://www.wortzummontag.de/index.php?id=42&tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1"/>
+                url="http://www.wortzummontag.de/service/segen.html?tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEnd}&no_cache=1"/>
         <vmpdf:remoteContent
-                url="http://www.wortzummontag.de/service/geburtstage/?tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEndSat}&no_cache=1"/>
+                url="http://www.wortzummontag.de/service/geburtstage.html?tx_vmfdsevents_events[startDate]={weekStartReal}&tx_vmfdsevents_events[endDate]={weekEndSat}&no_cache=1"/>
         <kool:birthdayList startDate="{weekStart}" endDate="{weekEnd}"/>
     </div>
     <!-- Spalte: Über den Prediger -->
@@ -76,10 +82,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                          alt="CC-BY-SA Lizenz" title="CC-BY-SA Lizenz"/>
                 <br/>
                 <div class="smallprint">
-                    <br/>Diese Predigt und alle dazu gehörigen Ressourcen (Predigtzettel, Aufnahme) sind lizenziert
+                    <br/>Diese Predigt und alle dazu gehörigen Ressourcen (einschließlich der Aufnahme) sind lizenziert
                     unter
                     einer Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 4.0 International
-                    Lizenz (CC-BY-SA 4.0). Verwendete Bilder stehen eventuell unter eigenen Lizenzbedingungen (siehe unten). Ausdrücklich von der Creative Commons-Lizenz ausgenommen sind die Logos und Namen der Volksmission
+                    Lizenz (CC-BY-SA 4.0). Verwendete Bilder stehen eventuell unter eigenen Lizenzbedingungen (siehe
+                    unten). Ausdrücklich von der Creative Commons-Lizenz ausgenommen sind die Logos und Namen der
+                    Volksmission
                     Freudenstadt und ihrer Arbeitsbereiche.<br/><br/>
                     <legal:imageCredits class="titleimage" src="predigten/Titelbilder/{sermon.image}"
                                         alt="Titelbild zur Predigt"
@@ -118,7 +126,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <table style="margin-bottom: 3cm;" border="0" cellspacing="0" cellpadding="0" width="100%">
             <tr>
                 <td valign="top" style="text-align: right; padding-right: 2mm;">
-                    <f:image style="padding-bottom: 2mm;" src="d/CI/meine-kirche.jpg" alt="Meine Kirche"
+                    <f:image style="padding-bottom: 2mm;" src="/fileadmin/CI/meine-kirche.jpg" alt="Meine Kirche"
                              title="Meine Kirche" width="150"/>
                     <br/>
                     Begleitzettel zum Gottesdienst<br/> am
@@ -136,7 +144,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <hr/>
         <f:image class="titleimage" src="predigten/Titelbilder/{sermon.image}" alt="Titelbild zur Predigt"
                  title="{sermon.title}" width="300"/>
-        <f:debug>{imageCredits}</f:debug>
 
         <hr/>
         <div class="titlecontainer">
@@ -159,7 +166,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <!-- 2 -->
         <h1 class="sectionheader">mit<b>lesen</b></h1>
         <ul>
-            <li style="margin-bottom: 5mm; text-indent: 5mm;">
+            <li>
                 In Gottes Wort, der Bibel, begegnet uns Gott und spricht uns direkt und persönlich an.
                 Deshalb gehört das Lesen des Bibeltextes zu den wichtigsten Momenten im Gottesdienst.
                 Wir möchten dich gerne herausfordern, regelmäßig deine eigene Bibel (egal ob Buch, Smartphone oder
@@ -180,9 +187,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 besser zu verstehen.
             </li>
         </ul>
-        <table style="border: solid 1px black; margin-bottom: 0.3cm;" cellspacing="3" cellpadding="0">
+        <table border="0" cellspacing="3" cellpadding="0" class="qrtable">
             <tr>
-                <td colspan="2" style="border-bottom: solid 1px black;">Im heutigen Gottesdienst lesen wir Folgendes aus
+                <td colspan="2">Im heutigen Gottesdienst lesen wir Folgendes aus
                     Gottes Wort: <b>{sermon.reference}</b></td>
             </tr>
             <tr>
@@ -201,14 +208,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <p><f:format.html>{sermon.description}</f:format.html></p>
         -->
 
-        <h1 class="sectionheader">mit<b>reden</b></h1>
+        <h1 class="sectionheader">mit<b>nehmen</b></h1>
         <ul>
             <li><b>Du brauchst Gebet?</b><br/>Bereits während der Anbetungszeit im Anschluss an die Predigt wartet im
                 hinteren Teil des Saals unser Gebetsteam auf dich. Gerne darfst du während der Lieder einfach aufstehen
                 und
-                dort hingehen, damit jemand mit dir betet.</p></li>
-            <li><b>Du hast Fragen zur Predigt? </b><br/>Dann laden wir dich nach dem Gottesdienst vorne beim Sofa zum
-                Pastorengespräch ein.
+                dort hingehen, damit jemand mit dir betet.
             </li>
             <f:if condition="{sermon.hashtags}">
                 <li><b>Du willst online diskutieren?</b><br/>Hier sind die Hashtags zu dieser Predigt:
@@ -244,8 +249,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 </f:if>
                 <h1 class="sectionheader">mit<b>machen</b></h1>
                 <p class="sectionintro">Hier hast du Platz für eigene Notizen. Was spricht dich persönlich an? Was
-                    nimmst du
-                    mit, um es nächste Woche umzusetzen?</p>
+                    nimmst du mit, um es nächste Woche umzusetzen? Was wird dein erster Schritt sein?</p>
             </f:then>
         </f:if>
     </div>
@@ -272,4 +276,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <f:format.html>{sermon.furtherReading}</f:format.html>
         </f:if>
     </div>
+    </body>
+    </html>
 </vmpdf:pdf>

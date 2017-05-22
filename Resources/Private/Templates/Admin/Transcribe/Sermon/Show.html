@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="page-header">
+        <h1>Predigt mitschreiben</h1>
+        <b>Predigt:</b> "{sermon.title}
+        <f:if condition="{sermon.subtitle}">: {sermon.subtitle}</f:if>
+        "
+        ({sermon.preached -> f:format.date(format: '%d.%m.%Y')})
+    </div>
+
+    <f:form method="post" controller="Sermon" action="update" name="sermon" object="{sermon}"
+            enctype="multipart/form-data" pageType="818">
+        <div class="form-group">
+            <div class="form-group">
+                <label for="prep">Tipps zur Vorbereitung</label><br />
+                Wie können sich deine Zuhörer am Besten auf den Gottesdienst vorbereiten?
+                <f:form.textarea id="transcription" class="form-control" property="transcription" rows="15" additionalAttributes="{data-audio: '//wortzummontag.de/{sermon.audiorecording}'}" />
+            </div>
+
+        </div>
+        <hr />
+        <f:form.hidden name="forward" value="show" />
+
+        <f:form.submit class="btn btn-primary" value="Αngaben speichern" />
+
+    </f:form>
+</div>

@@ -23,33 +23,50 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Technik.pdf" css="typo3conf/ext/vmfds_sermons/Resources/Private/Templates/Handout/Sermon/handout.css" layout="A4" orientation="P" defaultfontsize="9" defaultfont="opensans" leftmargin="10" rightmargin="10" topmargin="10" bottommargin="10" footermargin="0" headermargin="0">
-    
-    
-    {sermon.preached -> f:format.date(format: '%A, %d. %B %Y')}        
-    <h1>{sermon.title}<f:if condition="{sermon.subtitle}"><br />{sermon.subtitle}</f:if></h1>
-<f:for each="{sermon.preacher}" as="preacher">
-    <p>{preacher.name}<f:if condition="{preacher.email}">, {preacher.email}</f:if></p>
-</f:for>
-<h2>Folienübersicht</h2>
-<hr />
-<f:for each="{sermon.slides}" as="slide" iteration="i">
-    <div class="infoblock" style="float:left; width: 8.9cm; height: 5cm; padding: 10px">
-        <div style="margin-bottom: 5px;">
-            <div style="float: left; color: #fff; text-align: center; font-size: 16px; background: #1a1a1a; border-radius: 50%; padding: 2px; padding-top: 4px; margin-right: 10px; width: 30px; height: 30px;">
-                {i.cycle}
-            </div> 
-            <div style="margin-left: 7px; padding-top: 7px; float: left;">
-                <h3>{slide.title}</h3>
+<vmpdf:pdf filename="{sermon.preached -> f:format.date(format: 'Ymd')}-Technik.pdf" layout="A4" orientation="portrait"
+           leftmargin="10" rightmargin="10" topmargin="10" bottommargin="10" footermargin="0" headermargin="0"><!DOCTYPE
+    html>
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css"
+              href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+              media="all">
+        <link rel="stylesheet" type="text/css"
+              href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" media="all">
+        <link rel="stylesheet" type="text/css"
+              href="http://www.wortzummontag.de/typo3conf/ext/vmfds_sermons/Resources/Public/Styles/handout.css?t={f:format.date(format: 'YmdHis', date: 'now')}"/>
+    </head>
+    </html>
+    <body>
+
+
+    {sermon.preached -> f:format.date(format: '%A, %d. %B %Y')}
+    <h1>{sermon.title}</h1>
+    <f:if condition="{sermon.subtitle}"><h2>{sermon.subtitle}</h2></f:if>
+    <f:for each="{sermon.preacher}" as="preacher">
+        <p>{preacher.name}<f:if condition="{preacher.email}">, {preacher.email}</f:if></p>
+    </f:for>
+    <h3>Folienübersicht</h3>
+    <hr/>
+    <div class="row">
+        <f:for each="{sermon.slides}" as="slide" iteration="i">
+            <div class="col-xs-4">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <div class="btn btn-default">{i.cycle}</div>
+                    </div>
+                    <div class="col-xs-10">
+                        <legal:copyrightedImage style="border: solid 1px darkgray;"
+                                                src="{slide.image.originalResource.publicUrl}" class="img-responsive" useDivs="1" />
+                        <b>{slide.title}</b><br />
+                        {slide.techNotes -> f:format.html()}
+                    </div>
+                </div>
             </div>
-        </div>
-        <div style="float: left; margin: 0 10px 10px 0; width: 160px;">
-        <legal:copyrightedImage style="border: solid 1px darkgray;" src="{slide.image.originalResource.publicUrl}" width="150" useDivs="1" />
-        </div>
-        <div style="float: left; ">
-        {slide.techNotes -> f:format.html()}            
-        </div>
+            <f:if condition="{i.cycle} % 3"><f:else></div><div class="row"></f:else></f:if>
+        </f:for>
     </div>
-        
-</f:for>
+    </body>
+    </html>
 </vmpdf:pdf>

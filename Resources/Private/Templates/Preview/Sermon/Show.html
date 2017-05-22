@@ -62,20 +62,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             <f:then>
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">    
-                            <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" class="img-responsive" width="1400" />
-                            <div class="carousel-caption">            
+                        <div class="item active">
+                            <div class="hidden-xs">
+                                <legal:copyrightedImage src="predigten/Titelbilder/{sermon.imagePreview}" alt="{sermon.title}"
+                                                        title="{sermon.title}" class="img-responsive" width="2500"/>
+                            </div>
+                            <div class="visible-xs-inline">
+                                <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" alt="{sermon.title}"
+                                                        title="{sermon.title}" class="img-responsive" width="2500"/>
+                            </div>
+                            <div class="carousel-caption">
                                 <h1>{sermon.title}</h1>
-                                <f:if condition="{sermon.subtitle}">{sermon.subtitle}</f:if>
-                            </div>    
-                            <f:if condition="{sermon.imageSource}"><small class="page-image-source">Bild: {sermon.imageSource}</small><br /><br /></f:if>    
+                                <f:if condition="{sermon.subtitle}"><h4>{sermon.subtitle}</h4></f:if>
+                            </div>
+                            <f:if condition="{sermon.imageSource}">
+                                <small class="page-image-source">Bild: {sermon.imageSource}</small>
+                                <br/><br/></f:if>
                         </div>
                     </div>
                 </div>
-                <div class="container">
+                <div class="container page-start">
             </f:then>
             <f:else>
-                <div class="container">
+                <div class="container page-start">
                     <h1>{sermon.title}</h1>
                     <f:if condition="{sermon.subtitle}"><h2 class="sermon-subtitle">{sermon.subtitle}</h2></f:if>
 

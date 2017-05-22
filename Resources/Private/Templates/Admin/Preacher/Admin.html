@@ -181,10 +181,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <f:if condition="{sermon.preached.timestamp} <= {now}">
             <div class="row" style="margin-bottom: 10px;">
                 <div class="col-md-3">
-                    <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}"
-                                   pageUid="{settings.pid.sermon.single}">
-                        <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" class="img-responsive"/>
-                    </f:link.action>
+                    <f:if condition="{sermon.image}">
+                        <f:link.action controller="Sermon" action="show" arguments="{sermon : sermon}"
+                                       pageUid="{settings.pid.sermon.single}">
+                            <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" class="img-responsive"/>
+                        </f:link.action>
+                    </f:if>
                 </div>
                 <div class="col-md-8">
                     <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>

@@ -23,23 +23,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <f:if condition="{sermon}">
     <f:if condition="{sermon.image}">
         <div class="item" xmlns:legal="http://typo3.org/ns/VMFDS/Legalese/ViewHelpers">
-            <f:link.action action="show" arguments="{sermon_preview : sermon}"
-                           pageUid="{settings.pid.sermon.preview}">
-                <div class="hidden-xs">
-                    <legal:copyrightedImage src="predigten/Titelbilder/{sermon.imagePreview}" alt="{sermon.title}"
-                                            title="{sermon.title}" class="img-responsive" width="1500"/>
-                </div>
-                <div class="visible-xs-inline">
-                    <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" alt="{sermon.title}"
-                                            title="{sermon.title}" class="img-responsive" width="1500"/>
-                </div>
-                <div class="carousel-caption">
+            <div class="hidden-xs">
+                <legal:copyrightedImage src="predigten/Titelbilder/{sermon.imagePreview}" alt="{sermon.title}"
+                                        title="{sermon.title}" class="img-responsive" width="2500"
+                                        imageLink="{f:uri.action(action: show, pageUid: '{settings.pid.sermon.preview}', arguments: {sermon_preview: sermon})}" />
+            </div>
+            <div class="visible-xs-inline">
+                <legal:copyrightedImage src="predigten/Titelbilder/{sermon.image}" alt="{sermon.title}"
+                                        title="{sermon.title}" class="img-responsive" width="2500"
+                                        imageLink="{f:uri.action(action: show, pageUid: '{settings.pid.sermon.preview}', arguments: {sermon_preview: sermon})}"/>
+            </div>
+            <div class="carousel-caption">
+                <f:link.action action="show" arguments="{sermon_preview : sermon}"
+                               pageUid="{settings.pid.sermon.preview}">
                     <p class="animated bounceInLeft">Vorschau auf die Predigt vom
                         <f:format.date format="%d.%m.%Y">{sermon.preached}</f:format.date>
                     </p>
                     <h1 class="animated bounceInRight">{sermon.title}</h1>
-                </div>
-            </f:link.action>
+                </f:link.action>
+            </div>
         </div>
     </f:if>
 </f:if>

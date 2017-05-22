@@ -79,7 +79,7 @@ class SyncUtility
                         if ($content == '')
                             $a[$property] = str_replace('###TITLE###', $title, str_replace('###UID###', $uid, $prefix[$property]['dynamic']));
                     } else {
-                        $a[$property] = ($content ? $prefix[$property] . $content : '');
+                        $a[$property] = str_replace('&quot;', '"', ($content ? $prefix[$property] . $content : ''));
                     }
                 }
             }
